@@ -33,6 +33,7 @@
 @endsection
 
 @section('sfondo')
+    
     <!-- sfondo montagne con tasto ricerca-->
         <div class="container" style="margin-top: 5em;">
             <div class="row">
@@ -76,13 +77,6 @@
 @endsection
 
 @section('corpo')
-<?php
-session_destroy()
-    //use App\DataLayer; 
-    //$dl = new DataLayer();
-    //$dl->getUserID("stefano.poma");
-    //echo '<h1>sessione incominciata</h1>';
-?>
 <!-- elenco suggerimenti-->
         <div class="container">
             <div class="row">
