@@ -222,6 +222,12 @@ li.inserimeno-titolo > p.titolo{
     white-space: nowrap;
 }
 
+.overflow-text {
+    overflow: hidden; 
+    text-overflow: ellipsis; 
+    white-space: nowrap;
+}
+
 
 .filtro{
     font-size: 25px;

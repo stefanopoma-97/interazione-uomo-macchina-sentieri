@@ -56,5 +56,9 @@ class AuthController extends Controller
             return Redirect::to(route('home'));
 
 
-        }    }    
+        }    
+        
+        }  
+        
+        
 }

@@ -7,6 +7,7 @@ use App\LibUser;
 use App\Sentiero;
 use App\DatiSentiero;
 use App\Citta;
+use Illuminate\Support\Facades\DB;
 
 //AUTENTICAZIONE
 class DataLayer extends Model
@@ -40,7 +41,10 @@ class DataLayer extends Model
     
     public function getUserID($username) {
         $users = LibUser::where('username',$username)->get(['id']);
-        return $users[0]->id;
+        if(count($users)==0)
+            return -1;
+        else
+            return $users[0]->id;
     }
     
     public function getCityID($nome) {
@@ -58,6 +62,56 @@ class DataLayer extends Model
         $citta = Citta::where('id', $user->citta_id)->get();
         return $citta[0];
     }
+    
+    
+    //UTENTI
+    public function getAllUsers() {
+        $users = LibUser::all();
+        return $users;
+    }
+    
+    
+    public function getEsperienzeByUserID($user_id) {
+        $user = $this->getUserByID($user_id);
+        return $user->esperienze;
+    }
+    
+    public function getSentieriEffettuati($user_id) {
+        $user = $this->getUserByID($user_id);
+        $sentieri_effettuati = $user->esperienze->pluck('sentiero_id');
+        $effettuati = DatiSentiero::whereIn('id', $sentieri_effettuati)->take(4)->get();
+        return $effettuati;
+    }
+    
+     public function getSentieriEsperienze($user_id) {
+        
+        return DB::table('sentiero')
+        ->select('sentiero.*','esperienza.*')
+        ->join('esperienza','esperienza.sentiero_id','=','sentiero.id')
+        ->where('esperienza.utente_id', '=', $user_id)
+        ->get();
+    }
+    
+    public function updateUtente($id, $username, $nome, $cognome, $mail, $citta, $descrizione) {
+        $user = LibUser::find($id);
+        $user->username = $username;
+        $user->nome = $nome;
+        $user->cognome = $cognome;
+        $user->mail = $mail;
+        $user->citta_id = $citta;
+        $user->descrizione = $descrizione;
+        $user->save();
+        // massive update (only with fillable property enabled on Book): 
+        // Book::find($id)->update(['title' => $title, 'author_id' => $author_id]);
+    }
+    
+    
+     
+    
+    
+    
+    
+    
     
     //SENTIERI
     public function getRecent() {
@@ -82,6 +136,15 @@ class DataLayer extends Model
         $citta = $this->getCity($user_id);
         $sentieri_consigliati = DatiSentiero::where('citta_id', $citta->id)->take(4)->get();
         return $sentieri_consigliati;
+    }
+    
+    
+    
+    
+    
+    
+     public function getCitta() {
+        return Citta::all();
     }
     
 }

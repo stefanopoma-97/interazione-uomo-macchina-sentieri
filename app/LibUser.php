@@ -9,7 +9,7 @@ class LibUser extends Model
     protected $table = "utente";
     public $timestamps = false;
     
-    protected $fillable = ['username', 'nome', 'cognome', 'mail', 'descrizione'];
+    protected $fillable = ['id', 'username', 'nome', 'cognome', 'mail', 'descrizione', 'citta_id'];
     
     public function citta() {
         // è un attributo non un metodo $utente->citta
@@ -18,7 +18,7 @@ class LibUser extends Model
     
     public function esperienze() {
         // è un attributo non un metodo $utente->citta
-        return $this->hasMany('App\Esperienza'); //relazione 0:n
+        return $this->hasMany('App\Esperienza', 'utente_id'); //relazione 0:n
     } 
     
      public function preferiti() {

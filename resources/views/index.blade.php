@@ -14,10 +14,10 @@
 <li><a class="bordo-selezione" href="{{ route('user.elenco') }}">Utenti</a></li>
 
     @if($logged)
-    <li class="dropdown">
+    <li class="dropdown" style="margin-left: 5em;">
         <a class="btnsignin dropdown-toggle" href="#" data-toggle="dropdown"><span class="glyphicon glyphicon-user"></span></a>
         <ul class="dropdown-menu">
-            <li><a href="{{ route('user.update', ['id'=> $user_id]) }}">Account</a></li>
+            <li><a href="{{ route('user.dettagli', ['id'=> $user_id]) }}">Account</a></li>
             <li><a href="{{ route('user.preferiti', ['id'=> $user_id]) }}">Preferiti</a></li>
             <li><a href="{{ route('user.elenco') }}">Lista utenti</a></li>
             <li><a href="{{ route('sentiero.index') }}">Lista sentieri</a></li>
@@ -120,7 +120,7 @@
                                                 <div class="col-m-3 col-sm-3 col-xs-12">
                                                     <ul class="list-group">
                                                         <li class="list-group-item "><h4>{{ $sentiero->titolo }}</h4></li>
-                                                        <li class="list-group-item "><strong>{{ $sentiero->categoria }}</strong></li>
+                                                        <li class="list-group-item "><strong>Media voti: {{ $sentiero->mediavoti }}</strong></li>
                                                         <li style="height: 50px" class="list-group-item "><q>{{ $sentiero->descrizione }}</q></li>
                                                         <li class="list-group-item "><span class="glyphicon glyphicon-time"></span>   {{ $sentiero->durata }}</li>
                                                         <li class="list-group-item "><span class="glyphicon glyphicon-repeat"></span>   {{ $sentiero->lunghezza }}</li>
@@ -137,7 +137,7 @@
                                                 <div class="col-m-3 col-sm-3 col-xs-12">
                                                     <ul class="list-group">
                                                         <li class="list-group-item "><h4>{{ $sentiero->titolo }}</h4></li>
-                                                        <li class="list-group-item "><strong>{{ $sentiero->categoria }}</strong></li>
+                                                        <li class="list-group-item "><strong>Città: {{ $sentiero->citta }}</strong></li>
                                                         <li style="height: 50px" class="list-group-item "><q>{{ $sentiero->descrizione }}</q></li>
                                                         <li class="list-group-item "><span class="glyphicon glyphicon-time"></span>   {{ $sentiero->durata }}</li>
                                                         <li class="list-group-item "><span class="glyphicon glyphicon-repeat"></span>   {{ $sentiero->lunghezza }}</li>

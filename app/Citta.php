@@ -9,7 +9,7 @@ class Citta extends Model
     protected $table = "citta";
     public $timestamps = false;
     
-    protected $fillable = ['nome'];
+    protected $fillable = ['nome', 'id'];
     
     public function users() {
         return $this->hasMany('App\LibUser');

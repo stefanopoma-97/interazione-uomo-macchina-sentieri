@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Esperienza extends Model
 {
     public $timestamps = false;
+    protected $table = "esperienza";
      
     
      public function utente() {

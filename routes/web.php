@@ -41,17 +41,23 @@ Route::post('/user/register', ['as' => 'user.register',
     'uses' => 'AuthController@registration']);
 
 
+
+//USER
+
 Route::post('/user/{id}/update', ['as' => 'user.update', 
-    'uses' => 'AuthController@update']);
+    'uses' => 'UserController@update']);
 
-Route::post('/user/{id}/dettagli', ['as' => 'user.dettagli', 
-    'uses' => 'AuthController@dettagli']);
+Route::get('/user/{id}/update', ['as' => 'user.edit', 
+    'uses' => 'UserController@edit']);
 
-Route::post('/user/elenco', ['as' => 'user.elenco', 
-    'uses' => 'AuthController@elenco']);
+Route::get('/user/{id}/dettagli', ['as' => 'user.dettagli', 
+    'uses' => 'UserController@dettagli']);
+
+Route::get('/user/elenco', ['as' => 'user.elenco', 
+    'uses' => 'UserController@elenco']);
 
 Route::post('/user/{id}/preferiti', ['as' => 'user.preferiti', 
-    'uses' => 'AuthController@preferiti']);
+    'uses' => 'UserController@preferiti']);
 
 //SENTIERI
 

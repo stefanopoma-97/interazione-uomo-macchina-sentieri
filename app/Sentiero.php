@@ -27,12 +27,12 @@ class Sentiero extends Model
     
     public function esperienze() {
         // use the 'user' property: $author->user (returns an object LibUser)
-        return $this->hasMany('App\Esperienza');
+        return $this->hasMany('App\Esperienza', 'sentiero_id');
     }
     
      public function preferiti() {
         // use the 'user' property: $author->user (returns an object LibUser)
-        return $this->hasMany('App\Preferiti');
+        return $this->hasMany('App\Preferiti', 'sentiero_id');
     }
     
     public function autore() {
