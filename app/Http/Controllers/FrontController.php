@@ -15,10 +15,20 @@ class FrontController extends Controller
         
         if(isset($_SESSION['logged'])) {
             $user_id = $dl->getUserID($_SESSION['loggedName']);
+            $sentieri_recenti = $dl->getRecent();
+            $sentieri_piu_votati = $dl->getPiuVotati();
+            $sentieri_consigliati = $dl->getConsigliati($user_id);
+            $sentieri_preferiti = $dl->getPreferiti($user_id);
             return view('index')->with('logged',true)->with('loggedName', $_SESSION['loggedName'])
-                    ->with('user_id', $user_id);
+                    ->with('user_id', $user_id)->with('sentieri_recenti', $sentieri_recenti)
+                    ->with('sentieri_piu_votati', $sentieri_piu_votati)
+                    ->with('sentieri_consigliati', $sentieri_consigliati)
+                    ->with('sentieri_preferiti', $sentieri_preferiti);
         } else {
-            return view('index')->with('logged',false);
+            $sentieri_recenti = $dl->getRecent();
+            $sentieri_piu_votati = $dl->getPiuVotati();
+            return view('index')->with('logged',false)->with('sentieri_recenti', $sentieri_recenti)
+                    ->with('sentieri_piu_votati', $sentieri_piu_votati);
         }
     }
 }

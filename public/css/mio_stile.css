@@ -215,7 +215,8 @@ li.inserimeno-titolo > p.titolo{
 
 
 /*serve per eliminare il testo in eccesso*/
-.list-group-item {
+.list-group-item,
+.list-group-item > h4 {
     overflow: hidden; 
     text-overflow: ellipsis; 
     white-space: nowrap;

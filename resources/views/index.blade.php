@@ -97,85 +97,83 @@
                                     <div class="tab-pane active" id="tab-1">
                                         <div class="container">
                                             <div class="row">
+                                            @foreach($sentieri_recenti as $sentiero)
                                                 <div class="col-m-3 col-sm-3 col-xs-12">
                                                     <ul class="list-group">
-                                                        <li class="list-group-item "><h4>Titolo1</h4></li>
-                                                        <li class="list-group-item "><strong>Tipo</strong></li>
-                                                        <li style="height: 150px" class="list-group-item "><q>sbB>BDVdg>VDvVvdvdvDVDds
-                                                                sdsSdbDBHJdjbJDb>HdjBSdv>FhV    
-                                                                fsfdBFJBFAVFhG>VsHCd
-                                                                dDhs Dv> CVSC> xbnxnshss d</q></li>
-                                                        <li class="list-group-item "><span class="glyphicon glyphicon-time"></span>   4 ore</li>
-                                                        <li class="list-group-item "><span class="glyphicon glyphicon-repeat"></span>   13 km</li>
-                                                        <li class="list-group-item "><span class="glyphicon glyphicon-chevron-up"></span>   salita</li>
-                                                        <li class="list-group-item "><span class="glyphicon glyphicon-chevron-down"></span>   discesa</li>
+                                                        <li class="list-group-item "><h4>{{ $sentiero->titolo }}</h4></li>
+                                                        <li class="list-group-item "><strong>{{ $sentiero->categoria }}</strong></li>
+                                                        <li style="height: 50px" class="list-group-item "><q>{{ $sentiero->descrizione }}</q></li>
+                                                        <li class="list-group-item "><span class="glyphicon glyphicon-time"></span>   {{ $sentiero->durata }}</li>
+                                                        <li class="list-group-item "><span class="glyphicon glyphicon-repeat"></span>   {{ $sentiero->lunghezza }}</li>
+                                                        <li class="list-group-item "><span class="glyphicon glyphicon-chevron-up"></span>   {{ $sentiero->salita }}</li>
+                                                        <li class="list-group-item "><span class="glyphicon glyphicon-chevron-down"></span>   {{ $sentiero->discesa }}</li>
                                                         <li class="list-group-item "><a class="btn btn-info btn-block btn-round-bottom" href="sentiero.html" role="button">Dettagli</a></li>
                                                     </ul>
                                                 </div>
-                                                <div class="col-m-3 col-sm-3 col-xs-12">
-                                                    <ul class="list-group ">
-                                                        <li class="list-group-item "><h4>Titolo</h4></li>
-                                                        <li class="list-group-item "><strong>Tipo</strong></li>
-                                                        <li style="height: 150px" class="list-group-item "><q>sbB>BDVdg>VDvVvdvdvDVDds
-                                                                sdsSdbDBHJdjbJDb>HdjBSdv>FhV    
-                                                                fsfdBFJBFAVFhG>VsHCd
-                                                                dDhs Dv> CVSC> xbnxnshss d</q></li>
-                                                        <li class="list-group-item "><span class="glyphicon glyphicon-time"></span>   4 ore</li>
-                                                        <li class="list-group-item "><span class="glyphicon glyphicon-repeat"></span>   13 km</li>
-                                                        <li class="list-group-item "><span class="glyphicon glyphicon-chevron-up"></span>   salita</li>
-                                                        <li class="list-group-item "><span class="glyphicon glyphicon-chevron-down"></span>   discesa</li>
-                                                        <li class="list-group-item "><a class="btn btn-info btn-block btn-round-bottom" href="sentiero.html" role="button">Dettagli</a></li>
-                                                    </ul>
-                                                </div>
-                                                <div class="col-m-3 col-sm-3 col-xs-12">
-                                                    <ul class="list-group ">
-                                                        <li class="list-group-item "><h4>Titolo</h4></li>
-                                                        <li class="list-group-item "><strong>Tipo</strong></li>
-                                                        <li style="height: 150px" class="list-group-item "><q>sbB>BDVdg>VDvVvdvdvDVDds
-                                                                sdsSdbDBHJdjbJDb>HdjBSdv>FhV    
-                                                                fsfdBFJBFAVFhG>VsHCd
-                                                                dDhs Dv> CVSC> xbnxnshss d</q></li>
-                                                        <li class="list-group-item "><span class="glyphicon glyphicon-time"></span>   4 ore</li>
-                                                        <li class="list-group-item "><span class="glyphicon glyphicon-repeat"></span>   13 km</li>
-                                                        <li class="list-group-item "><span class="glyphicon glyphicon-chevron-up"></span>   salita</li>
-                                                        <li class="list-group-item "><span class="glyphicon glyphicon-chevron-down"></span>   discesa</li>
-                                                        <li class="list-group-item "><a class="btn btn-info btn-block btn-round-bottom" href="sentiero.html" role="button">Dettagli</a></li>
-                                                    </ul>
-                                                </div>
-                                                <div class="col-m-3 col-sm-3 col-xs-12">
-                                                    <ul class="list-group ">
-                                                        <li class="list-group-item "><h4>Titolo1</h4></li>
-                                                        <li class="list-group-item "><strong>Tipo</strong></li>
-                                                        <li style="height: 150px" class="list-group-item "><q>sbB>BDVdg>VDvVvdvdvDVDds
-                                                                sdsSdbDBHJdjbJDb>HdjBSdv>FhV    
-                                                                fsfdBFJBFAVFhG>VsHCd
-                                                                dDhs Dv> CVSC> xbnxnshss d</q></li>
-                                                        <li class="list-group-item "><span class="glyphicon glyphicon-time"></span>   4 ore</li>
-                                                        <li class="list-group-item "><span class="glyphicon glyphicon-repeat"></span>   13 km</li>
-                                                        <li class="list-group-item "><span class="glyphicon glyphicon-chevron-up"></span>   salita</li>
-                                                        <li class="list-group-item "><span class="glyphicon glyphicon-chevron-down"></span>   discesa</li>
-                                                        <li class="list-group-item "><a class="btn btn-info btn-block btn-round-bottom" href="sentiero.html" role="button">Dettagli</a></li>
-                                                    </ul>
-                                                </div>
+                                            @endforeach
                                             </div>
                                         </div>
                                         
                                     </div>
                                     <div class="tab-pane" id="tab-2">
-                                        <p>Donec id elit non mi porta gravida at <a href="#">eget metus id elit mi</a> egetine. Fusce dapibus, tellus ac cursus comodo egetine metuss gorp.</p>
-                                        <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus etiam sem...</p>
-                                        <p>Donec id elit non mi porta gravida at eget metus id elit mi egetine. Fusce dapibus, <a href="#">tellus ac cursus</a> comodo egetine metuss gorp.</p>
+                                        @foreach($sentieri_piu_votati as $sentiero)
+                                                <div class="col-m-3 col-sm-3 col-xs-12">
+                                                    <ul class="list-group">
+                                                        <li class="list-group-item "><h4>{{ $sentiero->titolo }}</h4></li>
+                                                        <li class="list-group-item "><strong>{{ $sentiero->categoria }}</strong></li>
+                                                        <li style="height: 50px" class="list-group-item "><q>{{ $sentiero->descrizione }}</q></li>
+                                                        <li class="list-group-item "><span class="glyphicon glyphicon-time"></span>   {{ $sentiero->durata }}</li>
+                                                        <li class="list-group-item "><span class="glyphicon glyphicon-repeat"></span>   {{ $sentiero->lunghezza }}</li>
+                                                        <li class="list-group-item "><span class="glyphicon glyphicon-chevron-up"></span>   {{ $sentiero->salita }}</li>
+                                                        <li class="list-group-item "><span class="glyphicon glyphicon-chevron-down"></span>   {{ $sentiero->discesa }}</li>
+                                                        <li class="list-group-item "><a class="btn btn-info btn-block btn-round-bottom" href="sentiero.html" role="button">Dettagli</a></li>
+                                                    </ul>
+                                                </div>
+                                            @endforeach
                                     </div>
                                     <div class="tab-pane" id="tab-3">
-                                        <p>Vivamus imperdiet condimentum diam, eget placerat felis consectetur id. Donec eget orci metus, ac adipiscing nunc. Pellentesque fermentum, ante ac interdum ullamcorper. Donec eget orci metus, ac adipiscing nunc. Pellentesque fermentum, ante ac interdum ullamcorper.</p>
-                                        <p>Vivamus imperdiet condimentum diam, eget placerat felis consectetur id. Donec eget orci metus, ac adipiscing nunc.</p>
-                                        <p>Vivamus imperdiet condimentum diam, eget placerat felis consectetur id. Donec eget orci metus, ac adipiscing nunc. Pellentesque fermentum, ante ac interdum ullamcorper. Donec eget orci metus, ac adipiscing nunc. Pellentesque fermentum, ante ac interdum ullamcorper.</p>
-                                        <p>Vivamus imperdiet condimentum diam, eget placerat felis consectetur id. Donec eget orci metus, ac adipiscing nunc.</p>
+                                        @if ($logged)
+                                            @foreach($sentieri_consigliati as $sentiero)
+                                                <div class="col-m-3 col-sm-3 col-xs-12">
+                                                    <ul class="list-group">
+                                                        <li class="list-group-item "><h4>{{ $sentiero->titolo }}</h4></li>
+                                                        <li class="list-group-item "><strong>{{ $sentiero->categoria }}</strong></li>
+                                                        <li style="height: 50px" class="list-group-item "><q>{{ $sentiero->descrizione }}</q></li>
+                                                        <li class="list-group-item "><span class="glyphicon glyphicon-time"></span>   {{ $sentiero->durata }}</li>
+                                                        <li class="list-group-item "><span class="glyphicon glyphicon-repeat"></span>   {{ $sentiero->lunghezza }}</li>
+                                                        <li class="list-group-item "><span class="glyphicon glyphicon-chevron-up"></span>   {{ $sentiero->salita }}</li>
+                                                        <li class="list-group-item "><span class="glyphicon glyphicon-chevron-down"></span>   {{ $sentiero->discesa }}</li>
+                                                        <li class="list-group-item "><a class="btn btn-info btn-block btn-round-bottom" href="sentiero.html" role="button">Dettagli</a></li>
+                                                    </ul>
+                                                </div>
+                                            @endforeach
+                                        @else
+                                        <p><h3 class="text-center">Effettua il login per visualizzare questa sezione</h3></p>
+
+                                        @endif
                                     </div>
                                     <div class="tab-pane" id="tab-4">
-                                        <p>pare tu non abbia ancora preferiti</p>
+                                        @if ($logged)
+                                            @foreach($sentieri_preferiti as $sentiero)
+                                                <div class="col-m-3 col-sm-3 col-xs-12">
+                                                    <ul class="list-group">
+                                                        <li class="list-group-item "><h4>{{ $sentiero->titolo }}</h4></li>
+                                                        <li class="list-group-item "><strong>{{ $sentiero->categoria }}</strong></li>
+                                                        <li style="height: 50px" class="list-group-item "><q>{{ $sentiero->descrizione }}</q></li>
+                                                        <li class="list-group-item "><span class="glyphicon glyphicon-time"></span>   {{ $sentiero->durata }}</li>
+                                                        <li class="list-group-item "><span class="glyphicon glyphicon-repeat"></span>   {{ $sentiero->lunghezza }}</li>
+                                                        <li class="list-group-item "><span class="glyphicon glyphicon-chevron-up"></span>   {{ $sentiero->salita }}</li>
+                                                        <li class="list-group-item "><span class="glyphicon glyphicon-chevron-down"></span>   {{ $sentiero->discesa }}</li>
+                                                        <li class="list-group-item "><a class="btn btn-info btn-block btn-round-bottom" href="sentiero.html" role="button">Dettagli</a></li>
+                                                    </ul>
+                                                </div>
+                                            @endforeach
+                                        @else
+                                        <p><h3 class="text-center">Effettua il login per visualizzare questa sezione</h3></p>
+
+                                        @endif
                                         
-                                </div>
+                                    </div>
                             </div>
                         </div><!-- /.col-sm-7 -->
                     </div><!-- /.row -->

@@ -7,30 +7,36 @@ use Illuminate\Database\Eloquent\Model;
 class Sentiero extends Model
 {
      public $timestamps = false;
+     protected $table = "sentiero";
      
     
      public function difficolta() {
         // use the 'user' property: $author->user (returns an object LibUser)
-        return $this->belongsTo('PW_runningExample_v6_Laravel\Difficolta');
+        return $this->belongsTo('App\Difficolta');
     }
     
     public function categoria() {
         // use the 'user' property: $author->user (returns an object LibUser)
-        return $this->belongsTo('PW_runningExample_v6_Laravel\Categoria');
+        return $this->belongsTo('App\Categoria');
     }
     
     public function citta() {
         // use the 'user' property: $author->user (returns an object LibUser)
-        return $this->belongsTo('PW_runningExample_v6_Laravel\Citta');
+        return $this->belongsTo('App\Citta');
     }
     
     public function esperienze() {
         // use the 'user' property: $author->user (returns an object LibUser)
-        return $this->hasMany('PW_runningExample_v6_Laravel\Esperienza');
+        return $this->hasMany('App\Esperienza');
+    }
+    
+     public function preferiti() {
+        // use the 'user' property: $author->user (returns an object LibUser)
+        return $this->hasMany('App\Preferiti');
     }
     
     public function autore() {
         // use the 'user' property: $author->user (returns an object LibUser)
-        return $this->belongsTo('PW_runningExample_v6_Laravel\LibUser');
+        return $this->belongsTo('App\LibUser');
     }
 }
