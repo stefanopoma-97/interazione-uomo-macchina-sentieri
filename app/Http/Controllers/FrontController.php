@@ -13,19 +13,31 @@ class FrontController extends Controller
         session_start(); //fa partire la sessione e rimanda alla view index
         $dl = new DataLayer();
         
+        //controlla che sia loggato
         if(isset($_SESSION['logged'])) {
             $user_id = $dl->getUserID($_SESSION['loggedName']);
-            $sentieri_recenti = $dl->getRecent();
+            
+            //user_id == -1 significa che ho un username che non esiste (modificato)
+            if($user_id==-1){
+            session_destroy();
+            return Redirect::to(route('user.auth.login'));
+             }
+             
+            $user = $dl->getUserByID($user_id);
+            
+            $sentieri_recenti = $dl->getSentieriRecenti();
             $sentieri_piu_votati = $dl->getPiuVotati();
             $sentieri_consigliati = $dl->getConsigliati($user_id);
             $sentieri_preferiti = $dl->getPreferiti($user_id);
+            
             return view('index')->with('logged',true)->with('loggedName', $_SESSION['loggedName'])
                     ->with('user_id', $user_id)->with('sentieri_recenti', $sentieri_recenti)
                     ->with('sentieri_piu_votati', $sentieri_piu_votati)
+                    ->with('user', $user)
                     ->with('sentieri_consigliati', $sentieri_consigliati)
                     ->with('sentieri_preferiti', $sentieri_preferiti);
         } else {
-            $sentieri_recenti = $dl->getRecent();
+            $sentieri_recenti = $dl->getSentieriRecenti();
             $sentieri_piu_votati = $dl->getPiuVotati();
             return view('index')->with('logged',false)->with('sentieri_recenti', $sentieri_recenti)
                     ->with('sentieri_piu_votati', $sentieri_piu_votati);

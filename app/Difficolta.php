@@ -7,6 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 class Difficolta extends Model
 {
      public $timestamps = false;
+         protected $table = "difficolta";
+
     
      public function sentieri() {
         // use the 'user' property: $author->user (returns an object LibUser)

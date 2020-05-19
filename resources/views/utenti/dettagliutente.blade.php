@@ -17,8 +17,11 @@
         <ul class="dropdown-menu">
             <li><a href="{{ route('user.dettagli', ['id'=> $user_id]) }}">Account</a></li>
             <li><a href="{{ route('user.preferiti', ['id'=> $user_id]) }}">Preferiti</a></li>
+            @if($user->admin == 'y')
             <li><a href="{{ route('user.elenco') }}">Lista utenti</a></li>
             <li><a href="{{ route('sentiero.index') }}">Lista sentieri</a></li>
+            @else
+            @endif
             <li><a href="{{ route('user.logout') }}">Log out</a></li>
         </ul>
     </li>
@@ -62,8 +65,13 @@
                     <ul class="list-group ">
                         <li class="list-group-item"><q>Nome: {{ $user_dettagli->nome }}</q></li>
                         <li class="list-group-item ">Cognome: {{ $user_dettagli->cognome }}</li>
-                        <li class="list-group-item ">Percorsi effettuati: {{ $numero_esperienze }}</li>
-                        <li class="list-group-item ">Preferiti: <a href="sentieri.html">{{ $numero_preferiti }}</a></li>
+                        @if($user->id == $user_dettagli->id)
+                        <li class="list-group-item ">Città: {{ $user_dettagli->citta->nome }}</li>
+                        <li class="list-group-item ">Mail: {{ $user_dettagli->mail }}</li>
+                        @else
+                        @endif
+                        <li class="list-group-item ">Percorsi effettuati: {{ count($user_dettagli->esperienze) }}</li>
+                        <li class="list-group-item ">Preferiti: <a href="sentieri.html">{{ count($user_dettagli->preferiti) }}</a></li>
                         <li class="list-group-item ">{{$user_dettagli->descrizione}}</li>
                         @if ($user_dettagli->id == $user_id)
                             <li class="list-group-item "><a class="btn btn-info btn-block btn-round-bottom" href="{{ route('user.edit', ['id'=> $user_id]) }}" role="button">Modifica</a></li>
@@ -120,13 +128,13 @@
         <div class="col-md-12">
             <div class="container horizontal-scrollable">
                 <div class="row">
-                    @foreach ($sentieri_esperienze as $sentiero)
+                    @foreach ($sentieri_effettuati as $sentiero)
                     <div class="col-m-3 col-sm-3">
                         <ul class="list-group ">
                             <li class="list-group-item "><h4>{{ $sentiero->titolo }}</h4></li>
                             <li style="height: 100px" class="list-group-item"><q>{{ $sentiero->descrizione }}</q></li>
-                            <li class="list-group-item ">Difficoltà:   {{ $sentiero->difficolta }}</li>
-                            <li class="list-group-item ">Voto:   {{ $sentiero->voto }}</li>
+                            <li class="list-group-item ">Difficoltà:   {{ ($sentiero->esperienze->where('utente_id', $user_dettagli->id)->first())->difficolta }}</li>
+                            <li class="list-group-item ">Voto:   {{ ($sentiero->esperienze->where('utente_id', $user_dettagli->id)->first())->voto }}</li>
                             <li class="list-group-item "><a class="btn btn-info btn-block btn-round-bottom" href="sentiero.html" role="button">Dettagli</a></li>
                         </ul>
                     </div>

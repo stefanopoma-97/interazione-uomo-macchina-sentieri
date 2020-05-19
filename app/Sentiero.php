@@ -37,6 +37,6 @@ class Sentiero extends Model
     
     public function autore() {
         // use the 'user' property: $author->user (returns an object LibUser)
-        return $this->belongsTo('App\LibUser');
+        return $this->belongsTo('App\LibUser', 'utente_id');
     }
 }

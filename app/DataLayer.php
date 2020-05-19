@@ -79,7 +79,7 @@ class DataLayer extends Model
     public function getSentieriEffettuati($user_id) {
         $user = $this->getUserByID($user_id);
         $sentieri_effettuati = $user->esperienze->pluck('sentiero_id');
-        $effettuati = DatiSentiero::whereIn('id', $sentieri_effettuati)->take(4)->get();
+        $effettuati = Sentiero::whereIn('id', $sentieri_effettuati)->take(4)->get();
         return $effettuati;
     }
     
@@ -106,16 +106,22 @@ class DataLayer extends Model
     }
     
     
+    
+    
      
     
     
     
-    
+     public function fromSentieriToDatiSentieri($sentieri) {
+        $sentieri_id=$sentieri->pluck('id');
+        $dati_sentieri = DatiSentiero::wherein('id', $sentieri_id)->get();
+        return $dati_sentieri;
+    }
     
     
     //SENTIERI
-    public function getRecent() {
-        $sentieri_recenti = DatiSentiero::orderBy('id', 'DESC')->take(4)->get();
+    public function getSentieriRecenti() {
+        $sentieri_recenti = Sentiero::orderBy('id', 'DESC')->take(4)->get();
         return $sentieri_recenti;
     }
     
@@ -128,23 +134,84 @@ class DataLayer extends Model
         $user = $this->getUserByID($user_id);
         $preferiti = $user->preferiti->pluck('sentiero_id');
        
-        $sentieri_preferiti = DatiSentiero::whereIn('id', $preferiti)->take(4)->get();
-        return $sentieri_preferiti;
+        return Sentiero::wherein('id',$preferiti)->take(4)->get();
     }
     
      public function getConsigliati($user_id) {
         $citta = $this->getCity($user_id);
-        $sentieri_consigliati = DatiSentiero::where('citta_id', $citta->id)->take(4)->get();
+        $sentieri_consigliati = Sentiero::where('citta_id', $citta->id)->take(4)->get();
         return $sentieri_consigliati;
+    }
+    
+     public function getAllSentieri() {
+        $sentieri = Sentiero::all();
+        return $sentieri;
+    }
+    
+    public function getSentieroByID($id) {
+        
+        return Sentiero::where('id',$id)->first();
+    }
+    
+    
+     public function updateSentiero($id, $titolo, $durata, $descrizione, $lunghezza, $salita, $discesa, $altezza_massima
+             , $altezza_minima, $difficolta, $categoria, $citta) {
+        $sentiero = Sentiero::find($id);
+        $sentiero->titolo = $titolo;
+        $sentiero->durata = $durata;
+        $sentiero->descrizione = $descrizione;
+        $sentiero->lunghezza = $lunghezza;
+        $sentiero->salita = $salita;
+        $sentiero->discesa = $discesa;
+        $sentiero->altezza_massima = $altezza_massima;
+        $sentiero->altezza_minima = $altezza_minima;
+        $sentiero->difficolta_id = $difficolta;
+        $sentiero->categoria_id = $categoria;
+        $sentiero->citta_id = $citta;
+        $sentiero->save();
+        // massive update (only with fillable property enabled on Book): 
+        // Book::find($id)->update(['title' => $title, 'author_id' => $author_id]);
+    }
+    
+    
+    public function addSentiero($user_id, $titolo, $durata, $descrizione, $lunghezza, $salita, $discesa, $altezza_massima
+             , $altezza_minima, $difficolta, $categoria, $citta) {
+        $sentiero = new Sentiero;
+        $sentiero->titolo = $titolo;
+        $sentiero->durata = $durata;
+        $sentiero->descrizione = $descrizione;
+        $sentiero->lunghezza = $lunghezza;
+        $sentiero->salita = $salita;
+        $sentiero->discesa = $discesa;
+        $sentiero->altezza_massima = $altezza_massima;
+        $sentiero->altezza_minima = $altezza_minima;
+        $sentiero->difficolta_id = $difficolta;
+        $sentiero->categoria_id = $categoria;
+        $sentiero->citta_id = $citta;
+        $sentiero->utente_id = $user_id;
+        $sentiero->save();
+        // massive update (only with fillable property enabled on Book): 
+        // Book::find($id)->update(['title' => $title, 'author_id' => $author_id]);
+    }
+    
+    public function deleteSentiero($id) {
+        $sentiero = Sentiero::find($id)->delete();
     }
     
     
     
     
     
-    
-     public function getCitta() {
+     public function getAllCitta() {
         return Citta::all();
+    }
+    
+     public function getCategorie() {
+        return Categoria::all();
+    }
+    
+     public function getDifficolta() {
+        return Difficolta::all();
     }
     
 }

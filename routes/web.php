@@ -59,10 +59,13 @@ Route::get('/user/elenco', ['as' => 'user.elenco',
 Route::post('/user/{id}/preferiti', ['as' => 'user.preferiti', 
     'uses' => 'UserController@preferiti']);
 
+
 //SENTIERI
 
 Route::resource('sentiero', 'SentieroController'); //tutte operazioni su sentiero
 
+Route::get('/sentiero/{id}/destroy/confirm', ['as' => 'sentiero.destroy.confirm', 
+    'uses' => 'SentieroController@destroy_confirm']);
 
 Route::get('/sentiero/{id}/destroy', ['as' => 'sentiero.destroy', 
     'uses' => 'SentieroController@destroy']);
@@ -79,4 +82,5 @@ Route::post('/sentiero/ricerca', ['as' => 'sentiero.ricerca',
     'uses' => 'SentieroController@ricerca']);
 
 
-
+Route::get('/error', ['as' => 'sentiero.errore', 
+    'uses' => 'SentieroController@errore']);

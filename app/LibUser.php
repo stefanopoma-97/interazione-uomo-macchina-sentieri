@@ -26,4 +26,9 @@ class LibUser extends Model
         return $this->hasMany('App\Preferiti', 'utente_id');
     }
     
+     public function sentieri() {
+        // use the 'user' property: $author->user (returns an object LibUser)
+        return $this->hasMany('App\Sentiero', 'utente_id');
+    }
+    
 }

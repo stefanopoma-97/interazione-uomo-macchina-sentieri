@@ -17,8 +17,11 @@
         <ul class="dropdown-menu">
             <li><a href="{{ route('user.dettagli', ['id'=> $user_id]) }}">Account</a></li>
             <li><a href="{{ route('user.preferiti', ['id'=> $user_id]) }}">Preferiti</a></li>
+            @if($user->admin == 'y')
             <li><a href="{{ route('user.elenco') }}">Lista utenti</a></li>
             <li><a href="{{ route('sentiero.index') }}">Lista sentieri</a></li>
+            @else
+            @endif
             <li><a href="{{ route('user.logout') }}">Log out</a></li>
         </ul>
     </li>
@@ -92,7 +95,7 @@
                     <div class="col-sm-10">
                         <select class="form-control" id="citta" name="citta" >
                             @foreach ($citta as $c)
-                                @if($c->id == $mia_citta->id)
+                                @if($c->id == $user->citta->id)
                                     <option value="{{$c->id}}" selected="selected">{{$c->nome}}</option>
                                 @else
                                     <option value="{{$c->id}}">{{$c->nome}}</option>
