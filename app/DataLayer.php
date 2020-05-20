@@ -118,6 +118,17 @@ class DataLayer extends Model
         return $dati_sentieri;
     }
     
+    public function fromSentieroToDatiSentiero($sentiero) {
+        $sentiero_id=$sentiero->id;
+        $dati_sentiero = DatiSentiero::where('id', $sentiero_id)->get();
+        return $dati_sentiero[0];
+    }
+    
+    public function getEsperienzeBySentiero($sentiero){
+        $esperienze=$sentiero->esperienze->take(4);
+        return $esperienze;
+    }
+    
     
     //SENTIERI
     public function getSentieriRecenti() {
@@ -214,4 +225,20 @@ class DataLayer extends Model
         return Difficolta::all();
     }
     
+    
+    
+    
+     public function addEsperienza($user_id, $sentiero_id, $data, $voto, $difficolta, $descrizione) {
+        $esperienza = new Esperienza;
+        $esperienza->utente_id = $user_id;
+        $esperienza->sentiero_id = $sentiero_id;
+        $esperienza->data = $data;
+        $esperienza->voto = $voto;
+        $esperienza->difficolta = $difficolta;
+        $esperienza->commento = $descrizione;
+        
+        $esperienza->save();
+        // massive update (only with fillable property enabled on Book): 
+        // Book::find($id)->update(['title' => $title, 'author_id' => $author_id]);
+    }
 }

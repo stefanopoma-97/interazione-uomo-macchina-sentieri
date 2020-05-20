@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 use App\DataLayer;
+use App\Sentiero;
+use Illuminate\Support\Facades\DB;
+
 
 class SentieroController extends Controller
 {
@@ -231,5 +234,147 @@ class SentieroController extends Controller
         
         
     }
+    
+    public function show($id) {
+       session_start();
+    
+        if(!isset($_SESSION['logged'])) {
+            return Redirect::to(route('user.auth.login'));
+        }
+        
+        $dl = new DataLayer();
+        $user_id = $dl->getUserID($_SESSION['loggedName']);
+        if($user_id==-1){
+            session_destroy();
+            return Redirect::to(route('user.auth.login'));
+        }
+        $user=$dl->getUserByID($user_id);
+        $sentiero = $dl->getSentieroByID($id);
+        $dati_sentiero = $dl->fromSentieroToDatiSentiero($sentiero);
+        $esperienze = $dl->getEsperienzeBySentiero($sentiero);
+        
+        return view('sentieri.sentiero')->with('logged',true)
+                ->with('loggedName', $_SESSION["loggedName"])
+                ->with('sentiero', $sentiero)
+                ->with('esperienze', $esperienze)
+                ->with('user_id', $user_id)
+                ->with('user', $user)
+                ->with('dati_sentiero', $dati_sentiero);
+        
+        
+        
+    }
+    
+    
+    public function ricerca() {
+       session_start();
+    
+        if(!isset($_SESSION['logged'])) {
+            return Redirect::to(route('user.auth.login'));
+        }
+        
+        $dl = new DataLayer();
+        $user_id = $dl->getUserID($_SESSION['loggedName']);
+        if($user_id==-1){
+            session_destroy();
+            return Redirect::to(route('user.auth.login'));
+        }
+        
+       
+            
+            
+            $user = $dl->getUserByID($user_id);
+            $sentieri = $dl->getAllSentieri();
+            $dati_sentieri = $dl->fromSentieriToDatiSentieri($sentieri);
+            $citta=$dl->getAllCitta();
+            $categorie=$dl->getCategorie();
+            $difficolta=$dl->getDifficolta();
+
+            return view('sentieri.ricercasentieri')->with('logged', true)
+                            ->with('loggedName', $_SESSION["loggedName"])
+                            ->with('sentieri', $sentieri)
+                            ->with('user_id', $user_id)
+                            ->with('user', $user)
+                            ->with('citta', $citta)
+                            ->with('categorie', $categorie)
+                            ->with('difficolta', $difficolta)
+                            ->with('dati_sentieri', $dati_sentieri);
+
+    }
+    
+    
+    public function ricerca_filtra(Request $request) {
+       session_start();
+    
+        if(!isset($_SESSION['logged'])) {
+            return Redirect::to(route('user.auth.login'));
+        }
+        
+        $dl = new DataLayer();
+        $user_id = $dl->getUserID($_SESSION['loggedName']);
+        if($user_id==-1){
+            session_destroy();
+            return Redirect::to(route('user.auth.login'));
+        }
+        
+        $s = new Sentiero;
+        $filtro = $s->newQuery();
+
+        if ($request->has('testo_titolo')) {
+            $titolo = $request->input('testo_titolo');
+            $filtro->where('titolo', 'like', '%'.$titolo.'%'); 
+        }
+        if ($request->has('testo_descrizione')) {
+            $descrizione = $request->input('testo_descrizione');
+            $filtro->where('descrizione', 'like', '%'.$descrizione.'%'); 
+        }
+        if ($request->input('citta')!="") {
+            $citta = $request->input('citta');
+            $filtro->where('citta_id', $citta); 
+        }
+        if ($request->input('categoria')!="") {
+            $filtro->where('categoria_id', $request->input('categoria')); 
+        }
+        if ($request->input('difficolta')!="") {
+            $filtro->where('difficolta_id', $request->input('difficolta')); 
+        }
+        if ($request->input('lunghezza')!= null) {
+            $lunghezza = $request->input('lunghezza');
+            $filtro->where('lunghezza', '<', $lunghezza); 
+        }
+        if ($request->input('dislivello')!= null) {
+            $dislivello = $request->input('dislivello');
+            $filtro->where(DB::raw("(altezza_massima - altezza_minima as dislivello)"), '<', $dislivello); 
+        }
+        if ($request->input('durata')!= null) {
+            $durata = $request->input('durata');
+            $filtro->where('durata', '<', $durata); 
+        }
+        
+        
+        $sentieri = $filtro->get();
+
+
+        $user = $dl->getUserByID($user_id);
+        $dati_sentieri = $dl->fromSentieriToDatiSentieri($sentieri);
+        $citta=$dl->getAllCitta();
+        $categorie=$dl->getCategorie();
+        $difficolta=$dl->getDifficolta();
+
+        return view('sentieri.ricercasentieri')->with('logged', true)
+                        ->with('loggedName', $_SESSION["loggedName"])
+                        ->with('sentieri', $sentieri)
+                        ->with('user_id', $user_id)
+                        ->with('user', $user)
+                        ->with('citta', $citta)
+                        ->with('categorie', $categorie)
+                        ->with('difficolta', $difficolta)
+                        ->with('dati_sentieri', $dati_sentieri);
+
+    }
+    
+    
+           
+    
     
 }

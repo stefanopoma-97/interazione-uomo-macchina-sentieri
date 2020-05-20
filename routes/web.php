@@ -78,9 +78,17 @@ Route::get('/sentiero/{id}/destroy/confirm', ['as' => 'sentiero.destroy.confirm'
 Route::get('/sentiero/{id}/update', ['as' => 'sentiero.update', 
     'uses' => 'SentieroController@update']);
 
-Route::post('/sentiero/ricerca', ['as' => 'sentiero.ricerca', 
+Route::get('/sentiero/ricerca/sentieri', ['as' => 'sentiero.ricerca', 
     'uses' => 'SentieroController@ricerca']);
+
+Route::get('/sentiero/ricerca/sentieri/filtra', ['as' => 'sentiero.ricercafiltra', 
+    'uses' => 'SentieroController@ricerca_filtra']);
 
 
 Route::get('/error', ['as' => 'sentiero.errore', 
     'uses' => 'SentieroController@errore']);
+
+
+//ESPERIENZE
+Route::get('/sentiero/{id}/nuova/esperienza', ['as' => 'esperienza.store', 
+    'uses' => 'EsperienzaController@store']);

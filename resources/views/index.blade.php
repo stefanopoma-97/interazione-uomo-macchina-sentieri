@@ -110,7 +110,7 @@
                                                         <li class="list-group-item "><span class="glyphicon glyphicon-repeat"></span>   {{ $sentiero->lunghezza }}</li>
                                                         <li class="list-group-item "><span class="glyphicon glyphicon-chevron-up"></span>   {{ $sentiero->salita }}</li>
                                                         <li class="list-group-item "><span class="glyphicon glyphicon-chevron-down"></span>   {{ $sentiero->discesa }}</li>
-                                                        <li class="list-group-item "><a class="btn btn-info btn-block btn-round-bottom" href="sentiero.html" role="button">Dettagli</a></li>
+                                                        <li class="list-group-item "><a class="btn btn-info btn-block btn-round-bottom" href="{{route('sentiero.show',['sentiero'=>$sentiero->id])}}" role="button">Dettagli</a></li>
                                                     </ul>
                                                 </div>
                                             @endforeach
@@ -129,7 +129,7 @@
                                                         <li class="list-group-item "><span class="glyphicon glyphicon-repeat"></span>   {{ $sentiero->lunghezza }}</li>
                                                         <li class="list-group-item "><span class="glyphicon glyphicon-chevron-up"></span>   {{ $sentiero->salita }}</li>
                                                         <li class="list-group-item "><span class="glyphicon glyphicon-chevron-down"></span>   {{ $sentiero->discesa }}</li>
-                                                        <li class="list-group-item "><a class="btn btn-info btn-block btn-round-bottom" href="sentiero.html" role="button">Dettagli</a></li>
+                                                        <li class="list-group-item "><a class="btn btn-info btn-block btn-round-bottom" href="{{route('sentiero.show',['sentiero'=>$sentiero->id])}}" role="button">Dettagli</a></li>
                                                     </ul>
                                                 </div>
                                             @endforeach
@@ -150,7 +150,7 @@
                                                             <li class="list-group-item "><span class="glyphicon glyphicon-repeat"></span>   {{ $sentiero->lunghezza }}</li>
                                                             <li class="list-group-item "><span class="glyphicon glyphicon-chevron-up"></span>   {{ $sentiero->salita }}</li>
                                                             <li class="list-group-item "><span class="glyphicon glyphicon-chevron-down"></span>   {{ $sentiero->discesa }}</li>
-                                                            <li class="list-group-item "><a class="btn btn-info btn-block btn-round-bottom" href="sentiero.html" role="button">Dettagli</a></li>
+                                                            <li class="list-group-item "><a class="btn btn-info btn-block btn-round-bottom" href="{{route('sentiero.show',['sentiero'=>$sentiero->id])}}" role="button">Dettagli</a></li>
                                                         </ul>
                                                     </div>
                                                 @endforeach
@@ -175,7 +175,7 @@
                                                             <li class="list-group-item "><span class="glyphicon glyphicon-repeat"></span>   {{ $sentiero->lunghezza }}</li>
                                                             <li class="list-group-item "><span class="glyphicon glyphicon-chevron-up"></span>   {{ $sentiero->salita }}</li>
                                                             <li class="list-group-item "><span class="glyphicon glyphicon-chevron-down"></span>   {{ $sentiero->discesa }}</li>
-                                                            <li class="list-group-item "><a class="btn btn-info btn-block btn-round-bottom" href="sentiero.html" role="button">Dettagli</a></li>
+                                                            <li class="list-group-item "><a class="btn btn-info btn-block btn-round-bottom" href="{{route('sentiero.show',['sentiero'=>$sentiero->id])}}" role="button">Dettagli</a></li>
                                                         </ul>
                                                     </div>
                                                 @endforeach

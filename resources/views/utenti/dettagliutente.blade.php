@@ -100,7 +100,7 @@
                         <div style="margin-top: 1em;" class="d-inline"><span class="glyphicon glyphicon-chevron-up"></span>   {{ $sentiero->salita }}</div>
                     </div>
                     <div class=" pull-right ">
-                        <a class="card-link" href="sentiero.php">Scopri</a>
+                        <a class="card-link" href="{{route('sentiero.show',['sentiero'=>$sentiero->id])}}">Scopri</a>
                     </div>
 
                 </div>
@@ -135,7 +135,7 @@
                             <li style="height: 100px" class="list-group-item"><q>{{ $sentiero->descrizione }}</q></li>
                             <li class="list-group-item ">Difficoltà:   {{ ($sentiero->esperienze->where('utente_id', $user_dettagli->id)->first())->difficolta }}</li>
                             <li class="list-group-item ">Voto:   {{ ($sentiero->esperienze->where('utente_id', $user_dettagli->id)->first())->voto }}</li>
-                            <li class="list-group-item "><a class="btn btn-info btn-block btn-round-bottom" href="sentiero.html" role="button">Dettagli</a></li>
+                            <li class="list-group-item "><a class="btn btn-info btn-block btn-round-bottom" href="{{route('sentiero.show',['sentiero'=>$sentiero->id])}}" role="button">Dettagli</a></li>
                         </ul>
                     </div>
                     @endforeach

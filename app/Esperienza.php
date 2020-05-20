@@ -12,11 +12,11 @@ class Esperienza extends Model
     
      public function utente() {
         // use the 'user' property: $author->user (returns an object LibUser)
-        return $this->belongsTo('PW_runningExample_v6_Laravel\LibUser');
+        return $this->belongsTo('App\LibUser');
     }
     
     public function sentiero() {
         // use the 'user' property: $author->user (returns an object LibUser)
-        return $this->belongsTo('PW_runningExample_v6_Laravel\Sentiero');
+        return $this->belongsTo('App\Sentiero');
     }
 }
