@@ -9,10 +9,12 @@
         <link rel="stylesheet" href="{{ url('/') }}/css/bootstrap.min.css">
         <link rel="stylesheet" href="{{ url('/') }}/css/mio_stile.css">
         <link rel="stylesheet" href="{{ url('/') }}/css/bootstrap-theme.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         
         <!-- jQuery e plugin JavaScript -->
         <script src="http://code.jquery.com/jquery.js"></script>
         <script src="{{ url('/') }}/js/bootstrap.min.js"></script>
+        <script type="text/javascript">@yield('javascript')</script>
     </head>
     
     <body>

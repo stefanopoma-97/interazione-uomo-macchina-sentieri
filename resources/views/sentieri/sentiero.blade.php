@@ -2,6 +2,30 @@
 
 @section('titolo', 'Elenco utenti')
 
+@section('javascript')
+function attributi(obj)
+{
+    var attr = obj.attributes;
+    var msg = "";
+    for (var i = 0; i < attr.length; i++)
+    {
+    msg += attr[i].nodeName + ": " + attr[i].nodeValue + "\n";
+            }
+    alert(msg);
+}
+function nas(obj) {
+obj.style.visibility = "hidden";
+}
+function preferito(nodo)
+{
+var attr = nodo.attributes["class"];
+if(attr.nodeValue == "fa fa-star checked-star")
+    attr.nodeValue = "fa fa-star";
+else
+    attr.nodeValue = "fa fa-star checked-star";
+}
+@endsection
+
 @section('navbar_home')
 <a class="navbar-brand" href="{{ route('home') }}">Sentieri</a>
 @endsection
@@ -64,24 +88,15 @@
                 <li class="list-group-item "><span class="glyphicon glyphicon-chevron-down"></span>  Discesa:   {{ $sentiero->discesa}}</li>
                 <li class="list-group-item "><span class="glyphicon glyphicon-chevron-down"></span>  Altezza massima:   {{ $sentiero->altezza_massima}}</li>
                 <li class="list-group-item "><span class="glyphicon glyphicon-chevron-down"></span>  Altezza minima:   {{ $sentiero->altezza_minima}}</li>
-                <li class="list-group-item "><span class="glyphicon glyphicon-resize-vertical"></span>  Dislivello   {{ $sentiero->altezza_massima - $sentiero->altezza_minima}}</li>
+                <li class="list-group-item "><span class="glyphicon glyphicon-resize-vertical"></span>  Dislivello   {{ ($sentiero->altezza_massima) - ($sentiero->altezza_minima)}}</li>
             </ul>
 
-            <form id="preferito" action="sentiero.html" method="post" style="margin-top: 2em;">
-            @csrf
-                <label for="preferito" class="custom-checkbox">
-                    @if(  count($user->preferiti->where('sentiero_id', $sentiero->id)) == 0 )
-                    <input type="checkbox" id="preferito" name="preferito"/>
-                    <i class="glyphicon glyphicon-star-empty"></i>
-                    @else
-                    <input type="checkbox" id="preferito" name="preferito"/>
-                    <i class="glyphicon glyphicon-star"></i>
-                    prefe
-                    @endif
-                   
-                </label>
-
+            <form method="POST">
+                @csfr
+                <input type="submit" class="btn btn-primary" value="- Preferito" name="remove_preferito" id="">
+                <input type="submit" class="btn btn-outline-dark" value="+ Preferito" name="add_preferito" id="">
             </form>
+            <span class="fa fa-star checked-star" onclick="preferito(this);"></span>
         </div>
 
 

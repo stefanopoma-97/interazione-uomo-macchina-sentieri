@@ -72,9 +72,9 @@
                     <label for="titolo" class="col-md-2">Titolo</label>
                     <div class="col-sm-10">
                         @if(isset($sentiero->id))
-                        <input class="form-control" type="text" id="titolo" name="titolo" placeholder="Titolo" value="{{$sentiero->titolo}}">
+                        <input class="form-control" type="text" id="titolo" name="titolo" placeholder="Titolo" required="True" value="{{$sentiero->titolo}}">
                         @else
-                        <input class="form-control" type="text" id="titolo" name="titolo" placeholder="Titolo" value="">
+                        <input class="form-control" type="text" id="titolo" name="titolo" placeholder="Titolo" required="True" value="">
                         @endif
                     </div>
                 </div>
@@ -83,9 +83,9 @@
                     <label for="durata" class="col-md-2">Durata</label>
                     <div class="col-sm-10">
                         @if(isset($sentiero->id))
-                        <input class="form-control" type="number" pattern="^\d*(\.\d{0,2})?$" id="durata" name="durata" value="{{$sentiero->durata}}">
+                        <input class="form-control" type="number" pattern="^\d*(\.\d{0,2})?$" id="durata" required="True" name="durata" value="{{$sentiero->durata}}">
                         @else
-                        <input class="form-control" type="number" pattern="^\d*(\.\d{0,2})?$" id="durata" name="durata">
+                        <input class="form-control" type="number" pattern="^\d*(\.\d{0,2})?$" id="durata" required="True" name="durata">
                         @endif
                     </div>
                 </div>
@@ -94,9 +94,9 @@
                     <label for="descrizione" class="col-md-2">Descrizione</label>
                     <div class="col-sm-10">
                         @if(isset($sentiero->id))
-                        <textarea class="form-control" name="descrizione" id="descrizione" rows="10">{{$sentiero->descrizione}}</textarea>
+                        <textarea class="form-control" name="descrizione" id="descrizione" required="True" rows="10">{{$sentiero->descrizione}}</textarea>
                         @else
-                        <textarea class="form-control" name="descrizione" id="descrizione" rows="10"></textarea>
+                        <textarea class="form-control" name="descrizione" id="descrizione" required="True" rows="10"></textarea>
                         @endif
                     </div>
                 </div>
@@ -105,9 +105,9 @@
                     <label for="lunghezza" class="col-sm-2 col-form-label">Lunghezza (km)</label>
                     <div class="col-sm-10">
                         @if(isset($sentiero->id))
-                        <input type="number" min="1" max="999" class="form-control" id="lunghezza" name="lunghezza" placeholder="lunghezza" value="{{$sentiero->lunghezza}}">
+                        <input type="number" min="1.0" max="999.0" step="0.1" pattern="/^\d+(?:\.\d{1,2})?$/" class="form-control" id="lunghezza" required="True" name="lunghezza" placeholder="lunghezza" value="{{$sentiero->lunghezza}}">
                         @else
-                        <input type="number" min="1" max="999" class="form-control" id="lunghezza" name="lunghezza" placeholder="lunghezza">
+                        <input type="number" min="1.0" max="999.0" step="0.1" pattern="/^\d+(?:\.\d{1,2})?$/" class="form-control" id="lunghezza" required="True" name="lunghezza" placeholder="lunghezza">
                         @endif
                     </div>
                 </div>
@@ -116,9 +116,9 @@
                     <label for="salita" class="col-sm-2 col-form-label">Salita</label>
                     <div class="col-sm-10">
                         @if(isset($sentiero->id))
-                        <input type="number" min="1" max="10000" class="form-control" name="salita" id="salita" placeholder="salita" value="{{$sentiero->salita}}">
+                        <input type="number" min="1" max="10000" class="form-control" name="salita" required="True" id="salita" placeholder="salita" value="{{$sentiero->salita}}">
                         @else
-                        <input type="number" min="1" max="10000" class="form-control" name="salita" id="salita" placeholder="salita">
+                        <input type="number" min="1" max="10000" class="form-control" name="salita" required="True" id="salita" placeholder="salita">
                         @endif
                     </div>
                 </div>
@@ -127,9 +127,9 @@
                     <label for="discesa" class="col-sm-2 col-form-label">Discesa</label>
                     <div class="col-sm-10">
                         @if(isset($sentiero->id))
-                        <input type="number" min="1" max="10000" class="form-control" name="discesa" id="discesa" placeholder="discesa" value="{{$sentiero->salita}}">
+                        <input type="number" min="1" max="10000" class="form-control" name="discesa" required="True" id="discesa" placeholder="discesa" value="{{$sentiero->salita}}">
                         @else
-                        <input type="number" min="1" max="10000" class="form-control" name="discesa" id="discesa" placeholder="discesa">
+                        <input type="number" min="1" max="10000" class="form-control" name="discesa" required="True" id="discesa" placeholder="discesa">
                         @endif                    
                     </div>
                     
@@ -139,9 +139,9 @@
                     <label for="altezza_massima" class="col-sm-2 col-form-label">Altezza Massima</label>
                     <div class="col-sm-10">
                         @if(isset($sentiero->id))
-                        <input type="number" min="1" max="10000" class="form-control" name="altezza_massima" id="altezza_massima" placeholder="altezza_massima" value="{{$sentiero->altezza_massima}}">
+                        <input type="number" min="1" max="10000" class="form-control" name="altezza_massima" required="True" id="altezza_massima" placeholder="altezza_massima" value="{{$sentiero->altezza_massima}}">
                         @else
-                        <input type="number" min="1" max="10000" class="form-control" name="altezza_massima" id="altezza_massima" placeholder="altezza_massima">
+                        <input type="number" min="1" max="10000" class="form-control" name="altezza_massima" required="True" id="altezza_massima" placeholder="altezza_massima">
                         @endif                      
                     </div>
                 </div>
@@ -150,9 +150,9 @@
                    <label for="altezza_minima" class="col-sm-2 col-form-label">Altezza Minima</label>
                     <div class="col-sm-10">
                         @if(isset($sentiero->id))
-                        <input type="number" min="1" max="10000" class="form-control" name="altezza_minima" id="altezza_massima" placeholder="altezza_minima" value="{{$sentiero->altezza_massima}}">
+                        <input type="number" min="1" max="10000" class="form-control" name="altezza_minima" required="True" id="altezza_massima" placeholder="altezza_minima" value="{{$sentiero->altezza_massima}}">
                         @else
-                        <input type="number" min="1" max="10000" class="form-control" name="altezza_minima" id="altezza_massima" placeholder="altezza_minima">
+                        <input type="number" min="1" max="10000" class="form-control" name="altezza_minima" required="True" id="altezza_massima" placeholder="altezza_minima">
                         @endif                      
                     </div>
                 </div>

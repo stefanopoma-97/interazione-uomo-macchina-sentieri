@@ -338,3 +338,9 @@ li.inserimeno-titolo > p.titolo{
     background-color: transparent;
 }
 
+
+/*PREFERITI*/
+.checked-star {
+  color: orange;
+}
+
