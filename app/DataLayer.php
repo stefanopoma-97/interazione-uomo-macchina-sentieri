@@ -7,6 +7,7 @@ use App\LibUser;
 use App\Sentiero;
 use App\DatiSentiero;
 use App\Citta;
+use App\Preferiti;
 use Illuminate\Support\Facades\DB;
 
 //AUTENTICAZIONE
@@ -163,6 +164,53 @@ class DataLayer extends Model
         
         return Sentiero::where('id',$id)->first();
     }
+    
+     public function preferito($sentiero, $user) {
+        $sentieri_preferiti = $user->preferiti->pluck('sentiero_id')->toArray();
+        if (in_array($sentiero->id, $sentieri_preferiti))
+            return true;
+        else
+            return false;
+    }
+    
+    public function addPreferito($sentiero_id, $user_id) {
+       $preferito = new Preferiti;
+       $preferito->sentiero_id=$sentiero_id;
+       $preferito->utente_id = $user_id;
+       $preferito->save();
+    }
+    
+    public function removePreferito($sentiero_id, $user_id) {
+        $pre = Preferiti::where('sentiero_id', $sentiero_id)->where('utente_id',$user_id)->get();
+       if (count($pre)>1 || count($pre)==0)
+           return False;
+       else
+       {
+           $preferito=$pre[0];
+           Preferiti::find($preferito->id)->delete();
+       }
+       
+    }
+    
+    public function pre() {
+        $s_id=10;
+        $u_id=1;
+       $pre = Preferiti::where('sentiero_id', $s_id)->where('utente_id',$u_id)->get();
+       if (count($pre)>1 || count($pre)==0)
+           return False;
+       else
+       {
+           return $pre[0];
+           
+       }
+       
+    }
+    
+    public function findPreferito($sentiero_id, $user_id) {
+        $preferito = Preferiti::where('sentiero_id', $sentiero_id)->where('utente_id', $user_id)->take(1)->get();
+        return $preferito;
+    }
+    
     
     
      public function updateSentiero($id, $titolo, $durata, $descrizione, $lunghezza, $salita, $discesa, $altezza_massima

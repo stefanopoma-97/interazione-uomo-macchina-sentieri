@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 use App\DataLayer;
 use App\Sentiero;
+use App\Preferiti;
 use Illuminate\Support\Facades\DB;
 
 
@@ -131,6 +132,33 @@ class SentieroController extends Controller
         return Redirect::to(route('sentiero.index'));      
     }
     
+    public function preferito($sentiero_id, Request $request) {
+       
+        session_start();
+    
+        if(!isset($_SESSION['logged'])) {
+            return Redirect::to(route('user.auth.login'));
+        }
+        
+        $dl = new DataLayer();
+        $user_id = $dl->getUserID($_SESSION['loggedName']);
+        if($user_id==-1){
+            session_destroy();
+            return Redirect::to(route('user.auth.login'));
+        }
+        
+        $user = $dl->getUserByID($user_id);
+        
+        if($request->input('preferito')=="False")
+            $dl->removePreferito($sentiero_id,$user_id);
+        if($request->input('preferito')=="True")
+            $dl->addPreferito($sentiero_id,$user_id);
+        
+        return Redirect::to(route('sentiero.show',['sentiero'=>$sentiero_id]));      
+    }
+    
+    
+    
     public function store(Request $request) {
         session_start();
     
@@ -252,6 +280,8 @@ class SentieroController extends Controller
         $sentiero = $dl->getSentieroByID($id);
         $dati_sentiero = $dl->fromSentieroToDatiSentiero($sentiero);
         $esperienze = $dl->getEsperienzeBySentiero($sentiero);
+        $preferito = $dl->preferito($sentiero, $user);
+        $pre = $dl->pre();
         
         return view('sentieri.sentiero')->with('logged',true)
                 ->with('loggedName', $_SESSION["loggedName"])
@@ -259,6 +289,7 @@ class SentieroController extends Controller
                 ->with('esperienze', $esperienze)
                 ->with('user_id', $user_id)
                 ->with('user', $user)
+                ->with('preferito', $preferito)
                 ->with('dati_sentiero', $dati_sentiero);
         
         

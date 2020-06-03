@@ -88,6 +88,9 @@ Route::get('/sentiero/ricerca/sentieri/filtra', ['as' => 'sentiero.ricercafiltra
 Route::get('/error', ['as' => 'sentiero.errore', 
     'uses' => 'SentieroController@errore']);
 
+Route::post('/sentiero/{id}/preferito', ['as' => 'sentiero.preferito', 
+    'uses' => 'SentieroController@preferito']);
+
 
 //ESPERIENZE
 Route::get('/sentiero/{id}/nuova/esperienza', ['as' => 'esperienza.store', 

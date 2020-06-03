@@ -238,6 +238,11 @@ li.inserimeno-titolo > p.titolo{
 }
 
 
+.inline-form {
+    display: inline;
+}
+
+
 
 .text_padding_card{
     padding: 0.8rem 2rem

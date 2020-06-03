@@ -24,6 +24,11 @@ if(attr.nodeValue == "fa fa-star checked-star")
 else
     attr.nodeValue = "fa fa-star checked-star";
 }
+
+function reload_preferito(nodo)
+{
+window.location.reload;
+}
 @endsection
 
 @section('navbar_home')
@@ -77,8 +82,23 @@ else
 <div class="container" style="margin-top: 3em;">
     <div class="row pt-5">
         <div class="col-m-6 col-sm-6 col-xs-12">
-            <ul class="list-group ">
-                <li class="list-group-item text-center"><strong>{{ $sentiero->titolo}}</strong></li>
+            <ul class="list-group">
+                <li class="list-group-item text-center">
+                    <form class="inline-form" id="aggiungipreferito" action="{{route('sentiero.preferito',['id'=>$sentiero->id])}}" method="POST" style="margin-top: 2em;">
+                        @csrf
+                        @if($preferito)
+                        <button type="submit" value="False" name="preferito" onclick="window.location.reload();">
+                            <span class="fa fa-star checked-star"></span>
+                        </button>
+                        @else
+                        <button type="submit" value="True" name="preferito" onclick="window.location.reload();">
+                            <span class="fa fa-star"></span>
+                        </button>                        
+                        @endif
+                    </form>
+
+                    <strong>{{ $sentiero->titolo}}</strong>
+                    </li>
                 <li class="list-group-item"><strong>Categoria: {{ $sentiero->categoria->nome}}</strong></li>
                 <li class="list-group-item " ><strong>Difficoltà: {{ $sentiero->difficolta->nome}}</strong></li>
                 <li class="list-group-item "><span class="glyphicon glyphicon-time"></span>  Città:   {{ $sentiero->citta->nome}}</li>
@@ -91,12 +111,21 @@ else
                 <li class="list-group-item "><span class="glyphicon glyphicon-resize-vertical"></span>  Dislivello   {{ ($sentiero->altezza_massima) - ($sentiero->altezza_minima)}}</li>
             </ul>
 
-            <form method="POST">
-                @csfr
-                <input type="submit" class="btn btn-primary" value="- Preferito" name="remove_preferito" id="">
-                <input type="submit" class="btn btn-outline-dark" value="+ Preferito" name="add_preferito" id="">
-            </form>
-            <span class="fa fa-star checked-star" onclick="preferito(this);"></span>
+            
+            
+            @if($preferito)
+            <span class="fa fa-star checked-star" id="preferito"></span>
+            @else
+            <span class="fa fa-star" id="preferito"></span>
+            @endif
+            
+            <script>
+                $(document).ready(function(){
+                  $("#preferito").click(function(){
+                    $(this).removeClass("checked-star");
+                  });
+                });
+            </script>
         </div>
 
 
