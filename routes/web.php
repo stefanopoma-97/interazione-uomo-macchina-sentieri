@@ -42,56 +42,70 @@ Route::post('/user/register', ['as' => 'user.register',
 
 
 
-//USER
 
-Route::post('/user/{id}/update', ['as' => 'user.update', 
-    'uses' => 'UserController@update']);
+Route::group(['middleware' => ['authCustom', 'adminCheck']], function()
+    {
+    Route::resource('sentiero', 'SentieroController', ['only' => ['index', 'edit', 'store', 'create', 'update']]);
+        
+    Route::get('/sentiero/{id}/destroy/confirm', ['as' => 'sentiero.destroy.confirm', 
+        'uses' => 'SentieroController@destroy_confirm']);
 
-Route::get('/user/{id}/update', ['as' => 'user.edit', 
-    'uses' => 'UserController@edit']);
-
-Route::get('/user/{id}/dettagli', ['as' => 'user.dettagli', 
-    'uses' => 'UserController@dettagli']);
-
-Route::get('/user/elenco', ['as' => 'user.elenco', 
-    'uses' => 'UserController@elenco']);
-
-Route::post('/user/{id}/preferiti', ['as' => 'user.preferiti', 
-    'uses' => 'UserController@preferiti']);
+    Route::get('/sentiero/{id}/destroy', ['as' => 'sentiero.destroy', 
+        'uses' => 'SentieroController@destroy']);
 
 
-//SENTIERI
-
-Route::resource('sentiero', 'SentieroController'); //tutte operazioni su sentiero
-
-Route::get('/sentiero/{id}/destroy/confirm', ['as' => 'sentiero.destroy.confirm', 
-    'uses' => 'SentieroController@destroy_confirm']);
-
-Route::get('/sentiero/{id}/destroy', ['as' => 'sentiero.destroy', 
-    'uses' => 'SentieroController@destroy']);
+    Route::get('/sentiero/{id}/destroy/confirm', ['as' => 'sentiero.destroy.confirm', 
+        'uses' => 'SentieroController@confirmDestroy']);
 
 
-Route::get('/sentiero/{id}/destroy/confirm', ['as' => 'sentiero.destroy.confirm', 
-    'uses' => 'SentieroController@confirmDestroy']);
+    Route::get('/sentiero/{id}/update', ['as' => 'sentiero.update', 
+        'uses' => 'SentieroController@update']);
+    
+    });
+
+    
+    
+    
+Route::group(['middleware' => ['authCustom']], function()
+    {
+    //USER
+
+    Route::post('/user/{id}/update', ['as' => 'user.update', 
+        'uses' => 'UserController@update']);
+
+    Route::get('/user/{id}/update', ['as' => 'user.edit', 
+        'uses' => 'UserController@edit']);
+
+    Route::get('/user/{id}/dettagli', ['as' => 'user.dettagli', 
+        'uses' => 'UserController@dettagli']);
+
+    Route::get('/user/elenco', ['as' => 'user.elenco', 
+        'uses' => 'UserController@elenco']);
+
+    Route::post('/user/{id}/preferiti', ['as' => 'user.preferiti', 
+        'uses' => 'UserController@preferiti']);
 
 
-Route::get('/sentiero/{id}/update', ['as' => 'sentiero.update', 
-    'uses' => 'SentieroController@update']);
+    //SENTIERI
 
-Route::get('/sentiero/ricerca/sentieri', ['as' => 'sentiero.ricerca', 
-    'uses' => 'SentieroController@ricerca']);
+    Route::resource('sentiero', 'SentieroController', ['only' => ['show']]); //tutte operazioni su sentiero
 
-Route::get('/sentiero/ricerca/sentieri/filtra', ['as' => 'sentiero.ricercafiltra', 
-    'uses' => 'SentieroController@ricerca_filtra']);
+    Route::get('/sentiero/ricerca/sentieri', ['as' => 'sentiero.ricerca', 
+        'uses' => 'SentieroController@ricerca']);
 
-
-Route::get('/error', ['as' => 'sentiero.errore', 
-    'uses' => 'SentieroController@errore']);
-
-Route::post('/sentiero/{id}/preferito', ['as' => 'sentiero.preferito', 
-    'uses' => 'SentieroController@preferito']);
+    Route::get('/sentiero/ricerca/sentieri/filtra', ['as' => 'sentiero.ricercafiltra', 
+        'uses' => 'SentieroController@ricerca_filtra']);
 
 
-//ESPERIENZE
-Route::get('/sentiero/{id}/nuova/esperienza', ['as' => 'esperienza.store', 
-    'uses' => 'EsperienzaController@store']);
+    Route::get('/error', ['as' => 'sentiero.errore', 
+        'uses' => 'SentieroController@errore']);
+
+    Route::post('/sentiero/{id}/preferito', ['as' => 'sentiero.preferito', 
+        'uses' => 'SentieroController@preferito']);
+
+
+    //ESPERIENZE
+    Route::get('/sentiero/{id}/nuova/esperienza', ['as' => 'esperienza.store', 
+        'uses' => 'EsperienzaController@store']);
+    });
+

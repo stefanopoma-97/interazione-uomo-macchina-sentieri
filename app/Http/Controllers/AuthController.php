@@ -33,6 +33,12 @@ class AuthController extends Controller
             $_SESSION['logged'] = true;
             $_SESSION['loggedName'] = $request->input('username');
             
+            $user_id = $dl->getUserID($_SESSION['loggedName']);
+            $user = $dl->getUserByID($user_id);
+
+            if($user->admin == 'y')
+                $_SESSION['admin'] = true;
+            
             return Redirect::to(route('home'));
 
         }

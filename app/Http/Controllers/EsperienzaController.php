@@ -9,11 +9,11 @@ use App\DataLayer;
 class EsperienzaController extends Controller
 {
     public function store($sentiero_id, Request $request) {
-        session_start();
-    
-        if(!isset($_SESSION['logged'])) {
-            return Redirect::to(route('user.auth.login'));
-        }
+//        session_start();
+//    
+//        if(!isset($_SESSION['logged'])) {
+//            return Redirect::to(route('user.auth.login'));
+//        }
         
         $dl = new DataLayer();
         $user_id = $dl->getUserID($_SESSION['loggedName']);

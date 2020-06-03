@@ -9,12 +9,12 @@ use App\DataLayer;
 class UserController extends Controller
 {
     public function elenco() {
-       
-        session_start();
-    
-        if(!isset($_SESSION['logged'])) {
-            return Redirect::to(route('user.auth.login'));
-        }
+//       
+//        session_start();
+//    
+//        if(!isset($_SESSION['logged'])) {
+//            return Redirect::to(route('user.auth.login'));
+//        }
         
         $dl = new DataLayer();
         $user_id = $dl->getUserID($_SESSION['loggedName']);
@@ -35,11 +35,11 @@ class UserController extends Controller
     
     public function dettagli($id) {
        
-        session_start();
-    
-        if(!isset($_SESSION['logged'])) {
-            return Redirect::to(route('user.auth.login'));
-        }
+//        session_start();
+//    
+//        if(!isset($_SESSION['logged'])) {
+//            return Redirect::to(route('user.auth.login'));
+//        }
         
         $dl = new DataLayer();
         $user_id = $dl->getUserID($_SESSION['loggedName']);
@@ -64,11 +64,11 @@ class UserController extends Controller
     
     public function edit($id) {
        
-        session_start();
-    
-        if(!isset($_SESSION['logged'])) {
-            return Redirect::to(route('user.auth.login'));
-        }
+//        session_start();
+//    
+//        if(!isset($_SESSION['logged'])) {
+//            return Redirect::to(route('user.auth.login'));
+//        }
        
         
         $dl = new DataLayer();
@@ -96,11 +96,11 @@ class UserController extends Controller
     
     public function update($id, Request $request) {
        
-        session_start();
-    
-        if(!isset($_SESSION['logged'])) {
-            return Redirect::to(route('user.auth.login'));
-        }
+//        session_start();
+//    
+//        if(!isset($_SESSION['logged'])) {
+//            return Redirect::to(route('user.auth.login'));
+//        }
         
         $dl = new DataLayer();
         $user_id = $dl->getUserID($_SESSION['loggedName']);

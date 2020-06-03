@@ -14,11 +14,11 @@ class SentieroController extends Controller
 {
     public function index() {
        
-        session_start();
-    
-        if(!isset($_SESSION['logged'])) {
-            return Redirect::to(route('user.auth.login'));
-        }
+//        session_start();
+//    
+//        if(!isset($_SESSION['logged'])) {
+//            return Redirect::to(route('user.auth.login'));
+//        }
         
         $dl = new DataLayer();
         $user_id = $dl->getUserID($_SESSION['loggedName']);
@@ -28,8 +28,8 @@ class SentieroController extends Controller
         }
         
         $user = $dl->getUserByID($user_id);
-        if($user->admin != 'y')
-            return Redirect::to(route('sentiero.errore'));
+//        if($user->admin != 'y')
+//            return Redirect::to(route('sentiero.errore'));
         
         $sentieri = $dl->getAllSentieri();
         
@@ -41,11 +41,11 @@ class SentieroController extends Controller
     
     public function edit($sentiero) {
        
-        session_start();
-    
-        if(!isset($_SESSION['logged'])) {
-            return Redirect::to(route('user.auth.login'));
-        }
+//        session_start();
+//    
+//        if(!isset($_SESSION['logged'])) {
+//            return Redirect::to(route('user.auth.login'));
+//        }
         
         $dl = new DataLayer();
         $user_id = $dl->getUserID($_SESSION['loggedName']);
@@ -55,8 +55,8 @@ class SentieroController extends Controller
         }
         
         $user = $dl->getUserByID($user_id);
-        if($user->admin != 'y')
-            return Redirect::to(route('sentiero.errore'));
+//        if($user->admin != 'y')
+//            return Redirect::to(route('sentiero.errore'));
         
         $sentiero = $dl->getSentieroByID($sentiero);
         $citta = $dl->getAllCitta();
@@ -74,11 +74,11 @@ class SentieroController extends Controller
     
     public function create() {
        
-        session_start();
-    
-        if(!isset($_SESSION['logged'])) {
-            return Redirect::to(route('user.auth.login'));
-        }
+//        session_start();
+//    
+//        if(!isset($_SESSION['logged'])) {
+//            return Redirect::to(route('user.auth.login'));
+//        }
         
         $dl = new DataLayer();
         $user_id = $dl->getUserID($_SESSION['loggedName']);
@@ -88,8 +88,8 @@ class SentieroController extends Controller
         }
         
         $user = $dl->getUserByID($user_id);
-        if($user->admin != 'y')
-            return Redirect::to(route('sentiero.errore'));
+//        if($user->admin != 'y')
+//            return Redirect::to(route('sentiero.errore'));
         
         $citta = $dl->getAllCitta();
         $categoria = $dl->getCategorie();
@@ -106,11 +106,11 @@ class SentieroController extends Controller
     
      public function update($sentiero_id, Request $request) {
        
-        session_start();
-    
-        if(!isset($_SESSION['logged'])) {
-            return Redirect::to(route('user.auth.login'));
-        }
+//        session_start();
+//    
+//        if(!isset($_SESSION['logged'])) {
+//            return Redirect::to(route('user.auth.login'));
+//        }
         
         $dl = new DataLayer();
         $user_id = $dl->getUserID($_SESSION['loggedName']);
@@ -120,9 +120,9 @@ class SentieroController extends Controller
         }
         
         $user = $dl->getUserByID($user_id);
-        if($user->admin != 'y')
-            return Redirect::to(route('sentiero.errore'));
-       
+//        if($user->admin != 'y')
+//            return Redirect::to(route('sentiero.errore'));
+//       
         
         $dl->updateSentiero($sentiero_id, $request->input('titolo'), $request->input('durata'), $request->input('descrizione'),
                 $request->input('lunghezza'), $request->input('salita'), $request->input('discesa'),
@@ -134,11 +134,11 @@ class SentieroController extends Controller
     
     public function preferito($sentiero_id, Request $request) {
        
-        session_start();
-    
-        if(!isset($_SESSION['logged'])) {
-            return Redirect::to(route('user.auth.login'));
-        }
+//        session_start();
+//    
+//        if(!isset($_SESSION['logged'])) {
+//            return Redirect::to(route('user.auth.login'));
+//        }
         
         $dl = new DataLayer();
         $user_id = $dl->getUserID($_SESSION['loggedName']);
@@ -160,11 +160,11 @@ class SentieroController extends Controller
     
     
     public function store(Request $request) {
-        session_start();
-    
-        if(!isset($_SESSION['logged'])) {
-            return Redirect::to(route('user.auth.login'));
-        }
+//        session_start();
+//    
+//        if(!isset($_SESSION['logged'])) {
+//            return Redirect::to(route('user.auth.login'));
+//        }
         
         $dl = new DataLayer();
         $user_id = $dl->getUserID($_SESSION['loggedName']);
@@ -174,8 +174,8 @@ class SentieroController extends Controller
         }
         
         $user = $dl->getUserByID($user_id);
-        if($user->admin != 'y')
-            return Redirect::to(route('sentiero.errore'));
+//        if($user->admin != 'y')
+//            return Redirect::to(route('sentiero.errore'));
         
         
         $dl->addSentiero($user_id, $request->input('titolo'), $request->input('durata'), $request->input('descrizione'),
@@ -187,11 +187,11 @@ class SentieroController extends Controller
     }
     
     public function destroy ($id) {
-        session_start();
-    
-        if(!isset($_SESSION['logged'])) {
-            return Redirect::to(route('user.auth.login'));
-        }
+//        session_start();
+//    
+//        if(!isset($_SESSION['logged'])) {
+//            return Redirect::to(route('user.auth.login'));
+//        }
         
         $dl = new DataLayer();
         $user_id = $dl->getUserID($_SESSION['loggedName']);
@@ -201,19 +201,19 @@ class SentieroController extends Controller
         }
         
         $user = $dl->getUserByID($user_id);
-        if($user->admin != 'y')
-            return Redirect::to(route('sentiero.errore'));
+//        if($user->admin != 'y')
+//            return Redirect::to(route('sentiero.errore'));
         
         $dl->deleteSentiero($id);
         return Redirect::to(route('sentiero.index'));
     }
     
     public function confirmDestroy($id) {
-       session_start();
-    
-        if(!isset($_SESSION['logged'])) {
-            return Redirect::to(route('user.auth.login'));
-        }
+//       session_start();
+//    
+//        if(!isset($_SESSION['logged'])) {
+//            return Redirect::to(route('user.auth.login'));
+//        }
         
         $dl = new DataLayer();
         $user_id = $dl->getUserID($_SESSION['loggedName']);
@@ -223,8 +223,8 @@ class SentieroController extends Controller
         }
         
         $user = $dl->getUserByID($user_id);
-        if($user->admin != 'y')
-            return Redirect::to(route('sentiero.errore'));
+//        if($user->admin != 'y')
+//            return Redirect::to(route('sentiero.errore'));
         
         
         $sentiero = $dl->getSentieroByID($id);
@@ -242,11 +242,11 @@ class SentieroController extends Controller
     }
     
     public function errore() {
-       session_start();
-    
-        if(!isset($_SESSION['logged'])) {
-            return Redirect::to(route('user.auth.login'));
-        }
+//       session_start();
+//    
+//        if(!isset($_SESSION['logged'])) {
+//            return Redirect::to(route('user.auth.login'));
+//        }
         
         $dl = new DataLayer();
         $user_id = $dl->getUserID($_SESSION['loggedName']);
@@ -264,11 +264,11 @@ class SentieroController extends Controller
     }
     
     public function show($id) {
-       session_start();
-    
-        if(!isset($_SESSION['logged'])) {
-            return Redirect::to(route('user.auth.login'));
-        }
+//       session_start();
+//    
+//        if(!isset($_SESSION['logged'])) {
+//            return Redirect::to(route('user.auth.login'));
+//        }
         
         $dl = new DataLayer();
         $user_id = $dl->getUserID($_SESSION['loggedName']);
@@ -298,11 +298,11 @@ class SentieroController extends Controller
     
     
     public function ricerca() {
-       session_start();
-    
-        if(!isset($_SESSION['logged'])) {
-            return Redirect::to(route('user.auth.login'));
-        }
+//       session_start();
+//    
+//        if(!isset($_SESSION['logged'])) {
+//            return Redirect::to(route('user.auth.login'));
+//        }
         
         $dl = new DataLayer();
         $user_id = $dl->getUserID($_SESSION['loggedName']);
@@ -335,11 +335,11 @@ class SentieroController extends Controller
     
     
     public function ricerca_filtra(Request $request) {
-       session_start();
-    
-        if(!isset($_SESSION['logged'])) {
-            return Redirect::to(route('user.auth.login'));
-        }
+//       session_start();
+//    
+//        if(!isset($_SESSION['logged'])) {
+//            return Redirect::to(route('user.auth.login'));
+//        }
         
         $dl = new DataLayer();
         $user_id = $dl->getUserID($_SESSION['loggedName']);
