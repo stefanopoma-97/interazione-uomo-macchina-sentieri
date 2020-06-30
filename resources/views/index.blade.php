@@ -32,6 +32,8 @@
         <li><a class="btnsignin" href="{{ route('user.auth.register') }}"><span class="glyphicon glyphicon-user"></span> Registrati</a></li>
 
     @endif
+    <li><a href="{{ route('home', ['lang' => 'en']) }}" class="nav-link"><img src="{{ url('/') }}/img/flags/en.png" width="40"/></a></li>
+    <li><a href="{{ route('home', ['lang' => 'it']) }}" class="nav-link"><img src="{{ url('/') }}/img/flags/it.png" width="40"/></a></li>
 
 @endsection
 

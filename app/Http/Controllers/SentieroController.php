@@ -154,7 +154,7 @@ class SentieroController extends Controller
         if($request->input('preferito')=="True")
             $dl->addPreferito($sentiero_id,$user_id);
         
-        return Redirect::to(route('sentiero.show',['sentiero'=>$sentiero_id]));      
+        return redirect()->back();//mi rimanda sulla stessa pagina dove è stato chiamato 
     }
     
     

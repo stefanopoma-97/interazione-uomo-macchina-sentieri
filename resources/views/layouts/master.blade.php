@@ -41,7 +41,10 @@
                     
                     <ul class="nav navbar-nav navbar-right navbar-login pl-5 pull-right">
                         @yield('navbar')
+                       
                     </ul>
+                    
+                    
            
                 </div>
                 

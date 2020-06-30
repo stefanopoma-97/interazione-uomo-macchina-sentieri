@@ -17,7 +17,8 @@ class adminCheck
      */
     public function handle($request, Closure $next)
     {
-        
+        //session_start();
+
         if(!isset($_SESSION['admin'])) {
             return Redirect::to(route('sentiero.errore'));
         }
