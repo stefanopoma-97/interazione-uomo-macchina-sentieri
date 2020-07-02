@@ -94,6 +94,37 @@ class UserController extends Controller
                 ->with('citta', $citta);        
     }
     
+    
+    public function edit_password($id) {
+       
+//        session_start();
+//    
+//        if(!isset($_SESSION['logged'])) {
+//            return Redirect::to(route('user.auth.login'));
+//        }
+       
+        
+        $dl = new DataLayer();
+        $user_id = $dl->getUserID($_SESSION['loggedName']);
+        if($user_id==-1){
+            session_destroy();
+            return Redirect::to(route('user.auth.login'));
+        }
+            
+        
+        if($user_id!=$id){
+            return Redirect::to(route('user.elenco'));
+        }
+        
+        $user = $dl->getUserByID($id);
+        
+       
+       
+        return view('utenti.modificapassword')->with('logged',true)->with('loggedName', $_SESSION["loggedName"])
+                ->with('user_id', $user_id)
+                ->with('user', $user);        
+    }
+    
     public function update($id, Request $request) {
        
 //        session_start();
@@ -118,6 +149,23 @@ class UserController extends Controller
         $dl->updateUtente($id, $request->input('username'), $request->input('nome'), $request->input('cognome'),
                 $request->input('mail'), /*$request->input('citta'),*/ $citta_id,
                 $request->input('descrizione'));
+        return Redirect::to(route('user.dettagli', ['id'=> $user_id]));      
+    }
+    
+    public function update_password($id, Request $request) {
+        
+        $dl = new DataLayer();
+        $user_id = $dl->getUserID($_SESSION['loggedName']);
+        if($user_id==-1){
+            session_destroy();
+            return Redirect::to(route('user.auth.login'));
+        }
+       
+        if($user_id!=$id){
+            return Redirect::to(route('user.elenco'));
+        }
+                
+        $dl->updatePasswordUtente($id, $request->input('password_nuova'));
         return Redirect::to(route('user.dettagli', ['id'=> $user_id]));      
     }
     
@@ -165,6 +213,23 @@ class UserController extends Controller
         else
         {
             $response = array('found'=>false); //response http
+        }
+        
+        return response()->json($response); //mando indietro json
+
+    }
+    
+    public function ajax_check_password(Request $request){
+        $dl = new DataLayer();
+        
+        if ($dl->check_password($request->input('id'),$request->input('password')))
+        //if(true)
+        {
+            $response = array('check'=>true); //response http
+        }
+        else
+        {
+            $response = array('check'=>false); //response http
         }
         
         return response()->json($response); //mando indietro json

@@ -50,51 +50,85 @@
 @endsection
 
 @section('corpo')
+<script>
+var form = document.getElementById('modifica_password');
+
+</script>
 <div class="container pt-5" style="margin-top: 5em;">
     <div class="row">
+        <div style="margin-bottom: 2em;" hidden="" class="col-md-12 alert alert-danger">
+            <ul id="ul_errori">
+           </ul>
+        </div>
         <div class='col-md-12'>
-            <form class="form-horizontal" id="modifica_password" name="modifica_password" method="post" action="{{route('user.update',['id'=> $user->id])}}">
+            <form class="form-horizontal" id="modifica_password" name="modifica_password" method="post" action="{{route('user.update.password',['id'=> $user->id])}}">
             @csrf
                 <div class="form-group row">
-                    <a href="#">Modifica password</a>
-                </div>
-                <div class="form-group row">
-                    <label for="password_precedente" class="col-sm-2 col-form-label">Password precedente</label>
-                    <div class="col-sm-10">
-                        <input maxlength="100" type="password" class="form-control"  placeholder="Password attuale">
+                    <div class="col-sm-3">
+                    <label for="password_precedente" class="col-form-label">Password precedente</label>
+                            <div style="margin-left: 1em;" class="popup" onclick="popup(this)" >
+                                <span class="popuptext">Inserisci la tua password attuale</span>
+                                <span class="glyphicon glyphicon-info-sign" ></span>
+                            </div>
+                    </div>
+                    <div class="col-sm-5">
+                        <input onkeyup="rimuovi_stile(this)" onmouseover="rimuovi_stile(this)" maxlength="100" required="" type="password" class="form-control" name="password_precedente"  placeholder="Password attuale">
+                        <span class="invalid-input" id="invalid-password_precedente"></span>
                     </div>
                 </div>
                 <div class="form-group row">
-                    <label for="password_nuova" class="col-sm-2 col-form-label">Nuova password</label>
-                    <div class="col-sm-10">
-                        <input maxlength="100" type="password" class="form-control" placeholder="Nuova password">
+                    <div class="col-sm-3">
+                    <label for="password_nuova" class="col-form-label">Nuova password</label>
+                            <div style="margin-left: 1em;" class="popup" onclick="popup(this)" >
+                                <span class="popuptext">Inserisci la tua nuova password, almeno 8 caratteri</span>
+                                <span class="glyphicon glyphicon-info-sign" ></span>
+                            </div>
+                    </div>
+                    <div class="col-sm-5">
+                        <input onkeyup="rimuovi_stile(this); password_lunghezza(this); abilita_conferma_password(this); strong_password(this); " onmouseover="rimuovi_stile(this)" maxlength="100" required="" type="password" class="form-control" name="password_nuova" placeholder="Nuova password">
+                        <span class="invalid-input" id="invalid-password_nuova"></span>
+                        <br>
+                        <meter max="4" min="0" optimum="4" id="password-strength-meter"></meter>
+                        <p id="password-strength-text"></p>
                     </div>
                 </div>
                 <div class="form-group row">
-                    <label for="password_nuova2" class="col-sm-2 col-form-label">Ripeti la password</label>
-                    <div class="col-sm-10">
-                        <input maxlength="100" type="password" class="form-control" placeholder="Ripeti la password">
+                    <div class="col-sm-3">
+                    <label for="password_nuova2"  class="col-form-label">Ripeti la password</label>
+                            <div style="margin-left: 1em;" class="popup" onclick="popup(this)" >
+                                <span class="popuptext">Ripeti la password appena inserita</span>
+                                <span class="glyphicon glyphicon-info-sign" ></span>
+                            </div>
+                    </div>
+                    <div class="col-sm-5">
+                        <input disabled="" onkeyup="rimuovi_stile(this); password_uguali(this);" onmouseover="rimuovi_stile(this)" maxlength="100" required="" type="password" class="form-control" name="password_nuova2" placeholder="Ripeti la password">
+                        <span class="invalid-input" id="invalid-password_nuova2"></span>
                     </div>
                 </div>
                 
                 
                 <div class="form-group">
-                    <div class="col-sm-10 col-sm-offset-2">
+                    <div class="col-sm-5 col-sm-offset-3">
                         <input type="hidden" name="id" value="{{ $user_id }}"/>
                         <label for="mySubmit" class="btn btn-primary btn-large btn-block"><span class="glyphicon glyphicon-floppy-save"></span> Save</label>
-                        <input id="mySubmit" type="submit" value="save" class="hidden" onclick="event.preventDefault(); valida_modifica_utente(this);"/>
+                        <input id="mySubmit" type="submit" value="save" class="hidden" onclick="event.preventDefault(); valida_modifica_password(this);"/>
 
                     </div>
                 </div>
                 <div class="form-group">
-                    <div class="col-sm-10 col-sm-offset-2">
-                        <a href="{{route('user.elenco')}}" class="btn btn-danger btn-large btn-block"><span class="glyphicon glyphicon-log-out"></span> Cancel</a>                         
+                    <div class="col-sm-5 col-sm-offset-3">
+                        <a href="{{route('user.edit',['id'=> $user->id])}}" class="btn btn-danger btn-large btn-block"><span class="glyphicon glyphicon-log-out"></span> Cancel</a>                         
                     </div>
                 </div>                       
             </form>
         </div>
     </div>
 </div>
+
+<script>
+    
+    
+</script>
 <!--<script>
     $("form#modifica_utente :input").each(function(){
         $(this).removeClass("border-red");

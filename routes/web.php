@@ -70,11 +70,17 @@ Route::group(['middleware' => ['authCustom']], function()
     {
     //USER
 
-    Route::post('/user/{id}/update', ['as' => 'user.update', 
+    Route::post('/user/{id}/update', ['as' => 'user.update', //sto aggiornando l'utente
         'uses' => 'UserController@update']);
 
-    Route::get('/user/{id}/update', ['as' => 'user.edit', 
+    Route::get('/user/{id}/update', ['as' => 'user.edit', //vado alla pagina di editing del utente
         'uses' => 'UserController@edit']);
+    
+    Route::get('/user/{id}/update/password', ['as' => 'user.edit.password', //vado pagina editing password
+        'uses' => 'UserController@edit_password']);
+    
+    Route::post('/user/{id}/update/password', ['as' => 'user.update.password', //sto aggiornando l'utente
+        'uses' => 'UserController@update_password']);
 
     Route::get('/user/{id}/dettagli', ['as' => 'user.dettagli', 
         'uses' => 'UserController@dettagli']);
@@ -89,7 +95,9 @@ Route::group(['middleware' => ['authCustom']], function()
     
     Route::get('/ajaxNewUsername', 'UserController@ajax_check_new_username');
     
-    Route::get('/ajaxCitta', 'UserController@ajax_check_citta');
+    Route::get('/ajaxCitta', 'UserController@ajax_check_citta'); 
+    
+    Route::post('/ajaxCheckPassword', 'UserController@ajax_check_password');
 
 
     //SENTIERI

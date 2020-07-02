@@ -122,14 +122,36 @@ class DataLayer extends Model
         // Book::find($id)->update(['title' => $title, 'author_id' => $author_id]);
     }
     
+    public function updatePasswordUtente($id, $password) {
+        $user = LibUser::find($id);
+        $user->password = md5($password);
+        $user->save();
+        // massive update (only with fillable property enabled on Book): 
+        // Book::find($id)->update(['title' => $title, 'author_id' => $author_id]);
+    }
     
     
-    
-     
-    
-    
-    
-     public function fromSentieriToDatiSentieri($sentieri) {
+    public function check_password($id, $password){
+        $utente= $this->getUserByID($id);
+        return (md5($password) == ($utente->password));
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    public function fromSentieriToDatiSentieri($sentieri) {
         $sentieri_id=$sentieri->pluck('id');
         $dati_sentieri = DatiSentiero::wherein('id', $sentieri_id)->get();
         return $dati_sentieri;
