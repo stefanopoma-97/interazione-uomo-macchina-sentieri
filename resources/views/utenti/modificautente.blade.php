@@ -53,47 +53,53 @@
 <div class="container pt-5" style="margin-top: 5em;">
     <div class="row">
         <div class='col-md-12'>
-            <form class="form-horizontal" name="modifica_utente" method="post" action="{{route('user.update',['id'=> $user->id])}}">
+            <form class="form-horizontal" id="modifica_utente" name="modifica_utente" method="post" action="{{route('user.update',['id'=> $user->id])}}">
             @csrf
                 <div class="form-group">
                     <label for="nome" class="col-sm-2 col-form-label">Nome</label>
                     <div class="col-sm-10">
-                        <input class="form-control" type="text" id="nome" name="nome" placeholder="nome" value="{{$user->nome}}">
+                        <input onkeyup="rimuovi_stile(this)" onmouseover="rimuovi_stile(this)" required="" maxlength="32" class="form-control" type="text" id="nome" name="nome" placeholder="Nome" value="{{$user->nome}}">
+                        <span class="invalid-input" id="invalid-nome"></span>
                     </div>
                 </div>
 
                 <div class="form-group">
                     <label for="cognome" class="col-sm-2 col-form-label">Cognome</label>
                     <div class="col-sm-10">
-                        <input class="form-control" type="text" id="cognome" name="cognome" placeholder="cognome" value="{{$user->cognome}}">
+                        <input onkeyup="rimuovi_stile(this)" onmouseover="rimuovi_stile(this)" required="" maxlength="32" class="form-control" type="text" id="cognome" name="cognome" placeholder="Cognome" value="{{$user->cognome}}">
+                        <span class="invalid-input" id="invalid-cognome"></span>
+                        
                     </div>
                 </div>
 
                 <div class="form-group">
                     <label for="username" class="col-sm-2 col-form-label">Username</label>
                     <div class="col-sm-10">
-                        <input class="form-control" type="text" id="username" name="username" placeholder="username" value="{{$user->username}}">
+                        <input onkeyup="rimuovi_stile(this)" onmouseover="rimuovi_stile(this)" required="" maxlength="32" class="form-control" type="text" id="username" name="username" placeholder="Username" value="{{$user->username}}">
+                        <span class="invalid-input" id="invalid-username"></span>
                     </div>
                 </div>
 
                 <div class="form-group row">
                     <label for="mail" class="col-sm-2 col-form-label">Email</label>
                     <div class="col-sm-10">
-                        <input type="mail" class="form-control" name="mail" placeholder="mail" value="{{$user->mail}}">
+                        <input onkeyup="rimuovi_stile(this)" onmouseover="rimuovi_stile(this)" required="" maxlength="100" type="mail" class="form-control" name="mail" placeholder="Mail" value="{{$user->mail}}">
+                        <span class="invalid-input" id="invalid-mail"></span>
                     </div>
                 </div>
 
                 <div class="form-group row">
                     <label for="descrizione" class="col-sm-2 col-form-label">Descrizione</label>
                     <div class="col-sm-10">
-                        <textarea class="form-control" id="descrizione" name="descrizione" rows="5">value="{{$user->descrizione}}</textarea>
+                        <textarea onkeyup="rimuovi_stile(this)" onmouseover="rimuovi_stile(this)" required=""  class="form-control" id="descrizione" name="descrizione" placeholder="Parlaci di te..." rows="5">{{$user->descrizione}}</textarea>
+                        <span class="invalid-input" id="invalid-descrizione"></span>
                     </div>
                 </div>
 
                 <div class="form-group row">
                     <label for="citta" class="col-sm-2 col-form-label">Città</label>
                     <div class="col-sm-10">
-                        <select class="form-control" id="citta" name="citta" >
+                        <select onmouseover="rimuovi_stile(this)" required="true" class="form-control" id="citta" name="citta" >
                             @foreach ($citta as $c)
                                 @if($c->id == $user->citta->id)
                                     <option value="{{$c->id}}" selected="selected">{{$c->nome}}</option>
@@ -103,32 +109,56 @@
                             
                             @endforeach
                         </select>
+                        <span class="invalid-input" id="invalid-citta"></span>
+                    </div>
+                </div>
+            
+                <div class="form-group row">
+                    <label for="citta_completamento" class="col-sm-2 col-form-label">Città</label>
+                    <div class="col-sm-10">
+                        <input onkeyup="rimuovi_stile(this)" onmouseover="rimuovi_stile(this)" required="" type="text" class="form-control" id="citta_completamento" name="citta_completamento" value="{{$user->citta->nome}}"placeholder="Città" list="lista_citta">
+
+                        <datalist id="lista_citta">
+                            @foreach ($citta as $c)
+                                <option>{{$c->nome}}</option>
+                            @endforeach
+                        </datalist>
+                        
+                        
+                        <span class="invalid-input" id="invalid-citta_completamento"></span>
                     </div>
                 </div>
 
+            
+                
+                <div class="form-group row">
+                    <a href="#">Modifica password</a>
+                </div>
                 <div class="form-group row">
                     <label for="password_precedente" class="col-sm-2 col-form-label">Password precedente</label>
                     <div class="col-sm-10">
-                        <input type="password" class="form-control" placeholder="Password precedente">
+                        <input maxlength="100" type="password" class="form-control"  placeholder="Password attuale">
                     </div>
                 </div>
                 <div class="form-group row">
                     <label for="password_nuova" class="col-sm-2 col-form-label">Nuova password</label>
                     <div class="col-sm-10">
-                        <input type="password" class="form-control" placeholder="Nuova password">
+                        <input maxlength="100" type="password" class="form-control" placeholder="Nuova password">
                     </div>
                 </div>
                 <div class="form-group row">
                     <label for="password_nuova2" class="col-sm-2 col-form-label">Ripeti la password</label>
                     <div class="col-sm-10">
-                        <input type="password" class="form-control" placeholder="Ripeti la password">
+                        <input maxlength="100" type="password" class="form-control" placeholder="Ripeti la password">
                     </div>
                 </div>
+                
+                
                 <div class="form-group">
                     <div class="col-sm-10 col-sm-offset-2">
                         <input type="hidden" name="id" value="{{ $user_id }}"/>
                         <label for="mySubmit" class="btn btn-primary btn-large btn-block"><span class="glyphicon glyphicon-floppy-save"></span> Save</label>
-                        <input id="mySubmit" type="submit" value="save" class="hidden"/>
+                        <input id="mySubmit" type="submit" value="save" class="hidden" onclick="event.preventDefault(); valida_modifica_utente(this);"/>
 
                     </div>
                 </div>
@@ -141,4 +171,9 @@
         </div>
     </div>
 </div>
+<!--<script>
+    $("form#modifica_utente :input").each(function(){
+        $(this).removeClass("border-red");
+       })
+    </script>-->
 @endsection

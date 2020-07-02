@@ -349,3 +349,12 @@ li.inserimeno-titolo > p.titolo{
   color: orange;
 }
 
+.invalid-input {
+    color: #bd2626;
+    font-weight: bold;
+}
+
+
+.border-red {
+    border-color: #bd2626;
+}

@@ -113,10 +113,62 @@ class UserController extends Controller
             return Redirect::to(route('user.elenco'));
         }
         
+        $citta_id = $dl->getCityID($request->input('citta_completamento'));
+        
         $dl->updateUtente($id, $request->input('username'), $request->input('nome'), $request->input('cognome'),
-                $request->input('mail'), $request->input('citta'),
+                $request->input('mail'), /*$request->input('citta'),*/ $citta_id,
                 $request->input('descrizione'));
-        return Redirect::to(route('user.elenco'));      
+        return Redirect::to(route('user.dettagli', ['id'=> $user_id]));      
+    }
+    
+    
+    //SERVIZIO
+    //restituiamo una stringa json per verificare la validità di un username inserito
+    public function ajax_check_username_citta(Request $request){
+        $dl = new DataLayer();
+        $valid_user = $dl->validateUsername($request->input('username'), $request->input('id'));
+        $valid_city = $dl->validateCitta($request->input('citta'));
+        
+        if ($valid_user)
+        //if(true)
+        {
+            $username = true;
+        }
+        else
+        {
+            $username = false;
+        }
+        
+        if ($valid_city)
+        //if(true)
+        {
+            $citta = true;
+        }
+        else
+        {
+            $citta = false;
+        }
+        $response = array('username'=>$username, 'citta'=>$citta);
+        
+        return response()->json($response); //mando indietro json
+
+    }
+    
+    public function ajax_check_citta(Request $request){
+        $dl = new DataLayer();
+        
+        if ($dl->validateCitta($request->input('citta')))
+        //if(true)
+        {
+            $response = array('found'=>false); //response http
+        }
+        else
+        {
+            $response = array('found'=>false); //response http
+        }
+        
+        return response()->json($response); //mando indietro json
+
     }
     
 }

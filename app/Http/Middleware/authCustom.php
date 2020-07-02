@@ -19,6 +19,8 @@ class authCustom
     public function handle($request, Closure $next)
     {
         session_start();
+        
+        //Refirect::to(route($request->route()));
     
         if(!isset($_SESSION['logged'])) {
             return Redirect::to(route('user.auth.login'));

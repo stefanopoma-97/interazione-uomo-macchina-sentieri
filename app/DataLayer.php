@@ -48,6 +48,22 @@ class DataLayer extends Model
             return $users[0]->id;
     }
     
+    public function validateUsername($username, $id) {
+        $users = DB::select("select * from utente where (username = ? AND id != ?)",[$username, $id]);
+        if(count($users)==0)
+            return true;
+        else
+            return false;
+    }
+    
+    public function validateCitta($citta) {
+        $cities = Citta::where('nome',$citta)->get();
+        if(count($cities)==0)
+            return false;
+        else
+            return true;
+    }
+    
     public function getCityID($nome) {
         $citta = Citta::where('nome',$nome)->get(['id']);
         return $citta[0]->id;

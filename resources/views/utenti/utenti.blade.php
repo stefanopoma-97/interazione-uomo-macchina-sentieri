@@ -53,7 +53,7 @@
 <div class="container" style="margin-top: 3em;">
     <div class="row">
         <div class="col-md-10 col-md-offset-1">
-            <table class="table table-striped table-hover table-responsive  table-sm" style="width:100%" data-toggle="table" data-search="true" data-show-columns="true" >
+            <table id="tabella_elenco_utenti" class="table table-striped table-hover table-responsive  table-sm" style="width:100%" data-toggle="table" data-search="true" data-show-columns="true" >
                 <col width='30%'>
                 <col width='30%'>
                 <col width='30%'>
@@ -91,17 +91,6 @@
             </table>
         </div>
     </div>
-    <div class="row">
-        <div class="col-md-3 pull-right">
-            <ul class="pagination">
-                <li class="page-item disabled"><a class="page-link" href="#">Previous</a></li>
-                <li class="page-item active"><a class="page-link" href="#">1</a></li>
-                <li class="page-item"><a class="page-link" href="#">2</a></li>
-                <li class="page-item"><a class="page-link" href="#">3</a></li>
-                <li class="page-item"><a class="page-link" href="#">Next</a></li>
-            </ul>
-        </div>
-
-    </div>
+    
 </div>
 @endsection

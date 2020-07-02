@@ -84,6 +84,12 @@ Route::group(['middleware' => ['authCustom']], function()
 
     Route::post('/user/{id}/preferiti', ['as' => 'user.preferiti', 
         'uses' => 'UserController@preferiti']);
+    
+    Route::get('/ajaxUsernameCitta', 'UserController@ajax_check_username_citta');
+    
+    Route::get('/ajaxNewUsername', 'UserController@ajax_check_new_username');
+    
+    Route::get('/ajaxCitta', 'UserController@ajax_check_citta');
 
 
     //SENTIERI
