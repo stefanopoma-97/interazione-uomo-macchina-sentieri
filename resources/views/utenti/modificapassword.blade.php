@@ -50,10 +50,7 @@
 @endsection
 
 @section('corpo')
-<script>
-var form = document.getElementById('modifica_password');
 
-</script>
 <div class="container pt-5" style="margin-top: 5em;">
     <div class="row">
         <div style="margin-bottom: 2em;" hidden="" class="col-md-12 alert alert-danger">
@@ -65,15 +62,20 @@ var form = document.getElementById('modifica_password');
             @csrf
                 <div class="form-group row">
                     <div class="col-sm-3">
-                    <label for="password_precedente" class="col-form-label">Password precedente</label>
-                            <div style="margin-left: 1em;" class="popup" onclick="popup(this)" >
-                                <span class="popuptext">Inserisci la tua password attuale</span>
-                                <span class="glyphicon glyphicon-info-sign" ></span>
-                            </div>
+                        
+                        <label for="password_precedente" class="col-form-label">Password precedente</label>
+                        
+                                <div style="margin-left: 1em;" class="popup" onclick="popup(this)" >
+                                    <span class="popuptext">Inserisci la tua password attuale</span>
+                                    <span class="glyphicon glyphicon-info-sign" ></span>
+                                </div>
                     </div>
                     <div class="col-sm-5">
                         <input onkeyup="rimuovi_stile(this)" onmouseover="rimuovi_stile(this)" maxlength="100" required="" type="password" class="form-control" name="password_precedente"  placeholder="Password attuale">
                         <span class="invalid-input" id="invalid-password_precedente"></span>
+                    </div>
+                    <div class="col-sm-3">
+                        <li style="color: #005cc5" hidden="" id="consiglio_password">0</li>
                     </div>
                 </div>
                 <div class="form-group row">

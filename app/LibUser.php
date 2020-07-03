@@ -9,7 +9,7 @@ class LibUser extends Model
     protected $table = "utente";
     public $timestamps = false;
     
-    protected $fillable = ['id', 'username', 'nome', 'cognome', 'mail', 'descrizione', 'citta_id'];
+    protected $fillable = ['id', 'username', 'nome', 'cognome', 'mail', 'descrizione', 'citta_id', 'consiglio_password'];
     
     public function citta() {
         // è un attributo non un metodo $utente->citta

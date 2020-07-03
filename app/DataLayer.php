@@ -135,6 +135,11 @@ class DataLayer extends Model
         $utente= $this->getUserByID($id);
         return (md5($password) == ($utente->password));
     }
+    
+    public function consiglioPassword($id){
+        $utente= $this->getUserByID($id);
+        return $utente->consiglio_password;
+    }
 
 
 

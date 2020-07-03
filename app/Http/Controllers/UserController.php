@@ -221,15 +221,17 @@ class UserController extends Controller
     
     public function ajax_check_password(Request $request){
         $dl = new DataLayer();
+        $consiglio = $dl->consiglioPassword($request->input('id'));
+
         
         if ($dl->check_password($request->input('id'),$request->input('password')))
         //if(true)
         {
-            $response = array('check'=>true); //response http
+            $response = array('check'=>true, 'consiglio'=>$consiglio); //response http
         }
         else
         {
-            $response = array('check'=>false); //response http
+            $response = array('check'=>false, 'consiglio'=>$consiglio); //response http
         }
         
         return response()->json($response); //mando indietro json

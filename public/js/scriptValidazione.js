@@ -217,6 +217,8 @@ function valida_modifica_password(button){
     $('#ul_errori').parent().hide(); //lo nascondo
     $('#ul_errori').empty(); //svuoto la lista
     
+    consiglio=$('#consiglio_password');
+    
     id=button.form.id.value;// id utente recuperato dalla form
     
     password_precedente = (button.form.password_precedente.value).trim();
@@ -244,6 +246,8 @@ function valida_modifica_password(button){
         li.text("Inserisci la tua attuale password");
         $('#ul_errori').parent().show();
         $('#ul_errori').append(li);
+        consiglio.text(0);
+        consiglio.hide();
         
     }
     
@@ -256,7 +260,8 @@ function valida_modifica_password(button){
         li.text("Inserisci la nuova password");
         $('#ul_errori').parent().show();
         $('#ul_errori').append(li);
-        
+        consiglio.text(0);
+        consiglio.hide();
     }
     
     else if(password_nuova.length < 8){
@@ -268,7 +273,8 @@ function valida_modifica_password(button){
         li.text("La password è più corta di 8 caratteri");
         $('#ul_errori').parent().show();
         $('#ul_errori').append(li);
-        
+        consiglio.text(0);
+        consiglio.hide();
     }
     
     else if(password_nuova2 === ""){
@@ -280,7 +286,8 @@ function valida_modifica_password(button){
         li.text("Inserisci nuovamente la nuova password");
         $('#ul_errori').parent().show();
         $('#ul_errori').append(li);
-        
+        consiglio.text(0);
+        consiglio.hide();
     }
     
     else if(password_nuova2 !== password_nuova){
@@ -293,7 +300,8 @@ function valida_modifica_password(button){
         li.text("Le due password non corrispondono");
         $('#ul_errori').parent().show();
         $('#ul_errori').append(li);
-        
+        consiglio.text(0);
+        consiglio.hide();
     }
     
     
@@ -328,6 +336,29 @@ function valida_modifica_password(button){
                         li.text("La password che hai inserito non è corretta");
                         $('#ul_errori').parent().show();
                         $('#ul_errori').append(li);
+                        
+                        if(consiglio.text().length == 1){
+                            
+                            valore = parseInt(consiglio.text());
+                            if(valore>=3){
+                                if(data.consiglio == null || data.consiglio===""){
+                                    consiglio.text("Non hai inserito nessun consiglio per il recupero della password");
+                                    consiglio.show();  
+                                }
+                                else {
+                                    consiglio.text("Consiglio: "+data.consiglio);
+                                    consiglio.show();  
+                                }
+                                
+                            }
+                            else{
+                                valore ++;
+                                consiglio.text(valore);
+                                consiglio.hide();
+                            }
+                            
+                        }
+                        
 
                     }
                     else{
@@ -387,9 +418,13 @@ function password_lunghezza(button){
 function abilita_conferma_password(button){
     password_nuova = (button.form.password_nuova.value).trim();
     password_nuova2 = button.form.password_nuova2;
-    if(password_nuova!=="")
-        password_nuova2.removeAttribute('disabled');
+    if(password_nuova!==""){
+        
+        password_nuova2.removeAttribute('disabled'); 
+    }
+        
     else{
+        password_nuova2.value="";
         password_nuova2.setAttribute('disabled','true');
     }
         
@@ -397,11 +432,11 @@ function abilita_conferma_password(button){
 
 function strong_password(button){
     var strength = {
-        0: "Worst ☹",
-        1: "Bad ☹",
-        2: "Weak ☹",
-        3: "Good ☺",
-        4: "Strong ☻"
+        0: "Pessima ☹",
+        1: "Troppo debole ☹",
+        2: "Debole ☹",
+        3: "Buona ☺",
+        4: "Forte ☻"
         };
 
     password_nuova = button.form.password_nuova;
@@ -416,7 +451,7 @@ function strong_password(button){
 
     // This updates the password meter text
     if (val !== "") {
-        text.innerHTML = "Password Strength: " + strength[result.score]; 
+        text.innerHTML = "Resistenza della password: " + strength[result.score]; 
     } else {
         text.innerHTML = "";
     }
