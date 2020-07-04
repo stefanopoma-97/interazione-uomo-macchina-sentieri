@@ -5,6 +5,10 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 use App\DataLayer;
+use App\Http\Requests;
+use Mail;
+use Illuminate\Support\Collection;
+use App\Mail\Contact;
 
 class UserController extends Controller
 {
@@ -97,13 +101,6 @@ class UserController extends Controller
     
     public function edit_password($id) {
        
-//        session_start();
-//    
-//        if(!isset($_SESSION['logged'])) {
-//            return Redirect::to(route('user.auth.login'));
-//        }
-       
-        
         $dl = new DataLayer();
         $user_id = $dl->getUserID($_SESSION['loggedName']);
         if($user_id==-1){
@@ -121,6 +118,41 @@ class UserController extends Controller
        
        
         return view('utenti.modificapassword')->with('logged',true)->with('loggedName', $_SESSION["loggedName"])
+                ->with('user_id', $user_id)
+                ->with('user', $user);        
+    }
+    
+    public function edit_recupero_password($id) {
+        $dl = new DataLayer();
+        unset($_SESSION["codice"]);
+        $user_id = $dl->getUserID($_SESSION['loggedName']);
+        if($user_id==-1){
+            session_destroy();
+            return Redirect::to(route('user.auth.login'));
+        }
+            
+        
+        if($user_id!=$id){
+            return Redirect::to(route('user.elenco'));
+        }
+        
+        $user = $dl->getUserByID($id);
+        
+        //Mando una mail all'ingresso (Tentativo di reset password)
+        //$this->send_mail_reset_password("1", 'stefano', 'stefano1997poma97@gmail.com');
+//        if(isset($_SESSION["codice"])){
+//                unset($_SESSION["codice"]);
+//                $_SESSION["codice"]="1";
+//            }
+//        else{
+//            $_SESSION["codice"]="1";
+//        }
+//            $codice=$_SESSION["codice"];
+//            $this->send_mail_reset_password($codice, "stefano", "stefano1997poma97@gmail.com");
+        
+       
+       
+        return view('utenti.recuperopassword')->with('logged',true)->with('loggedName', $_SESSION["loggedName"])
                 ->with('user_id', $user_id)
                 ->with('user', $user);        
     }
@@ -215,6 +247,76 @@ class UserController extends Controller
             $response = array('found'=>false); //response http
         }
         
+        
+        
+        return response()->json($response); //mando indietro json
+
+    }
+    
+     public function ajax_check_codice(Request $request){
+        if(isset($_SESSION["codice"])){
+            if ($_SESSION["codice"]==$request->input('codice'))
+            //if(true)
+            {
+                $response = array('codice'=>true, 'set'=>true); //response http
+            }
+            else
+            {
+                $response = array('codice'=>false, 'set'=>true); //response http
+            }
+        }
+        else{
+            $response = array('codice'=>false, 'set'=>false);
+        }
+        
+        return response()->json($response); //mando indietro json
+
+    }
+    
+    public function ajax_send_reset_mail(Request $request){
+        $dl = new DataLayer();
+        $utente=$dl->getUserByID($request->input('id'));
+        if(isset($_SESSION["codice"])){
+            unset($_SESSION["codice"]);
+            //$_SESSION["codice"]="1";
+            $_SESSION["codice"]= substr(uniqid('', true), -5);
+        }
+        else {
+            //$_SESSION["codice"]="1";
+            $_SESSION["codice"]= substr(uniqid('', true), -5);
+        }
+        $codice=($_SESSION["codice"]);
+        $this->send_mail_reset_password($codice, $utente->username, $request->input('mail'));
+        
+        $response = array('ok'=>true);
+        return response()->json($response); //mando indietro json
+    }
+
+
+    public function ajax_check_mail(Request $request){
+        $dl = new DataLayer();
+        
+        if ($dl->validateMail($request->input('mail'),$request->input('id')))
+        //if(true)
+        {
+            $response = array('mail'=>true); //response http
+            //INVIO MAIL SETTO CODICE E LO RESETTO NEL CASO DI REINVIO
+            $utente=$dl->getUserByID($request->input('id'));
+            if(isset($_SESSION["codice"])){
+                unset($_SESSION["codice"]);
+                $_SESSION["codice"]="1";
+            }
+            else {
+                $_SESSION["codice"]="1";
+            }
+            $codice=($_SESSION["codice"]);
+            //$this->send_mail_reset_password($codice, $utente->username, $request->input('mail'));
+        }
+        else
+        {
+            $response = array('mail'=>false); //response http
+        }
+        
         return response()->json($response); //mando indietro json
 
     }
@@ -222,7 +324,8 @@ class UserController extends Controller
     public function ajax_check_password(Request $request){
         $dl = new DataLayer();
         $consiglio = $dl->consiglioPassword($request->input('id'));
-
+        
+        
         
         if ($dl->check_password($request->input('id'),$request->input('password')))
         //if(true)
@@ -236,6 +339,33 @@ class UserController extends Controller
         
         return response()->json($response); //mando indietro json
 
+    }
+    
+    public function send_mail_reset_password($codice, $username, $mail) {
+        $data = array('codice' => $codice, 'username' => $username , 'mail'=>$mail);
+        Mail::send('mail_reset_password', $data, function($message) use ($data){ //mail è il nome della view
+            $message->to($data['mail'], $data['username'])->subject
+                    ('Reset password');
+            $message->from('s.poma001@studenti.unibs.it', 'Laravel');
+        });
+    }
+    
+    public function send_mail_cambio_password($username, $mail){
+        $data = array('data'=>time());
+        Mail::send('mail_cambio_password', $data, function($message) {
+            $message->to($mail, $username)->subject
+                        ('Avviso cambio password');
+            $message->from('s.poma001@studenti.unibs.it', 'Laravel');
+      });
+    }
+    
+    public function send_mail_tentativo_accesso($username, $mail){
+        $data = array('data'=>time());
+        Mail::send('mail_tentativo_accesso', $data, function($message) {
+            $message->to($mail, $username)->subject
+                        ('Tentativo di accesso');
+            $message->from('s.poma001@studenti.unibs.it', 'Laravel');
+      });
     }
     
 }

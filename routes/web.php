@@ -79,6 +79,9 @@ Route::group(['middleware' => ['authCustom']], function()
     Route::get('/user/{id}/update/password', ['as' => 'user.edit.password', //vado pagina editing password
         'uses' => 'UserController@edit_password']);
     
+    Route::get('/user/{id}/update/recuperopassword', ['as' => 'user.edit.recuperopassword', //vado pagina editing password
+        'uses' => 'UserController@edit_recupero_password']);
+    
     Route::post('/user/{id}/update/password', ['as' => 'user.update.password', //sto aggiornando l'utente
         'uses' => 'UserController@update_password']);
 
@@ -97,8 +100,13 @@ Route::group(['middleware' => ['authCustom']], function()
     
     Route::get('/ajaxCitta', 'UserController@ajax_check_citta'); 
     
-    Route::post('/ajaxCheckPassword', 'UserController@ajax_check_password');
+    Route::post('/ajaxCheckPassword', 'UserController@ajax_check_password'); 
 
+    Route::post('/ajaxMail', 'UserController@ajax_check_mail'); 
+    
+    Route::post('/ajaxCodice', 'UserController@ajax_check_codice'); 
+    
+    Route::post('/ajaxSendResetMail', 'UserController@ajax_send_reset_mail');
 
     //SENTIERI
 

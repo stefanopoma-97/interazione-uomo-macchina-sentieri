@@ -208,6 +208,273 @@ function valida_modifica_utente(button){
         
 }
 
+function valida_mail(button){
+    $('#div_codice').hide();
+    $('#ul_errori').parent().hide(); //lo nascondo
+    $('#ul_errori').empty(); //svuoto la lista
+    $('#ul_conferme').parent().hide(); //lo nascondo
+    $('#ul_conferme').empty(); //svuoto la lista
+    //window.confirm(button.parentNode.parentNode.parentNode.nodeName);
+    id=button.parentNode.parentNode.parentNode.id.value;// id utente recuperato dalla form
+    
+    mail = (button.parentNode.parentNode.parentNode.mail.value).trim();
+    mail_msg=document.getElementById("invalid-mail");
+    mail_msg.innerHTML="";
+    var mail_exp = RegExp("^([a-zA-Z0-9_.-])+@(([a-zA-Z0-9-]{2,})+.)+[.]([a-zA-Z0-9]{2,})+$", "g");
+    
+    var errori = false;
+    
+    if(mail === ""){
+        errori=true;
+        mail_msg.innerHTML="Compila il campo mail";
+        button.parentNode.parentNode.parentNode.mail.focus();
+        $(button.parentNode.parentNode.parentNode.mail).css('border-color','red');
+        var li = $("<li></li>");
+        li.text("Compila il campo mail");
+        $('#ul_errori').parent().show();
+        $('#ul_errori').append(li);
+    }
+    else if(!mail.match(mail_exp)){
+        errori=true;
+        mail_msg.innerHTML="Inserisci una mail valida";
+        button.parentNode.parentNode.parentNode.mail.focus();
+        $(button.parentNode.parentNode.parentNode.mail).css('border-color','red');
+        var li = $("<li></li>");
+        li.text("Inserisci una mail valida");
+        $('#ul_errori').parent().show();
+        $('#ul_errori').append(li);
+    }
+    
+    if(!errori)
+    //window.confirm("SONO entrato nel ciclo errori= "+errori);
+    {
+        //window.confirm("NON ci sono errori. ID="+id+" mail="+mail);
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+        $.ajax({
+
+                type: 'POST',
+
+                url: '/ajaxMail',
+
+                data: {mail:mail, id:id},
+                
+                dataType: "json",
+
+                success: function (data) {
+
+                    if (!data.mail)
+                    {
+                        errori = true;
+                        mail_msg.innerHTML="La mail inserita non corrisponde a quella associata al tuo account";
+                        button.parentNode.parentNode.parentNode.mail.focus();
+                        $(button.parentNode.parentNode.parentNode.mail).css('border-color','red');
+                        var li = $("<li></li>");
+                        li.text("La mail inserita non corrisponde a quella associata al tuo account");
+                        $('#ul_errori').parent().show();
+                        $('#ul_errori').append(li);
+
+                    } else {
+                        var li = $("<li></li>");
+                        li.text("Mail inviata. Controlla la tua casella di posta e copia qua sotto il codice per il ripristino");
+                        li.ready(send_reset_mail());
+
+                        $('#ul_conferme').parent().show();
+                        $('#ul_conferme').append(li);
+                        
+                        //cambiamenti alla pagina
+                        $('#btn_valida_mail').text("Invia ancora");
+                        $('#div_codice').show();
+
+                    }
+                    
+                },
+                
+                error: function(data){
+                    alert("fail");
+                }
+
+            });
+    }
+}
+
+function send_reset_mail(){
+    //window.confirm("STO EFFETTIVAMENTE mandando la mail di reset");
+    
+    
+    mail = document.forms.recupero_password.mail.value;
+    id = document.forms.recupero_password.id.value;
+    
+    //window.confirm("RIASSUNTO DATI: id="+id+" mail="+mail);
+    
+    $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+        $.ajax({
+
+                type: 'POST',
+
+                url: '/ajaxSendResetMail',
+
+                data: {mail:mail, id:id},
+                
+                dataType: "json",
+
+                success: function (data) {
+
+                    if (data.ok)
+                    {
+//                        errori = true;
+//                        mail_msg.innerHTML="La mail inserita non corrisponde a quella associata al tuo account";
+//                        button.parentNode.parentNode.parentNode.mail.focus();
+//                        $(button.parentNode.parentNode.parentNode.mail).css('border-color','red');
+//                        var li = $("<li></li>");
+//                        li.text("La mail inserita non corrisponde a quella associata al tuo account");
+//                        $('#ul_errori').parent().show();
+//                        $('#ul_errori').append(li);
+
+                    } else {
+//                        var li = $("<li></li>");
+//                        li.text("Mail inviata. Controlla la tua casella di posta e copia qua sotto il codice per il ripristino");
+//                        li.ready(function(){
+//                            window.confirm("I showed up");
+//                        });
+//
+//                        $('#ul_conferme').parent().show();
+//                        $('#ul_conferme').append(li);
+//                        
+//                        //cambiamenti alla pagina
+//                        $('#btn_valida_mail').text("Invia ancora");
+//                        $('#div_codice').show();
+
+                    }
+                    
+                },
+                
+                error: function(data){
+                    alert("fail");
+                }
+
+            });
+}
+
+function valida_codice(button){
+    $('#ul_errori').parent().hide(); //lo nascondo
+    $('#ul_errori').empty(); //svuoto la lista
+    $('#ul_conferme').parent().hide(); //lo nascondo
+    $('#ul_conferme').empty(); //svuoto la lista
+    
+    id=button.parentNode.parentNode.parentNode.id.value;// id utente recuperato dalla form
+    
+    codice = (button.parentNode.parentNode.parentNode.codice.value).trim();
+    codice_msg=document.getElementById("invalid-codice");
+    codice_msg.innerHTML="";
+    
+    //window.confirm("codice: "+codice);
+    
+    if(true)
+    //window.confirm("SONO entrato nel ciclo errori= "+errori);
+    {
+        //window.confirm("NON ci sono errori. ID="+id+" mail="+mail);
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+        $.ajax({
+
+                type: 'POST',
+
+                url: '/ajaxCodice',
+
+                data: {codice:codice},
+                
+                dataType: "json",
+
+                success: function (data) {
+
+                    if (!data.codice)
+                    {
+                        codice_msg.innerHTML="Il codice non corrisponde a quello inviato";
+                        button.parentNode.parentNode.parentNode.codice.focus();
+                        $(button.parentNode.parentNode.parentNode.codice).css('border-color','red');
+                        var li = $("<li></li>");
+                        li.text("Il codice non corrisponde a quello inviato");
+                        $('#ul_errori').parent().show();
+                        $('#ul_errori').append(li);
+
+                    } else {
+                        var li = $("<li></li>");
+                        li.text("Codice corretto");
+                        $('#ul_conferme').parent().show();
+                        $('#ul_conferme').append(li);
+                        
+                        //cambiamenti alla pagina
+                        $('#div_mail').hide();
+                        $('#div_codice').hide();
+                        $('#div_password').show();
+                        $('#div_submit').show();
+
+                    }
+                    
+                },
+                
+                error: function(data){
+                    alert("fail");
+                }
+
+            });
+    }
+}
+
+function valida_reset_password(button){
+    $('#ul_errori').parent().hide(); //lo nascondo
+    $('#ul_errori').empty();
+    
+    $('#ul_conferme').parent().hide(); //lo nascondo
+    $('#ul_conferme').empty();
+    
+    id=button.form.id.value;
+    
+    password_nuova = (button.form.password_nuova.value).trim();
+    password_nuova_msg=document.getElementById("invalid-password_nuova");
+    password_nuova_msg.innerHTML="";
+    
+    var errori=false;
+    
+    if(password_nuova === ""){
+        errori=true;
+        password_nuova_msg.innerHTML="Inserisci la nuova password";
+        button.form.password_nuova.focus({preventScroll:false});
+        $(button.form.password_nuova).css('border-color','red');
+        var li = $("<li></li>");
+        li.text("Inserisci la nuova password");
+        $('#ul_errori').parent().show();
+        $('#ul_errori').append(li);
+    }
+    
+    else if(password_nuova.length < 8){
+        errori=true;
+        password_nuova_msg.innerHTML="La password è più corta di 8 caratteri";
+        button.form.password_nuova.focus({preventScroll:false});
+        $(button.form.password_nuova).css('border-color','red');
+        var li = $("<li></li>");
+        li.text("La password è più corta di 8 caratteri");
+        $('#ul_errori').parent().show();
+        $('#ul_errori').append(li);
+    }
+    
+    if(!errori){
+        //window.confirm("faccio partire form: "+button.form.nodeName);
+        button.form.submit();
+    }
+        
+}
 
 function valida_modifica_password(button){
     
@@ -451,7 +718,7 @@ function strong_password(button){
 
     // This updates the password meter text
     if (val !== "") {
-        text.innerHTML = "Resistenza della password: " + strength[result.score]; 
+        text.innerHTML = "Password: " + strength[result.score]; 
     } else {
         text.innerHTML = "";
     }

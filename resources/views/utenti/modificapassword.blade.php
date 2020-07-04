@@ -121,7 +121,12 @@
                     <div class="col-sm-5 col-sm-offset-3">
                         <a href="{{route('user.edit',['id'=> $user->id])}}" class="btn btn-danger btn-large btn-block"><span class="glyphicon glyphicon-log-out"></span> Cancel</a>                         
                     </div>
-                </div>                       
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-5 col-sm-offset-3">
+                        <a href="{{route('user.edit.recuperopassword',['id'=> $user->id])}}">Password dimenticata?</a>                         
+                    </div>
+                </div>  
             </form>
         </div>
     </div>

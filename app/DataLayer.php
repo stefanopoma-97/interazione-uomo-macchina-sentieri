@@ -64,6 +64,14 @@ class DataLayer extends Model
             return true;
     }
     
+    public function validateMail($mail, $id) {
+        $utente = $this->getUserByID($id);
+        if($utente->mail == $mail)
+            return true;
+        else
+            return false;
+    }
+    
     public function getCityID($nome) {
         $citta = Citta::where('nome',$nome)->get(['id']);
         return $citta[0]->id;
