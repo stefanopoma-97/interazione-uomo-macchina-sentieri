@@ -362,7 +362,8 @@ class SentieroController extends Controller
         }
         if ($request->input('citta')!="") {
             $citta = $request->input('citta');
-            $filtro->where('citta_id', $citta); 
+            $citta_id=$dl->getCityID($citta);
+            $filtro->where('citta_id', $citta_id); 
         }
         if ($request->input('categoria')!="") {
             $filtro->where('categoria_id', $request->input('categoria')); 
@@ -376,7 +377,8 @@ class SentieroController extends Controller
         }
         if ($request->input('dislivello')!= null) {
             $dislivello = $request->input('dislivello');
-            $filtro->where(DB::raw("(altezza_massima - altezza_minima as dislivello)"), '<', $dislivello); 
+            //$filtro->where(DB::raw("(altezza_massima - altezza_minima as dislivello)"), '<', $dislivello);
+            $filtro->where('dislivello', '<', $dislivello);
         }
         if ($request->input('durata')!= null) {
             $durata = $request->input('durata');

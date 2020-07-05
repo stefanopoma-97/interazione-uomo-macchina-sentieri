@@ -33,7 +33,7 @@ function valida_modifica_sentiero(button, modifica){
     titolo = (button.form.titolo.value).trim();
     
     durata = (button.form.durata.value).trim();
-    var pattern_durata= /^(20|21|22|23|[0-1]?\d).[0-5]?\d$/g;
+    var pattern_durata= /(^(20|21|22|23|[0-1]?\d).[0-5]?\d$)|(^(20|21|22|23|[0-1]?\d)$)/g;
     
     descrizione = (button.form.descrizione.value).trim();
     
@@ -268,4 +268,107 @@ function valida_modifica_sentiero(button, modifica){
 
             });
     }
+    
+    
+    
+    
+   
 }
+
+
+ function valida_filtra_sentieri(button){
+        
+    
+    //window.confirm("valida filtro");
+    
+    durata = (button.form.durata.value).trim();
+    var pattern_durata= /(^(20|21|22|23|[0-1]?\d).[0-5]?\d$)|(^(20|21|22|23|[0-1]?\d)$)/g;
+    durata_msg = document.getElementById("invalid_durata");
+    durata_msg.innerHTML="";
+        
+    lunghezza = (button.form.lunghezza.value).trim();
+    var pattern_lunghezza = /^\d+(?:\.\d{1})?$/g;
+    lunghezza_msg = document.getElementById("invalid_lunghezza");
+    lunghezza_msg.innerHTML="";
+    
+    dislivello = (button.form.dislivello.value).trim();
+    dislivello_msg = document.getElementById("invalid_dislivello");
+    dislivello_msg.innerHTML="";
+    
+    citta = (button.form.citta.value).trim();
+    citta_msg = document.getElementById("invalid_citta");
+    citta_msg.innerHTML="";
+    
+    var errori = false;
+    //if(/^\d\d$/g.test(durata))
+        durta=durata+".00";
+    if(durata!=="" && !pattern_durata.test(durata)){
+        errori=true;
+        button.form.durata.focus();
+        $(button.form.durata).css('border-color','red');
+        durata_msg.innerHTML="Inserci un formato tipo 12.35";
+        
+    }
+    else if(lunghezza!=="" && !pattern_lunghezza.test(lunghezza)){
+        errori=true;
+        button.form.lunghezza.focus();
+        $(button.form.lunghezza).css('border-color','red');
+        lunghezza_msg.innerHTML="Il lunghezza deve essere nel formato: 15,6 km ";
+    }
+    else if(lunghezza!=="" && (lunghezza < 1.0 || lunghezza > 999.0)){
+        errori=true;
+        button.form.lunghezza.focus();
+        $(button.form.lunghezza).css('border-color','red');
+        lunghezza_msg.innerHTML="Campo lunghezza compreso tra 1 e 999";
+    }
+    else if(dislivello!=="" && (dislivello < 0 || dislivello > 10000)){
+        errori=true;
+        button.form.dislivello.focus();
+        $(button.form.dislivello).css('border-color','red');
+        dislivello_msg.innerHTML="Campo salita compreso tra 0 e 10000";
+    }
+
+    else if(!errori && citta!=="")
+    
+    {
+        //window.confirm("ajax controllo città");
+        //window.confirm("NON ci sono errori. ID="+id+" username="+username)
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+        $.ajax({
+
+                type: 'GET',
+
+                url: '/ajaxCittaSentiero',
+
+                data: {citta:citta},
+                //data: {username:username, citta:citta},
+                
+                dataType: "json",
+
+                success: function (data) {
+
+                    if (!data.citta) {
+                        errori=true;
+                        button.form.citta.focus();
+                        $(button.form.citta).css('border-color','red');
+                        citta_msg.innerHTML="Inserisci una città esistente";
+                    }
+                    
+                },
+                
+                error: function(data){
+                    alert("fail");
+                }
+
+            });
+    }
+    else{
+        button.form.submit();
+    }
+    }
+    
+ 

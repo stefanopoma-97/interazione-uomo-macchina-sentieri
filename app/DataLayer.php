@@ -329,6 +329,7 @@ class DataLayer extends Model
         $sentiero->difficolta_id = $difficolta;
         $sentiero->categoria_id = $categoria;
         $sentiero->citta_id = $citta;
+        $sentiero->dislivello = $altezza_massima-$altezza_minima;
         $sentiero->save();
         // massive update (only with fillable property enabled on Book): 
         // Book::find($id)->update(['title' => $title, 'author_id' => $author_id]);
@@ -350,6 +351,8 @@ class DataLayer extends Model
         $sentiero->categoria_id = $categoria;
         $sentiero->citta_id = $citta;
         $sentiero->utente_id = $user_id;
+        $sentiero->dislivello = $altezza_massima-$altezza_minima;
+
         $sentiero->save();
         // massive update (only with fillable property enabled on Book): 
         // Book::find($id)->update(['title' => $title, 'author_id' => $author_id]);
