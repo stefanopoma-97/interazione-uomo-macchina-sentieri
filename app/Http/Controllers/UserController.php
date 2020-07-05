@@ -9,6 +9,7 @@ use App\Http\Requests;
 use Mail;
 use Illuminate\Support\Collection;
 use App\Mail\Contact;
+use DateTime;
 
 class UserController extends Controller
 {
@@ -124,7 +125,7 @@ class UserController extends Controller
     
     public function edit_recupero_password($id) {
         $dl = new DataLayer();
-        unset($_SESSION["codice"]);
+        //unset($_SESSION["codice"]);
         $user_id = $dl->getUserID($_SESSION['loggedName']);
         if($user_id==-1){
             session_destroy();
@@ -140,22 +141,15 @@ class UserController extends Controller
         
         //Mando una mail all'ingresso (Tentativo di reset password)
         //$this->send_mail_reset_password("1", 'stefano', 'stefano1997poma97@gmail.com');
-//        if(isset($_SESSION["codice"])){
-//                unset($_SESSION["codice"]);
-//                $_SESSION["codice"]="1";
-//            }
-//        else{
-//            $_SESSION["codice"]="1";
-//        }
-//            $codice=$_SESSION["codice"];
-//            $this->send_mail_reset_password($codice, "stefano", "stefano1997poma97@gmail.com");
-        
-       
        
         return view('utenti.recuperopassword')->with('logged',true)->with('loggedName', $_SESSION["loggedName"])
                 ->with('user_id', $user_id)
                 ->with('user', $user);        
     }
+    
+    
+    
+    
     
     public function update($id, Request $request) {
        
@@ -197,7 +191,11 @@ class UserController extends Controller
             return Redirect::to(route('user.elenco'));
         }
                 
-        $dl->updatePasswordUtente($id, $request->input('password_nuova'));
+        $dl->updatePasswordUtente($id, $request->input('password_nuova'), $request->input('consiglio'));
+        
+        //mandare mail
+        $user=$dl->getUserByID($user_id);
+        $this->send_mail_info_cambio_password($user->username, $user->mail);
         return Redirect::to(route('user.dettagli', ['id'=> $user_id]));      
     }
     
@@ -234,6 +232,35 @@ class UserController extends Controller
 
     }
     
+//    public function ajax_check_new_username_citta(Request $request){
+//        $dl = new DataLayer();
+//        $valid_user = $dl->validateNewUsername($request->input('username'));
+//        $valid_citta = $dl->validateCitta($request->input('citta'));
+//        
+//        if ($valid_user)
+//        //if(true)
+//        {
+//            $username = true;
+//        }
+//        else
+//        {
+//            $username = false;
+//        }
+//        
+//        if($valid_citta){
+//            
+//            $citta=true;
+//        }
+//        else {
+//            $citta=false;
+//        }
+//        
+//        $response = array('username'=>$username, 'citta'=>$citta);
+//        
+//        return response()->json($response); //mando indietro json
+//
+//    }
+    
     public function ajax_check_citta(Request $request){
         $dl = new DataLayer();
         
@@ -258,17 +285,48 @@ class UserController extends Controller
             if ($_SESSION["codice"]==$request->input('codice'))
             //if(true)
             {
-                $response = array('codice'=>true, 'set'=>true); //response http
+                $response = array('codice'=>true, 'set'=>true, 'value'=>$_SESSION["codice"]); //response http
             }
             else
             {
-                $response = array('codice'=>false, 'set'=>true); //response http
+                $response = array('codice'=>false, 'set'=>true, 'value'=>$_SESSION["codice"]); //response http
             }
         }
         else{
-            $response = array('codice'=>false, 'set'=>false);
+            $response = array('codice'=>false, 'set'=>false, 'value'=>0);
         }
         
+        return response()->json($response); //mando indietro json
+
+    }
+    
+    public function ajax_check_codice_database(Request $request){
+//        session_start();
+//        if(isset($_SESSION["codice"])){
+//            if ($_SESSION["codice"]==$request->input('codice'))
+//            {
+//                $response = array('codice'=>true, 'set'=>true, 'value'=>$_SESSION["codice"]); //response http
+//            }
+//            else
+//            {
+//                $response = array('codice'=>false, 'set'=>true, 'value'=>$_SESSION["codice"]); //response http
+//            }
+//        }
+//        else{
+//            $response = array('codice'=>false, 'set'=>false, 'value'=>0);
+//        }
+        
+        $dl = new DataLayer();
+        $user = $dl->getUserByUsername($request->input('username'));
+        $codice = $dl->getCode($user->id);
+        //$codice=1;
+        
+        if ($request->input('codice') == $codice && $codice!='null'){
+            $response = array('codice'=>true, 'value'=>$codice);
+        }
+        else{
+            $response = array('codice'=>false, 'value'=>$codice);
+        }
         return response()->json($response); //mando indietro json
 
     }
@@ -286,9 +344,34 @@ class UserController extends Controller
             $_SESSION["codice"]= substr(uniqid('', true), -5);
         }
         $codice=($_SESSION["codice"]);
-        $this->send_mail_reset_password($codice, $utente->username, $request->input('mail'));
         
-        $response = array('ok'=>true);
+        //se si vuole far mandare mail
+        //$this->send_mail_reset_password($codice, "$utente->username", $request->input('mail'));
+        
+        $response = array('ok'=>true, 'codice'=>$codice);
+        return response()->json($response); //mando indietro json
+    }
+    
+    public function ajax_send_reset_mail_database(Request $request){
+        $username=$request->input('username');
+        $dl = new DataLayer();
+        $user = ($dl->getUserByUsername($username));
+        if(isset($_SESSION["codice"])){
+            unset($_SESSION["codice"]);
+            //$_SESSION["codice"]="1";
+            $_SESSION["codice"]= substr(uniqid('', true), -5);
+        }
+        else {
+            //$_SESSION["codice"]="1";
+            $_SESSION["codice"]= substr(uniqid('', true), -5);
+        }
+        $codice=($_SESSION["codice"]);
+        
+        //se si vuole far mandare mail
+        //$this->send_mail_reset_password($codice, "Laravel", $user->mail);
+        $dl->addCode($user->id, $codice);
+        
+        $response = array('ok'=>true, 'codice'=>$codice);
         return response()->json($response); //mando indietro json
     }
 
@@ -301,20 +384,38 @@ class UserController extends Controller
         {
             $response = array('mail'=>true); //response http
             //INVIO MAIL SETTO CODICE E LO RESETTO NEL CASO DI REINVIO
-            $utente=$dl->getUserByID($request->input('id'));
-            if(isset($_SESSION["codice"])){
-                unset($_SESSION["codice"]);
-                $_SESSION["codice"]="1";
-            }
-            else {
-                $_SESSION["codice"]="1";
-            }
-            $codice=($_SESSION["codice"]);
+//            $utente=$dl->getUserByID($request->input('id'));
+//            if(isset($_SESSION["codice"])){
+//                unset($_SESSION["codice"]);
+//                $_SESSION["codice"]="1";
+//            }
+//            else {
+//                $_SESSION["codice"]="1";
+//            }
+//            $codice=($_SESSION["codice"]);
             //$this->send_mail_reset_password($codice, $utente->username, $request->input('mail'));
         }
         else
         {
             $response = array('mail'=>false); //response http
+        }
+        
+        return response()->json($response); //mando indietro json
+
+    }
+    
+    public function ajax_check_username_in_database(Request $request){
+        $dl = new DataLayer();
+        
+        if ($dl->validateUsernameDatabase($request->input('username')))
+        //if(true)
+        {
+            $user = $dl->getUserByUsername($request->input('username'));
+            $response = array('username'=>true, 'mail'=>$user->mail);
+        }
+        else
+        {
+            $response = array('username'=>true, 'mail'=>null);
         }
         
         return response()->json($response); //mando indietro json
@@ -350,13 +451,15 @@ class UserController extends Controller
         });
     }
     
-    public function send_mail_cambio_password($username, $mail){
-        $data = array('data'=>time());
-        Mail::send('mail_cambio_password', $data, function($message) {
-            $message->to($mail, $username)->subject
-                        ('Avviso cambio password');
+     public function send_mail_info_cambio_password($username, $mail) {
+        $orario = new DateTime();
+        $result = $orario->format('Y-m-d H:i:s');
+        $data = array('username' => $username , 'mail'=>$mail, 'data'=>$result);
+        Mail::send('mail_info_cambio_password', $data, function($message) use ($data){ //mail è il nome della view
+            $message->to($data['mail'], $data['username'])->subject
+                    ('Attenzione cambio password');
             $message->from('s.poma001@studenti.unibs.it', 'Laravel');
-      });
+        });
     }
     
     public function send_mail_tentativo_accesso($username, $mail){

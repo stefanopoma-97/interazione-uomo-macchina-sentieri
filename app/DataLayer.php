@@ -24,10 +24,8 @@ class DataLayer extends Model
         return (md5($password) == ($users[0]->password));
     }
     
-    public function addUser($username, $password, $mail, $nome, $cognome, $descrizione, $citta ) {
-        
-        $citta_id= $this->getCityID($citta);
-        
+    public function addUser($username, $password, $mail, $nome, $cognome, $descrizione, $citta_id, $consiglio_password ) {
+                
         $user = new LibUser();
         $user->username = $username;
         $user->password = md5($password);
@@ -36,6 +34,7 @@ class DataLayer extends Model
         $user->cognome = $cognome;
         $user->descrizione = $descrizione;
         $user->citta_id = $citta_id;
+        $user->consiglio_password = $consiglio_password;
         $user->save();
         
     }
@@ -50,6 +49,14 @@ class DataLayer extends Model
     
     public function validateUsername($username, $id) {
         $users = DB::select("select * from utente where (username = ? AND id != ?)",[$username, $id]);
+        if(count($users)==0)
+            return true;
+        else
+            return false;
+    }
+    
+    public function validateNewUsername($username) {
+        $users = DB::select("select * from utente where (username = ?)",[$username]);
         if(count($users)==0)
             return true;
         else
@@ -72,6 +79,22 @@ class DataLayer extends Model
             return false;
     }
     
+    public function validateMailDatabase($mail) {
+        $mails = LibUser::where('mail',$mail)->get();
+        if(count($mails)==0)
+            return false;
+        else
+            return true;
+    }
+    
+    public function validateUsernameDatabase($username) {
+        $utenti = LibUser::where('username',$username)->get();
+        if(count($utenti)==0)
+            return false;
+        else
+            return true;
+    }
+    
     public function getCityID($nome) {
         $citta = Citta::where('nome',$nome)->get(['id']);
         return $citta[0]->id;
@@ -79,6 +102,11 @@ class DataLayer extends Model
     
     public function getUserByID($user_id) {
         $user = LibUser::where('id', $user_id)->get();
+        return $user[0];
+    }
+    
+    public function getUserByUsername($username) {
+        $user = LibUser::where('username', $username)->get();
         return $user[0];
     }
     
@@ -130,9 +158,32 @@ class DataLayer extends Model
         // Book::find($id)->update(['title' => $title, 'author_id' => $author_id]);
     }
     
-    public function updatePasswordUtente($id, $password) {
+    public function addCode($id, $codice) {
+        $user = LibUser::find($id);
+        $user->codice = $codice;
+        $user->save();
+        // massive update (only with fillable property enabled on Book): 
+        // Book::find($id)->update(['title' => $title, 'author_id' => $author_id]);
+    }
+    
+    public function getCode($id) {
+        $user = LibUser::find($id);
+        return $user->codice;
+        // massive update (only with fillable property enabled on Book): 
+        // Book::find($id)->update(['title' => $title, 'author_id' => $author_id]);
+    }
+    
+    public function removeCode($id) {
+        $user = LibUser::find($id);
+        $user->codice="null";
+        // massive update (only with fillable property enabled on Book): 
+        // Book::find($id)->update(['title' => $title, 'author_id' => $author_id]);
+    }
+    
+    public function updatePasswordUtente($id, $password, $consiglio) {
         $user = LibUser::find($id);
         $user->password = md5($password);
+        $user->consiglio_password = $consiglio;
         $user->save();
         // massive update (only with fillable property enabled on Book): 
         // Book::find($id)->update(['title' => $title, 'author_id' => $author_id]);

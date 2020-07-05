@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <htm>
     <head>
-        <<meta charset="UTF-8">
+        <meta charset="UTF-8">
         <title>User authentication</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
         
@@ -19,15 +19,13 @@
         <div class="container text-center">
             <div class="row" style="margin-top: 4em;">
                     <div class="col-md-6 col-md-offset-3">
-                        <div class="panel panel-danger">
-                        
-                            <div class='panel-heading'>
-                                Errore di autenticazione
+                        <div class="panel ">
+                            <div class='panel-heading alert alert-success'>
+                                Password modificata
                             </div>
                             <div class='panel-body'>
-                                <p>Le credenziali che hai inserito sono sbagliate</p>
+                                <p>La tua password è stata modificata con successo</p>
                                 <p><a class="btn btn-default" href="{{ route('home') }}"><span class='glyphicon glyphicon-log-out'></span> Ritorna alla Home</a></p>
-                                <p><a href="{{route('user.edit.recuperopassword.login')}}">Password dimenticata?</a></p>
                             </div>
                         </div>
                     </div>

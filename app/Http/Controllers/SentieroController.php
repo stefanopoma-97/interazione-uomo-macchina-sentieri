@@ -123,11 +123,12 @@ class SentieroController extends Controller
 //        if($user->admin != 'y')
 //            return Redirect::to(route('sentiero.errore'));
 //       
+        $citta_id=$dl->getCityID($request->input('citta'));
         
         $dl->updateSentiero($sentiero_id, $request->input('titolo'), $request->input('durata'), $request->input('descrizione'),
                 $request->input('lunghezza'), $request->input('salita'), $request->input('discesa'),
                 $request->input('altezza_massima'), $request->input('altezza_minima'), $request->input('difficolta'),
-                $request->input('categoria'), $request->input('citta')
+                $request->input('categoria'), $citta_id
                 );
         return Redirect::to(route('sentiero.index'));      
     }
@@ -176,12 +177,12 @@ class SentieroController extends Controller
         $user = $dl->getUserByID($user_id);
 //        if($user->admin != 'y')
 //            return Redirect::to(route('sentiero.errore'));
-        
+        $citta_id=$dl->getCityID($request->input('citta'));
         
         $dl->addSentiero($user_id, $request->input('titolo'), $request->input('durata'), $request->input('descrizione'),
                 $request->input('lunghezza'), $request->input('salita'), $request->input('discesa'),
                 $request->input('altezza_massima'), $request->input('altezza_minima'), $request->input('difficolta'),
-                $request->input('categoria'), $request->input('citta')
+                $request->input('categoria'), $citta_id
                 );
         return Redirect::to(route('sentiero.index'));
     }
@@ -401,6 +402,73 @@ class SentieroController extends Controller
                         ->with('categorie', $categorie)
                         ->with('difficolta', $difficolta)
                         ->with('dati_sentieri', $dati_sentieri);
+
+    }
+    
+    
+    public function ricerca_filtra_home(Request $request) {
+//       session_start();
+//    
+//        if(!isset($_SESSION['logged'])) {
+//            return Redirect::to(route('user.auth.login'));
+//        }
+        
+        $dl = new DataLayer();
+        $user_id = $dl->getUserID($_SESSION['loggedName']);
+        if($user_id==-1){
+            session_destroy();
+            return Redirect::to(route('user.auth.login'));
+        }
+        
+        $s = new Sentiero;
+        $filtro = $s->newQuery();
+
+        
+        $titolo = $request->input('ricerca');
+        $filtro->where('titolo', 'like', '%'.$titolo.'%'); 
+                
+        
+        $sentieri = $filtro->get();
+
+
+        $user = $dl->getUserByID($user_id);
+        $dati_sentieri = $dl->fromSentieriToDatiSentieri($sentieri);
+        $citta=$dl->getAllCitta();
+        $categorie=$dl->getCategorie();
+        $difficolta=$dl->getDifficolta();
+
+        return view('sentieri.ricercasentieri')->with('logged', true)
+                        ->with('loggedName', $_SESSION["loggedName"])
+                        ->with('sentieri', $sentieri)
+                        ->with('user_id', $user_id)
+                        ->with('user', $user)
+                        ->with('citta', $citta)
+                        ->with('categorie', $categorie)
+                        ->with('difficolta', $difficolta)
+                        ->with('dati_sentieri', $dati_sentieri);
+
+    }
+    
+    
+    
+    
+    ////AJAX
+    public function ajax_check_citta(Request $request){
+        $dl = new DataLayer();
+        $valid_city = $dl->validateCitta($request->input('citta'));
+        
+        if ($valid_city)
+        //if(true)
+        {
+            $citta = true;
+        }
+        else
+        {
+            $citta = false;
+        }
+        $response = array('citta'=>$citta);
+        
+        return response()->json($response); //mando indietro json
 
     }
     

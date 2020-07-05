@@ -20,7 +20,6 @@
             <li><a href="{{ route('user.dettagli', ['id'=> $user_id]) }}">Account</a></li>
             <li><a href="{{ route('user.preferiti', ['id'=> $user_id]) }}">Preferiti</a></li>
             @if($user->admin == 'y')
-            <li><a href="{{ route('user.elenco') }}">Lista utenti</a></li>
             <li><a href="{{ route('sentiero.index') }}">Lista sentieri</a></li>
             @else
             @endif
@@ -48,17 +47,17 @@
                     <p class="lead text-white text-center">Cerca tra i nostri percorsi per trovare quello giusto per te</p>
                     <div class="text-center col-xs-12 pb-5">
                         
-                        <form class="form-inline" name="form_ricerca" method="get" action="sentieri.php">
+                        <form class="form-inline" name="form_ricerca" method="get" action="{{route('sentiero.ricercafiltrahome')}}">
                             <div class="form-group ">
                                 <div>
-                                    <input class="form-control" type="text" id="ricerca" name="ricerca" placeholder="Cerca">
+                                    <input onkeyup="rimuovi_stile(this)" onmouseover="rimuovi_stile(this)" class="form-control" type="text" id="ricerca" name="ricerca" placeholder="Cerca">
                                 </div>
                             </div>
                             
                             <div class="form-group pl-3">
                                 <div>
-                                    <button type="submit" class="btn btn-primary">Cerca</button>
-                                    <input id="mySubmit" type="submit" value='Save' class="hidden"/>                         
+                                    <button type="submit"onclick="event.preventDefault(); valida_ricerca_home(this);"  class="btn btn-primary">Cerca</button>
+                                    <input id="mySubmit" onclick="event.preventDefault(); valida_ricerca_home(this);" type="submit" value='Save' class="hidden"/>                         
                                 </div>
                             </div>
                            
@@ -139,7 +138,7 @@
                                     <div class="tab-pane" id="tab-3">
                                         @if ($logged)
                                             @if (count($sentieri_consigliati) == 0)
-                                                <p><h3 class="text-center">Sembra ci siano ancora sentieri nella tua città</h3></p>
+                                                <p><h3 class="text-center">Sembra non ci siano ancora sentieri nella tua città</h3></p>
                                             @else
 
                                                 @foreach($sentieri_consigliati as $sentiero)
@@ -158,7 +157,7 @@
                                                 @endforeach
                                             @endif
                                         @else
-                                        <p><h3 class="text-center">Effettua il login per visualizzare questa sezione</h3></p>
+                                        <p><h3 class="text-center">Effettua il <a href="{{ route('user.auth.login') }}">login</a> per visualizzare questa sezione</h3></p>
 
                                         @endif
                                     </div>
@@ -183,7 +182,7 @@
                                                 @endforeach
                                             @endif
                                         @else
-                                        <p><h3 class="text-center">Effettua il login per visualizzare questa sezione</h3></p>
+                                        <p><h3 class="text-center">Effettua il <a href="{{ route('user.auth.login') }}">login</a> per visualizzare questa sezione</h3></p>
 
                                         @endif
                                         

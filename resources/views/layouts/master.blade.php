@@ -18,6 +18,7 @@
        <!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>-->
         <!--<script src="{{ url('/') }}/js/bootstrap.min.js"></script>-->
         <script src="{{ url('/') }}/js/scriptValidazione.js"></script>
+        <script src="{{ url('/') }}/js/scriptValidazioneSentieri.js"></script>
         <script src="{{ url('/') }}/js/scriptPopUp.js"></script>
         <script type="text/javascript">@yield('javascript')</script>
          <script src="http://code.jquery.com/jquery.js"></script>
@@ -31,6 +32,7 @@
 
             $(document).ready(function () {
                 $('#tabella_elenco_utenti').DataTable();
+                $('#tabella_elenco_sentieri').DataTable();
             });
 
         </script>

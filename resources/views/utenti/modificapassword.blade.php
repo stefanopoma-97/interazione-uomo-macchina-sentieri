@@ -107,6 +107,20 @@
                         <span class="invalid-input" id="invalid-password_nuova2"></span>
                     </div>
                 </div>
+            
+                <div class="form-group row">
+                    <div class="col-sm-3">
+                    <label for="consiglio"  class="col-form-label">Consiglio per il recupero della password</label>
+                            <div style="margin-left: 1em;" class="popup" onclick="popup(this)" >
+                                <span class="popuptext">Inserisci una frase che ti aiuterà a ricordare la password</span>
+                                <span class="glyphicon glyphicon-info-sign" ></span>
+                            </div>
+                    </div>
+                    <div class="col-sm-5">
+                        <input onkeyup="rimuovi_stile(this);" onmouseover="rimuovi_stile(this)" maxlength="100" type="text" class="form-control" name="consiglio" placeholder="Consiglio recupero password">
+                        <span class="invalid-input" id="invalid-password_nuova2"></span>
+                    </div>
+                </div>
                 
                 
                 <div class="form-group">

@@ -29,7 +29,7 @@
                     Accesso non consentito
                 </div>
                 <div class='panel-body'>
-                    <p>Something <strong>wrong</strong> happened while accessing this page</p>
+                    <p>Qualcosa <strong>è andato storto</strong> cercando di accedere a questa pagina</p>
                     <p><a class="btn btn-default" href="{{ route('home') }}"><span class='glyphicon glyphicon-log-out'></span> Home </a></p>
                 </div>
             </div>

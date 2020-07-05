@@ -13,6 +13,16 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+    Route::post('/ajaxCitta', 'UserController@ajax_check_citta'); 
+    Route::post('/ajaxNewUsernameCitta', 'AuthController@ajax_check_new_username_citta');
+    Route::post('/ajaxUsernameInDatabase', 'UserController@ajax_check_username_in_database'); 
+    Route::get('/ajaxSendResetMailDatabase', 'UserController@ajax_send_reset_mail_database');
+    Route::post('/ajaxCodiceDatabase', 'UserController@ajax_check_codice_database');
+    Route::get('/user/update/password', ['as' => 'user.update.password.login', //sto aggiornando l'utente
+        'uses' => 'AuthController@update_password']);
+    
+    
+
 
 //HOME
 
@@ -21,6 +31,9 @@ Route::get('/', ['as' => 'home', 'uses' => 'FrontController@getHome']); //contro
 
 
 //ACCOUNT
+
+Route::get('/user/update/recuperopassword', ['as' => 'user.edit.recuperopassword.login', //vado pagina editing password
+        'uses' => 'AuthController@edit_recupero_password_login']);
 
 Route::get('/user/auth/login', ['as' => 'user.auth.login', 
     'uses' => 'AuthController@authentication_login']); //manda a pagina di autenticazione
@@ -82,6 +95,9 @@ Route::group(['middleware' => ['authCustom']], function()
     Route::get('/user/{id}/update/recuperopassword', ['as' => 'user.edit.recuperopassword', //vado pagina editing password
         'uses' => 'UserController@edit_recupero_password']);
     
+    
+    
+    
     Route::post('/user/{id}/update/password', ['as' => 'user.update.password', //sto aggiornando l'utente
         'uses' => 'UserController@update_password']);
 
@@ -96,15 +112,15 @@ Route::group(['middleware' => ['authCustom']], function()
     
     Route::get('/ajaxUsernameCitta', 'UserController@ajax_check_username_citta');
     
-    Route::get('/ajaxNewUsername', 'UserController@ajax_check_new_username');
-    
-    Route::get('/ajaxCitta', 'UserController@ajax_check_citta'); 
     
     Route::post('/ajaxCheckPassword', 'UserController@ajax_check_password'); 
 
     Route::post('/ajaxMail', 'UserController@ajax_check_mail'); 
     
-    Route::post('/ajaxCodice', 'UserController@ajax_check_codice'); 
+    Route::post('/ajaxCodice', 'UserController@ajax_check_codice');
+    
+    Route::get('/ajaxCittaSentiero', 'SentieroController@ajax_check_citta');
+ 
     
     Route::post('/ajaxSendResetMail', 'UserController@ajax_send_reset_mail');
 
@@ -117,6 +133,9 @@ Route::group(['middleware' => ['authCustom']], function()
 
     Route::get('/sentiero/ricerca/sentieri/filtra', ['as' => 'sentiero.ricercafiltra', 
         'uses' => 'SentieroController@ricerca_filtra']);
+    
+    Route::get('/sentiero/ricerca/sentieri/filtrahome', ['as' => 'sentiero.ricercafiltrahome', 
+        'uses' => 'SentieroController@ricerca_filtra_home']);
 
 
     Route::get('/error', ['as' => 'sentiero.errore', 
