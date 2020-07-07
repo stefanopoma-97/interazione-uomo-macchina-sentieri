@@ -10,6 +10,7 @@ use Mail;
 use Illuminate\Support\Collection;
 use App\Mail\Contact;
 use DateTime;
+use Illuminate\Support\Facades\Storage; 
 
 class UserController extends Controller
 {
@@ -38,6 +39,27 @@ class UserController extends Controller
     }
     
     
+    public function preferiti($id) {
+        
+        $dl = new DataLayer();
+        $user_id = $dl->getUserID($_SESSION['loggedName']);
+        if($user_id==-1){
+            session_destroy();
+            return Redirect::to(route('user.auth.login'));
+        }
+        $user = $dl->getUserByID($user_id);
+        $preferiti = $dl->getPreferiti($id);
+        $iddettagli=$id;
+
+        
+        return view('utenti.preferiti')->with('logged',true)->with('loggedName', $_SESSION["loggedName"])
+                ->with('preferiti', $preferiti)
+                ->with('user', $user)
+                ->with('iddettagli',$iddettagli)
+                ->with('user_id', $user_id);        
+    }
+    
+    
     public function dettagli($id) {
        
 //        session_start();
@@ -59,10 +81,29 @@ class UserController extends Controller
         
         $sentieri_effettuati = $dl->getSentieriEffettuati($id);
         
+        $esperienze = $dl->getEsperienzeByUserID($id);
+        
+        $exists = Storage::has("public/fotoprofilo/profilo".$id);
+        if($exists)
+            $url = asset(Storage::url("public/fotoprofilo/profilo".$id));
+        else
+            $url=asset(Storage::url("public/fotoprofilo/default"));
+
+            //http://localhost:8000/storage/fotoprofilo/profilo1
+                
+        
+            //salvato immagne
+            //$immagine = Storage::get("public/fotoprofilo/profilo".$user_id);
+        
+
+        
         return view('utenti.dettagliutente')->with('logged',true)->with('loggedName', $_SESSION["loggedName"])
                 ->with('user_dettagli', $user_dettagli)
                 ->with('user_id', $user_id)
                 ->with('user', $user)
+                ->with('esperienze', $esperienze)
+                ->with('url', $url)
+                //->with('immagine', $immagine)
                 ->with('sentieri_effettuati', $sentieri_effettuati);
     }
     
@@ -469,6 +510,21 @@ class UserController extends Controller
                         ('Tentativo di accesso');
             $message->from('s.poma001@studenti.unibs.it', 'Laravel');
       });
+    }
+    
+    public function foto_profilo (Request $request, $id){
+        $this->validate($request, [
+        'foto_profilo' => 'required|image|mimes:jpeg,png,jpg,svg|max:2048',
+        ]);
+        $request->file('foto_profilo')->storeAs('public/fotoprofilo', "profilo".$id);
+        return Redirect::to(route('user.dettagli', ['id'=> $id])); 
+    }
+    
+     public function rimuovi_foto_profilo ($id){
+        $exists = Storage::has("public/fotoprofilo/profilo".$id);
+        if($exists)
+            Storage::delete("public/fotoprofilo/profilo".$id);
+        return Redirect::to(route('user.dettagli', ['id'=> $id])); 
     }
     
 }

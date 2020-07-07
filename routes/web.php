@@ -107,8 +107,14 @@ Route::group(['middleware' => ['authCustom']], function()
     Route::get('/user/elenco', ['as' => 'user.elenco', 
         'uses' => 'UserController@elenco']);
 
-    Route::post('/user/{id}/preferiti', ['as' => 'user.preferiti', 
+    Route::get('/user/{id}/preferiti', ['as' => 'user.preferiti', 
         'uses' => 'UserController@preferiti']);
+    
+    Route::post('/user/{id}/fotoprofilo', ['as' => 'user.fotoprofilo', 
+        'uses' => 'UserController@foto_profilo']);
+    
+    Route::get('/user/{id}/rimuovifotoprofilo', ['as' => 'user.rimuovifotoprofilo', 
+        'uses' => 'UserController@rimuovi_foto_profilo']);
     
     Route::get('/ajaxUsernameCitta', 'UserController@ajax_check_username_citta');
     
@@ -143,6 +149,15 @@ Route::group(['middleware' => ['authCustom']], function()
 
     Route::post('/sentiero/{id}/preferito', ['as' => 'sentiero.preferito', 
         'uses' => 'SentieroController@preferito']);
+    
+    Route::get('/sentiero/{id}/immagini', ['as' => 'sentiero.immagini', 
+        'uses' => 'SentieroController@immagini']);
+    
+    Route::post('/sentiero/{id}/aggiungiimmagine', ['as' => 'sentiero.aggiungiimmagine', 
+        'uses' => 'SentieroController@aggiungi_immagine']);
+    
+    Route::get('/sentiero/{id}/rimuoviimmagine/{nome}', ['as' => 'sentiero.rimuoviimmagine', 
+        'uses' => 'SentieroController@rimuovi_immagine']);
 
 
     //ESPERIENZE

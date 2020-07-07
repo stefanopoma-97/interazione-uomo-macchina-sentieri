@@ -52,8 +52,9 @@
 <div class="container" style="margin-top: 3em;">
     <div class="row">
         <div id="div_filtro" class="col-md-5 col-s-5 col-m-push-7">
-            <h2 class="text-center filtro">Filtro</h2>
+            <h2 class="text-center filtro">Filtro  <span onclick="hide_show_filtri()" class="glyphicon glyphicon glyphicon-filter"></span></h2>
             <form id="form_filtro" style="margin-top: 3em;" name="form_filtro" method="get" action="{{route('sentiero.ricercafiltra')}}">
+            
             @csrf
                 <div class="form-group row">
                     <label class="col-sm-10" for="testo_titolo">Titolo</label>
@@ -90,7 +91,7 @@
                     </select>
                 </div>
                 <div class="form-group">
-                    <label for="categoria">categoria</label>
+                    <label for="categoria">Categoria</label>
                     <select class="form-control" id="categoria" name="categoria" >
                         <option value=""></option>
                         @foreach ($categorie as $c)
@@ -130,16 +131,27 @@
             <div class="card" style="margin-bottom: 1em;">
 
                 <div class="card-header text-center">
-                    <h4 class="card-title">{{ $sentiero->titolo }}<span style="margin-left: 1em;"class="badge badge-secondary">{{ $sentiero->durata }} h</span></h4> 
+                    <h4 class="card-title">{{ $sentiero->titolo }}<span style="margin-left: 1em;"class="badge badge-secondary">{{ $sentiero->durata}} h</span></h4> 
                 </div>
 
                 <div class="card-body text_padding_card" style="margin-top: 1em;">
                     <h5 class="card-subtitle text-muted pb-3 overflow-text">{{ $sentiero->descrizione }}</h5>
                     <div style="margin-top: 1em;">
-                        <div style="margin-top: 1em;" class="d-inline"><span class="glyphicon glyphicon-repeat"></span>   {{ $sentiero->lunghezza }} km</div>
-                        <div style="margin-top: 1em;" class="d-inline"><span class="glyphicon glyphicon-chevron-down"></span>   {{ $sentiero->discesa }}</div>
-                        <div style="margin-top: 1em;" class="d-inline"><span class="glyphicon glyphicon-chevron-up"></span>   {{ $sentiero->salita }}</div>
-                        <div style="margin-top: 1em;" class="d-inline"><span class="glyphicon glyphicon-chevron-up"></span>   {{ $sentiero->citta->nome }}</div>
+                        <div class="row">
+                            <div class="col-sm-3 col-sm-offset-1" style="margin-top: 1em;" class="d-inline"><span class="glyphicon glyphicon-repeat"></span>   {{ $sentiero->lunghezza }} km</div>
+                            <div class="col-sm-3 col-sm-offset-5" style="margin-top: 1em;" class="d-inline"><span class="material-icons">report</span>    {{ $sentiero->difficolta->nome }}</div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-3 col-sm-offset-1" style="margin-top: 1em;" class="d-inline"><span class="glyphicon glyphicon-chevron-up"></span>   {{ $sentiero->salita }}</div>
+                            <div class="col-sm-3 col-sm-offset-5" style="margin-top: 1em;" class="d-inline"><span class="material-icons">landscape</span>   {{ $sentiero->categoria->nome }}</div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-3 col-sm-offset-1" style="margin-top: 1em;" class="d-inline"><span class="glyphicon glyphicon-chevron-down"></span>   {{ $sentiero->discesa }}</div>                            
+                            <div class="col-sm-3 col-sm-offset-5" style="margin-top: 1em;" class="d-inline"><span class="material-icons">location_city</span>   {{ $sentiero->citta->nome }}</div>                        
+                        </div>
+                       
+                        
+                        
                     </div>
                     <div class=" pull-right ">
                         <a class="card-link" href="{{route('sentiero.show',['sentiero'=>$sentiero->id])}}">Scopri</a>
@@ -148,7 +160,9 @@
                 </div>
             </div>
             @endforeach
+            {{ $sentieri->links() }}
         </div>
+        
     </div>
 
     <div class="row">

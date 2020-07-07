@@ -3,7 +3,7 @@
 @section('titolo', 'Elenco utenti')
 
 @section('javascript')
-function attributi(obj)
+<!--function attributi(obj)
 {
     var attr = obj.attributes;
     var msg = "";
@@ -28,7 +28,8 @@ else
 function reload_preferito(nodo)
 {
 window.location.reload;
-}
+}-->
+
 @endsection
 
 @section('navbar_home')
@@ -80,44 +81,50 @@ window.location.reload;
 
 @section('corpo')
 <div class="container" style="margin-top: 3em;">
+    <div class="row" style="margin-bottom: 1em;">
+        <form class="inline-form" id="aggiungipreferito" action="{{route('sentiero.preferito',['id'=>$sentiero->id])}}" method="POST" >
+        @csrf
+        @if($preferito)
+        <button class="btn" type="submit" value="False" name="preferito" onclick="window.location.reload();">
+            <span  class="fa fa-star checked-star"></span> Rimuovi preferito
+        </button>
+        <!--<a type="sumbmit" id="link1" onclick="lancia_form(); window.location.reload();">Rimuovi dai preferiti</a>-->
+        @else
+        <button class="btn" type="submit" value="True" name="preferito" onclick="window.location.reload();">
+            <span class="fa fa-star"></span> Aggiungi preferito
+        </button>
+
+        @endif
+    </form>
+    </div>
+    
     <div class="row pt-5">
+        
         <div class="col-m-6 col-sm-6 col-xs-12">
             <ul class="list-group">
                 <li class="list-group-item text-center">
-                    <form class="inline-form" id="aggiungipreferito" action="{{route('sentiero.preferito',['id'=>$sentiero->id])}}" method="POST" style="margin-top: 2em;">
-                        @csrf
-                        @if($preferito)
-                        <button type="submit" value="False" name="preferito" onclick="window.location.reload();">
-                            <span class="fa fa-star checked-star"></span>
-                        </button>
-                        @else
-                        <button type="submit" value="True" name="preferito" onclick="window.location.reload();">
-                            <span class="fa fa-star"></span>
-                        </button>                        
-                        @endif
-                    </form>
-
-                    <strong>{{ $sentiero->titolo}}</strong>
+                    
+                        <h3><strong  >{{ $sentiero->titolo}}</strong></h3>
                     </li>
                 <li class="list-group-item"><strong>Categoria: {{ $sentiero->categoria->nome}}</strong></li>
                 <li class="list-group-item " ><strong>Difficoltà: {{ $sentiero->difficolta->nome}}</strong></li>
-                <li class="list-group-item "><span class="glyphicon glyphicon-time"></span>  Città:   {{ $sentiero->citta->nome}}</li>
+                <li class="list-group-item "><span class="glyphicon glyphicon-road"></span> Città:   {{ $sentiero->citta->nome}}</li>
                 <li class="list-group-item "><span class="glyphicon glyphicon-time"></span>  Durata:   {{ $sentiero->durata}} ore</li>
                 <li class="list-group-item "><span class="glyphicon glyphicon-repeat"></span>  Lunghezza(Km):   {{ $sentiero->lunghezza}} km</li>
                 <li class="list-group-item "><span class="glyphicon glyphicon-chevron-up"></span>  Salita:   {{ $sentiero->salita}}</li>
                 <li class="list-group-item "><span class="glyphicon glyphicon-chevron-down"></span>  Discesa:   {{ $sentiero->discesa}}</li>
-                <li class="list-group-item "><span class="glyphicon glyphicon-chevron-down"></span>  Altezza massima:   {{ $sentiero->altezza_massima}}</li>
-                <li class="list-group-item "><span class="glyphicon glyphicon-chevron-down"></span>  Altezza minima:   {{ $sentiero->altezza_minima}}</li>
+                <li class="list-group-item "><span class="glyphicon glyphicon-arrow-up"></span>  Altezza massima:   {{ $sentiero->altezza_massima}}</li>
+                <li class="list-group-item "><span class="glyphicon glyphicon-arrow-down"></span>  Altezza minima:   {{ $sentiero->altezza_minima}}</li>
                 <li class="list-group-item "><span class="glyphicon glyphicon-resize-vertical"></span>  Dislivello   {{ ($sentiero->altezza_massima) - ($sentiero->altezza_minima)}}</li>
             </ul>
 
             
             
-            @if($preferito)
+<!--            @if($preferito)
             <span class="fa fa-star checked-star" id="preferito"></span>
             @else
             <span class="fa fa-star" id="preferito"></span>
-            @endif
+            @endif-->
             
             <script>
                 $(document).ready(function(){
@@ -129,11 +136,11 @@ window.location.reload;
         </div>
 
 
-        <div class="col-md-6">
+        <div  class="col-md-6">
             <div>            
                 <img src="../img/mappa.png" class="img-fluid rounded mx-auto d-block" alt="Responsive image">
                 <h3><strong>Community:</strong></h3>
-                <div class="col-m-10 col-sm-10">
+                <div align="center" class="col-m-10 col-sm-10">
                     <ul class="list-group ">
                         <li class="list-group-item ">Quante volte è stato percorso: {{count($sentiero->esperienze)}}</li>
                         <li class="list-group-item ">Media voti: {{$dati_sentiero->mediavoti}}</li>
@@ -147,53 +154,121 @@ window.location.reload;
             </div>
         </div>
     </div>
+    
+    
+    
+@if(count($esperienze) == 0)
+@else
 
-
-
-
-    <div class="row">
-        <div class="col-md-12">
-            <div>
-                <h3>Descrizione</h3>
-                <p>{{$sentiero->descrizione}}</p>
-                <blockquote>
-                    <p>{{$sentiero->autore->descrizione}}</p>
-                    <small>{{$sentiero->autore->nome}} {{$sentiero->autore->cognome}}    <cite title="Source Title">({{$sentiero->autore->username}})</cite></small>
-                </blockquote>
-            </div>
-        </div>
-    </div>
-
-    <div class="row pb-4 pt-4">
+<div class="container">
+    <div class="row" style="margin-top: 5em; margin-bottom: 3em;">
         <div class="col-md-3">
             <div class="header-sezione">
-                <h3 class="pull-right">Ultime volte che è stato percorso</h3>
-            </div>
-        </div>
-    </div>
+                <h3 class="pull-left">
+                    Esperienze personali
+                    <br>
+                    <button style="margin-top: 1em;" class="btn" onclick="location.href='{{ route('sentiero.create') }}'"><i class="fa fa-plus"></i> Ho percorso questo sentiero</button>
 
-    <div class="row" style="margin-top: 2em;">
-        <div class="col-md-12">
-            <div class="container horizontal-scrollable">
-                <div class="row">
-                    @foreach($esperienze as $esperienza)
-                    <div class="col-m-3 col-sm-3">
-                        <ul class="list-group ">
-                            <li class="list-group-item "><h4><a href="{{route('user.dettagli',['id'=>$esperienza->utente_id])}}">{{$esperienza->utente->username}}</a></h4></li>
-                            <li style="height: 50px" class="list-group-item">
-                                <q>{{$esperienza->commento}}</q>
-                            </li>
-                            <li class="list-group-item ">Difficoltà:   {{$esperienza->difficolta}}</li>
-                            <li class="list-group-item ">Voto:   {{$esperienza->voto}}</li>
-                        </ul>
-                    </div>
-                    @endforeach
-                    
-                </div>
+                </h3>
 
             </div>
         </div>
     </div>
+
+
+<div id="myCarousel" class="carousel slide container" data-ride="carousel">
+  <!-- Indicators -->
+<!--  <ol class="carousel-indicators" >
+    <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+    <li data-target="#myCarousel" data-slide-to="1"></li>
+    <li data-target="#myCarousel" data-slide-to="2"></li>
+  </ol>-->
+
+  <!-- Wrapper for slides -->
+  <div class="carousel-inner">
+
+      <?php $pos = 1 ?>
+      @foreach ($esperienze->chunk(1) as $esperienze4)
+
+
+      <?php
+      if ($pos == 1)
+          echo '<div class="item active">';
+      else
+          echo '<div class="item">';
+      $pos++
+      ?>
+
+      <div class="row col-md-10 col-md-offset-1">
+          @foreach($esperienze4 as $esperienza)
+
+          <div class="col-m-12 col-sm-12">
+              <ul align='center' class="list-group ">
+                  <li class="list-group-item "><h4>{{ $esperienza->utente->nome }}</h4></li>
+                  <li style="height: 100px" class="list-group-item"><q>"{{ $esperienza->commento }}"</q></li>
+                  <li class="list-group-item "><strong>Difficoltà:</strong>   {{ $esperienza->difficolta}}</li>
+                  <li class="list-group-item "><strong>Voto:</strong>   {{ $esperienza->voto }}</li>
+                  <li class="list-group-item "><strong>Data:</strong>   {{ $esperienza->data }}</li>
+              </ul>
+          </div>
+
+          @endforeach
+      </div>
+  </div>
+  @endforeach
+
+  </div>
+
+  <!-- Left and right controls -->
+  <a class="left carousel-control" style="background-image: none;" href="#myCarousel" data-slide="prev">
+    <span class="glyphicon glyphicon-chevron-left"></span>
+    <span class="sr-only">Previous</span>
+  </a>
+  <a class="right carousel-control" style="background-image: none;" href="#myCarousel" data-slide="next">
+    <span class="glyphicon glyphicon-chevron-right"></span>
+    <span class="sr-only">Next</span>
+  </a>
+
+  
+</div>
+@endif
+
+
+
+<script type="text/javascript">
+            function image(img) {
+                var src = img.src;
+                window.open(src);
+            }
+            
+            function sostituisci_immagine(img){
+                var src = img.src;
+                document.getElementById('im_4').src=src;
+            }
+            
+             </script>
+             
+             <div class="container" style="margin-top: 3em;">
+                 <div class="col-md-12">
+                     <div class="row">
+                         <div class="col-md-4">
+                             <img src="http://localhost:8000/storage/img/pretty-1-th.jpg" class="thumbnail img-responsive" style="width:400px;" onclick="sostituisci_immagine(this)" id="im_1" alt="logo"/>
+                         </div>
+                         <div class="col-md-4">
+                             <img src="http://localhost:8000/storage/img/pretty-2-th.jpg" class="thumbnail img-responsive" style="width:400px;" onclick="sostituisci_immagine(this)" id="im_2" alt="logo"/>
+                         </div>
+                         <div class="col-md-4">
+                             <img src="http://localhost:8000/storage/img/pretty-3-th.jpg" class="thumbnail img-responsive" style="width:400px;" onclick="sostituisci_immagine(this)" id="im_3" alt="logo"/>
+                         </div>
+                     </div>
+                     <div class="row" style="margin-top: 1em;">
+                         <div class="col-md-12">
+                             <img src="http://localhost:8000/storage/img/pretty-1-th.jpg" class="thumbnail img-responsive" onclick="image(this)" style="width:100%;height:auto;" id="im_4" alt="logo"/>
+                         </div>
+                     </div>
+                 </div>
+             </div>
+
 
     <div class="row" style="margin-top: 3em;">
         <div class="col-md-10 col-md-offset-1">

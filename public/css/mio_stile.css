@@ -434,3 +434,45 @@ li.inserimeno-titolo > p.titolo{
   to {opacity:0 ;}
 }
 
+
+
+/*.carousel-control {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: 8%;   change this value to required width 
+  font-size: 20px;
+  color: #357ebd;
+  text-align: center;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, .6);
+  background-color: rgba(0, 0, 0, 0);
+  filter: alpha(opacity=50);
+  opacity: .5;
+z-index: 10;
+}*/
+
+/*.carousel-indicators li { visibility: hidden; }*/
+
+/*.carousel-inner .item {
+    font-size:10px;
+    color:#0404B4
+    }*/
+
+.carousel-control {
+    z-index: 10;
+    font-size: 20px;
+    color: #357ebd;
+    text-align: center;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, .6);
+    background-color: rgba(0, 0, 0, 0);
+    filter: alpha(opacity=50);
+    opacity: .5;
+    color: #357ebd;
+    top: 2%;
+    width: 30px;
+}
+.carousel-control.left,
+.carousel-control.right { background: none }
+.carousel-control.left { left: -10px; }
+.carousel-control.right { right: -20px; }

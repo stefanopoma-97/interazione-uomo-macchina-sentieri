@@ -58,7 +58,17 @@
 
 @section('corpo')
 <div class="container" style="margin-top: 5em;">
-    <div class="row">
+    
+    @if(isset($sentiero->id))
+    <div class="row col-md-12">
+        <div class="col-md-1 col-md-offset-11">
+            <button class="btn" onclick="location.href='{{ route('sentiero.immagini',['id' => $sentiero->id])}}'"><span class="glyphicon glyphicon-picture"></span> Aggungi immagini</button>
+        </div>
+    </div>
+    @else
+    @endif
+    
+    <div class="row" style="margin-top: 2em;">
         <div class='col-md-12'>
             <div style="margin-bottom: 2em;" hidden="" class="col-md-12 alert alert-danger">
                 <ul id="ul_errori">

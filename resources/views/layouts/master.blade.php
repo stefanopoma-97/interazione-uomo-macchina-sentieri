@@ -23,6 +23,10 @@
         <script type="text/javascript">@yield('javascript')</script>
          <script src="http://code.jquery.com/jquery.js"></script>
         <script src="{{ url('/') }}/js/bootstrap.min.js"></script>
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons"rel="stylesheet">
+        
+        
+        
         
         <script src="https://cdnjs.cloudflare.com/ajax/libs/zxcvbn/4.2.0/zxcvbn.js"></script>
         
@@ -33,6 +37,8 @@
             $(document).ready(function () {
                 $('#tabella_elenco_utenti').DataTable();
                 $('#tabella_elenco_sentieri').DataTable();
+                $('#tabella_elenco_preferiti').DataTable();
+                $('#tabella_elenco_sentieri_effettuati').DataTable();
             });
 
         </script>

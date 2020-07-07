@@ -8,6 +8,9 @@ use App\DataLayer;
 use App\Sentiero;
 use App\Preferiti;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Pagination\LengthAwarePaginator;
+use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\Storage; 
 
 
 class SentieroController extends Controller
@@ -297,6 +300,64 @@ class SentieroController extends Controller
         
     }
     
+    public function immagini($id) {
+        
+        $dl = new DataLayer();
+        $user_id = $dl->getUserID($_SESSION['loggedName']);
+        if($user_id==-1){
+            session_destroy();
+            return Redirect::to(route('user.auth.login'));
+        }
+        $user=$dl->getUserByID($user_id);
+        $sentiero = $dl->getSentieroByID($id);
+        
+        //http://localhost:8000/storage/fotosentieri/{id}/1,2o2
+        
+        $exists1 = Storage::has("public/fotosentieri/".$id."/1");
+        if($exists1)
+            $link1 = asset(Storage::url("public/fotosentieri/".$id."/1"));
+        else
+            $link1=asset(Storage::url("public/fotosentieri/default"));
+        
+        $exists2 = Storage::has("public/fotosentieri/".$id."/2");
+        if($exists2)
+            $link2 = asset(Storage::url("public/fotosentieri/".$id."/2"));
+        else
+            $link2=asset(Storage::url("public/fotosentieri/default"));
+        
+        $exists3 = Storage::has("public/fotosentieri/".$id."/3");
+        if($exists3)
+            $link3 = asset(Storage::url("public/fotosentieri/".$id."/3"));
+        else
+            $link3=asset(Storage::url("public/fotosentieri/default"));
+        
+        return view('sentieri.immagini')->with('logged',true)
+                ->with('loggedName', $_SESSION["loggedName"])
+                ->with('sentiero', $sentiero)
+                ->with('user', $user)
+                ->with('user_id', $user_id)
+                ->with('link1', $link1)
+                ->with('link3', $link3)
+                ->with('link2', $link2);
+     
+    }
+    
+    public function aggiungi_immagine (Request $request, $id){
+        $this->validate($request, [
+        'immagine' => 'required|image|mimes:jpeg,png,jpg,svg|max:2048',
+        ]);
+        $request->file('immagine')->storeAs('public/fotosentieri/'.$id, $request->input('nome_file'));
+        
+        return Redirect::to(route('sentiero.immagini',['id' => $id])); 
+    }
+    
+     public function rimuovi_immagine ($id, $nome){
+        $exists = Storage::has('public/fotosentieri/'.$id.'/'.$nome);
+        if($exists)
+            Storage::delete('public/fotosentieri/'.$id.'/'.$nome);
+        return Redirect::to(route('sentiero.immagini',['id' => $id])); 
+    }
+    
     
     public function ricerca() {
 //       session_start();
@@ -317,6 +378,7 @@ class SentieroController extends Controller
             
             $user = $dl->getUserByID($user_id);
             $sentieri = $dl->getAllSentieri();
+            $sentieri = Sentiero::paginate(5);
             $dati_sentieri = $dl->fromSentieriToDatiSentieri($sentieri);
             $citta=$dl->getAllCitta();
             $categorie=$dl->getCategorie();
@@ -349,44 +411,76 @@ class SentieroController extends Controller
             return Redirect::to(route('user.auth.login'));
         }
         
+        
         $s = new Sentiero;
         $filtro = $s->newQuery();
 
         if ($request->has('testo_titolo')) {
             $titolo = $request->input('testo_titolo');
-            $filtro->where('titolo', 'like', '%'.$titolo.'%'); 
+            $filtro->where('titolo', 'like', '%'.$titolo.'%');
         }
         if ($request->has('testo_descrizione')) {
             $descrizione = $request->input('testo_descrizione');
-            $filtro->where('descrizione', 'like', '%'.$descrizione.'%'); 
+            $filtro->where('descrizione', 'like', '%'.$descrizione.'%');
         }
         if ($request->input('citta')!="") {
             $citta = $request->input('citta');
             $citta_id=$dl->getCityID($citta);
-            $filtro->where('citta_id', $citta_id); 
+            $filtro->where('citta_id', $citta_id);
         }
         if ($request->input('categoria')!="") {
-            $filtro->where('categoria_id', $request->input('categoria')); 
+            $filtro->where('categoria_id', $request->input('categoria'));
         }
         if ($request->input('difficolta')!="") {
             $filtro->where('difficolta_id', $request->input('difficolta')); 
         }
         if ($request->input('lunghezza')!= null) {
             $lunghezza = $request->input('lunghezza');
-            $filtro->where('lunghezza', '<', $lunghezza); 
+            $filtro->where('lunghezza', '<=', $lunghezza); 
         }
         if ($request->input('dislivello')!= null) {
             $dislivello = $request->input('dislivello');
             //$filtro->where(DB::raw("(altezza_massima - altezza_minima as dislivello)"), '<', $dislivello);
-            $filtro->where('dislivello', '<', $dislivello);
+            $filtro->where('dislivello', '<=', $dislivello);
         }
         if ($request->input('durata')!= null) {
             $durata = $request->input('durata');
-            $filtro->where('durata', '<', $durata); 
+            $filtro->where('durata', '<=', $durata);
         }
         
         
-        $sentieri = $filtro->get();
+        
+        
+        $sentieri = $filtro->paginate(2);
+        if ($request->has('testo_titolo')) {
+            $sentieri->appends('testo_titolo',request('testo_titolo'));
+        }
+        if ($request->has('testo_descrizione')) {
+            $sentieri->appends('testo_descrizione',request('testo_descrizione'));
+        }
+        if ($request->input('citta')!="") {
+            $sentieri->appends('citta',request('citta'));
+        }
+        if ($request->input('categoria')!="") {
+            $sentieri->appends('categoria',request('categoria'));
+        }
+        if ($request->input('difficolta')!="") {
+           $sentieri->appends('difficolta',request('difficolta'));
+        }
+        if ($request->input('lunghezza')!= null) {
+            $sentieri->appends('lunghezza',request('lunghezza'));
+        }
+        if ($request->input('dislivello')!= null) {
+           $sentieri->appends('dislivello',request('dislivello'));
+        }
+        if ($request->input('durata')!= null) {
+            $sentieri->appends('durata',request('durata'));
+        }
+        //$sentieri = $filtro->get();
+        
+        
+       
+
 
 
         $user = $dl->getUserByID($user_id);
@@ -394,6 +488,16 @@ class SentieroController extends Controller
         $citta=$dl->getAllCitta();
         $categorie=$dl->getCategorie();
         $difficolta=$dl->getDifficolta();
+        
+//         $sentieri->withPath(view('sentieri.ricercasentieri')->with('logged', true)
+//                        ->with('loggedName', $_SESSION["loggedName"])
+//                        ->with('sentieri', $sentieri)
+//                        ->with('user_id', $user_id)
+//                        ->with('user', $user)
+//                        ->with('citta', $citta)
+//                        ->with('categorie', $categorie)
+//                        ->with('difficolta', $difficolta)
+//                        ->with('dati_sentieri', $dati_sentieri));
 
         return view('sentieri.ricercasentieri')->with('logged', true)
                         ->with('loggedName', $_SESSION["loggedName"])

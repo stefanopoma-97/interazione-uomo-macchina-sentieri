@@ -192,4 +192,12 @@
                     </div><!-- /.row -->
             </div>
         </div>
+<div class="container">
+    @foreach ($users as $user)
+    <div class="row">{{ $user->titolo }}</div>
+    @endforeach
+</div>
+
+{{ $users->links() }}
+
 @endsection

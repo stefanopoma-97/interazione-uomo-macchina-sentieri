@@ -9,6 +9,16 @@ function rimuovi_stile(elemento){
     $(elemento).removeAttr("style");
 }
 
+function hide_show_filtri(){
+  var x = document.getElementById("form_filtro");
+  if (x.style.display === "none") {
+    x.style.display = "block";
+  } else {
+    x.style.display = "none";
+  }
+}
+
+
 function valida_ricerca_home(button){
     ricerca = (button.form.ricerca.value).trim();
     
@@ -357,6 +367,9 @@ function valida_modifica_sentiero(button, modifica){
                         $(button.form.citta).css('border-color','red');
                         citta_msg.innerHTML="Inserisci una città esistente";
                     }
+                    else{
+                            button.form.submit();
+                        }
                     
                 },
                 
@@ -370,5 +383,108 @@ function valida_modifica_sentiero(button, modifica){
         button.form.submit();
     }
     }
+    
+ function check_foto_profilo(button){
+        file=button.form.foto_profilo.value;
+        file_msg=document.getElementById("invalid-foto_profilo");
+        file_msg.innerHTML="";
+        
+        var sFileName = file;
+        //window.confirm("nome: "+sFileName+" lunghezza: "+sFileName.length);
+         if(sFileName===""){
+            file_msg.innerHTML="Non hai inserito un file"; 
+        }
+        else {
+            var sFileExtension = sFileName.split('.')[sFileName.split('.').length - 1].toLowerCase();
+        //var iFileSize = button.form.foto_profilo.size;
+       
+        /// OR together the accepted extensions and NOT it. Then OR the size cond.
+        /// It's easier to see this way, but just a suggestion - no requirement.
+       
+        if (!(sFileExtension === "jpeg" ||
+              sFileExtension === "png" ||
+              sFileExtension === "jpg" ||
+              sFileExtension === "svg")) { /// 10 mb
+           file_msg.innerHTML="file non supportato"; 
+        }
+        else
+            button.form.submit();
+        }
+        
+    }
+    
+    function check_immagine(button){
+        //window.confirm("check");
+        nome_input=button.form.nome_input.value;
+        file=button.form.immagine.value;
+        //window.confirm(file);
+        $('#messaggi_errore').parent().hide();
+        $('#messaggi_errore').empty();
+        
+        
+        var sFileName = file;
+        //window.confirm("nome: "+sFileName+" lunghezza: "+sFileName.length);
+         if(sFileName===""){
+            var li = $("<li></li>");
+            li.text("Non hai inserito un file");
+            $('#messaggi_errore').parent().show();
+            $('#messaggi_errore').append(li);
+        }
+        else {
+            var sFileExtension = sFileName.split('.')[sFileName.split('.').length - 1].toLowerCase();
+       
+        if (!(sFileExtension === "jpeg" ||
+              sFileExtension === "png" ||
+              sFileExtension === "jpg" ||
+              sFileExtension === "svg")) { /// 10 mb
+           var li = $("<li></li>");
+            li.text("File non supportato");
+            $('#messaggi_errore').parent().show();
+            $('#messaggi_errore').append(li);
+        }
+        else
+            button.form.submit();
+        }
+        
+    }
+    
+    function size_immagine(e) {
+        //window.confirm("SIZE CHECK");
+        $('#messaggi_errore').parent().hide();
+        $('#messaggi_errore').empty();
+        let size = e.files[0].size;
+        size_mb=size/1024/1024;
+        //window.confirm("SIZE: "+size_mb);
+        
+        if (size > 2000000) {
+            //window.confirm("maggiore");
+            var li = $("<li></li>");
+            li.text("Il file inserito è più grande di 2MB ( "+size_mb+"MB )");
+            $('#messaggi_errore').parent().show();
+            $('#messaggi_errore').append(li);
+            e.value="";
+        }
+    }
+    
+    function sizee(e) {
+        file_msg=document.getElementById("invalid-foto_profilo");
+        file_msg.innerHTML="";
+        let size = e.files[0].size;
+        size_mb=size/1024/1024;
+        
+        if (size > 2000000) {
+            file_msg.innerHTML="Il file inserito è più grande di 2MB ( "+size_mb+"MB )";
+            e.value="";
+        }
+    }
+    
+    
+    function lancia_form(button){
+        window.confirm("lancia form");
+        $('#aggiungipreferito').submit();
+        }
+    
+ 
+
     
  

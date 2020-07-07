@@ -132,7 +132,7 @@ class DataLayer extends Model
     public function getSentieriEffettuati($user_id) {
         $user = $this->getUserByID($user_id);
         $sentieri_effettuati = $user->esperienze->pluck('sentiero_id');
-        $effettuati = Sentiero::whereIn('id', $sentieri_effettuati)->take(4)->get();
+        $effettuati = Sentiero::whereIn('id', $sentieri_effettuati)->get();
         return $effettuati;
     }
     
