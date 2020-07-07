@@ -21,6 +21,7 @@
             <li><a href="{{ route('user.preferiti', ['id'=> $user_id]) }}">Preferiti</a></li>
             @if($user->admin == 'y')
             <li><a href="{{ route('sentiero.index') }}">Lista sentieri</a></li>
+            <li><a href="{{ route('esperienza.darevisionare',  ['id'=> $user_id]) }}">Revisioni</a></li>
             @else
             @endif
             <li><a href="{{ route('user.logout') }}">Log out</a></li>

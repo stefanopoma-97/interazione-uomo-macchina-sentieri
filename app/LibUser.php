@@ -21,6 +21,11 @@ class LibUser extends Model
         return $this->hasMany('App\Esperienza', 'utente_id'); //relazione 0:n
     } 
     
+    public function revisioni() {
+        // è un attributo non un metodo $utente->citta
+        return $this->hasMany('App\Esperienza', 'revisore_id'); //relazione 0:n
+    } 
+    
      public function preferiti() {
         // use the 'user' property: $author->user (returns an object LibUser)
         return $this->hasMany('App\Preferiti', 'utente_id');

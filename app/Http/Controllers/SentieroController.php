@@ -283,9 +283,18 @@ class SentieroController extends Controller
         $user=$dl->getUserByID($user_id);
         $sentiero = $dl->getSentieroByID($id);
         $dati_sentiero = $dl->fromSentieroToDatiSentiero($sentiero);
-        $esperienze = $dl->getEsperienzeBySentiero($sentiero);
+        $esperienze = $dl->getEsperienzeApprovateSentiero($id);
         $preferito = $dl->preferito($sentiero, $user);
         $pre = $dl->pre();
+        if ($dl->hasImages($sentiero->id)){
+            $immagini=$dl->GetImagesOnlyValid($id);
+        }
+        else {
+            $immagini = null;
+        }
+        
+        $revisioni=$dl->getRevisioniSentiero($user_id, $id);
+            
         
         return view('sentieri.sentiero')->with('logged',true)
                 ->with('loggedName', $_SESSION["loggedName"])
@@ -293,7 +302,9 @@ class SentieroController extends Controller
                 ->with('esperienze', $esperienze)
                 ->with('user_id', $user_id)
                 ->with('user', $user)
+                ->with('immagini', $immagini)
                 ->with('preferito', $preferito)
+                ->with('revisioni', $revisioni)
                 ->with('dati_sentiero', $dati_sentiero);
         
         
@@ -377,7 +388,7 @@ class SentieroController extends Controller
             
             
             $user = $dl->getUserByID($user_id);
-            $sentieri = $dl->getAllSentieri();
+            //$sentieri = $dl->getAllSentieri();
             $sentieri = Sentiero::paginate(5);
             $dati_sentieri = $dl->fromSentieriToDatiSentieri($sentieri);
             $citta=$dl->getAllCitta();
@@ -451,7 +462,7 @@ class SentieroController extends Controller
         
         
         
-        $sentieri = $filtro->paginate(2);
+        $sentieri = $filtro->paginate(5);
         if ($request->has('testo_titolo')) {
             $sentieri->appends('testo_titolo',request('testo_titolo'));
         }
@@ -534,7 +545,7 @@ class SentieroController extends Controller
         $filtro->where('titolo', 'like', '%'.$titolo.'%'); 
                 
         
-        $sentieri = $filtro->get();
+        $sentieri = $filtro->paginate(5);
 
 
         $user = $dl->getUserByID($user_id);

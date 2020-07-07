@@ -15,6 +15,11 @@ class Esperienza extends Model
         return $this->belongsTo('App\LibUser');
     }
     
+    public function revisore() {
+        // use the 'user' property: $author->user (returns an object LibUser)
+        return $this->belongsTo('App\LibUser');
+    }
+    
     public function sentiero() {
         // use the 'user' property: $author->user (returns an object LibUser)
         return $this->belongsTo('App\Sentiero');

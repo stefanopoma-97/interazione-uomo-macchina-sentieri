@@ -142,11 +142,10 @@ window.location.reload;
                 <h3><strong>Community:</strong></h3>
                 <div align="center" class="col-m-10 col-sm-10">
                     <ul class="list-group ">
-                        <li class="list-group-item ">Quante volte è stato percorso: {{count($sentiero->esperienze)}}</li>
+                        <li class="list-group-item ">Quante volte è stato percorso: {{$dati_sentiero->partecipanti}}</li>
                         <li class="list-group-item ">Media voti: {{$dati_sentiero->mediavoti}}</li>
                         <li class="list-group-item ">Difficoltà percepita: {{$dati_sentiero->difficoltamedia}}</li>
-                        <li class="list-group-item "><q>Aggiunto ai preferiti: {{count($sentiero->preferiti)}}</q></li>
-                        <li class="list-group-item "><q>Numero di commenti: {{count($sentiero->esperienze)}} </q></li>
+                        <li class="list-group-item "><q>Aggiunto ai preferiti: {{($dati_sentiero->preferiti)}}</q></li>
                     </ul>
                 </div>
 
@@ -157,8 +156,7 @@ window.location.reload;
     
     
     
-@if(count($esperienze) == 0)
-@else
+
 
 <div class="container">
     <div class="row" style="margin-top: 5em; margin-bottom: 3em;">
@@ -167,14 +165,16 @@ window.location.reload;
                 <h3 class="pull-left">
                     Esperienze personali
                     <br>
-                    <button style="margin-top: 1em;" class="btn" onclick="location.href='{{ route('sentiero.create') }}'"><i class="fa fa-plus"></i> Ho percorso questo sentiero</button>
+                    <button style="margin-top: 1em;" class="btn"data-toggle="modal" data-target="#modalForm"><i class="fa fa-plus"></i> Ho percorso questo sentiero</button>
 
                 </h3>
 
             </div>
         </div>
     </div>
-
+@if(($dati_sentiero->partecipanti) == 0)
+<h3 class="text-center">Nessuno ha ancora percorso questo sentiero</h3>
+@else
 
 <div id="myCarousel" class="carousel slide container" data-ride="carousel">
   <!-- Indicators -->
@@ -204,7 +204,7 @@ window.location.reload;
 
           <div class="col-m-12 col-sm-12">
               <ul align='center' class="list-group ">
-                  <li class="list-group-item "><h4>{{ $esperienza->utente->nome }}</h4></li>
+                  <li class="list-group-item "><h4>{{ $esperienza->utente->username }}</h4></li>
                   <li style="height: 100px" class="list-group-item"><q>"{{ $esperienza->commento }}"</q></li>
                   <li class="list-group-item "><strong>Difficoltà:</strong>   {{ $esperienza->difficolta}}</li>
                   <li class="list-group-item "><strong>Voto:</strong>   {{ $esperienza->voto }}</li>
@@ -236,41 +236,113 @@ window.location.reload;
 
 
 <script type="text/javascript">
-            function image(img) {
-                var src = img.src;
-                window.open(src);
-            }
-            
-            function sostituisci_immagine(img){
-                var src = img.src;
-                document.getElementById('im_4').src=src;
-            }
-            
-             </script>
-             
+function image(img) {
+    var src = img.src;
+    window.open(src);
+}
+
+function sostituisci_immagine(img){
+    var src = img.src;
+    document.getElementById('im_4').src=src;
+}
+
+ </script>
+ <style>
+.row.display-flex {
+  display: flex;
+  flex-wrap: wrap;
+}
+.thumbnail {
+  height: 300px;
+  width: 100%;
+}
+</style>
+@if($immagini!=null)
              <div class="container" style="margin-top: 3em;">
-                 <div class="col-md-12">
-                     <div class="row">
+                 <div class="row display-flexcol-md-12">
+                     <div class="row display-flex">
                          <div class="col-md-4">
-                             <img src="http://localhost:8000/storage/img/pretty-1-th.jpg" class="thumbnail img-responsive" style="width:400px;" onclick="sostituisci_immagine(this)" id="im_1" alt="logo"/>
+                             <img src="{{$immagini[0]}}" class="thumbnail img-responsive" style="width:400px;" onclick="sostituisci_immagine(this)" id="im_1" alt="logo"/>
                          </div>
                          <div class="col-md-4">
-                             <img src="http://localhost:8000/storage/img/pretty-2-th.jpg" class="thumbnail img-responsive" style="width:400px;" onclick="sostituisci_immagine(this)" id="im_2" alt="logo"/>
+                             <img src="{{$immagini[1]}}" class="thumbnail img-responsive" style="width:400px;" onclick="sostituisci_immagine(this)" id="im_2" alt="logo"/>
                          </div>
                          <div class="col-md-4">
-                             <img src="http://localhost:8000/storage/img/pretty-3-th.jpg" class="thumbnail img-responsive" style="width:400px;" onclick="sostituisci_immagine(this)" id="im_3" alt="logo"/>
+                             <img src="{{$immagini[2]}}" class="thumbnail img-responsive" style="width:400px;" onclick="sostituisci_immagine(this)" id="im_3" alt="logo"/>
                          </div>
                      </div>
                      <div class="row" style="margin-top: 1em;">
                          <div class="col-md-12">
-                             <img src="http://localhost:8000/storage/img/pretty-1-th.jpg" class="thumbnail img-responsive" onclick="image(this)" style="width:100%;height:auto;" id="im_4" alt="logo"/>
+                             <img src="{{$immagini[0]}}" class="thumbnail img-responsive" onclick="image(this)" style="width:100%;height:auto;" id="im_4" alt="logo"/>
                          </div>
                      </div>
                  </div>
              </div>
+@endif
 
 
-    <div class="row" style="margin-top: 3em;">
+
+@if(count($revisioni)==0)
+@else
+<div class="row" style="margin-top: 5em; margin-bottom: 3em;">
+        <div class="col-md-3">
+            <div class="header-sezione">
+                <h3 class="pull-left">
+                    Le tue esperienze in attesa di revisione
+                </h3>
+
+            </div>
+        </div>
+    </div>
+<div class="container" style="margin-top: 3em;">
+    <div class="row">
+        <div class="col-md-10 col-md-offset-1">
+            <table id="tabella_revisioni_sentiero" class="table table-striped table-hover table-responsive  table-sm" style="width:100%" data-toggle="table" data-search="true" data-show-columns="true" >
+                <col width='20%'>
+                <col width='10%'>
+                <col width='35%'>
+                <col width='15%'>
+                
+                <thead>
+                    <tr class="table-bordered">
+                        <th data-sortable="true" class="th-sm ">Data</th>
+                        <th data-sortable="true" class="th-sm ">Voto</th>
+                        <th data-sortable="true" class="th-sm ">Commento</th>
+                        <th data-sortable="false" class="th-sm ">Stato</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                     @foreach($revisioni as $revisione)
+                     <tr>
+                        <td>{{ $revisione->data }}</td>
+                        <td>{{ $revisione->voto }}</td>
+                        <td>"{{ $revisione->commento }}"</td>
+                        @if($revisione->stato == 'rifiutato')
+                        <td style="color: red"><strong>{{$revisione->stato}}</strong></td>
+                        @else
+                        <td style="color: blue"><strong>In {{$revisione->stato}}...</strong></td>
+                        @endif
+                        
+                    </tr>
+                    @endforeach
+                </tbody>
+
+<!--                <tfoot>
+                    <tr>
+                        <th class="th-sm table-bordered">Data</th>
+                        <th class="th-sm table-bordered">Voto</th>
+                        <th class="th-sm table-bordered">Commento</th>
+                    </tr>
+                </tfoot>-->
+            </table>
+        </div>
+    </div>
+    
+</div>
+@endif
+
+<!--    <div class="row" style="margin-top: 3em;">
         <div class="col-md-10 col-md-offset-1">
             <ul class="list-group">
                 <li class="list-group-item text-center" style="background-color: #357ebd; font-size: 14px; font-weight: bold; text-transform: uppercase; color: #333333;"><h3><strong>Raccontaci della tua esperienza</strong></h3></li>
@@ -333,7 +405,83 @@ window.location.reload;
 
             </ul>
         </div>
-    </div>
+    </div>-->
+
+<div class="modal fade" id="modalForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+   
+    
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title">Inserisci una nota</h1>
+            </div>
+            <div class="modal-body">
+                <form id="aggiungies_perienza" action="{{route('esperienza.store',['id'=>$sentiero->id])}}" method="get" style="margin-top: 2em;">
+                    @csrf
+
+                        <div class="form-group">
+                            <label for="data">Data</label>
+                            <input class="form-control" type="date" id="data" name="data" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="voto">Voto</label>
+                            <select class="form-control" id="voto" name="voto" required>
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                                <option value="6">6</option>
+                                <option value="7">7</option>
+                                <option value="8">8</option>
+                                <option value="9">9</option>
+                                <option value="10">10</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="difficolta">Difficoltà percepita</label>
+                            <select class="form-control" id="difficolta" name="difficolta" required>
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                                <option value="6">6</option>
+                                <option value="7">7</option>
+                                <option value="8">8</option>
+                                <option value="9">9</option>
+                                <option value="10">10</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="descrizione">Descrizione</label>
+                            <textarea class="form-control" id="descrizione" name="descrizione" rows="3" required></textarea>
+                        </div>
+
+                        <div class="form-group row">
+                            <div class="col-sm-10">
+                                <input type="hidden" name="user_id" value="{{$user_id}}"/>
+                                <label for="mySubmit" class="btn btn-primary btn-large btn-block"><span class="glyphicon glyphicon-floppy-save"></span> Invia</label>
+                                <input id="mySubmit" type="submit" value="save" class="hidden"/>
+                            </div>
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Annulla</button>
+
+                        </div>
+
+                    </form>
+                
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+  
+</div>
+
+<script>
+data.max = new Date().toISOString().split("T")[0];
+</script>
 
 </div>
 @endsection

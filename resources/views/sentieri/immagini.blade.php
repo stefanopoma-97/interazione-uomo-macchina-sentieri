@@ -61,6 +61,11 @@
   width: 100%;
 }
 </style>
+<div class="row col-md-12">
+        <div class="col-md-1 col-md-offset-9">
+            <button class="btn" onclick="location.href='{{ route('sentiero.edit', ['sentiero'=> $sentiero->id]) }}'"><span class="glyphicon glyphicon-save"></span> Salva e torna alle modifiche</button>
+        </div>
+    </div>
  <div style="margin-top: 3em;" class="container">
              <div class="row display-flex">
                  
@@ -180,54 +185,27 @@
             </div><!-- /.row -->
             <div style="margin-top: 2em;" class="row">
                 <div  hidden="" class="col-md-12 alert alert-danger">
-                <ul id="messaggi_errore">
-                </ul>
+                    <ul id="messaggi_errore">
+                    </ul>
+                </div>
+                <div  hidden="" class="col-md-12 alert alert-success">
+                    <ul id="messaggi_conferma">
+                    </ul>
                 </div>
             </div>
             
          </div>
 
-
-
-
-
-
-
-///////
-<div class="container pt-5" style="margin-top: 2em;">
-    
-    <p>link1: {{$link1}}</p>
-    <img alt="image" width="200px" height="200px"class="img-circle img-responsive " src="{{$link1}}">
-    <form action="{{route('sentiero.aggiungiimmagine',['id'=> $sentiero->id])}}" id="aggiungi_immagine_1" name="aggiungi_immagine_1" method="POST" enctype="multipart/form-data"> {{ csrf_field() }}
-
-        <div class="form-group">
-            <div class="col-sm-7">
-                <input onchange="sizee(this)" onkeyup="rimuovi_stile(this)" onmouseover="rimuovi_stile(this)"class="form-control" type="file" id="immagine" name="immagine" placeholder="immagine">
-                <span class="invalid-input" id="invalid-immagine_1"></span>
-            </div>
-            <div class="col-sm-2">
-                <input type="hidden" name="nome_file" value="1"/>
-                <label for="mySubmit" class="btn btn-primary btn-large btn-info"><span class="glyphicon glyphicon-floppy-save"></span> Carica</label>
-                <input  id="mySubmit" type="submit" value="save" class="hidden"/>
-
-            </div>
+<!--<div style="margin-top: 3em;" class="container">
+    <div class="row">
+        <div class="col-md-10">
+            <button class="btn btn-info"><span class="glyphicon glyphicon-save">Salva</span</button>
         </div>
-//onclick="event.preventDefault(); check_foto_profilo(this);"
-    </form>
-    
-    <h5><a href="{{route('sentiero.rimuoviimmagine',['id'=> $sentiero->id, 'nome'=> '1'])}}">Rimuovi Immagine</a></h5>
+    </div>
+</div>-->
 
-    
-    <p>link2: {{$link2}}</p>
-    <img alt="image" width="200px" height="200px"class="img-circle img-responsive " src="{{$link2}}">
-    
-    <p>link3: {{$link3}}</p>
-    <img alt="image" width="200px" height="200px"class="img-circle img-responsive " src="{{$link3}}">
 
-    
 
-   
-    
-    
-</div>
+
+
 @endsection

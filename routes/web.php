@@ -74,6 +74,15 @@ Route::group(['middleware' => ['authCustom', 'adminCheck']], function()
     Route::get('/sentiero/{id}/update', ['as' => 'sentiero.update', 
         'uses' => 'SentieroController@update']);
     
+    Route::get('/utente/{id}/revisioni', ['as' => 'esperienza.darevisionare', 
+        'uses' => 'EsperienzaController@da_revisionare']);
+    
+    Route::get('/utente/revisioni/{id}/approvato', ['as' => 'esperienza.approvato', 
+        'uses' => 'EsperienzaController@approvato']);
+    
+    Route::get('/utente/revisioni/{id}/rifiutato', ['as' => 'esperienza.rifiutato', 
+        'uses' => 'EsperienzaController@rifiutato']);
+    
     });
 
     
@@ -163,5 +172,12 @@ Route::group(['middleware' => ['authCustom']], function()
     //ESPERIENZE
     Route::get('/sentiero/{id}/nuova/esperienza', ['as' => 'esperienza.store', 
         'uses' => 'EsperienzaController@store']);
+   
+    
+    Route::get('/utente/{id}/esperienza', ['as' => 'esperienza.mieesperienze', 
+        'uses' => 'EsperienzaController@mie_esperienze']);
+    
+    
+    
     });
 

@@ -9,6 +9,7 @@ use App\DatiSentiero;
 use App\Citta;
 use App\Preferiti;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
 
 //AUTENTICAZIONE
 class DataLayer extends Model
@@ -47,6 +48,7 @@ class DataLayer extends Model
             return $users[0]->id;
     }
     
+
     public function validateUsername($username, $id) {
         $users = DB::select("select * from utente where (username = ? AND id != ?)",[$username, $id]);
         if(count($users)==0)
@@ -199,6 +201,9 @@ class DataLayer extends Model
         $utente= $this->getUserByID($id);
         return $utente->consiglio_password;
     }
+    
+    
+    
 
 
 
@@ -211,7 +216,132 @@ class DataLayer extends Model
 
 
 
+public function hasImages($id){
+    $immagini = array();
+    $exists1 = Storage::has("public/fotosentieri/".$id."/1");
+    if($exists1){
+        $link1 = asset(Storage::url("public/fotosentieri/".$id."/1"));
+        array_push($immagini, $link1);
+    }
 
+    $exists2 = Storage::has("public/fotosentieri/".$id."/2");
+    if($exists2){
+        $link2 = asset(Storage::url("public/fotosentieri/".$id."/2"));
+        array_push($immagini, $link2);
+    }
+    
+    $exists3 = Storage::has("public/fotosentieri/".$id."/3");
+    if($exists3){
+        $link3 = asset(Storage::url("public/fotosentieri/".$id."/3"));
+        array_push($immagini, $link3);
+    }
+    
+    if(count($immagini)==0)
+        return false;
+    else
+        return true;
+    
+        //$link3=asset(Storage::url("public/fotosentieri/default"));
+    }
+    
+    public function GetNumberOfImage($id){
+    $immagini = array();
+    $exists1 = Storage::has("public/fotosentieri/".$id."/1");
+    if($exists1){
+        $link1 = asset(Storage::url("public/fotosentieri/".$id."/1"));
+        array_push($immagini, $link1);
+    }
+
+    $exists2 = Storage::has("public/fotosentieri/".$id."/2");
+    if($exists2){
+        $link2 = asset(Storage::url("public/fotosentieri/".$id."/2"));
+        array_push($immagini, $link2);
+    }
+    
+    $exists3 = Storage::has("public/fotosentieri/".$id."/3");
+    if($exists3){
+        $link3 = asset(Storage::url("public/fotosentieri/".$id."/3"));
+        array_push($immagini, $link3);
+    }
+    
+    return count($immagini);
+    
+        //$link3=asset(Storage::url("public/fotosentieri/default"));
+    }
+    
+    public function GetImages($id){
+    $immagini = array();
+    $exists1 = Storage::has("public/fotosentieri/".$id."/1");
+    if($exists1){
+        $link1 = asset(Storage::url("public/fotosentieri/".$id."/1"));
+        array_push($immagini, $link1);
+    }
+    else{
+        $link1=asset(Storage::url("public/fotosentieri/default"));
+        array_push($immagini, $link1);
+    }
+
+    $exists2 = Storage::has("public/fotosentieri/".$id."/2");
+    if($exists2){
+        $link2 = asset(Storage::url("public/fotosentieri/".$id."/2"));
+        array_push($immagini, $link2);
+    }
+     else{
+        $link2=asset(Storage::url("public/fotosentieri/default"));
+        array_push($immagini, $link2);
+    }
+    
+    $exists3 = Storage::has("public/fotosentieri/".$id."/3");
+    if($exists3){
+        $link3 = asset(Storage::url("public/fotosentieri/".$id."/3"));
+        array_push($immagini, $link3);
+    }
+     else{
+        $link3=asset(Storage::url("public/fotosentieri/default"));
+        array_push($immagini, $link3);
+    }
+    
+    return $immagini;
+    
+        //$link3=asset(Storage::url("public/fotosentieri/default"));
+    }
+    
+    public function GetImagesOnlyValid($id){
+    $immagini = array();
+    if($this->hasImages($id)){
+        
+        
+                $exists1 = Storage::has("public/fotosentieri/".$id."/1");
+                if($exists1){
+                    $link1 = asset(Storage::url("public/fotosentieri/".$id."/1"));
+                    array_push($immagini, $link1);
+                }
+                $exists2 = Storage::has("public/fotosentieri/".$id."/2");
+                if($exists2){
+                    $link2 = asset(Storage::url("public/fotosentieri/".$id."/2"));
+                    array_push($immagini, $link2);
+                }
+                $exists3 = Storage::has("public/fotosentieri/".$id."/3");
+                if($exists3){
+                    $link3 = asset(Storage::url("public/fotosentieri/".$id."/3"));
+                    array_push($immagini, $link3);
+                }
+                for ($i=count($immagini); $i<3; $i++){
+                    $immagini[$i]=$immagini[$i-1];
+                }
+                return $immagini;
+        
+        
+    }
+    else {
+        return $immagini;
+    }
+    
+    
+    
+    
+        //$link3=asset(Storage::url("public/fotosentieri/default"));
+    }
 
 
 
@@ -228,8 +358,57 @@ class DataLayer extends Model
     }
     
     public function getEsperienzeBySentiero($sentiero){
-        $esperienze=$sentiero->esperienze->take(4);
+        $esperienze=$sentiero->esperienze;
         return $esperienze;
+    }
+    
+    public function getRevisioni($user_id){
+        $revisioni = Esperienza::where('utente_id', $user_id)->where('stato',"revisione")->get();
+        return $revisioni;
+    }
+    
+    public function getRevisioniNonApprovate($user_id){
+        $revisioni = Esperienza::where('utente_id', $user_id)->where('stato', '!=','approvato')->get();
+        return $revisioni;
+    }
+    
+    public function getEsperienzeApprovate($user_id){
+        $revisioni = Esperienza::where('utente_id', $user_id)->where('stato',"approvato")->get();
+        return $revisioni;
+    }
+    
+    public function getEsperienzeApprovateSentiero($sentiero_id){
+        $revisioni = Esperienza::where('sentiero_id', $sentiero_id)->where('stato',"approvato")->get();
+        return $revisioni;
+    }
+    
+    public function getRevisioniDaRevisionare($user_id){
+        $revisioni = Esperienza::where('revisore_id', $user_id)->where('stato',"revisione")->get();
+        return $revisioni;
+    }
+    
+    public function getRevisioniSentiero($user_id, $sentiero_id){
+        $revisioni = Esperienza::where('utente_id', $user_id)->where('stato','!=','approvato')->where('sentiero_id',$sentiero_id)->get();
+        return $revisioni;
+    }
+    public function trovaRevisore(){
+        $revisore=DB::select("select COUNT(esperienza.id) as revisioni, esperienza.revisore_id from esperienza "
+                . "LEFT JOIN utente ON (utente.admin='y' AND utente.id = esperienza.revisore_id) "
+                . "WHERE esperienza.revisore_id!='' GROUP by utente.id  order by revisioni ASC");
+        return $revisore[0]->revisore_id;
+    }
+    
+    public function approvaEsperienza($id){
+        $esperienza = Esperienza::find($id);
+        $esperienza->stato="approvato";
+        $esperienza->save();
+    }
+    
+    public function rifiutaEsperienza($id, $nota){
+        $esperienza = Esperienza::find($id);
+        $esperienza->stato="rifiutato";
+        $esperienza->nota=$nota;
+        $esperienza->save();
     }
     
     
@@ -381,7 +560,9 @@ class DataLayer extends Model
     
     
     
-     public function addEsperienza($user_id, $sentiero_id, $data, $voto, $difficolta, $descrizione) {
+    
+    
+     public function addEsperienza($user_id, $sentiero_id, $data, $voto, $difficolta, $descrizione, $revisore_id, $stato) {
         $esperienza = new Esperienza;
         $esperienza->utente_id = $user_id;
         $esperienza->sentiero_id = $sentiero_id;
@@ -389,6 +570,9 @@ class DataLayer extends Model
         $esperienza->voto = $voto;
         $esperienza->difficolta = $difficolta;
         $esperienza->commento = $descrizione;
+        $esperienza->revisore_id = $revisore_id;
+        $esperienza->stato = $stato;
+        
         
         $esperienza->save();
         // massive update (only with fillable property enabled on Book): 

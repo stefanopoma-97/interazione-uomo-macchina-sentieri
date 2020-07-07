@@ -420,6 +420,8 @@ function valida_modifica_sentiero(button, modifica){
         //window.confirm(file);
         $('#messaggi_errore').parent().hide();
         $('#messaggi_errore').empty();
+        $('#messaggi_conferma').parent().hide();
+        $('#messaggi_conferma').empty();
         
         
         var sFileName = file;
@@ -442,8 +444,13 @@ function valida_modifica_sentiero(button, modifica){
             $('#messaggi_errore').parent().show();
             $('#messaggi_errore').append(li);
         }
-        else
+        else{
+            
             button.form.submit();
+            
+        }
+        
+            
         }
         
     }
@@ -483,6 +490,17 @@ function valida_modifica_sentiero(button, modifica){
         window.confirm("lancia form");
         $('#aggiungipreferito').submit();
         }
+        
+        
+        
+function openForm() {
+    window.confirm("open form");
+  document.getElementById("form_nota").style.display = "block";
+}
+
+function closeForm() {
+  document.getElementById("form_nota").style.display = "none";
+}
     
  
 

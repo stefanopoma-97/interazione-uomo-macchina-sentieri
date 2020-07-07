@@ -76,14 +76,16 @@
                         @if($user->id == $user_dettagli->id)
                         <li class="list-group-item ">Città: {{ $user_dettagli->citta->nome }}</li>
                         <li class="list-group-item ">Mail: {{ $user_dettagli->mail }}</li>
-                        @else
-                        @endif
-                        <li class="list-group-item ">Percorsi effettuati: {{ count($user_dettagli->esperienze) }}</li>
+                        <li class="list-group-item "><a href="{{route('esperienza.mieesperienze',['id'=> $user->id])}}">Esperienze da revisionare</a></li>
                         @if(count($user_dettagli->preferiti)==0)
                         <li class="list-group-item ">Preferiti: {{ count($user_dettagli->preferiti) }}</a></li>
                         @else
                         <li class="list-group-item ">Preferiti: <a href="{{ route('user.preferiti', ['id'=> $user_id]) }}">{{ count($user_dettagli->preferiti) }}</a></li>
                         @endif
+                        @else
+                        @endif
+                        <li class="list-group-item ">Percorsi effettuati: {{ count($user_dettagli->esperienze) }}</li>
+                        
                         <li class="list-group-item "><q>"{{$user_dettagli->descrizione}}"</q></li>
                         @if ($user_dettagli->id == $user_id)
                         <form action="{{route('user.fotoprofilo',['id'=> $user->id])}}" id="modifica_foto_profilo" name="modifica_foto_profilo" method="POST" enctype="multipart/form-data"> {{ csrf_field() }}

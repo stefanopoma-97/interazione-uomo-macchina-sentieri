@@ -59,7 +59,7 @@
                 <div class="form-group row">
                     <label class="col-sm-10" for="testo_titolo">Titolo</label>
                     <div class="col-sm-12">
-                        <input type="text" class="form-control" id="titolo" name="titolo" placeholder="Parola contenuta nel titolo">
+                        <input type="text" class="form-control" id="testo_titolo" name="testo_titolo" placeholder="Parola contenuta nel titolo">
                     </div>
                 </div>
                 <div class="form-group row">

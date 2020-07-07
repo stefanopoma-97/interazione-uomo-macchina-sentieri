@@ -81,7 +81,7 @@ class UserController extends Controller
         
         $sentieri_effettuati = $dl->getSentieriEffettuati($id);
         
-        $esperienze = $dl->getEsperienzeByUserID($id);
+        $esperienze = $dl->getEsperienzeApprovate($id);
         
         $exists = Storage::has("public/fotoprofilo/profilo".$id);
         if($exists)
