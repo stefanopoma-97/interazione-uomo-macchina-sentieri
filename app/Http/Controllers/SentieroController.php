@@ -293,6 +293,18 @@ class SentieroController extends Controller
             $immagini = null;
         }
         
+        $link="http://www.google.com/search?q=";
+        $parole = explode(" ", $sentiero->titolo);
+        $link=$link.array_shift($parole);
+        
+        foreach ($parole as $parola){
+            $link=$link.'+'.$parola;
+        }
+        
+        $gpx=$dl->getGpx($id);
+        
+        
+        
         $revisioni=$dl->getRevisioniSentiero($user_id, $id);
             
         
@@ -302,7 +314,9 @@ class SentieroController extends Controller
                 ->with('esperienze', $esperienze)
                 ->with('user_id', $user_id)
                 ->with('user', $user)
+                ->with('link_google', $link)
                 ->with('immagini', $immagini)
+                ->with('gpx', $gpx)
                 ->with('preferito', $preferito)
                 ->with('revisioni', $revisioni)
                 ->with('dati_sentiero', $dati_sentiero);
@@ -342,6 +356,9 @@ class SentieroController extends Controller
         else
             $link3=asset(Storage::url("public/fotosentieri/default"));
         
+        
+            
+        
         return view('sentieri.immagini')->with('logged',true)
                 ->with('loggedName', $_SESSION["loggedName"])
                 ->with('sentiero', $sentiero)
@@ -368,6 +385,48 @@ class SentieroController extends Controller
             Storage::delete('public/fotosentieri/'.$id.'/'.$nome);
         return Redirect::to(route('sentiero.immagini',['id' => $id])); 
     }
+    
+    
+    public function gpx($id) {
+        
+        $dl = new DataLayer();
+        $user_id = $dl->getUserID($_SESSION['loggedName']);
+        if($user_id==-1){
+            session_destroy();
+            return Redirect::to(route('user.auth.login'));
+        }
+        $user=$dl->getUserByID($user_id);
+        $sentiero = $dl->getSentieroByID($id);
+        
+        //http://localhost:8000/storage/fotosentieri/{id}/1,2o2
+        
+        $gpx=$dl->getGpx($id);            
+        
+        return view('sentieri.gpx')->with('logged',true)
+                ->with('loggedName', $_SESSION["loggedName"])
+                ->with('sentiero', $sentiero)
+                ->with('user', $user)
+                ->with('user_id', $user_id)
+                ->with('gpx', $gpx);
+     
+    }
+    
+    public function aggiungi_gpx (Request $request, $id){
+//        $this->validate($request, [
+//        'immagine' => 'required|mimes:gpx|max:2048',
+//        ]);
+        $request->file('gpx')->storeAs('public/gpx', $id);
+        
+        return Redirect::to(route('sentiero.gpx',['id' => $id])); 
+    }
+    
+     public function rimuovi_gpx ($id){
+        $exists = Storage::has('public/gpx/'.$id);
+        if($exists)
+            Storage::delete('public/gpx/'.$id);
+        return Redirect::to(route('sentiero.gpx',['id' => $id])); 
+    }
+
     
     
     public function ricerca() {

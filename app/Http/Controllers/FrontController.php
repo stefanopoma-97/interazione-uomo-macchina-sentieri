@@ -33,6 +33,7 @@ class FrontController extends Controller
             $sentieri_piu_votati = $dl->getPiuVotati();
             $sentieri_consigliati = $dl->getConsigliati($user_id);
             $sentieri_preferiti = $dl->getPreferiti($user_id);
+            $count_revisioni = count($dl->getRevisioniDaRevisionare($user_id));
             
             //paginazione
             $users = Sentiero::paginate(4);
@@ -41,6 +42,8 @@ class FrontController extends Controller
                     ->with('user_id', $user_id)->with('sentieri_recenti', $sentieri_recenti)
                     ->with('sentieri_piu_votati', $sentieri_piu_votati)
                     ->with('user', $user)
+                    ->with('link', 'http://www.google.com/search?q=Google+tutorial+create+link')
+                    ->with('count_revisioni', $count_revisioni)
                     ->with('sentieri_consigliati', $sentieri_consigliati)
                     ->with('sentieri_preferiti', $sentieri_preferiti)->with('users', $users);
         } else {

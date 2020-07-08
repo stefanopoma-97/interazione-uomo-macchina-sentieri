@@ -211,7 +211,14 @@ class DataLayer extends Model
 
 
 
-
+public function getGpx($sentiero_id){
+    $gpx= Storage::has('public/gpx/'.$sentiero_id);
+        if($gpx)
+            $gpx=asset(Storage::url('public/gpx/'.$sentiero_id));
+        else
+            $gpx="";
+        return $gpx;
+}
 
 
 

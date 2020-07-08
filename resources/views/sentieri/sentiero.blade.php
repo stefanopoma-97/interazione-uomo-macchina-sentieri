@@ -3,33 +3,6 @@
 @section('titolo', 'Elenco utenti')
 
 @section('javascript')
-<!--function attributi(obj)
-{
-    var attr = obj.attributes;
-    var msg = "";
-    for (var i = 0; i < attr.length; i++)
-    {
-    msg += attr[i].nodeName + ": " + attr[i].nodeValue + "\n";
-            }
-    alert(msg);
-}
-function nas(obj) {
-obj.style.visibility = "hidden";
-}
-function preferito(nodo)
-{
-var attr = nodo.attributes["class"];
-if(attr.nodeValue == "fa fa-star checked-star")
-    attr.nodeValue = "fa fa-star";
-else
-    attr.nodeValue = "fa fa-star checked-star";
-}
-
-function reload_preferito(nodo)
-{
-window.location.reload;
-}-->
-
 @endsection
 
 @section('navbar_home')
@@ -80,22 +53,34 @@ window.location.reload;
 @endsection
 
 @section('corpo')
+ <style>
+.row.display-flex {
+  display: flex;
+  flex-wrap: wrap;
+}
+.thumbnail {
+  height: 300px;
+  width: 100%;
+}
+
+</style>
+
 <div class="container" style="margin-top: 3em;">
     <div class="row" style="margin-bottom: 1em;">
         <form class="inline-form" id="aggiungipreferito" action="{{route('sentiero.preferito',['id'=>$sentiero->id])}}" method="POST" >
-        @csrf
-        @if($preferito)
-        <button class="btn" type="submit" value="False" name="preferito" onclick="window.location.reload();">
-            <span  class="fa fa-star checked-star"></span> Rimuovi preferito
-        </button>
-        <!--<a type="sumbmit" id="link1" onclick="lancia_form(); window.location.reload();">Rimuovi dai preferiti</a>-->
-        @else
-        <button class="btn" type="submit" value="True" name="preferito" onclick="window.location.reload();">
-            <span class="fa fa-star"></span> Aggiungi preferito
-        </button>
+            @csrf
+            @if($preferito)
+            <button class="btn" type="submit" value="False" name="preferito" onclick="window.location.reload();">
+                <span  class="fa fa-star checked-star"></span> Rimuovi preferito
+            </button>
+            <a type="sumbmit" id="link1" onclick="lancia_form(); window.location.reload();">Rimuovi dai preferiti</a>
+            @else
+            <button class="btn" type="submit" value="True" name="preferito" onclick="window.location.reload();">
+                <span class="fa fa-star"></span> Aggiungi preferito
+            </button>
 
-        @endif
-    </form>
+            @endif
+        </form>
     </div>
     
     <div class="row pt-5">
@@ -117,15 +102,17 @@ window.location.reload;
                 <li class="list-group-item "><span class="glyphicon glyphicon-arrow-down"></span>  Altezza minima:   {{ $sentiero->altezza_minima}}</li>
                 <li class="list-group-item "><span class="glyphicon glyphicon-resize-vertical"></span>  Dislivello   {{ ($sentiero->altezza_massima) - ($sentiero->altezza_minima)}}</li>
             </ul>
+            
+            <div class="container" style="margin-bottom: 3em">
+                <h4>Cerca altre informazioni:</h4>
+            <a target=”_blank” href={{$link_google}}>
+                <img width="30px" class="img responsive" src="{{ url('/') }}/img/google.png">
+            </a>
+            </div>
+            
 
             
-            
-<!--            @if($preferito)
-            <span class="fa fa-star checked-star" id="preferito"></span>
-            @else
-            <span class="fa fa-star" id="preferito"></span>
-            @endif-->
-            
+                        
             <script>
                 $(document).ready(function(){
                   $("#preferito").click(function(){
@@ -137,8 +124,21 @@ window.location.reload;
 
 
         <div  class="col-md-6">
-            <div>            
-                <img src="../img/mappa.png" class="img-fluid rounded mx-auto d-block" alt="Responsive image">
+            <div> 
+                @if($immagini=="")
+                <div class="row">
+                    <div class="col-md-12">
+                        <img  src="{{ url('/') }}/img/no-image.png" class="thumbnail img-responsive" style="width:90%; height: 350px" id="im_default" alt="logo"/>
+                    </div>
+                </div>
+                @else
+                <div class="row">
+                    <div class="col-md-12">
+                        <img  src="{{$immagini[2]}}" class="thumbnail img-responsive" style="max-height: 400px; width:100%; height: auto;" id="im_5" alt="logo"/>
+                    </div>
+                </div>
+                @endif
+                <!--<img src="../img/mappa.png" class="img-fluid rounded mx-auto d-block" alt="Responsive image">-->
                 <h3><strong>Community:</strong></h3>
                 <div align="center" class="col-m-10 col-sm-10">
                     <ul class="list-group ">
@@ -153,6 +153,37 @@ window.location.reload;
             </div>
         </div>
     </div>
+</div>
+
+
+    <div class="container">
+    <div class="row" style="margin-top: 5em; margin-bottom: 3em;">
+        <div class="col-md-3">
+            <div class="header-sezione">
+                <h3 class="pull-left">
+                    Mappa
+                </h3>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+@if($gpx=="")
+NON CI SONO DATI
+@else
+<div style="max-width:100em;" id="map"></div>
+<br>
+<div class="container" >
+    <div class="row">
+        <div class="col-md-10 col-md-offset-1">
+            <div class="col-md-12" id="elevation-div"></div>
+        </div>
+    </div>
+</div>
+@endif
+     
+    
     
     
     
@@ -172,66 +203,72 @@ window.location.reload;
             </div>
         </div>
     </div>
+</div>
+
 @if(($dati_sentiero->partecipanti) == 0)
+
 <h3 class="text-center">Nessuno ha ancora percorso questo sentiero</h3>
+
 @else
 
-<div id="myCarousel" class="carousel slide container" data-ride="carousel">
-  <!-- Indicators -->
-<!--  <ol class="carousel-indicators" >
-    <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-    <li data-target="#myCarousel" data-slide-to="1"></li>
-    <li data-target="#myCarousel" data-slide-to="2"></li>
-  </ol>-->
+<div class="container">
+    <div id="myCarousel" class="carousel slide" data-ride="carousel">
+<!--        Indicators 
+        <ol class="carousel-indicators" >
+            <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+            <li data-target="#myCarousel" data-slide-to="1"></li>
+            <li data-target="#myCarousel" data-slide-to="2"></li>
+        </ol>-->
 
-  <!-- Wrapper for slides -->
-  <div class="carousel-inner">
+        
+        <div class="carousel-inner">
 
-      <?php $pos = 1 ?>
-      @foreach ($esperienze->chunk(1) as $esperienze4)
+            <?php $pos = 1 ?>
+            @foreach ($esperienze->chunk(1) as $esperienze4)
 
 
-      <?php
-      if ($pos == 1)
-          echo '<div class="item active">';
-      else
-          echo '<div class="item">';
-      $pos++
-      ?>
+            <?php
+            if ($pos == 1)
+                echo '<div class="item active">';
+            else
+                echo '<div class="item">';
+            $pos++
+            ?>
 
-      <div class="row col-md-10 col-md-offset-1">
-          @foreach($esperienze4 as $esperienza)
+            <div class="row col-md-10 col-md-offset-1">
+                @foreach($esperienze4 as $esperienza)
 
-          <div class="col-m-12 col-sm-12">
-              <ul align='center' class="list-group ">
-                  <li class="list-group-item "><h4>{{ $esperienza->utente->username }}</h4></li>
-                  <li style="height: 100px" class="list-group-item"><q>"{{ $esperienza->commento }}"</q></li>
-                  <li class="list-group-item "><strong>Difficoltà:</strong>   {{ $esperienza->difficolta}}</li>
-                  <li class="list-group-item "><strong>Voto:</strong>   {{ $esperienza->voto }}</li>
-                  <li class="list-group-item "><strong>Data:</strong>   {{ $esperienza->data }}</li>
-              </ul>
-          </div>
+                <div class="col-m-12 col-sm-12">
+                    <ul align='center' class="list-group ">
+                        <li class="list-group-item "><h4>{{ $esperienza->utente->username }}</h4></li>
+                        <li style="height: 100px" class="list-group-item"><q>"{{ $esperienza->commento }}"</q></li>
+                        <li class="list-group-item "><strong>Difficoltà:</strong>   {{ $esperienza->difficolta}}</li>
+                        <li class="list-group-item "><strong>Voto:</strong>   {{ $esperienza->voto }}</li>
+                        <li class="list-group-item "><strong>Data:</strong>   {{ $esperienza->data }}</li>
+                    </ul>
+                </div>
 
-          @endforeach
-      </div>
-  </div>
-  @endforeach
+                @endforeach
+            </div>
+        </div>
+        @endforeach
 
-  </div>
+    </div>
 
-  <!-- Left and right controls -->
-  <a class="left carousel-control" style="background-image: none;" href="#myCarousel" data-slide="prev">
-    <span class="glyphicon glyphicon-chevron-left"></span>
-    <span class="sr-only">Previous</span>
-  </a>
-  <a class="right carousel-control" style="background-image: none;" href="#myCarousel" data-slide="next">
-    <span class="glyphicon glyphicon-chevron-right"></span>
-    <span class="sr-only">Next</span>
-  </a>
-
-  
+    <div class="container">
+    <a class="left carousel-control" style="background-image: none;" href="#myCarousel" data-slide="prev">
+        <span class="glyphicon glyphicon-chevron-left"></span>
+        <span class="sr-only">Previous</span>
+    </a>
+    <a class="right carousel-control" style="background-image: none;" href="#myCarousel" data-slide="next">
+        <span class="glyphicon glyphicon-chevron-right"></span>
+        <span class="sr-only">Next</span>
+    </a>
+    </div>
 </div>
+
 @endif
+
 
 
 
@@ -244,31 +281,22 @@ function image(img) {
 function sostituisci_immagine(img){
     var src = img.src;
     document.getElementById('im_4').src=src;
+    document.getElementById('im_5').src=src;
 }
-
  </script>
- <style>
-.row.display-flex {
-  display: flex;
-  flex-wrap: wrap;
-}
-.thumbnail {
-  height: 300px;
-  width: 100%;
-}
-</style>
+
 @if($immagini!=null)
              <div class="container" style="margin-top: 3em;">
                  <div class="row display-flexcol-md-12">
                      <div class="row display-flex">
-                         <div class="col-md-4">
-                             <img src="{{$immagini[0]}}" class="thumbnail img-responsive" style="width:400px;" onclick="sostituisci_immagine(this)" id="im_1" alt="logo"/>
+                         <div class="col-md-4 col-xs-4">
+                             <img src="{{$immagini[0]}}" class="thumbnail img-responsive" style="max-height: 300px; width:100%; height: auto;" onclick="sostituisci_immagine(this)" id="im_1" alt="logo"/>
                          </div>
-                         <div class="col-md-4">
-                             <img src="{{$immagini[1]}}" class="thumbnail img-responsive" style="width:400px;" onclick="sostituisci_immagine(this)" id="im_2" alt="logo"/>
+                         <div class="col-md-4 col-xs-4">
+                             <img src="{{$immagini[1]}}" class="thumbnail img-responsive" style="max-height: 300px; width:100%; height: auto;" onclick="sostituisci_immagine(this)" id="im_2" alt="logo"/>
                          </div>
-                         <div class="col-md-4">
-                             <img src="{{$immagini[2]}}" class="thumbnail img-responsive" style="width:400px;" onclick="sostituisci_immagine(this)" id="im_3" alt="logo"/>
+                         <div class="col-md-4 col-xs-4">
+                             <img src="{{$immagini[2]}}" class="thumbnail img-responsive" style="max-height: 300px; width:100%; height: auto;" onclick="sostituisci_immagine(this)" id="im_3" alt="logo"/>
                          </div>
                      </div>
                      <div class="row" style="margin-top: 1em;">
@@ -281,7 +309,8 @@ function sostituisci_immagine(img){
 @endif
 
 
-
+<div class="container">
+     
 @if(count($revisioni)==0)
 @else
 <div class="row" style="margin-top: 5em; margin-bottom: 3em;">
@@ -328,84 +357,23 @@ function sostituisci_immagine(img){
                     @endforeach
                 </tbody>
 
-<!--                <tfoot>
+                <tfoot>
                     <tr>
                         <th class="th-sm table-bordered">Data</th>
                         <th class="th-sm table-bordered">Voto</th>
                         <th class="th-sm table-bordered">Commento</th>
                     </tr>
-                </tfoot>-->
+                </tfoot>
             </table>
         </div>
     </div>
     
 </div>
+
 @endif
+</div>
 
-<!--    <div class="row" style="margin-top: 3em;">
-        <div class="col-md-10 col-md-offset-1">
-            <ul class="list-group">
-                <li class="list-group-item text-center" style="background-color: #357ebd; font-size: 14px; font-weight: bold; text-transform: uppercase; color: #333333;"><h3><strong>Raccontaci della tua esperienza</strong></h3></li>
-                <li class="list-group-item ">
-                    <form id="aggiungiesperienza" action="{{route('esperienza.store',['id'=>$sentiero->id])}}" method="get" style="margin-top: 2em;">
-                    @csrf
 
-                        <div class="form-group">
-                            <label for="data">Data</label>
-                            <input class="form-control" type="date" id="data" name="data" required>
-                        </div>
-
-                        <div class="form-group">
-                            <label for="voto">Voto</label>
-                            <select class="form-control" id="voto" name="voto" required>
-                                <option value="1">1</option>
-                                <option value="2">2</option>
-                                <option value="3">3</option>
-                                <option value="4">4</option>
-                                <option value="5">5</option>
-                                <option value="6">6</option>
-                                <option value="7">7</option>
-                                <option value="8">8</option>
-                                <option value="9">9</option>
-                                <option value="10">10</option>
-                            </select>
-                        </div>
-
-                        <div class="form-group">
-                            <label for="difficolta">Difficoltà percepita</label>
-                            <select class="form-control" id="difficolta" name="difficolta" required>
-                                <option value="1">1</option>
-                                <option value="2">2</option>
-                                <option value="3">3</option>
-                                <option value="4">4</option>
-                                <option value="5">5</option>
-                                <option value="6">6</option>
-                                <option value="7">7</option>
-                                <option value="8">8</option>
-                                <option value="9">9</option>
-                                <option value="10">10</option>
-                            </select>
-                        </div>
-
-                        <div class="form-group">
-                            <label for="descrizione">Descrizione</label>
-                            <textarea class="form-control" id="descrizione" name="descrizione" rows="3" required></textarea>
-                        </div>
-
-                        <div class="form-group row">
-                            <div class="col-sm-10">
-                                <input type="hidden" name="user_id" value="{{$user_id}}"/>
-                                <label for="mySubmit" class="btn btn-primary btn-large btn-block"><span class="glyphicon glyphicon-floppy-save"></span> Invia</label>
-                                <input id="mySubmit" type="submit" value="save" class="hidden"/>
-                            </div>
-                        </div>
-
-                    </form>
-                </li>
-
-            </ul>
-        </div>
-    </div>-->
 
 <div class="modal fade" id="modalForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
    
@@ -474,8 +442,8 @@ function sostituisci_immagine(img){
                     </form>
                 
             </div>
-        </div><!-- /.modal-content -->
-    </div><!-- /.modal-dialog -->
+        </div> /.modal-content 
+    </div> /.modal-dialog 
   
 </div>
 
@@ -483,5 +451,13 @@ function sostituisci_immagine(img){
 data.max = new Date().toISOString().split("T")[0];
 </script>
 
-</div>
+<style>
+    html, body, #map, #elevation-div { height: 100%; width: 100%; padding: 0; margin: 0; } 
+#map { height: 75%; margin-left: auto; margin-right: auto; } 
+#elevation-div {	height: 25%; font: 12px/1.5 "Helvetica Neue", Arial, Helvetica, sans-serif; }
+</style>
+
+<script>
+    mappa("map", "elevation-div", '{{$gpx}}', true);
+</script>
 @endsection

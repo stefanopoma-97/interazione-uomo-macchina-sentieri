@@ -60,7 +60,21 @@
                 <div style="position:relative">
                 <img alt="image" width="200px" height="200px"class="img-circle img-responsive " src="{{$url}}">
                 </div>
-                <h2><strong>{{ $user_dettagli->username }}  </strong>
+                <div class="row">
+<!--                    <div class="col-md2">
+                        @if($user_dettagli->admin=='y')
+                        <div style="margin-left: 1em;" class="popup" onclick="popup(this)" >
+                            <span class="popuptext">Utente amministratore</span>
+                            <span class="glyphicon glyphicon-tower" ></span>
+                        </div>
+                        @else
+                        @endif
+                    </div>-->
+                </div>
+                
+                <h2>
+                    
+                    <strong>{{ $user_dettagli->username }}  </strong>
                     @if ($user_dettagli->id == $user_id)
                     <span onclick="location.href='{{ route('user.edit', ['id'=> $user_id]) }}'" class="glyphicon glyphicon glyphicon-cog"></span>
                     <h5><a href="{{route('user.rimuovifotoprofilo',['id'=> $user->id])}}">Rimuovi foto profilo</a></h5>

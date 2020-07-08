@@ -455,6 +455,46 @@ function valida_modifica_sentiero(button, modifica){
         
     }
     
+    
+    function check_gpx(button){
+        //window.confirm("check");
+        //nome_input=button.form.nome_input.value;
+        file=button.form.gpx.value;
+        //window.confirm("check"+file);
+        $('#messaggi_errore').parent().hide();
+        $('#messaggi_errore').empty();
+        $('#messaggi_conferma').parent().hide();
+        $('#messaggi_conferma').empty();
+        
+        
+        var sFileName = file;
+        //window.confirm("nome: "+sFileName+" lunghezza: "+sFileName.length);
+         if(sFileName===""){
+            var li = $("<li></li>");
+            li.text("Non hai inserito un file");
+            $('#messaggi_errore').parent().show();
+            $('#messaggi_errore').append(li);
+        }
+        else {
+            var sFileExtension = sFileName.split('.')[sFileName.split('.').length - 1].toLowerCase();
+       
+        if (!(sFileExtension === "gpx")) { /// 10 mb
+           var li = $("<li></li>");
+            li.text("File non supportato");
+            $('#messaggi_errore').parent().show();
+            $('#messaggi_errore').append(li);
+        }
+        else{
+            
+            button.form.submit();
+            
+        }
+        
+            
+        }
+        
+    }
+    
     function size_immagine(e) {
         //window.confirm("SIZE CHECK");
         $('#messaggi_errore').parent().hide();
@@ -502,7 +542,29 @@ function closeForm() {
   document.getElementById("form_nota").style.display = "none";
 }
     
- 
 
+
+ 
+var index = 0; 
+function scorri_immagini(){
+    //window.confirm("scorri");
+    var foto=new Array();
+    foto[0]=document.getElementById('im_1').src;
+    foto[1]=document.getElementById('im_2').src;
+    foto[2]=document.getElementById('im_3').src;
+
+    
+    //window.confirm("indice: "+index);
+    if (index > 2)
+        index = 0;
+    var img = document.getElementById("im_5");
+    img.src = foto[index];
+    //window.confirm("nuovo src: "+img.src);
+
+    
+    index++;
+    setTimeout("scorri_immagini()", 5000);
+
+}
     
  

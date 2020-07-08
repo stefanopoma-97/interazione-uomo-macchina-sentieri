@@ -167,6 +167,16 @@ Route::group(['middleware' => ['authCustom']], function()
     
     Route::get('/sentiero/{id}/rimuoviimmagine/{nome}', ['as' => 'sentiero.rimuoviimmagine', 
         'uses' => 'SentieroController@rimuovi_immagine']);
+    
+    
+    Route::get('/sentiero/{id}/gpx', ['as' => 'sentiero.gpx', 
+        'uses' => 'SentieroController@gpx']);
+    
+    Route::post('/sentiero/{id}/aggiungigpx', ['as' => 'sentiero.aggiungigpx', 
+        'uses' => 'SentieroController@aggiungi_gpx']);
+    
+    Route::get('/sentiero/{id}/rimuovigpx', ['as' => 'sentiero.rimuovigpx', 
+        'uses' => 'SentieroController@rimuovi_gpx']);
 
 
     //ESPERIENZE

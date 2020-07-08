@@ -30,11 +30,13 @@ class UserController extends Controller
         }
         $users = $dl->getAllUsers();
         $user = $dl->getUserByID($user_id);
+        $count_revisioni = count($dl->getRevisioniDaRevisionare($user_id));
 
         
         return view('utenti.utenti')->with('logged',true)->with('loggedName', $_SESSION["loggedName"])
                 ->with('users', $users)
                 ->with('user', $user)
+                ->with('count_revisioni', $count_revisioni)
                 ->with('user_id', $user_id);        
     }
     
@@ -50,11 +52,14 @@ class UserController extends Controller
         $user = $dl->getUserByID($user_id);
         $preferiti = $dl->getPreferiti($id);
         $iddettagli=$id;
+        $count_revisioni = count($dl->getRevisioniDaRevisionare($user_id));
+        
 
         
         return view('utenti.preferiti')->with('logged',true)->with('loggedName', $_SESSION["loggedName"])
                 ->with('preferiti', $preferiti)
                 ->with('user', $user)
+                ->with('count_revisioni', $count_revisioni)
                 ->with('iddettagli',$iddettagli)
                 ->with('user_id', $user_id);        
     }

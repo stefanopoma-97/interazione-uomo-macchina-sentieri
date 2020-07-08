@@ -18,12 +18,26 @@
        <!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>-->
         <!--<script src="{{ url('/') }}/js/bootstrap.min.js"></script>-->
         <script src="{{ url('/') }}/js/scriptValidazione.js"></script>
+        <script src="{{ url('/') }}/js/mappa.js"></script>
         <script src="{{ url('/') }}/js/scriptValidazioneSentieri.js"></script>
         <script src="{{ url('/') }}/js/scriptPopUp.js"></script>
+        
         <script type="text/javascript">@yield('javascript')</script>
+        
          <script src="http://code.jquery.com/jquery.js"></script>
         <script src="{{ url('/') }}/js/bootstrap.min.js"></script>
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons"rel="stylesheet">
+        
+        
+        
+        
+        <!-- MAPPA -->
+        <script src="https://unpkg.com/leaflet@1.3.2/dist/leaflet.js"></script>
+        <script src="https://unpkg.com/leaflet-ui@0.2.0/dist/leaflet-ui.js"></script>
+
+        <!-- leaflet-elevation -->
+        <link rel="stylesheet" href="https://unpkg.com/@raruto/leaflet-elevation/dist/leaflet-elevation.css" />
+        <script src="https://unpkg.com/@raruto/leaflet-elevation/dist/leaflet-elevation.js"></script>
         
         
         
@@ -38,6 +52,7 @@
                 $('#tabella_elenco_utenti').DataTable();
                 $('#tabella_elenco_sentieri').DataTable();
                 $('#tabella_elenco_preferiti').DataTable();
+                $('#tabella_revisioni_sentiero').DataTable();
                 $('#tabella_elenco_sentieri_effettuati').DataTable();
             });
 
@@ -68,6 +83,7 @@
                     
                     <ul class="nav navbar-nav navbar-right navbar-login pl-5 pull-right">
                         @yield('navbar')
+                        
                        
                     </ul>
                     
