@@ -16,19 +16,19 @@
     @if($user->admin == 'y')
     <li class="nav-item avatar dropdown">
         <a disable="" class="nav-link dropdown-toggle" id="navbarDropdownMenuLink-5" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-            @if($esperienze==0)
-            <!--<span class="badge badge-danger ml-2">{{$esperienze}}</span>-->
+            @if($count_revisioni==0)
+            <!--<span class="badge badge-danger ml-2">{{$count_revisioni}}</span>-->
             <span class="material-icons">notifications_none</span> 
             @else
-            <!--<span style="background-color:red" class="badge badge-danger ml-2">{{$esperienze}}</span>-->
+            <!--<span style="background-color:red" class="badge badge-danger ml-2">{{$count_revisioni}}</span>-->
             <span class="material-icons">notifications_active</span> 
             @endif
         </a>
         <ul class="dropdown-menu">
-            @if($esperienze==0)
-            <li><a class="dropdown-item waves-effect waves-light" href="{{ route('esperienza.darevisionare',  ['id'=> $user_id]) }}">Non ci sono commenti da revisionare <span class="badge badge-danger ml-2">{{$esperienze}}</span></a></li>
+            @if($count_revisioni==0)
+            <li><a class="dropdown-item waves-effect waves-light" href="{{ route('esperienza.darevisionare',  ['id'=> $user_id]) }}">Non ci sono commenti da revisionare <span class="badge badge-danger ml-2">{{$count_revisioni}}</span></a></li>
             @else
-            <li><a class="dropdown-item waves-effect waves-light" href="{{ route('esperienza.darevisionare',  ['id'=> $user_id]) }}">Commenti da revisionare <span class="badge badge-danger ml-2">{{$esperienze}}</span></a></li>
+            <li><a class="dropdown-item waves-effect waves-light" href="{{ route('esperienza.darevisionare',  ['id'=> $user_id]) }}">Commenti da revisionare <span class="badge badge-danger ml-2">{{$count_revisioni}}</span></a></li>
             @endif
         </ul>
     </li>
@@ -88,7 +88,7 @@
                         <th data-sortable="true" class="th-sm ">Username</th>
                         <th data-sortable="true" class="th-sm ">Nome</th>
                         <th data-sortable="true" class="th-sm ">Cognome</th>
-                        <th class="th-sm "></th>
+                        <th class="th-sm" data-sortable="false"></th>
                     </tr>
                 </thead>
 

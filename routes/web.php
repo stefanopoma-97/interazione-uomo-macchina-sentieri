@@ -184,8 +184,11 @@ Route::group(['middleware' => ['authCustom']], function()
         'uses' => 'EsperienzaController@store']);
    
     
-    Route::get('/utente/{id}/esperienza', ['as' => 'esperienza.mieesperienze', 
+    Route::get('/utente/{id}/mieesperienze', ['as' => 'esperienza.mieesperienze', 
         'uses' => 'EsperienzaController@mie_esperienze']);
+    
+    Route::get('/utente/{id}/esperienze', ['as' => 'esperienza.esperienzeutente', 
+        'uses' => 'EsperienzaController@esperienze_utente']);
     
     
     

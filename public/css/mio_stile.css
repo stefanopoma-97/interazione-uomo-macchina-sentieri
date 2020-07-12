@@ -222,6 +222,29 @@ li.inserimeno-titolo > p.titolo{
     white-space: nowrap;
 }
 
+.all_text {
+    word-wrap: break-word;
+    overflow: hidden; 
+    text-overflow: ellipsis;
+    white-space: normal;
+}
+
+.card > .list-group:first-child .all_text:first-child {
+    border-top-right-radius: 0.25rem;
+    border-top-left-radius: 0.25rem;
+}
+
+.card > .list-group:last-child .all_text:last-child {
+    border-bottom-right-radius: 0.25rem;
+    border-bottom-left-radius: 0.25rem;
+}
+
+.not_all_text {
+    overflow: hidden; 
+    text-overflow: ellipsis; 
+    white-space: nowrap;
+}
+
 .overflow-text {
     overflow: hidden; 
     text-overflow: ellipsis; 

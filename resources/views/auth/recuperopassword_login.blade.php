@@ -27,7 +27,7 @@
     </head>
 
     <body>-->
-@extends('layouts.master')
+@extends('layouts.masterlogin')
 
 @section('titolo', 'Login')
 

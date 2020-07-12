@@ -12,24 +12,51 @@
 <li><a class="bordo-selezione" href="{{ route('user.elenco') }}">Utenti</a></li>
 
     @if($logged)
+    
+    @if($user->admin == 'y')
+    <li class="nav-item avatar dropdown">
+        <a disable="" class="nav-link dropdown-toggle" id="navbarDropdownMenuLink-5" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+            @if($count_revisioni==0)
+            <!--<span class="badge badge-danger ml-2">{{$count_revisioni}}</span>-->
+            <span class="material-icons">notifications_none</span> 
+            @else
+            <!--<span style="background-color:red" class="badge badge-danger ml-2">{{$count_revisioni}}</span>-->
+            <span class="material-icons">notifications_active</span> 
+            @endif
+        </a>
+        <ul class="dropdown-menu">
+            @if($count_revisioni==0)
+            <li><a class="dropdown-item waves-effect waves-light" href="{{ route('esperienza.darevisionare',  ['id'=> $user_id]) }}">Non ci sono commenti da revisionare <span class="badge badge-danger ml-2">{{$count_revisioni}}</span></a></li>
+            @else
+            <li><a class="dropdown-item waves-effect waves-light" href="{{ route('esperienza.darevisionare',  ['id'=> $user_id]) }}">Commenti da revisionare <span class="badge badge-danger ml-2">{{$count_revisioni}}</span></a></li>
+            @endif
+        </ul>
+    </li>
+    @else
+    @endif
+    
     <li class="dropdown" style="margin-left: 5em;">
         <a class="btnsignin dropdown-toggle" href="#" data-toggle="dropdown"><span class="glyphicon glyphicon-user"></span></a>
         <ul class="dropdown-menu">
-            <li><a href="{{ route('user.dettagli', ['id'=> $user_id]) }}">Account</a></li>
+            <li><a href="{{ route('user.dettagli', ['id'=> $user_id]) }}">{{$user->nome}}</a></li>
             <li><a href="{{ route('user.preferiti', ['id'=> $user_id]) }}">Preferiti</a></li>
             @if($user->admin == 'y')
-            <li><a href="{{ route('user.elenco') }}">Lista utenti</a></li>
             <li><a href="{{ route('sentiero.index') }}">Lista sentieri</a></li>
+            <li><a href="{{ route('esperienza.darevisionare',  ['id'=> $user_id]) }}">Revisioni</a></li>
             @else
             @endif
             <li><a href="{{ route('user.logout') }}">Log out</a></li>
         </ul>
     </li>
+    
+    
+    
     @else
         <li style="margin-left: 5em;"><a class="btn btnlogin" href="{{ route('user.auth.login') }}"><span class="glyphicon glyphicon-log-in"></span> Accedi</a></li>
         <li><a class="btnsignin" href="{{ route('user.auth.register') }}"><span class="glyphicon glyphicon-user"></span> Registrati</a></li>
 
     @endif
+    
 
 @endsection
 

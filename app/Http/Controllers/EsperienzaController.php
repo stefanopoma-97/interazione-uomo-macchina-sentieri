@@ -47,12 +47,42 @@ class EsperienzaController extends Controller
         $user = $dl->getUserByID($user_id);
         
         
-        $esperienze = $dl->getRevisioniNonApprovate($user_id);
+        $esperienze = $dl->getEsperienzeByUserID($user_id);
+        $count_revisioni = count($dl->getRevisioniDaRevisionare($user_id));
+
         
          return view('utenti.esperienze')->with('logged',true)
                 ->with('loggedName', $_SESSION["loggedName"])
                 ->with('esperienze', $esperienze)
                 ->with('user_id', $user_id)
+                 ->with('utente_id', $user_id)
+                 ->with('count_revisioni', $count_revisioni)
+                ->with('user', $user);
+    }
+    
+    public function esperienze_utente($id) {
+
+        
+        $dl = new DataLayer();
+        $user_id = $dl->getUserID($_SESSION['loggedName']);
+        if($user_id==-1){
+            session_destroy();
+            return Redirect::to(route('user.auth.login'));
+        }
+        
+        $user = $dl->getUserByID($user_id);
+        
+        
+        $esperienze = $dl->getEsperienzeApprovate($id);
+        $count_revisioni = count($dl->getRevisioniDaRevisionare($user_id));
+
+        
+         return view('utenti.esperienze')->with('logged',true)
+                ->with('loggedName', $_SESSION["loggedName"])
+                ->with('esperienze', $esperienze)
+                ->with('user_id', $user_id)
+                 ->with('count_revisioni', $count_revisioni)
+                 ->with('utente_id', $id)
                 ->with('user', $user);
     }
     
@@ -69,11 +99,14 @@ class EsperienzaController extends Controller
         $user = $dl->getUserByID($user_id);
  
         $esperienze = $dl->getRevisioniDaRevisionare($user_id);
+        $count_revisioni = count($dl->getRevisioniDaRevisionare($user_id));
+
         
          return view('utenti.revisionare')->with('logged',true)
                 ->with('loggedName', $_SESSION["loggedName"])
                 ->with('esperienze', $esperienze)
                 ->with('user_id', $user_id)
+                ->with('count_revisioni', $count_revisioni)
                 ->with('user', $user);
     }
     

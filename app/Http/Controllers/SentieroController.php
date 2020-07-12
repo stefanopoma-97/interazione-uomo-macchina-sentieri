@@ -35,10 +35,13 @@ class SentieroController extends Controller
 //            return Redirect::to(route('sentiero.errore'));
         
         $sentieri = $dl->getAllSentieri();
+        $count_revisioni = count($dl->getRevisioniDaRevisionare($user_id));
+
         
         return view('sentieri.sentieri')->with('logged',true)->with('loggedName', $_SESSION["loggedName"])
                 ->with('sentieri', $sentieri)
                 ->with('user', $user)
+                ->with('count_revisioni', $count_revisioni)
                 ->with('user_id', $user_id);        
     }
     
@@ -65,6 +68,7 @@ class SentieroController extends Controller
         $citta = $dl->getAllCitta();
         $categoria = $dl->getCategorie();
         $difficolta = $dl->getDifficolta();
+        $count_revisioni = count($dl->getRevisioniDaRevisionare($user_id));
         
         return view('sentieri.modificasentiero')->with('logged',true)->with('loggedName', $_SESSION["loggedName"])
                 ->with('sentiero', $sentiero)
@@ -72,6 +76,7 @@ class SentieroController extends Controller
                 ->with('categoria', $categoria)
                 ->with('difficolta', $difficolta)
                 ->with('citta', $citta)
+                ->with('count_revisioni', $count_revisioni)
                 ->with('user_id', $user_id);        
     }
     
@@ -97,12 +102,14 @@ class SentieroController extends Controller
         $citta = $dl->getAllCitta();
         $categoria = $dl->getCategorie();
         $difficolta = $dl->getDifficolta();
+        $count_revisioni = count($dl->getRevisioniDaRevisionare($user_id));
         
         return view('sentieri.modificasentiero')->with('logged',true)->with('loggedName', $_SESSION["loggedName"])
                 ->with('user', $user)
                 ->with('categoria', $categoria)
                 ->with('difficolta', $difficolta)
                 ->with('citta', $citta)
+                ->with('count_revisioni', $count_revisioni)
                 ->with('user_id', $user_id);        
     }
     
@@ -234,8 +241,10 @@ class SentieroController extends Controller
         $sentiero = $dl->getSentieroByID($id);
         if($sentiero !== null)
         {
+            $count_revisioni = count($dl->getRevisioniDaRevisionare($user_id));
             return view('sentieri.cancellasentiero')->with('logged',true)
                 ->with('loggedName', $_SESSION["loggedName"])
+                ->with('count_revisioni', $count_revisioni)
                 ->with('sentiero',$sentiero);
         }
         else
@@ -258,9 +267,11 @@ class SentieroController extends Controller
             session_destroy();
             return Redirect::to(route('user.auth.login'));
         }
+        $count_revisioni = count($dl->getRevisioniDaRevisionare($user_id));
         
         
         return view('sentieri.paginaerrore')->with('logged',true)
+                ->with('count_revisioni', $count_revisioni)
                 ->with('loggedName', $_SESSION["loggedName"]);
         
         
@@ -293,12 +304,16 @@ class SentieroController extends Controller
             $immagini = null;
         }
         
-        $link="http://www.google.com/search?q=";
+        $link_google="http://www.google.com/search?q=";
+        $link_youtube="https://www.youtube.com/results?search_query=";
+        
         $parole = explode(" ", $sentiero->titolo);
-        $link=$link.array_shift($parole);
+        $link_google=$link_google.array_shift($parole);
+        $link_youtube=$link_youtube.array_shift($parole);
         
         foreach ($parole as $parola){
-            $link=$link.'+'.$parola;
+            $link_google=$link_google.'+'.$parola;
+            $link_youtube=$link_youtube.'+'.$parola;
         }
         
         $gpx=$dl->getGpx($id);
@@ -306,6 +321,7 @@ class SentieroController extends Controller
         
         
         $revisioni=$dl->getRevisioniSentiero($user_id, $id);
+        $count_revisioni = count($dl->getRevisioniDaRevisionare($user_id));
             
         
         return view('sentieri.sentiero')->with('logged',true)
@@ -314,11 +330,13 @@ class SentieroController extends Controller
                 ->with('esperienze', $esperienze)
                 ->with('user_id', $user_id)
                 ->with('user', $user)
-                ->with('link_google', $link)
+                ->with('link_google', $link_google)
+                ->with('link_youtube', $link_youtube)
                 ->with('immagini', $immagini)
                 ->with('gpx', $gpx)
                 ->with('preferito', $preferito)
                 ->with('revisioni', $revisioni)
+                ->with('count_revisioni', $count_revisioni)
                 ->with('dati_sentiero', $dati_sentiero);
         
         
@@ -356,7 +374,7 @@ class SentieroController extends Controller
         else
             $link3=asset(Storage::url("public/fotosentieri/default"));
         
-        
+        $count_revisioni = count($dl->getRevisioniDaRevisionare($user_id));
             
         
         return view('sentieri.immagini')->with('logged',true)
@@ -364,6 +382,7 @@ class SentieroController extends Controller
                 ->with('sentiero', $sentiero)
                 ->with('user', $user)
                 ->with('user_id', $user_id)
+                ->with('count_revisioni', $count_revisioni)
                 ->with('link1', $link1)
                 ->with('link3', $link3)
                 ->with('link2', $link2);
@@ -400,12 +419,14 @@ class SentieroController extends Controller
         
         //http://localhost:8000/storage/fotosentieri/{id}/1,2o2
         
-        $gpx=$dl->getGpx($id);            
+        $gpx=$dl->getGpx($id);      
+        $count_revisioni = count($dl->getRevisioniDaRevisionare($user_id));
         
         return view('sentieri.gpx')->with('logged',true)
                 ->with('loggedName', $_SESSION["loggedName"])
                 ->with('sentiero', $sentiero)
                 ->with('user', $user)
+                ->with('count_revisioni', $count_revisioni)
                 ->with('user_id', $user_id)
                 ->with('gpx', $gpx);
      
@@ -453,6 +474,7 @@ class SentieroController extends Controller
             $citta=$dl->getAllCitta();
             $categorie=$dl->getCategorie();
             $difficolta=$dl->getDifficolta();
+            $count_revisioni = count($dl->getRevisioniDaRevisionare($user_id));
 
             return view('sentieri.ricercasentieri')->with('logged', true)
                             ->with('loggedName', $_SESSION["loggedName"])
@@ -460,6 +482,7 @@ class SentieroController extends Controller
                             ->with('user_id', $user_id)
                             ->with('user', $user)
                             ->with('citta', $citta)
+                            ->with('count_revisioni', $count_revisioni)
                             ->with('categorie', $categorie)
                             ->with('difficolta', $difficolta)
                             ->with('dati_sentieri', $dati_sentieri);
@@ -558,6 +581,7 @@ class SentieroController extends Controller
         $citta=$dl->getAllCitta();
         $categorie=$dl->getCategorie();
         $difficolta=$dl->getDifficolta();
+        $count_revisioni = count($dl->getRevisioniDaRevisionare($user_id));
         
 //         $sentieri->withPath(view('sentieri.ricercasentieri')->with('logged', true)
 //                        ->with('loggedName', $_SESSION["loggedName"])
@@ -575,6 +599,7 @@ class SentieroController extends Controller
                         ->with('user_id', $user_id)
                         ->with('user', $user)
                         ->with('citta', $citta)
+                        ->with('count_revisioni', $count_revisioni)
                         ->with('categorie', $categorie)
                         ->with('difficolta', $difficolta)
                         ->with('dati_sentieri', $dati_sentieri);
@@ -612,6 +637,7 @@ class SentieroController extends Controller
         $citta=$dl->getAllCitta();
         $categorie=$dl->getCategorie();
         $difficolta=$dl->getDifficolta();
+        $count_revisioni = count($dl->getRevisioniDaRevisionare($user_id));
 
         return view('sentieri.ricercasentieri')->with('logged', true)
                         ->with('loggedName', $_SESSION["loggedName"])
@@ -619,6 +645,7 @@ class SentieroController extends Controller
                         ->with('user_id', $user_id)
                         ->with('user', $user)
                         ->with('citta', $citta)
+                        ->with('count_revisioni', $count_revisioni)
                         ->with('categorie', $categorie)
                         ->with('difficolta', $difficolta)
                         ->with('dati_sentieri', $dati_sentieri);

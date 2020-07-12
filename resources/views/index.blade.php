@@ -113,7 +113,7 @@
 @endsection
 
 @section('corpo')
-<!-- elenco suggerimenti-->
+<div class="container">
         <div class="container">
             <div class="row">
                         
@@ -122,12 +122,14 @@
                             <div id="consigli-tab">
                                 
                                 <!-- tab della nav tabs-->
+                                <div>
                                 <ul class="nav nav-tabs">
                                     <li class="active"><a href="#tab-1" data-toggle="tab">Aggiunti di recente</a></li>
                                     <li><a href="#tab-2" data-toggle="tab">I più votati</a></li>
                                     <li><a href="#tab-3" data-toggle="tab">Consigliati per te</a></li>
                                     <li><a href="#tab-4" data-toggle="tab">Preferiti</a></li>
                                 </ul>
+                                </div> 
                                 
                                 <div class="tab-content">
                                     <div class="tab-pane active" id="tab-1">
@@ -231,30 +233,18 @@
                         </div><!-- /.col-sm-7 -->
                     </div><!-- /.row -->
             </div>
+            
+
         </div>
-<!--<div class="container">
-    @foreach ($users as $user)
-    <div class="row">{{ $user->titolo }}</div>
-    @endforeach
+
+
 </div>
-
-
-
-
-<!--<iframe frameBorder="0" scrolling="no" src="https://www.wikiloc.com/wikiloc/spatialArtifacts.do?event=view&id=1547196&measures=on&title=off&near=on&images=off&maptype=H" width="500" height="400"></iframe>
-<div style="color:#777;font-size:11px;line-height:16px;"></div>-->
-<!--
-<div style="max-width:60em;" id="map"></div>
-
-<div class="container" >
+<!--<div class="container">
     <div class="row">
-        <div class="col-md-5 col-md-offset-1">
-            <div class="col-md-12" id="elevation-div"></div>
+        <div class="col-md-12">
+            POLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO
         </div>
     </div>
-</div>
-<script>
-    mappa("map", "elevation-div", "http://localhost:8000/storage/gpx/11", true);
-</script>-->
+</div>-->
 
 @endsection

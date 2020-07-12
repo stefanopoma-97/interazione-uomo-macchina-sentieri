@@ -88,6 +88,8 @@ class UserController extends Controller
         
         $esperienze = $dl->getEsperienzeApprovate($id);
         
+        $count_revisioni = count($dl->getRevisioniDaRevisionare($user_id));
+        
         $exists = Storage::has("public/fotoprofilo/profilo".$id);
         if($exists)
             $url = asset(Storage::url("public/fotoprofilo/profilo".$id));
@@ -106,6 +108,7 @@ class UserController extends Controller
                 ->with('user_dettagli', $user_dettagli)
                 ->with('user_id', $user_id)
                 ->with('user', $user)
+                ->with('count_revisioni', $count_revisioni)
                 ->with('esperienze', $esperienze)
                 ->with('url', $url)
                 //->with('immagine', $immagine)
@@ -137,11 +140,14 @@ class UserController extends Controller
         $user = $dl->getUserByID($id);
         
         $citta = $dl->getAllCitta();
+        
+        $count_revisioni = count($dl->getRevisioniDaRevisionare($user_id));
        
        
         return view('utenti.modificautente')->with('logged',true)->with('loggedName', $_SESSION["loggedName"])
                 ->with('user_id', $user_id)
                 ->with('user', $user)
+                ->with('count_revisioni', $count_revisioni)
                 ->with('citta', $citta);        
     }
     
@@ -162,10 +168,13 @@ class UserController extends Controller
         
         $user = $dl->getUserByID($id);
         
+        $count_revisioni = count($dl->getRevisioniDaRevisionare($user_id));
+        
        
        
         return view('utenti.modificapassword')->with('logged',true)->with('loggedName', $_SESSION["loggedName"])
                 ->with('user_id', $user_id)
+                ->with('count_revisioni', $count_revisioni)
                 ->with('user', $user);        
     }
     
@@ -185,11 +194,14 @@ class UserController extends Controller
         
         $user = $dl->getUserByID($id);
         
+        $count_revisioni = count($dl->getRevisioniDaRevisionare($user_id));
+        
         //Mando una mail all'ingresso (Tentativo di reset password)
         //$this->send_mail_reset_password("1", 'stefano', 'stefano1997poma97@gmail.com');
        
         return view('utenti.recuperopassword')->with('logged',true)->with('loggedName', $_SESSION["loggedName"])
                 ->with('user_id', $user_id)
+                ->with('count_revisioni', $count_revisioni)
                 ->with('user', $user);        
     }
     

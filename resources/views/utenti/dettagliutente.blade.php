@@ -12,25 +12,50 @@
 <li><a class="bordo-selezione" href="{{ route('user.elenco') }}">Utenti</a></li>
 
     @if($logged)
+    
+    @if($user->admin == 'y')
+    <li class="nav-item avatar dropdown">
+        <a disable="" class="nav-link dropdown-toggle" id="navbarDropdownMenuLink-5" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+            @if($count_revisioni==0)
+            <!--<span class="badge badge-danger ml-2">{{$count_revisioni}}</span>-->
+            <span class="material-icons">notifications_none</span> 
+            @else
+            <!--<span style="background-color:red" class="badge badge-danger ml-2">{{$count_revisioni}}</span>-->
+            <span class="material-icons">notifications_active</span> 
+            @endif
+        </a>
+        <ul class="dropdown-menu">
+            @if($count_revisioni==0)
+            <li><a class="dropdown-item waves-effect waves-light" href="{{ route('esperienza.darevisionare',  ['id'=> $user_id]) }}">Non ci sono commenti da revisionare <span class="badge badge-danger ml-2">{{$count_revisioni}}</span></a></li>
+            @else
+            <li><a class="dropdown-item waves-effect waves-light" href="{{ route('esperienza.darevisionare',  ['id'=> $user_id]) }}">Commenti da revisionare <span class="badge badge-danger ml-2">{{$count_revisioni}}</span></a></li>
+            @endif
+        </ul>
+    </li>
+    @else
+    @endif
+    
     <li class="dropdown" style="margin-left: 5em;">
         <a class="btnsignin dropdown-toggle" href="#" data-toggle="dropdown"><span class="glyphicon glyphicon-user"></span></a>
         <ul class="dropdown-menu">
-            <li><a href="{{ route('user.dettagli', ['id'=> $user_id]) }}">Account</a></li>
+            <li><a href="{{ route('user.dettagli', ['id'=> $user_id]) }}">{{$user->nome}}</a></li>
             <li><a href="{{ route('user.preferiti', ['id'=> $user_id]) }}">Preferiti</a></li>
             @if($user->admin == 'y')
-            <li><a href="{{ route('user.elenco') }}">Lista utenti</a></li>
             <li><a href="{{ route('sentiero.index') }}">Lista sentieri</a></li>
+            <li><a href="{{ route('esperienza.darevisionare',  ['id'=> $user_id]) }}">Revisioni</a></li>
             @else
             @endif
             <li><a href="{{ route('user.logout') }}">Log out</a></li>
         </ul>
     </li>
+    
+    
+    
     @else
         <li style="margin-left: 5em;"><a class="btn btnlogin" href="{{ route('user.auth.login') }}"><span class="glyphicon glyphicon-log-in"></span> Accedi</a></li>
         <li><a class="btnsignin" href="{{ route('user.auth.register') }}"><span class="glyphicon glyphicon-user"></span> Registrati</a></li>
 
     @endif
-
 @endsection
 
 @section('sfondo')
@@ -57,8 +82,8 @@
 
         <div align="center" class="col-md-12">
             <div> 
-                <div style="position:relative">
-                <img alt="image" width="200px" height="200px"class="img-circle img-responsive " src="{{$url}}">
+                <div class="col-md-2 col-md-offset-5 col-m-2 col-sm-4 col-sm-offset-4"style="position:relative">
+                    <img alt="image" style="max-height: 200px; width:100%; height: auto;"class="img-circle img-responsive " src="{{$url}}">
                 </div>
                 <div class="row">
 <!--                    <div class="col-md2">
@@ -84,25 +109,31 @@
                 
                 
                 <div class="col-md-8 col-md-offset-2 col-sm-12">
-                    <ul class="list-group ">
+                    
+                    
+                    <div class="col-md-12" >
+                    <ul class="list-group">
                         <li class="list-group-item"><q>Nome: {{ $user_dettagli->nome }}</q></li>
                         <li class="list-group-item ">Cognome: {{ $user_dettagli->cognome }}</li>
                         @if($user->id == $user_dettagli->id)
                         <li class="list-group-item ">Città: {{ $user_dettagli->citta->nome }}</li>
                         <li class="list-group-item ">Mail: {{ $user_dettagli->mail }}</li>
-                        <li class="list-group-item "><a href="{{route('esperienza.mieesperienze',['id'=> $user->id])}}">Esperienze da revisionare</a></li>
+                        <li class="list-group-item "><a href="{{route('esperienza.mieesperienze',['id'=> $user->id])}}">Le mie esperienze</a></li>
                         @if(count($user_dettagli->preferiti)==0)
                         <li class="list-group-item ">Preferiti: {{ count($user_dettagli->preferiti) }}</a></li>
                         @else
                         <li class="list-group-item ">Preferiti: <a href="{{ route('user.preferiti', ['id'=> $user_id]) }}">{{ count($user_dettagli->preferiti) }}</a></li>
                         @endif
                         @else
+                        <li class="list-group-item "><a href="{{route('esperienza.esperienzeutente',['id'=> $user_dettagli->id])}}">Esperienze personali</a></li>
                         @endif
                         <li class="list-group-item ">Percorsi effettuati: {{ count($user_dettagli->esperienze) }}</li>
+
+                        <li class="list-group-item all_text"><q>"{{$user_dettagli->descrizione}}"</q></li>
                         
-                        <li class="list-group-item "><q>"{{$user_dettagli->descrizione}}"</q></li>
-                        @if ($user_dettagli->id == $user_id)
-                        <form action="{{route('user.fotoprofilo',['id'=> $user->id])}}" id="modifica_foto_profilo" name="modifica_foto_profilo" method="POST" enctype="multipart/form-data"> {{ csrf_field() }}
+                        <div style="margin-bottom: 2em">
+                    @if ($user_dettagli->id == $user_id)
+                         <form  action="{{route('user.fotoprofilo',['id'=> $user->id])}}" id="modifica_foto_profilo" name="tyle="margin-bottom: 2em"modifica_foto_profilo" method="POST" enctype="multipart/form-data"> {{ csrf_field() }}
 
                             <div class="form-group">
                                 <div class="col-sm-3">
@@ -130,8 +161,9 @@
                             </div>
                         </form>
                         @endif
-
+                    </div>
                     </ul>
+                    </div>
                 </div>
 
             </div>
@@ -161,18 +193,18 @@
                         <col width='10%'>
                         
                         <thead>
-                            <tr>
-                                <th>Titolo</th>
-                                <th>Categoria</th>
-                                <th>Città</th>
-                                <th></th>
+                            <tr class="table-bordered">
+                                <th data-sortable="true" class="th-sm ">Titolo</th>
+                                <th data-sortable="true" class="th-sm ">Categoria</th>
+                                <th data-sortable="true" class="th-sm ">Città</th>
+                                <th class="th-sm" data-sortable="false"></th>
                             </tr>
                         </thead>
 
                         <tbody>
                             @foreach($sentieri_effettuati as $sentiero)
                             <tr>
-                                <td>{{ $sentiero->titolo }}</td>
+                                <td><a style="color:inherit; text-decoration: none;" href="{{route('sentiero.show',['sentiero'=>$sentiero->id])}}">{{ $sentiero->titolo }}</a></td>
                                 <td>{{ $sentiero->categoria->nome }}</td>
                                 <td>{{ $sentiero->citta->nome }}</td>
                                 <td>
@@ -258,5 +290,8 @@
 
   
 </div>
+<br>
+<br>
+<br>
 @endif
 @endsection
