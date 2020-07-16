@@ -245,6 +245,7 @@ class SentieroController extends Controller
             return view('sentieri.cancellasentiero')->with('logged',true)
                 ->with('loggedName', $_SESSION["loggedName"])
                 ->with('count_revisioni', $count_revisioni)
+                ->with('user_id', $user_id)
                 ->with('sentiero',$sentiero);
         }
         else
@@ -252,6 +253,33 @@ class SentieroController extends Controller
             return Redirect::to(route('sentiero.errore'));
 
         }
+    }
+    
+    
+    public function sentiero_esperienze($id) {
+        
+        $dl = new DataLayer();
+        $user_id = $dl->getUserID($_SESSION['loggedName']);
+        if($user_id==-1){
+            session_destroy();
+            return Redirect::to(route('user.auth.login'));
+        }
+        
+        $user = $dl->getUserByID($user_id);
+       
+        
+        $sentiero = $dl->getSentieroByID($id);
+        $count_revisioni = count($dl->getRevisioniDaRevisionare($user_id));
+        $esperienze = $dl->getEsperienzeApprovateSentieroPaginate($sentiero->id);
+        
+        return view('sentieri.esperienzesentiero')->with('logged',true)
+            ->with('loggedName', $_SESSION["loggedName"])
+            ->with('count_revisioni', $count_revisioni)
+            ->with('esperienze', $esperienze)
+            ->with('user', $user)
+            ->with('user_id', $user_id)
+            ->with('sentiero',$sentiero);
+       
     }
     
     public function errore() {

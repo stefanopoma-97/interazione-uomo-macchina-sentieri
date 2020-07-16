@@ -104,7 +104,7 @@
                         <tbody>
                             @foreach($preferiti as $sentiero)
                             <tr>
-                                <td>{{ $sentiero->titolo }}</td>
+                                <td><a style="color:inherit; text-decoration: none;" href="{{route('sentiero.show',['sentiero'=>$sentiero->id])}}">{{ $sentiero->titolo }}</a></td>
                                 <td>{{ $sentiero->citta->nome }}</td>
                                 <td>
                                     {{$sentiero->categoria->nome}}

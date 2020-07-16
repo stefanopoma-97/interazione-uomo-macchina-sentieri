@@ -105,7 +105,7 @@
                         <tbody>
                             @foreach($sentieri as $sentiero)
                             <tr>
-                                <td>{{ $sentiero->titolo }}</td>
+                                <td><a style="color:inherit; text-decoration: none;" href="{{route('sentiero.show',['sentiero'=>$sentiero->id])}}">{{ $sentiero->titolo }}</a></td>
                                 <td><a href="{{route('user.dettagli', ['id'=> $sentiero->autore->id])}}">{{ $sentiero->autore->nome }}</a></td>
                                 <td>
                                     <a class="btn btn-primary" href="{{ route('sentiero.edit', ['sentiero'=> $sentiero->id]) }}"><span class="glyphicon glyphicon-pencil"></span> Edit</a>

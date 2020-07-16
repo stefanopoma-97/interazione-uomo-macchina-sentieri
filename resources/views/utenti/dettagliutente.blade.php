@@ -70,7 +70,7 @@
 <ul class="breadcrumb pull-right">
     <li><a href="{{ route('home') }}">Home</a></li>
     <li><a href="{{ route('user.elenco') }}">Utenti</a></li>
-    <li class="active">Utente</li>
+    <li class="active">Account</li>
 </ul>
 @endsection
 
@@ -264,7 +264,7 @@
           <div class="col-m-3 col-sm-3">
               <ul class="list-group ">
                   <li align='center' class="list-group-item "><h4>{{ $esperienza->sentiero->titolo }}</h4></li>
-                  <li style="height: 100px" class="list-group-item"><q>{{ $esperienza->sentiero->descrizione }}</q></li>
+                  <li style="height: 80px" class="list-group-item"><q>{{ $esperienza->sentiero->descrizione }}</q></li>
                   <li class="list-group-item ">Difficoltà:   {{ $esperienza->difficolta}}</li>
                   <li class="list-group-item ">Voto:   {{ $esperienza->voto }}</li>
                   <li class="list-group-item "><a class="btn btn-info btn-block btn-round-bottom" href="{{route('sentiero.show',['sentiero'=>$sentiero->id])}}" role="button">Dettagli</a></li>

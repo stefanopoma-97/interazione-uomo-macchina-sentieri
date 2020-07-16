@@ -181,7 +181,7 @@ function valida_modifica_sentiero(button, modifica){
         $('#ul_errori').parent().show();
         $('#ul_errori').append(li);
     }
-    else if(altezza_massima < 1 || altezza_massima > 10000){
+    else if(altezza_massima < 0 || altezza_massima > 10000){
         errori=true;
         button.form.altezza_massima.focus();
         $(button.form.altezza_massima).css('border-color','red');
@@ -200,7 +200,7 @@ function valida_modifica_sentiero(button, modifica){
         $('#ul_errori').parent().show();
         $('#ul_errori').append(li);
     }
-    else if(altezza_minima < 1 || altezza_minima > 10000){
+    else if(altezza_minima < 0 || altezza_minima > 10000){
         errori=true;
         button.form.altezza_minima.focus();
         $(button.form.altezza_minima).css('border-color','red');
@@ -220,14 +220,14 @@ function valida_modifica_sentiero(button, modifica){
     }
     else if(true){
         dislivello=altezza_massima - altezza_minima;
-        if (salita < dislivello || discesa < dislivello){
+        if (salita < dislivello && discesa < dislivello){
             errori=true;
             button.form.salita.focus();
             button.form.discesa.focus();
             $(button.form.discesa).css('border-color','red');
             $(button.form.salita).css('border-color','red');
             var li = $("<li></li>");
-            li.text("Valori di salita/discesa troppo bassi per il displivello del percorso");
+            li.text("Valori di salita/discesa troppo bassi per il dislivello del percorso");
             $('#ul_errori').parent().show();
             $('#ul_errori').append(li);
         }

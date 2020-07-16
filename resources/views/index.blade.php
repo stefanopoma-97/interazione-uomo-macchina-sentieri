@@ -212,7 +212,7 @@
                                                     <div class="col-m-3 col-sm-3 col-xs-12">
                                                         <ul class="list-group">
                                                             <li class="list-group-item "><h4>{{ $sentiero->titolo }}</h4></li>
-                                                            <li class="list-group-item "><strong>{{ $sentiero->categoria->nome }}</strong></li>
+                                                            <li class="list-group-item ">{{ $sentiero->categoria->nome }}</li>
                                                             <li style="height: 50px" class="list-group-item "><q>{{ $sentiero->descrizione }}</q></li>
                                                             <li class="list-group-item "><span class="glyphicon glyphicon-time"></span>   {{ $sentiero->durata }} ore</li>
                                                             <li class="list-group-item "><span class="glyphicon glyphicon-repeat"></span>   {{ $sentiero->lunghezza }} Km</li>

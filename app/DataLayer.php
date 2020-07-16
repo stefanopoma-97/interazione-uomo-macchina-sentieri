@@ -221,7 +221,15 @@ public function getGpx($sentiero_id){
 }
 
 
-
+public function getFotoProfilo($user_id){
+    $exists = Storage::has("public/fotoprofilo/profilo".$user_id);
+    if($exists)
+        $url = asset(Storage::url("public/fotoprofilo/profilo".$user_id));
+    else
+        $url=asset(Storage::url("public/fotoprofilo/default"));
+    
+    return $url;
+}
 
 public function hasImages($id){
     $immagini = array();
@@ -384,8 +392,18 @@ public function hasImages($id){
         return $revisioni;
     }
     
+    public function getEsperienzeApprovatePaginate($user_id){
+        $revisioni = Esperienza::where('utente_id', $user_id)->where('stato',"approvato")->paginate(20);
+        return $revisioni;
+    }
+    
     public function getEsperienzeApprovateSentiero($sentiero_id){
         $revisioni = Esperienza::where('sentiero_id', $sentiero_id)->where('stato',"approvato")->get();
+        return $revisioni;
+    }
+    
+    public function getEsperienzeApprovateSentieroPaginate($sentiero_id){
+        $revisioni = Esperienza::where('sentiero_id', $sentiero_id)->where('stato',"approvato")->paginate(20);
         return $revisioni;
     }
     
@@ -545,7 +563,9 @@ public function hasImages($id){
     }
     
     public function deleteSentiero($id) {
-        $sentiero = Sentiero::find($id)->delete();
+        Esperienza::where('sentiero_id',$id)->delete();
+        Preferiti::where('sentiero_id',$id)->delete();
+        Sentiero::find($id)->delete();
     }
     
     

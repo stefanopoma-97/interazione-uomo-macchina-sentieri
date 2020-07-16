@@ -189,7 +189,7 @@
                         <p style="font-size: large">{{$sentiero->descrizione}}</p>
                         <blockquote>
                             <p style="font-size: medium" class="not_all_text">{{$sentiero->autore->descrizione}}</p>
-                            <small><cite title="Source Title">{{$sentiero->autore->nome}}</cite></small>
+                            <small><cite title="Source Title"><a style="color:inherit; text-decoration: none;" href="{{ route('user.dettagli',['id'=> $sentiero->autore->id]) }}">{{$sentiero->autore->nome}}</a></cite></small>
                         </blockquote>
                     </div>
                 </div>
@@ -293,7 +293,7 @@
 
                 <div class="col-m-12 col-sm-12">
                     <ul align='center' class="list-group ">
-                        <li class="list-group-item "><h4>{{ $esperienza->utente->username }}</h4></li>
+                        <li class="list-group-item "><a style="color:inherit; text-decoration: none;"  href="{{ route('user.dettagli', ['id'=> $esperienza->utente->id]) }}"><h4>{{ $esperienza->utente->username }}</h4></a></li>
                         <li style="height: 100px" class="list-group-item all_text"><q>"{{ $esperienza->commento }}"</q></li>
                         <li class="list-group-item "><strong>Difficoltà:</strong>   {{ $esperienza->difficolta}}</li>
                         <li class="list-group-item "><strong>Voto:</strong>   {{ $esperienza->voto }}</li>
@@ -319,6 +319,7 @@
     </a>
     </div>
 </div>
+<a href="{{ route('sentiero.esperienze',  ['id'=> $sentiero->id]) }}">Mostra di più</a>
 
 @endif
 
@@ -437,7 +438,7 @@ function sostituisci_immagine(img){
                 <h1 class="modal-title">Inserisci una nota</h1>
             </div>
             <div class="modal-body">
-                <form id="aggiungies_perienza" action="{{route('esperienza.store',['id'=>$sentiero->id])}}" method="get" style="margin-top: 2em;">
+                <form id="aggiungi_esperienza" action="{{route('esperienza.store',['id'=>$sentiero->id])}}" method="get" style="margin-top: 2em;">
                     @csrf
 
                         <div class="form-group">
@@ -479,7 +480,7 @@ function sostituisci_immagine(img){
 
                         <div class="form-group">
                             <label for="descrizione">Descrizione</label>
-                            <textarea class="form-control" id="descrizione" name="descrizione" rows="3" required></textarea>
+                            <textarea class="form-control" id="descrizione" name="descrizione" rows="3" onkeyup="massimo_1000_caratteri(this)" required></textarea>
                         </div>
 
                         <div class="form-group row">
@@ -500,8 +501,10 @@ function sostituisci_immagine(img){
   
 </div>
 
+
 <script>
 data.max = new Date().toISOString().split("T")[0];
+scorri_immagini();
 </script>
 
 <style>

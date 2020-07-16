@@ -73,11 +73,11 @@ class EsperienzaController extends Controller
         $user = $dl->getUserByID($user_id);
         
         
-        $esperienze = $dl->getEsperienzeApprovate($id);
+        $esperienze = $dl->getEsperienzeApprovatePaginate($id);
         $count_revisioni = count($dl->getRevisioniDaRevisionare($user_id));
 
         
-         return view('utenti.esperienze')->with('logged',true)
+         return view('utenti.esperienzeutente')->with('logged',true)
                 ->with('loggedName', $_SESSION["loggedName"])
                 ->with('esperienze', $esperienze)
                 ->with('user_id', $user_id)

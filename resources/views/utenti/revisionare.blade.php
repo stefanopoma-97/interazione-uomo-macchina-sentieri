@@ -100,7 +100,7 @@
                 <tbody>
                      @foreach($esperienze as $esperienza)
                     <tr>
-                        <td>{{ $esperienza->sentiero->titolo }}</td>
+                        <td><a style="color:inherit; text-decoration: none;" href="{{route('sentiero.show',['sentiero'=>$esperienza->sentiero->id])}}">{{ $esperienza->sentiero->titolo }}</a></td>
                         <td>{{ $esperienza->data }}</td>
                         <td>{{ $esperienza->commento }}</td>
                         <td>

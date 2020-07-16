@@ -1216,3 +1216,13 @@ function strong_password(button){
 
 
 }
+
+
+function massimo_1000_caratteri(f) {
+    //window.confirm("check lunghezza");
+        if (f.form.descrizione.value.length > 1000) {
+                    f.form.descrizione.value = f.form.descrizione.value.substring(0,1000);
+                    
+            }
+        
+    }

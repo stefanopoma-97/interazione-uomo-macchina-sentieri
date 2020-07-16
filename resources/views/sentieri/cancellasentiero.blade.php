@@ -55,7 +55,8 @@
                     Conferma
                 </div>
                 <div class='panel-body'>
-                    <p>Il sentiero <strong>sarà rimosso</strong> dal databse</p>
+                    <p>Il sentiero <strong>sarà rimosso</strong> dal database</p>
+                    <p>Saranno rimosse anche tutte le esperienze associate a questo sentiero</p>
                     <p><a class="btn btn-danger" href="{{route('sentiero.destroy',['id'=> $sentiero->id]) }}" ><span class='glyphicon glyphicon-trash'></span> Delete</a></p>
                 </div>
             </div>

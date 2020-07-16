@@ -74,6 +74,9 @@ Route::group(['middleware' => ['authCustom', 'adminCheck']], function()
     Route::get('/sentiero/{id}/update', ['as' => 'sentiero.update', 
         'uses' => 'SentieroController@update']);
     
+    Route::get('/sentiero/{id}/esperienze', ['as' => 'sentiero.esperienze', 
+        'uses' => 'SentieroController@sentiero_esperienze']);
+    
     Route::get('/utente/{id}/revisioni', ['as' => 'esperienza.darevisionare', 
         'uses' => 'EsperienzaController@da_revisionare']);
     
