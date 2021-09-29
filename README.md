@@ -1,49 +1,51 @@
-Scaricare Java SE 11: https://www.oracle.com/java/technologies/downloads/#java16
+1)  Scaricare Java SE 11: https://www.oracle.com/java/technologies/downloads/#java16
 
-Scaricare Apache NetBeans: https://netbeans.apache.org/download/index.html
+2)  Scaricare Apache NetBeans: https://netbeans.apache.org/download/index.html
 
-Scaricare Ampss
+3)  Scaricare Ampss
 
-Scaricare progetto da GitHub: https://github.com/stefanopoma-97/sentieriAPP_laravel
+4)  Scaricare progetto da GitHub: https://github.com/stefanopoma-97/sentieriAPP_laravel
 
-Andare su http://localhost/phpmyadmin/
-Creare un databse chiamato "sentieri"
-Importare il contenuto da sentieri.sql
+5)  Andare su http://localhost/phpmyadmin/
+    Creare un databse chiamato "sentieri"
+    Importare il contenuto da sentieri.sql
+    Il file si trova nella cartella /db
 
-Scaricare Composer: https://getcomposer.org/
+    creare account in php my admin con tutti i privilegi. nome:stefano pass:stefano 
 
-Installare composer e selezionare il file php.exe nella cartella Ampss
+6)  Scaricare Composer: https://getcomposer.org/
 
-Con il composer installare Laravell: 
-composer global require "laravel/installer=~1.1”
+7)  Installare composer e selezionare il file php.exe nella cartella Ampss
 
+8)  Con il composer installare Laravell: 
+    composer global require "laravel/installer=~1.1”
 
-fare:
-composer install
-composer update
-cambia .env.example in .env
-creare account in php my admin con tutti i privilegi. nome:stefano pass:stefano
+9)  Eseguire i seguenti comandi
+    composer install
+    composer update
 
-questo è il contenuto di .env
-APP_NAME=Laravel
-APP_ENV=local
-APP_KEY=base64:h86YVslP/ifSO43EtE96rc+fUgK7dhQz4//MmV9ores=
-APP_DEBUG=true
-APP_URL=http://localhost
+10) cambia .env.example in .env (rimuovere la parola ".example")
 
-LOG_CHANNEL=stack
+11) Controllare che il contenuto di .env sia questo:
+    APP_NAME=Laravel
+    APP_ENV=local
+    APP_KEY=base64:h86YVslP/ifSO43EtE96rc+fUgK7dhQz4//MmV9ores=
+    APP_DEBUG=true
+    APP_URL=http://localhost
 
-DB_CONNECTION=mysql
-DB_HOST=127.0.0.1
-DB_PORT=3306
-DB_DATABASE=sentieri
-DB_USERNAME=stefano
-DB_PASSWORD=stefano
+    LOG_CHANNEL=stack
 
+    DB_CONNECTION=mysql
+    DB_HOST=127.0.0.1
+    DB_PORT=3306
+    DB_DATABASE=sentieri
+    DB_USERNAME=stefano
+    DB_PASSWORD=stefano
 
-php artisan key:generate
+12) Eseguire i seguenti comandi:
+    php artisan key:generate
 
-php artisan serve
+    php artisan serve
 
 
 
