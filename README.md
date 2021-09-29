@@ -1,3 +1,61 @@
+Scaricare Java SE 11: https://www.oracle.com/java/technologies/downloads/#java16
+
+Scaricare Apache NetBeans: https://netbeans.apache.org/download/index.html
+
+Scaricare Ampss
+
+Scaricare progetto da GitHub: https://github.com/stefanopoma-97/sentieriAPP_laravel
+
+Andare su http://localhost/phpmyadmin/
+Creare un databse chiamato "sentieri"
+Importare il contenuto da sentieri.sql
+
+Scaricare Composer: https://getcomposer.org/
+
+Installare composer e selezionare il file php.exe nella cartella Ampss
+
+Con il composer installare Laravell: 
+composer global require "laravel/installer=~1.1”
+
+
+fare:
+composer install
+composer update
+cambia .env.example in .env
+creare account in php my admin con tutti i privilegi. nome:stefano pass:stefano
+
+questo è il contenuto di .env
+APP_NAME=Laravel
+APP_ENV=local
+APP_KEY=base64:h86YVslP/ifSO43EtE96rc+fUgK7dhQz4//MmV9ores=
+APP_DEBUG=true
+APP_URL=http://localhost
+
+LOG_CHANNEL=stack
+
+DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_DATABASE=sentieri
+DB_USERNAME=stefano
+DB_PASSWORD=stefano
+
+
+php artisan key:generate
+
+php artisan serve
+
+
+
+
+
+
+
+
+
+
+
+
 <p align="center"><img src="https://res.cloudinary.com/dtfbvvkyp/image/upload/v1566331377/laravel-logolockup-cmyk-red.svg" width="400"></p>
 
 <p align="center">
