@@ -71,6 +71,7 @@
 <ul class="breadcrumb pull-right">
     <li><a href="{{ route('home') }}">Home</a></li>
     <li><a href="{{ route('user.elenco') }}">Utenti</a></li>
+    <li><a href="{{ route('user.dettagli',['id'=> $user->id]) }}">Account</a></li>
     <li class="active">Modifica account</li>
 </ul>
 @endsection
@@ -220,7 +221,7 @@
                 </div>
                 <div class="form-group">
                     <div class="col-sm-10 col-sm-offset-2">
-                        <a href="{{route('user.elenco')}}" class="btn btn-danger btn-large btn-block"><span class="glyphicon glyphicon-log-out"></span> Cancel</a>                         
+                        <a href="{{ route('user.dettagli',['id'=> $user_id]) }}" class="btn btn-danger btn-large btn-block"><span class="glyphicon glyphicon-log-out"></span> Cancel</a>                         
                     </div>
                 </div>                       
             </form>

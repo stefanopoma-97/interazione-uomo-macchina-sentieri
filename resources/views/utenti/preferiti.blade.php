@@ -69,7 +69,8 @@
 @section('breadcrumb')
 <ul class="breadcrumb pull-right">
     <li><a href="{{ route('home') }}">Home</a></li>
-    <li><a href="{{ route('user.dettagli', ['id'=> $iddettagli]) }}">Utente</a></li>
+    <li><a class="bordo-selezione" href="{{ route('user.elenco') }}">Utenti</a></li>
+    <li><a href="{{ route('user.dettagli', ['id'=> $user_id]) }}">Account</a></li>
     <li class="active">Sentieri Preferiti</li>
 </ul>
 @endsection

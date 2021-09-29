@@ -300,6 +300,7 @@ class SentieroController extends Controller
         
         return view('sentieri.paginaerrore')->with('logged',true)
                 ->with('count_revisioni', $count_revisioni)
+                ->with('user_id', $user_id)
                 ->with('loggedName', $_SESSION["loggedName"]);
         
         

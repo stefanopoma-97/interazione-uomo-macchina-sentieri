@@ -1,6 +1,6 @@
 @extends('layouts.master')
 
-@section('titolo', 'Elenco utenti')
+@section('titolo', 'Utente')
 
 @section('navbar_home')
 <a class="navbar-brand" href="{{ route('home') }}">Sentieri</a>
@@ -127,7 +127,7 @@
                         @else
                         <li class="list-group-item "><a href="{{route('esperienza.esperienzeutente',['id'=> $user_dettagli->id])}}">Esperienze personali</a></li>
                         @endif
-                        <li class="list-group-item ">Percorsi effettuati: {{ count($user_dettagli->esperienze) }}</li>
+                        <li class="list-group-item ">Percorsi effettuati: {{ count($sentieri_effettuati) }}</li>
 
                         <li class="list-group-item all_text"><q>"{{$user_dettagli->descrizione}}"</q></li>
                         

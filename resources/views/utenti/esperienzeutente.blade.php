@@ -81,6 +81,11 @@
     <div class="row">
         <div class="col-md-12 col-s-12">
             
+            @if(count($esperienze)==0)
+            <h3 style="text-align: center">Non ci sono esperienze associate a questo account</h3>
+            @else
+            
+            
            
             @foreach ($esperienze as $esperienza)
             
@@ -116,6 +121,8 @@
 
             @endforeach
             {{ $esperienze->links() }}
+            
+            @endif
         </div>
         
     </div>

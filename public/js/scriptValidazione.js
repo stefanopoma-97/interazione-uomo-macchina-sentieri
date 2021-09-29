@@ -268,8 +268,8 @@ function register(button){
                     if (!data.citta){
                         errori = true;
                         citta_msg.innerHTML="Inserisci una città corretta";
-                        button.form.citta.focus();
-                        $(button.form.citta).css('border-color','red');
+                        button.form.citta_completamento.focus();
+                        $(button.form.citta_completamento).css('border-color','red');
                         var li = $("<li></li>");
                         li.text("Inserisci una città corretta");
                         $('#ul_errori_registrazione').parent().show();
@@ -710,7 +710,7 @@ function send_reset_mail(){
 
                     if (data.ok)
                     {
-                        window.confirm("7.1 - CODICE IMPOSTATO A: "+data.codice);
+                        //window.confirm("7.1 - CODICE IMPOSTATO A: "+data.codice);
                        $('#ul_errori').append(li);
 
                     } else {
@@ -756,7 +756,7 @@ function send_reset_mail_database(){
 
                     if (data.ok)
                     {
-                        window.confirm("7.1 - CODICE IMPOSTATO A: "+data.codice);
+                        //window.confirm("7.1 - CODICE IMPOSTATO A: "+data.codice);
                         $('#ul_errori').append(li);
                        
 
@@ -833,6 +833,7 @@ function valida_codice(button){
                         $('#div_mail').hide();
                         $('#div_codice').hide();
                         $('#div_password').show();
+                        $('#div_consiglio').show();
                         $('#div_submit').show();
 
                     }
@@ -888,7 +889,7 @@ function valida_codice_database(button){
 
                     if (!data.codice)
                     {
-                        window.confirm("10 - il codice non corrisponde, codice: "+data.value);
+                        //window.confirm("10 - il codice non corrisponde, codice: "+data.value);
                         codice_msg.innerHTML="Il codice non corrisponde a quello inviato";
                         button.parentNode.parentNode.parentNode.codice.focus();
                         $(button.parentNode.parentNode.parentNode.codice).css('border-color','red');
@@ -907,6 +908,7 @@ function valida_codice_database(button){
                         $('#div_mail').hide();
                         $('#div_codice').hide();
                         $('#div_password').show();
+                        $('#div_consiglio').show();
                         $('#div_submit').show();
 
                     }

@@ -29,7 +29,7 @@
     <body>-->
 @extends('layouts.masterlogin')
 
-@section('titolo', 'Login')
+@section('titolo', 'Recupero password')
 
 @section('header')
 <h2 class="pull-left">Recupero Password</h2>
@@ -92,7 +92,7 @@
                                 </div>
 
                                 <div class="form-group row" id="div_password" hidden="">
-                                    <div class=>
+                                    <div>
                                         <label for="password_nuova" class="col-form-label">Nuova password</label>
 
                                     </div>
@@ -102,6 +102,17 @@
                                         <br>
                                         <meter max="4" min="0" optimum="4" id="password-strength-meter"></meter>
                                         <p id="password-strength-text"></p>
+                                    </div>
+                                </div>
+                                
+                                <div class="form-group row" id="div_consiglio" hidden="">
+                                    <div>
+                                        <label for="consiglio"  class="col-form-label">Consiglio recupero password</label>
+                                    </div>
+                                    
+                                    <div class="col-sm-10">
+                                        <input onkeyup="rimuovi_stile(this); " onmouseover="rimuovi_stile(this)" maxlength="100" type="text" class="form-control" name="consiglio" placeholder="consiglio">
+
                                     </div>
                                 </div>
 

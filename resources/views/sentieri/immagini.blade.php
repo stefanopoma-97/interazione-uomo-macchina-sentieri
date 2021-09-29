@@ -1,6 +1,6 @@
 @extends('layouts.master')
 
-@section('titolo', 'Elenco utenti')
+@section('titolo', 'Immagini sentiero')
 
 @section('navbar_home')
 <a class="navbar-brand" href="{{ route('home') }}">Immagini</a>
@@ -72,7 +72,7 @@
     <li><a href="{{ route('home') }}">Home</a></li>
     <li><a href="{{ route('sentiero.index')  }}">Elenco sentieri</a></li>
     <li><a href="{{ route('sentiero.edit', ['sentiero'=> $sentiero->id]) }}">Modifica sentiero</a></li>
-    <li class="active">Utente</li>
+    <li class="active">Immagini</li>
 </ul>
 @endsection
 

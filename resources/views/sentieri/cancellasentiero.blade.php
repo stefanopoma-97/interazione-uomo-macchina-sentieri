@@ -43,7 +43,7 @@
                     Annulla
                 </div>
                 <div class='panel-body'>
-                    <p>Il sentiero <strong>non sarà rimosso</strong> dal database</p>
+                    <h4><p>Il sentiero <strong>non sarà rimosso</strong> dal database</p></h4>
                     <p><a class="btn btn-default" href="{{route('sentiero.index')}}"><span class='glyphicon glyphicon-log-out'></span> Annulla</a></p>
                 </div>
             </div>
@@ -55,9 +55,10 @@
                     Conferma
                 </div>
                 <div class='panel-body'>
-                    <p>Il sentiero <strong>sarà rimosso</strong> dal database</p>
+                    <h4><p>Il sentiero <strong>sarà rimosso</strong> dal database</p></h4>
                     <p>Saranno rimosse anche tutte le esperienze associate a questo sentiero</p>
-                    <p><a class="btn btn-danger" href="{{route('sentiero.destroy',['id'=> $sentiero->id]) }}" ><span class='glyphicon glyphicon-trash'></span> Delete</a></p>
+                    <p>e le relazioni di "preferito"</p>
+                    <p><a class="btn btn-danger" href="{{route('sentiero.destroy',['id'=> $sentiero->id]) }}" ><span class='glyphicon glyphicon-trash'></span> Cancella</a></p>
                 </div>
             </div>
         </div>

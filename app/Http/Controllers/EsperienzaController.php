@@ -35,9 +35,11 @@ class EsperienzaController extends Controller
     
     
      public function mie_esperienze($user_id) {
-
+         $dl = new DataLayer();
+         if($user_id != $dl->getUserID($_SESSION['loggedName']))
+            return Redirect::to(route('sentiero.errore'));
         
-        $dl = new DataLayer();
+        
         $user_id = $dl->getUserID($_SESSION['loggedName']);
         if($user_id==-1){
             session_destroy();
@@ -87,9 +89,10 @@ class EsperienzaController extends Controller
     }
     
     public function da_revisionare($user_id) {
-
-        
         $dl = new DataLayer();
+        if($user_id != $dl->getUserID($_SESSION['loggedName']))
+           return Redirect::to(route('sentiero.errore'));
+        
         $user_id = $dl->getUserID($_SESSION['loggedName']);
         if($user_id==-1){
             session_destroy();
@@ -114,6 +117,11 @@ class EsperienzaController extends Controller
 
         
         $dl = new DataLayer();
+        
+         if($request->input('user_id') != $dl->getUserID($_SESSION['loggedName']))
+           return Redirect::to(route('sentiero.errore'));
+        
+        
         $user_id = $dl->getUserID($_SESSION['loggedName']);
         if($user_id==-1){
             session_destroy();
@@ -127,10 +135,13 @@ class EsperienzaController extends Controller
         return Redirect::to(route('esperienza.darevisionare',  ['id'=> $user_id]));
     }
     
-    public function approvato($id) {
+    public function approvato($id, $user_id) {
 
         
         $dl = new DataLayer();
+        if($user_id != $dl->getUserID($_SESSION['loggedName']))
+           return Redirect::to(route('sentiero.errore'));
+        
         $user_id = $dl->getUserID($_SESSION['loggedName']);
         if($user_id==-1){
             session_destroy();

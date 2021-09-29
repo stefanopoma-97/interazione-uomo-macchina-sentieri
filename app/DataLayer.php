@@ -178,6 +178,7 @@ class DataLayer extends Model
     public function removeCode($id) {
         $user = LibUser::find($id);
         $user->codice="null";
+        $user->save();
         // massive update (only with fillable property enabled on Book): 
         // Book::find($id)->update(['title' => $title, 'author_id' => $author_id]);
     }

@@ -1,6 +1,6 @@
 @extends('layouts.master')
 
-@section('titolo', 'Cancella sentiero')
+@section('titolo', 'Errore')
 
 @section('navbar_home')
 @endsection
@@ -20,6 +20,9 @@
 @endsection
 
 @section('corpo')
+<br>
+<br>
+<br>
 <div class="container text-center">
    
     <div class="row">
@@ -36,4 +39,13 @@
         </div>
     </div>
 </div>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
 @endsection

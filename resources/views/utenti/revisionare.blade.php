@@ -104,7 +104,7 @@
                         <td>{{ $esperienza->data }}</td>
                         <td>{{ $esperienza->commento }}</td>
                         <td>
-                            <a class="btn btn-success" href="{{ route('esperienza.approvato',['id'=> $esperienza->id]) }}"><span class="glyphicon glyphicon-thumbs-up"></span></a>
+                            <a class="btn btn-success" href="{{ route('esperienza.approvato',['id'=> $esperienza->id, 'user_id'=>$user_id]) }}"><span class="glyphicon glyphicon-thumbs-up"></span></a>
                         </td>
                         <td>
                             <a class="btn btn-danger" data-idexp="{{$esperienza->id}}" data-toggle="modal" data-target="#modalForm"><span class="glyphicon glyphicon-thumbs-down"></span></a>
@@ -151,6 +151,7 @@
                     
                     <div class="form-group">
                         <div>
+                            <input type="hidden" name="user_id" value="{{$user_id}}">
                             <button type="submit" class="btn btn-danger">Invia</button>
  
                             <button type="button" class="btn btn-default" data-dismiss="modal">Annulla</button>

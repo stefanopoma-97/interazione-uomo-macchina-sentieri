@@ -148,7 +148,7 @@
                                 <hr class="teal accent-3 mb-4 mt-0 d-inline-block mx-auto" style="width: 60px;">
 
                                 <form method="get" action="{{route('sentiero.ricercafiltrahome')}}" class="form-inline">
-                                    <input class="form-control form-control-sm mr-3 w-75" type="text" placeholder="Search"
+                                    <input class="form-control form-control-sm mr-3 w-75" type="text" placeholder="Cerca"
                                            aria-label="Search" name="ricerca">
                                     <!--<i class="fas fa-search" aria-hidden="true"></i>-->
                                 </form>

@@ -1,6 +1,6 @@
 @extends('layouts.master')
 
-@section('titolo', 'Elenco utenti')
+@section('titolo', 'Sentiero')
 
 @section('javascript')
 @endsection
@@ -121,7 +121,7 @@
                 <li class="list-group-item " ><strong>Difficoltà: {{ $sentiero->difficolta->nome}}</strong></li>
                 <li class="list-group-item "><span class="glyphicon glyphicon-road"></span> Città:   {{ $sentiero->citta->nome}}</li>
                 <li class="list-group-item "><span class="glyphicon glyphicon-time"></span>  Durata:   {{ $sentiero->durata}} ore</li>
-                <li class="list-group-item "><span class="glyphicon glyphicon-repeat"></span>  Lunghezza(Km):   {{ $sentiero->lunghezza}} km</li>
+                <li class="list-group-item "><span class="glyphicon glyphicon-repeat"></span>  Lunghezza:   {{ $sentiero->lunghezza}} km</li>
                 <li class="list-group-item "><span class="glyphicon glyphicon-chevron-up"></span>  Salita:   {{ $sentiero->salita}}</li>
                 <li class="list-group-item "><span class="glyphicon glyphicon-chevron-down"></span>  Discesa:   {{ $sentiero->discesa}}</li>
                 <li class="list-group-item "><span class="glyphicon glyphicon-arrow-up"></span>  Altezza massima:   {{ $sentiero->altezza_massima}}</li>
@@ -189,7 +189,7 @@
                         <p style="font-size: large">{{$sentiero->descrizione}}</p>
                         <blockquote>
                             <p style="font-size: medium" class="not_all_text">{{$sentiero->autore->descrizione}}</p>
-                            <small><cite title="Source Title"><a style="color:inherit; text-decoration: none;" href="{{ route('user.dettagli',['id'=> $sentiero->autore->id]) }}">{{$sentiero->autore->nome}}</a></cite></small>
+                            <small><cite title="Autore"><a style="color:inherit; text-decoration: none;" href="{{ route('user.dettagli',['id'=> $sentiero->autore->id]) }}">{{$sentiero->autore->nome}}</a></cite></small>
                         </blockquote>
                     </div>
                 </div>

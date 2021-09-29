@@ -1,6 +1,6 @@
 @extends('layouts.master')
 
-@section('titolo', 'Elenco utenti')
+@section('titolo', 'Esperienzesentiero')
 
 @section('navbar_home')
 <a class="navbar-brand" href="{{ route('home') }}">Sentieri</a>
@@ -71,6 +71,7 @@
 @section('breadcrumb')
 <ul class="breadcrumb pull-right">
     <li><a href="{{ route('home') }}">Home</a></li>
+    <li><a href="{{ route('sentiero.ricerca') }}">Sentieri</a></li>
     <li><a href="{{route('sentiero.show',['sentiero'=>$sentiero->id])}}">Sentiero</a></li>
     <li class="active">Esperienze</li>
 </ul>
@@ -93,7 +94,7 @@
                     echo '<span style="display:inline-block;margin-right:5px; "><img alt="image" style="height: 35px; width:35px;"class="img-circle img-responsive " src="'.$url.'"></span>';
                     @endphp
                     
-                    <span style="display:inline-block; align-content: center">{{$esperienza->utente->username}}</span>
+                    <span style="display:inline-block; align-content: center"><a style="color:inherit; text-decoration: none;" href="{{ route('user.dettagli',['id'=> $esperienza->utente->id]) }}">{{$esperienza->utente->username}}</a></span>
                 </h3>
                     
                 

@@ -1,6 +1,6 @@
 @extends('layouts.master')
 
-@section('titolo', 'Elenco utenti')
+@section('titolo', 'Elenco sentieri')
 
 @section('navbar_home')
 <a class="navbar-brand" href="{{ route('home') }}">Sentieri</a>
@@ -71,7 +71,7 @@
 @section('breadcrumb')
 <ul class="breadcrumb pull-right">
     <li><a href="{{ route('home') }}">Home</a></li>
-    <li class="active">Sentieri</li>
+    <li class="active">Elenco sentieri</li>
 </ul>
 @endsection
 
@@ -106,12 +106,12 @@
                             @foreach($sentieri as $sentiero)
                             <tr>
                                 <td><a style="color:inherit; text-decoration: none;" href="{{route('sentiero.show',['sentiero'=>$sentiero->id])}}">{{ $sentiero->titolo }}</a></td>
-                                <td><a href="{{route('user.dettagli', ['id'=> $sentiero->autore->id])}}">{{ $sentiero->autore->nome }}</a></td>
+                                <td><a style="color:inherit; text-decoration: none;" href="{{route('user.dettagli', ['id'=> $sentiero->autore->id])}}">{{ $sentiero->autore->nome }}</a></td>
                                 <td>
-                                    <a class="btn btn-primary" href="{{ route('sentiero.edit', ['sentiero'=> $sentiero->id]) }}"><span class="glyphicon glyphicon-pencil"></span> Edit</a>
+                                    <a class="btn btn-primary" href="{{ route('sentiero.edit', ['sentiero'=> $sentiero->id]) }}"><span class="glyphicon glyphicon-pencil"></span> Modifica</a>
                                 </td>
                                 <td>
-                                    <a class="btn btn-danger" href="{{ route('sentiero.destroy.confirm', ['id'=> $sentiero->id]) }}"><span class="glyphicon glyphicon-trash"></span> Delete</a>
+                                    <a class="btn btn-danger" href="{{ route('sentiero.destroy.confirm', ['id'=> $sentiero->id]) }}"><span class="glyphicon glyphicon-trash"></span> Cancella</a>
                                 </td>
                             </tr>
                             @endforeach

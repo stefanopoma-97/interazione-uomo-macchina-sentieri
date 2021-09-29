@@ -1,6 +1,6 @@
 @extends('layouts.master')
 
-@section('titolo', 'Modifica utente')
+@section('titolo', 'Modifica password')
 
 @section('navbar_home')
 <a class="navbar-brand" href="{{ route('home') }}">Sentieri</a>
@@ -71,6 +71,7 @@
 <ul class="breadcrumb pull-right">
     <li><a href="{{ route('home') }}">Home</a></li>
     <li><a href="{{ route('user.elenco') }}">Utenti</a></li>
+    <li><a href="{{ route('user.dettagli',['id'=> $user->id]) }}">Account</a></li>
     <li class="active">Modifica password</li>
 </ul>
 @endsection

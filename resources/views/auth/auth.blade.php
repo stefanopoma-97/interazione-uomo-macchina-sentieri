@@ -82,7 +82,11 @@
                                     </div><!-- type password non fa capire cosa si sta inserendo-->
                                     
                                     <div class="form-group text-center"> <!-- messo al centro -->
+                                        @if($username!="")
+                                        <input type="checkbox" checked="" name="remember">
+                                        @else
                                         <input type="checkbox" name="remember"> <!-- lascia flag se cookie settato -->
+                                        @endif
                                         <label for="remember"> Ricordami</label>
                                     </div> <!-- text box + label -->
                                     

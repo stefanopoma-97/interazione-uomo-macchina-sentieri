@@ -1,6 +1,6 @@
 @extends('layouts.master')
 
-@section('titolo', 'Elenco utenti')
+@section('titolo', 'Ricerca sentieri')
 
 @section('navbar_home')
 <a class="navbar-brand" href="{{ route('home') }}">Sentieri</a>
@@ -192,7 +192,7 @@
         
     </div>
 
-    <div class="row">
+<!--    <div class="row">
         <div class="col-md-3 pull-right">
             <ul class="pagination">
                 <li class="page-item disabled"><a class="page-link" href="#">Previous</a></li>
@@ -203,7 +203,7 @@
             </ul>
         </div>
 
-    </div>
+    </div>-->
 </div>
                  
 @endsection

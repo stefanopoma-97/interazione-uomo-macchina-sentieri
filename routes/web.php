@@ -80,11 +80,30 @@ Route::group(['middleware' => ['authCustom', 'adminCheck']], function()
     Route::get('/utente/{id}/revisioni', ['as' => 'esperienza.darevisionare', 
         'uses' => 'EsperienzaController@da_revisionare']);
     
-    Route::get('/utente/revisioni/{id}/approvato', ['as' => 'esperienza.approvato', 
+    Route::get('/utente/revisioni/{id}/{user_id}/approvato', ['as' => 'esperienza.approvato', 
         'uses' => 'EsperienzaController@approvato']);
     
     Route::get('/utente/revisioni/{id}/rifiutato', ['as' => 'esperienza.rifiutato', 
         'uses' => 'EsperienzaController@rifiutato']);
+    
+     Route::get('/sentiero/{id}/immagini', ['as' => 'sentiero.immagini', 
+        'uses' => 'SentieroController@immagini']);
+    
+    Route::post('/sentiero/{id}/aggiungiimmagine', ['as' => 'sentiero.aggiungiimmagine', 
+        'uses' => 'SentieroController@aggiungi_immagine']);
+    
+    Route::get('/sentiero/{id}/rimuoviimmagine/{nome}', ['as' => 'sentiero.rimuoviimmagine', 
+        'uses' => 'SentieroController@rimuovi_immagine']);
+    
+    
+    Route::get('/sentiero/{id}/gpx', ['as' => 'sentiero.gpx', 
+        'uses' => 'SentieroController@gpx']);
+    
+    Route::post('/sentiero/{id}/aggiungigpx', ['as' => 'sentiero.aggiungigpx', 
+        'uses' => 'SentieroController@aggiungi_gpx']);
+    
+    Route::get('/sentiero/{id}/rimuovigpx', ['as' => 'sentiero.rimuovigpx', 
+        'uses' => 'SentieroController@rimuovi_gpx']);
     
     });
 
@@ -109,6 +128,8 @@ Route::group(['middleware' => ['authCustom']], function()
     
     
     
+    Route::get('/sentiero/{id}/esperienze', ['as' => 'sentiero.esperienze', 
+        'uses' => 'SentieroController@sentiero_esperienze']);
     
     Route::post('/user/{id}/update/password', ['as' => 'user.update.password', //sto aggiornando l'utente
         'uses' => 'UserController@update_password']);
@@ -162,24 +183,7 @@ Route::group(['middleware' => ['authCustom']], function()
     Route::post('/sentiero/{id}/preferito', ['as' => 'sentiero.preferito', 
         'uses' => 'SentieroController@preferito']);
     
-    Route::get('/sentiero/{id}/immagini', ['as' => 'sentiero.immagini', 
-        'uses' => 'SentieroController@immagini']);
-    
-    Route::post('/sentiero/{id}/aggiungiimmagine', ['as' => 'sentiero.aggiungiimmagine', 
-        'uses' => 'SentieroController@aggiungi_immagine']);
-    
-    Route::get('/sentiero/{id}/rimuoviimmagine/{nome}', ['as' => 'sentiero.rimuoviimmagine', 
-        'uses' => 'SentieroController@rimuovi_immagine']);
-    
-    
-    Route::get('/sentiero/{id}/gpx', ['as' => 'sentiero.gpx', 
-        'uses' => 'SentieroController@gpx']);
-    
-    Route::post('/sentiero/{id}/aggiungigpx', ['as' => 'sentiero.aggiungigpx', 
-        'uses' => 'SentieroController@aggiungi_gpx']);
-    
-    Route::get('/sentiero/{id}/rimuovigpx', ['as' => 'sentiero.rimuovigpx', 
-        'uses' => 'SentieroController@rimuovi_gpx']);
+   
 
 
     //ESPERIENZE

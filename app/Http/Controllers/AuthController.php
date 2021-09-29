@@ -28,7 +28,11 @@ class AuthController extends Controller
     public function authentication_register() {
         $dl = new DataLayer();
         $citta = $dl->getAllCitta();
-        return view('auth.auth')->with('login', false)->with('citta', $citta);
+        if(isset($_COOKIE["username_login"]))
+            $username=$_COOKIE["username_login"];
+        else
+            $username="";
+        return view('auth.auth')->with('login', false)->with('citta', $citta)->with('username', $username);
     }
 
     public function logout() {
@@ -139,12 +143,12 @@ class AuthController extends Controller
         $user=$dl->getUserByUsername($request->input('username'));
         $user_id = $user->id;
                 
-        $dl->updatePasswordUtente($user_id, $request->input('password_nuova'), "");
+        $dl->updatePasswordUtente($user_id, $request->input('password_nuova'), $request->input('consiglio'));
         $dl->removeCode($user_id);
         
         
         //MANDARE MAIL PER AVVERTIRE
-        $this->send_mail_info_cambio_password($request->input('username'), $user->mail);
+        //$this->send_mail_info_cambio_password($request->input('username'), $user->mail);
         
         return view('auth.authInfoPage');      
     }

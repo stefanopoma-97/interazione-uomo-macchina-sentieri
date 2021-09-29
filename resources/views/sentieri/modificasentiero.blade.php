@@ -1,6 +1,6 @@
 @extends('layouts.master')
 
-@section('titolo', 'Elenco utenti')
+@section('titolo', 'Aggiunta Modifica sentiero')
 
 @section('navbar_home')
 <a class="navbar-brand" href="{{ route('home') }}">Sentieri</a>
@@ -75,7 +75,7 @@
 @section('breadcrumb')
 <ul class="breadcrumb pull-right">
     <li><a href="{{ route('home') }}">Home</a></li>
-    <li><a href="{{ route('sentiero.index') }}">Sentieri</a></li>
+    <li><a href="{{ route('sentiero.index') }}">Elenco sentieri</a></li>
     @if(isset($sentiero->id))
     <li class="active">Modifica sentiero</li>
     @else

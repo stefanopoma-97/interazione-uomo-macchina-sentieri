@@ -71,6 +71,7 @@
 <ul class="breadcrumb pull-right">
     <li><a href="{{ route('home') }}">Home</a></li>
     <li><a href="{{ route('user.elenco') }}">Utenti</a></li>
+    <li><a href="{{ route('user.dettagli',['id'=> $user->id]) }}">Account</a></li>
     <li class="active">Recupero password</li>
 </ul>
 @endsection
@@ -130,6 +131,17 @@
                         <br>
                         <meter max="4" min="0" optimum="4" id="password-strength-meter"></meter>
                         <p id="password-strength-text"></p>
+                    </div>
+                </div>
+            
+            <div class="form-group row" id="div_consiglio" hidden="">
+                    <div class="col-sm-3">
+                    <label for="consiglio" class="col-form-label">Consiglio recupero password</label>
+                            
+                    </div>
+                    <div class="col-sm-5">
+                        <input onkeyup="rimuovi_stile(this); " onmouseover="rimuovi_stile(this)" maxlength="100" type="text" class="form-control" name="consiglio" placeholder="consiglio">
+                        
                     </div>
                 </div>
                 

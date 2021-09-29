@@ -43,8 +43,14 @@ class UserController extends Controller
     
     public function preferiti($id) {
         
+        
         $dl = new DataLayer();
         $user_id = $dl->getUserID($_SESSION['loggedName']);
+        
+        if($id != $user_id) {
+            return Redirect::to(route('sentiero.errore'));
+        }
+        
         if($user_id==-1){
             session_destroy();
             return Redirect::to(route('user.auth.login'));
@@ -59,6 +65,7 @@ class UserController extends Controller
         return view('utenti.preferiti')->with('logged',true)->with('loggedName', $_SESSION["loggedName"])
                 ->with('preferiti', $preferiti)
                 ->with('user', $user)
+                ->with('user_id', $user_id)
                 ->with('count_revisioni', $count_revisioni)
                 ->with('iddettagli',$iddettagli)
                 ->with('user_id', $user_id);        
@@ -253,7 +260,7 @@ class UserController extends Controller
         
         //mandare mail
         $user=$dl->getUserByID($user_id);
-        $this->send_mail_info_cambio_password($user->username, $user->mail);
+        //$this->send_mail_info_cambio_password($user->username, $user->mail);
         return Redirect::to(route('user.dettagli', ['id'=> $user_id]));      
     }
     
@@ -404,7 +411,7 @@ class UserController extends Controller
         $codice=($_SESSION["codice"]);
         
         //se si vuole far mandare mail
-        //$this->send_mail_reset_password($codice, "$utente->username", $request->input('mail'));
+        $this->send_mail_reset_password($codice, "$utente->username", $request->input('mail'));
         
         $response = array('ok'=>true, 'codice'=>$codice);
         return response()->json($response); //mando indietro json
@@ -426,7 +433,7 @@ class UserController extends Controller
         $codice=($_SESSION["codice"]);
         
         //se si vuole far mandare mail
-        //$this->send_mail_reset_password($codice, "Laravel", $user->mail);
+        $this->send_mail_reset_password($codice, "Laravel", $user->mail);
         $dl->addCode($user->id, $codice);
         
         $response = array('ok'=>true, 'codice'=>$codice);
@@ -473,7 +480,7 @@ class UserController extends Controller
         }
         else
         {
-            $response = array('username'=>true, 'mail'=>null);
+            $response = array('username'=>false, 'mail'=>null);
         }
         
         return response()->json($response); //mando indietro json
