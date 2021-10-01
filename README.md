@@ -20,7 +20,7 @@
 8)  Con il composer installare Laravell: 
     composer global require "laravel/installer=~1.1”
 
-9)  Eseguire i seguenti comandi
+9)  Eseguire i seguenti comandi nella directory del progetto
     composer install
     composer update
 
