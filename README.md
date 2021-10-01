@@ -4,7 +4,7 @@
 
 3)  Scaricare Ampss
 
-4)  Scaricare progetto da GitHub: https://github.com/stefanopoma-97/sentieriAPP_laravel
+4)  Scaricare progetto da GitHub: https://github.com/stefanopoma-97/interazione-uomo-macchina-sentieri
 
 5)  Andare su http://localhost/phpmyadmin/
     Creare un databse chiamato "sentieri"
