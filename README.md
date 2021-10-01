@@ -29,7 +29,7 @@
 11) Controllare che il contenuto di .env sia questo:
     APP_NAME=Laravel
     APP_ENV=local
-    APP_KEY=base64:h86YVslP/ifSO43EtE96rc+fUgK7dhQz4//MmV9ores=
+    APP_KEY=
     APP_DEBUG=true
     APP_URL=http://localhost
 
@@ -44,6 +44,7 @@
 
 12) Eseguire i seguenti comandi:
     php artisan key:generate
+    (il primo comando generera la key nel file env)
 
     php artisan serve
 
