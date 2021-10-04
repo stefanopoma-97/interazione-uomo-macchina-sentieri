@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<gpx creator="Wikiloc - https://www.wikiloc.com" version="1.1" xmlns="http://www.topografix.com/GPX/1/1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.topografix.com/GPX/1/1 http://www.topografix.com/GPX/1/1/gpx.xsd">
+  <metadata>
+    <name>Wikiloc - Rifugio Aviolo Occhi in Val Paghera - LO</name>
+    <link href="https://www.wikiloc.com/hiking-trails/rifugio-aviolo-occhi-in-val-paghera-lo-7424889">
+      <text>Rifugio Aviolo Occhi in Val Paghera - LO on Wikiloc</text>
+    </link>
+    <time>2014-07-13T10:31:50Z</time>
+  </metadata>
+  <trk>
+    <name>Rifugio Aviolo Occhi in Val Paghera - LO</name>
+    <cmt></cmt>
+    <desc></desc>
+    <trkseg>
+      <trkpt lat="46.205744" lon="10.412117">
+        <ele>1479.147</ele>
+        <time>2014-07-13T08:03:27Z</time>
+      </trkpt>
+      <trkpt lat="46.205101" lon="10.411609">
+        <ele>1529.129</ele>
+        <time>2014-07-13T08:06:06Z</time>
+      </trkpt>
+      <trkpt lat="46.205070" lon="10.412192">
+        <ele>1549.821</ele>
+        <time>2014-07-13T08:09:35Z</time>
+      </trkpt>
+      <trkpt lat="46.204815" lon="10.412174">
+        <ele>1552.207</ele>
+        <time>2014-07-13T08:10:34Z</time>
+      </trkpt>
+      <trkpt lat="46.204342" lon="10.412615">
+        <ele>1566.181</ele>
+        <time>2014-07-13T08:13:16Z</time>
+      </trkpt>
+      <trkpt lat="46.204227" lon="10.412903">
+        <ele>1569.548</ele>
+        <time>2014-07-13T08:14:45Z</time>
+      </trkpt>
+      <trkpt lat="46.204011" lon="10.412688">
+        <ele>1569.556</ele>
+        <time>2014-07-13T08:16:44Z</time>
+      </trkpt>
+      <trkpt lat="46.203343" lon="10.412997">
+        <ele>1585.828</ele>
+        <time>2014-07-13T08:20:35Z</time>
+      </trkpt>
+      <trkpt lat="46.203381" lon="10.413356">
+        <ele>1595.982</ele>
+        <time>2014-07-13T08:23:24Z</time>
+      </trkpt>
+      <trkpt lat="46.203101" lon="10.413708">
+        <ele>1604.692</ele>
+        <time>2014-07-13T08:25:07Z</time>
+      </trkpt>
+      <trkpt lat="46.202761" lon="10.413803">
+        <ele>1616.653</ele>
+        <time>2014-07-13T08:27:57Z</time>
+      </trkpt>
+      <trkpt lat="46.202618" lon="10.414136">
+        <ele>1628.651</ele>
+        <time>2014-07-13T08:30:47Z</time>
+      </trkpt>
+      <trkpt lat="46.202265" lon="10.414081">
+        <ele>1656.001</ele>
+        <time>2014-07-13T08:35:42Z</time>
+      </trkpt>
+      <trkpt lat="46.202146" lon="10.414495">
+        <ele>1659.411</ele>
+        <time>2014-07-13T08:37:57Z</time>
+      </trkpt>
+      <trkpt lat="46.201732" lon="10.414648">
+        <ele>1700.707</ele>
+        <time>2014-07-13T08:46:19Z</time>
+      </trkpt>
+      <trkpt lat="46.201047" lon="10.413906">
+        <ele>1715.682</ele>
+        <time>2014-07-13T08:51:37Z</time>
+      </trkpt>
+      <trkpt lat="46.201002" lon="10.413569">
+        <ele>1735.839</ele>
+        <time>2014-07-13T08:57:00Z</time>
+      </trkpt>
+      <trkpt lat="46.200657" lon="10.413464">
+        <ele>1749.387</ele>
+        <time>2014-07-13T08:59:53Z</time>
+      </trkpt>
+      <trkpt lat="46.200550" lon="10.413122">
+        <ele>1766.129</ele>
+        <time>2014-07-13T09:03:01Z</time>
+      </trkpt>
+      <trkpt lat="46.200314" lon="10.413084">
+        <ele>1769.973</ele>
+        <time>2014-07-13T09:04:17Z</time>
+      </trkpt>
+      <trkpt lat="46.200214" lon="10.412848">
+        <ele>1782.953</ele>
+        <time>2014-07-13T09:07:13Z</time>
+      </trkpt>
+      <trkpt lat="46.199956" lon="10.412924">
+        <ele>1799.264</ele>
+        <time>2014-07-13T09:10:45Z</time>
+      </trkpt>
+      <trkpt lat="46.199808" lon="10.412786">
+        <ele>1802.114</ele>
+        <time>2014-07-13T09:12:00Z</time>
+      </trkpt>
+      <trkpt lat="46.199745" lon="10.413295">
+        <ele>1811.354</ele>
+        <time>2014-07-13T09:14:45Z</time>
+      </trkpt>
+      <trkpt lat="46.200085" lon="10.413438">
+        <ele>1812.209</ele>
+        <time>2014-07-13T09:17:13Z</time>
+      </trkpt>
+      <trkpt lat="46.198924" lon="10.414082">
+        <ele>1829.107</ele>
+        <time>2014-07-13T09:28:24Z</time>
+      </trkpt>
+      <trkpt lat="46.199028" lon="10.414403">
+        <ele>1833.428</ele>
+        <time>2014-07-13T09:29:17Z</time>
+      </trkpt>
+      <trkpt lat="46.199415" lon="10.414510">
+        <ele>1835.875</ele>
+        <time>2014-07-13T09:29:54Z</time>
+      </trkpt>
+      <trkpt lat="46.199451" lon="10.414643">
+        <ele>1839.123</ele>
+        <time>2014-07-13T09:30:34Z</time>
+      </trkpt>
+      <trkpt lat="46.199195" lon="10.414859">
+        <ele>1850.235</ele>
+        <time>2014-07-13T09:32:30Z</time>
+      </trkpt>
+      <trkpt lat="46.198545" lon="10.416284">
+        <ele>1886.719</ele>
+        <time>2014-07-13T09:38:50Z</time>
+      </trkpt>
+      <trkpt lat="46.198768" lon="10.416556">
+        <ele>1893.099</ele>
+        <time>2014-07-13T09:39:48Z</time>
+      </trkpt>
+      <trkpt lat="46.198773" lon="10.416903">
+        <ele>1904.060</ele>
+        <time>2014-07-13T09:41:47Z</time>
+      </trkpt>
+      <trkpt lat="46.198265" lon="10.415871">
+        <ele>1910.817</ele>
+        <time>2014-07-13T09:44:44Z</time>
+      </trkpt>
+      <trkpt lat="46.198058" lon="10.415763">
+        <ele>1909.887</ele>
+        <time>2014-07-13T09:45:29Z</time>
+      </trkpt>
+      <trkpt lat="46.197500" lon="10.414850">
+        <ele>1915.615</ele>
+        <time>2014-07-13T09:54:45Z</time>
+      </trkpt>
+      <trkpt lat="46.196783" lon="10.414061">
+        <ele>1924.207</ele>
+        <time>2014-07-13T09:58:59Z</time>
+      </trkpt>
+      <trkpt lat="46.196306" lon="10.414011">
+        <ele>1926.688</ele>
+        <time>2014-07-13T10:05:18Z</time>
+      </trkpt>
+      <trkpt lat="46.195651" lon="10.414501">
+        <ele>1943.095</ele>
+        <time>2014-07-13T10:12:56Z</time>
+      </trkpt>
+      <trkpt lat="46.194841" lon="10.414459">
+        <ele>1931.483</ele>
+        <time>2014-07-13T10:15:52Z</time>
+      </trkpt>
+      <trkpt lat="46.194772" lon="10.414597">
+        <ele>1930.085</ele>
+        <time>2014-07-13T10:16:39Z</time>
+      </trkpt>
+      <trkpt lat="46.194070" lon="10.414845">
+        <ele>1930.599</ele>
+        <time>2014-07-13T10:20:10Z</time>
+      </trkpt>
+      <trkpt lat="46.193662" lon="10.415392">
+        <ele>1926.689</ele>
+        <time>2014-07-13T10:25:38Z</time>
+      </trkpt>
+      <trkpt lat="46.192705" lon="10.415458">
+        <ele>1930.560</ele>
+        <time>2014-07-13T10:29:58Z</time>
+      </trkpt>
+      <trkpt lat="46.191906" lon="10.415272">
+        <ele>1957.331</ele>
+        <time>2020-07-16T15:51:05Z</time>
+      </trkpt>
+      <trkpt lat="46.191386" lon="10.415688">
+        <ele>1930.561</ele>
+        <time>2014-07-13T10:31:50Z</time>
+      </trkpt>
+    </trkseg>
+  </trk></gpx>
