@@ -48,6 +48,11 @@
 
     php artisan serve
 
+13) Andare nella cartella public/ ed eliminare il file storage. Si tratta di un link alla cartella storage/app/public
+
+14) nella directory del progetto eseguire: php artisan storage:link
+    ora il link dovrebbe essere corretto
+
 
 
 
