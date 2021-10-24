@@ -195,7 +195,7 @@
                                 </div>
                                 
                                 <div class="col-sm-2 col-sm-offset-2">
-                                    @if($link3!="http://127.0.0.1:8000/storage/fotosentieri/default")
+                                    @if($link3!="http://localhost:8000/storage/fotosentieri/default")
                                     <button class="btn btn-danger" onclick="location.href='{{route('sentiero.rimuoviimmagine',['id'=> $sentiero->id, 'nome'=> '3'])}}'"><span class="glyphicon glyphicon-trash"></span</button>
                                     @else
                                     <button disabled="" class="btn btn-danger"><span class="glyphicon glyphicon-trash"></span</button>
