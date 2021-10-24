@@ -1,6 +1,6 @@
 1)  Scaricare Java SE 11: https://www.oracle.com/java/technologies/downloads/#java16
 
-2)  Scaricare Apache NetBeans: https://netbeans.apache.org/download/index.html
+2)  Scaricare Apache NetBeans (o altro IDE): https://netbeans.apache.org/download/index.html
 
 3)  Scaricare Ampss
 
