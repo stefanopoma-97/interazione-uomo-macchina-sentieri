@@ -106,7 +106,7 @@
                         
                         <img class="thumbnail img-responsive" src="{{$link1}}" alt="Libri">
                         <form action="{{route('sentiero.aggiungiimmagine',['id'=> $sentiero->id])}}" id="aggiungi_immagine_1" name="aggiungi_immagine_1" method="POST" enctype="multipart/form-data"> {{ csrf_field() }}
-
+                            <h4>{{$link1}}</h4>
                             <div class="form-group">
                                 <div style="margin-top: 1em; margin-bottom: 1em" class="col-sm-12">
                                     <input onchange="size_immagine(this)"; onkeyup="rimuovi_stile(this)" onmouseover="rimuovi_stile(this)"class="form-control" type="file" id="immagine1" name="immagine" placeholder="immagine">
@@ -143,7 +143,7 @@
                         
                         <img class="thumbnail img-responsive" src="{{$link2}}" alt="Libri">
                         <form action="{{route('sentiero.aggiungiimmagine',['id'=> $sentiero->id])}}" id="aggiungi_immagine_2" name="aggiungi_immagine_2" method="POST" enctype="multipart/form-data"> {{ csrf_field() }}
-
+                            <h4>{{$link2}}</h4>
                             <div class="form-group">
                                 <div style="margin-top: 1em; margin-bottom: 1em" class="col-sm-12">
                                     <input onchange="size_immagine(this)"; onkeyup="rimuovi_stile(this)" onmouseover="rimuovi_stile(this)"class="form-control" type="file" id="immagine2" name="immagine" placeholder="immagine">
@@ -179,9 +179,9 @@
                         </div>
                         </h5>
                         
-                        <img class="thumbnail img-responsive" src="{{$link3}}" alt="Libri">
+                        <img class="thumbnail img-responsive" src="{{$link3}}" alt="Immagine 3">
                         <form action="{{route('sentiero.aggiungiimmagine',['id'=> $sentiero->id])}}" id="aggiungi_immagine_3" name="aggiungi_immagine_3" method="POST" enctype="multipart/form-data"> {{ csrf_field() }}
-
+                            <h4>{{$link3}}</h4>
                             <div class="form-group">
                                 <div style="margin-top: 1em; margin-bottom: 1em" class="col-sm-12">
                                     <input onchange="size_immagine(this)"; onkeyup="rimuovi_stile(this)" onmouseover="rimuovi_stile(this)"class="form-control" type="file" id="immagine3" name="immagine" placeholder="immagine">
@@ -195,7 +195,7 @@
                                 </div>
                                 
                                 <div class="col-sm-2 col-sm-offset-2">
-                                    @if($link3!="http://localhost:8000/storage/fotosentieri/default")
+                                    @if($link3!="http://127.0.0.1:8000/storage/fotosentieri/default")
                                     <button class="btn btn-danger" onclick="location.href='{{route('sentiero.rimuoviimmagine',['id'=> $sentiero->id, 'nome'=> '3'])}}'"><span class="glyphicon glyphicon-trash"></span</button>
                                     @else
                                     <button disabled="" class="btn btn-danger"><span class="glyphicon glyphicon-trash"></span</button>
@@ -207,6 +207,7 @@
                     </div>
                 </div>
                 
+                <h5> id: {{$sentiero->id}}, nome: 3</h5>
                 
             </div><!-- /.row -->
             <div style="margin-top: 2em;" class="row">
