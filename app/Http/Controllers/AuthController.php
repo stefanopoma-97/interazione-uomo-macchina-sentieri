@@ -76,11 +76,11 @@ class AuthController extends Controller
         session_start();
         $dl = new DataLayer();
         $citta_id = $dl->getCityID($request->input('citta_completamento'));
-        $dl->addUser($request->input('username'), $request->input('password'), $request->input('mail'),
+        $dl->addUser($request->input('username'), $request->input('password_nuova'), $request->input('mail'),
                 $request->input('nome'),$request->input('cognome'),$request->input('descrizione'),
                 $citta_id, $request->input('consiglio'));
                
-        if ($dl->validUser($request->input('username'), $request->input('password'))) 
+        if ($dl->validUser($request->input('username'), $request->input('password_nuova'))) 
         {
             $_SESSION['logged'] = true;
             $_SESSION['loggedName'] = $request->input('username');
