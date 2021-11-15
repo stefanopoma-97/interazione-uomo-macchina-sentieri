@@ -429,16 +429,18 @@ class SentieroController extends Controller
     }
     
      public function rimuovi_immagine ($id, $nome){
-        /*$exists = Storage::has("public/fotosentieri/".$id."/".$nome);
+        //Log::info("public/fotosentieri/".$id."/".$nome);
+        error_log("public/fotosentieri/".$id."/".$nome);
+        $exists = Storage::has("public/fotosentieri/".$id."/".$nome);
         if($exists)
             Storage::delete("public/fotosentieri/".$id."/".$nome);
-        return Redirect::to(route('sentiero.immagini',['id' => $id]));*/
-        
-        
-        $exists = Storage::has("public/fotosentieri/11/3");
-        if($exists)
-            Storage::delete("public/fotosentieri/11/3");
         return Redirect::to(route('sentiero.immagini',['id' => $id]));
+        
+        
+        /*$exists = Storage::has("public/fotosentieri/".$id."/3");
+        if($exists)
+            Storage::delete("public/fotosentieri/".$id."/3");
+        return Redirect::to(route('sentiero.immagini',['id' => $id]));*/
         
     }
     
