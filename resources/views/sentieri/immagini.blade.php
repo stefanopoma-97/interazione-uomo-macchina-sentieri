@@ -121,9 +121,10 @@
                                 
                                 <div class="col-sm-2 col-sm-offset-2">
                                     @if($link1!="http://localhost:8000/storage/fotosentieri/default")
-                                    <!--<a class="btn btn-danger" href="{{route('sentiero.rimuoviimmagine',['id'=> $sentiero->id, 'nome'=> '1'])}}">
-                                        <span class="glyphicon glyphicon-trash"></span></a>-->
-                                    <button class="btn btn-danger" onclick="location.href='{{route('sentiero.rimuoviimmagine',['id'=> $sentiero->id, 'nome'=> '1'])}}'"><span class="glyphicon glyphicon-trash"></span</button>
+                                    <a class="btn btn-danger" href="{{route('sentiero.rimuoviimmagine',['id'=> $sentiero->id, 'nome'=> '1'])}}">
+                                        <span class="glyphicon glyphicon-trash"></span></a>
+                                    <!--<button class="btn btn-danger" onclick="location.href='{{route('sentiero.rimuoviimmagine',['id'=> $sentiero->id, 'nome'=> '1'])}}'">
+                                    <span class="glyphicon glyphicon-trash"></span</button>-->
 
                                     @else
                                     <button disabled="" class="btn btn-danger"><span class="glyphicon glyphicon-trash"></span</button>
@@ -161,7 +162,10 @@
                                 
                                 <div class="col-sm-2 col-sm-offset-2">
                                     @if($link2!="http://localhost:8000/storage/fotosentieri/default")
-                                    <button class="btn btn-danger" onclick="location.href='{{route('sentiero.rimuoviimmagine',['id'=> $sentiero->id, 'nome'=> '2'])}}'"><span class="glyphicon glyphicon-trash"></span</button>
+                                    <a class="btn btn-danger" href="{{route('sentiero.rimuoviimmagine',['id'=> $sentiero->id, 'nome'=> '2'])}}">
+                                        <span class="glyphicon glyphicon-trash"></span></a>
+                                    <!--<button class="btn btn-danger" onclick="location.href='{{route('sentiero.rimuoviimmagine',['id'=> $sentiero->id, 'nome'=> '1'])}}'">
+                                    <span class="glyphicon glyphicon-trash"></span</button>-->
                                     @else
                                     <button disabled="" class="btn btn-danger"><span class="glyphicon glyphicon-trash"></span</button>
                                     @endif
@@ -199,7 +203,10 @@
                                 
                                 <div class="col-sm-2 col-sm-offset-2">
                                     @if($link3!="http://localhost:8000/storage/fotosentieri/default")
-                                    <button class="btn btn-danger" onclick="location.href='{{route('sentiero.rimuoviimmagine',['id'=> $sentiero->id, 'nome'=> '3'])}}'"><span class="glyphicon glyphicon-trash"></span</button>
+                                    <a class="btn btn-danger" href="{{route('sentiero.rimuoviimmagine',['id'=> $sentiero->id, 'nome'=> '3'])}}">
+                                        <span class="glyphicon glyphicon-trash"></span></a>
+                                    <!--<button class="btn btn-danger" onclick="location.href='{{route('sentiero.rimuoviimmagine',['id'=> $sentiero->id, 'nome'=> '1'])}}'">
+                                    <span class="glyphicon glyphicon-trash"></span</button>-->
                                     @else
                                     <button disabled="" class="btn btn-danger"><span class="glyphicon glyphicon-trash"></span</button>
                                     @endif
