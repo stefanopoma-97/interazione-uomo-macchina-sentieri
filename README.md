@@ -14,8 +14,13 @@
     creare account in php my admin con tutti i privilegi. nome:stefano pass:stefano 
 
 6)  Scaricare Composer: https://getcomposer.org/
+    Questa versione sembra non andare con php 8.X
+    Quindi è meglio scaricare php 7.X 
+    https://windows.php.net/download#php-7.0
+    inserire la cartella estratta accanto alla cartella PHP creata da Ampp o Xampp
 
 7)  Installare composer e selezionare il file php.exe nella cartella Ampss
+    Il file php.exe deve essere quello associato alla versione 7.X
 
 8)  Con il composer installare Laravell: 
     composer global require "laravel/installer=~1.1”
