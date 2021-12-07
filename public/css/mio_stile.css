@@ -3,7 +3,7 @@ To change this license header, choose License Headers in Project Properties.
 To change this template file, choose Tools | Templates
 and open the template in the editor.
 */
-/* 
+/*
     Created on : 11 mag 2020, 16:58:12
     Author     : stefano
 */
@@ -77,9 +77,9 @@ and open the template in the editor.
 .navbar-default > li > a:focus {
       color: #357ebd;
     } /*si colora di blu se selezionato*/
-    
 
-/*li attivo si colra di blu*/    
+
+/*li attivo si colra di blu*/
 .navbar-default .navbar-nav > li.active,
     .navbar-default .navbar-nav > a:hover,
     .navbar-default .navbar-nav > a:focus {
@@ -88,14 +88,14 @@ and open the template in the editor.
       background-color: #4897db; /*colore sfondo*/
     }
 
-/*li attivo soft si colora di grigio (home)*/    
+/*li attivo soft si colora di grigio (home)*/
 .navbar-default .navbar-nav > li.active-soft
     {
       color: #fff; /*colore scritta*/
       background-color: #c9c9c9; /*colore sfondo*/
     }
-    
-    
+
+
 /* MOUSE */
 
 /*stampa linea blu a tutti tranne a.btnlogin*/
@@ -119,7 +119,7 @@ and open the template in the editor.
       border-bottom: 4px solid #f7cc5e;
       padding-bottom: 13px;
     }
-    
+
     /*tasto di dropdown*/
     .navbar-default .navbar-nav > li.dropdown > a:hover,
     .navbar-default .navbar-nav > li.dropdown > a:focus {
@@ -129,7 +129,10 @@ and open the template in the editor.
     }
     }
 
-
+.text-white{
+    /*color: white!important;*/
+    color: #fcfcfc!important;
+}
 
 
 /* IMMAGINE*/
@@ -160,7 +163,7 @@ and open the template in the editor.
 
 .nav-tabs > li {
   float: left;
- 
+
 }
 
 .tab-content {
@@ -187,7 +190,7 @@ and open the template in the editor.
   border: none;
   border-bottom-color: transparent;
   cursor: default;
-  
+
 }
 
 /*elementi sottolineati hanno barra blu*/
@@ -196,7 +199,7 @@ and open the template in the editor.
   color: #357ebd;
   box-shadow: inset 0 -4px 0 #357ebd;
   cursor: default;
-  
+
 }
 
    .navbar-fixed-top {
@@ -217,14 +220,14 @@ li.inserimeno-titolo > p.titolo{
 /*serve per eliminare il testo in eccesso*/
 .list-group-item,
 .list-group-item > h4 {
-    overflow: hidden; 
-    text-overflow: ellipsis; 
+    overflow: hidden;
+    text-overflow: ellipsis;
     white-space: nowrap;
 }
 
 .all_text {
     word-wrap: break-word;
-    overflow: hidden; 
+    overflow: hidden;
     text-overflow: ellipsis;
     white-space: normal;
 }
@@ -240,14 +243,14 @@ li.inserimeno-titolo > p.titolo{
 }
 
 .not_all_text {
-    overflow: hidden; 
-    text-overflow: ellipsis; 
+    overflow: hidden;
+    text-overflow: ellipsis;
     white-space: nowrap;
 }
 
 .overflow-text {
-    overflow: hidden; 
-    text-overflow: ellipsis; 
+    overflow: hidden;
+    text-overflow: ellipsis;
     white-space: nowrap;
 }
 
@@ -437,7 +440,7 @@ li.inserimeno-titolo > p.titolo{
 
 /* Add animation (fade in the popup) */
 @-webkit-keyframes fadeIn {
-  from {opacity: 0;} 
+  from {opacity: 0;}
   to {opacity: 1;}
 }
 
@@ -448,7 +451,7 @@ li.inserimeno-titolo > p.titolo{
 
 /* Add animation (fade in the popup) */
 @-webkit-keyframes fadeOut {
-  from {opacity: 1;} 
+  from {opacity: 1;}
   to {opacity: 0;}
 }
 
@@ -464,7 +467,7 @@ li.inserimeno-titolo > p.titolo{
   top: 0;
   bottom: 0;
   left: 0;
-  width: 8%;   change this value to required width 
+  width: 8%;   change this value to required width
   font-size: 20px;
   color: #357ebd;
   text-align: center;
@@ -503,6 +506,6 @@ z-index: 10;
 
 
 
-html, body, #map, #elevation-div { height: 100%; width: 100%; padding: 0; margin: 0; } 
-#map { height: 75%; margin-left: auto; margin-right: auto; } 
+html, body, #map, #elevation-div { height: 100%; width: 100%; padding: 0; margin: 0; }
+#map { height: 75%; margin-left: auto; margin-right: auto; }
 #elevation-div {	height: 25%; font: 12px/1.5 "Helvetica Neue", Arial, Helvetica, sans-serif; }

@@ -98,11 +98,11 @@
             <div class="row">
                 <div class="col-md-12 col-xs-12">
                     <div class="jumbotron">
-                    <h1 class="display-5 text-white text-center">Scopri la tua prossima esperienza</h1>
-                    <p class="lead text-white text-center">Cerca tra i nostri percorsi per trovare quello giusto per te</p>
+                    <h1 class="text-white text-center">Scopri la tua prossima esperienza</h1>
+                    <h3 class="text-white text-center">Cerca tra i nostri sentieri per trovare quello giusto per te</h3>
                     <div class="text-center col-xs-12 pb-5">
 
-                        <form class="form-inline" name="form_ricerca" method="get" action="{{route('sentiero.ricercafiltrahome')}}">
+                        <form style="padding-bottom:3em;" class="form-inline" name="form_ricerca" method="get" action="{{route('sentiero.ricercafiltrahome')}}">
                             <div class="form-group ">
                                 <div>
                                     <input onkeyup="rimuovi_stile(this)" onmouseover="rimuovi_stile(this)" class="form-control" type="text" id="ricerca" name="ricerca" placeholder="Cerca">
