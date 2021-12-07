@@ -12,16 +12,16 @@
 <li><a class="bordo-selezione" href="{{ route('user.elenco') }}">Utenti</a></li>
 
     @if($logged)
-    
+
     @if($user->admin == 'y')
     <li class="nav-item avatar dropdown">
         <a disable="" class="nav-link dropdown-toggle" id="navbarDropdownMenuLink-5" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
             @if($count_revisioni==0)
             <!--<span class="badge badge-danger ml-2">{{$count_revisioni}}</span>-->
-            <span class="material-icons">notifications_none</span> 
+            <span class="material-icons">notifications_none</span>
             @else
             <!--<span style="background-color:red" class="badge badge-danger ml-2">{{$count_revisioni}}</span>-->
-            <span class="material-icons">notifications_active</span> 
+            <span class="material-icons">notifications_active</span>
             @endif
         </a>
         <ul class="dropdown-menu">
@@ -34,8 +34,8 @@
     </li>
     @else
     @endif
-    
-    <li class="dropdown" style="margin-left: 5em;">
+
+    {{--<li class="dropdown" style="margin-left: 5em;">
         <a class="btnsignin dropdown-toggle" href="#" data-toggle="dropdown"><span class="glyphicon glyphicon-user"></span></a>
         <ul class="dropdown-menu">
             <li><a href="{{ route('user.dettagli', ['id'=> $user_id]) }}">{{$user->nome}}</a></li>
@@ -47,16 +47,39 @@
             @endif
             <li><a href="{{ route('user.logout') }}">Log out</a></li>
         </ul>
+    </li>--}}
+
+    <li class="dropdown" style="margin-left: 5em;">
+        @if ($logged)
+            @if ($user->admin == 'y')
+                <a class="btnsignin dropdown-toggle" href="#" data-toggle="dropdown">
+                    <span class="glyphicon glyphicon-user">Admin:{{$user->nome}}</span>
+                </a>
+            @else
+                <a class="btnsignin dropdown-toggle" href="#" data-toggle="dropdown">
+                    <span class="glyphicon glyphicon-user">Ciao {{$user->nome}}</span>
+                </a>
+            @endif
+
+            <ul class="dropdown-menu">
+                <li><a href="{{ route('user.dettagli', ['id'=> $user_id]) }}">{{$user->nome}}</a></li>
+                <li><a href="{{ route('user.preferiti', ['id'=> $user_id]) }}">Preferiti</a></li>
+                @if($user->admin == 'y')
+                <li><a href="{{ route('sentiero.index') }}">Lista sentieri</a></li>
+                <li><a href="{{ route('esperienza.darevisionare',  ['id'=> $user_id]) }}">Revisioni</a></li>
+                @else
+                @endif
+                <li><a href="{{ route('user.logout') }}">Log out</a></li>
+            </ul>
+        @endif
     </li>
-    
-    
-    
+
     @else
         <li style="margin-left: 5em;"><a class="btn btnlogin" href="{{ route('user.auth.login') }}"><span class="glyphicon glyphicon-log-in"></span> Accedi</a></li>
         <li><a class="btnsignin" href="{{ route('user.auth.register') }}"><span class="glyphicon glyphicon-user"></span> Registrati</a></li>
 
     @endif
-    
+
 
 @endsection
 
@@ -86,7 +109,7 @@
 
 @section('corpo')
 <div class="container" style="margin-top: 5em;">
-    
+
     @if(isset($sentiero->id))
     <div class="row col-md-12">
         <div class="col-md-1 col-md-offset-9">
@@ -98,7 +121,7 @@
     </div>
     @else
     @endif
-    
+
     <div class="row" style="margin-top: 2em;">
         <div class='col-md-12'>
             <div style="margin-bottom: 2em;" hidden="" class="col-md-12 alert alert-danger">
@@ -111,7 +134,7 @@
             <form class="form-horizontal" name="sentiero" method="post" action="{{ route('sentiero.store') }}">
             @endif
             @csrf
-            
+
                 <div class="form-group">
                     <label for="titolo" class="col-md-2">Titolo</label>
                     <div class="col-sm-10">
@@ -174,9 +197,9 @@
                         <input onkeyup="rimuovi_stile(this)" onmouseover="rimuovi_stile(this)" maxlength="5" type="number" min="1" max="10000" class="form-control" name="discesa" required="True" id="discesa" placeholder="Discesa" value="{{$sentiero->salita}}">
                         @else
                         <input onkeyup="rimuovi_stile(this)" onmouseover="rimuovi_stile(this)" maxlength="5" type="number" min="1" max="10000" class="form-control" name="discesa" required="True" id="discesa" placeholder="Discesa">
-                        @endif                    
+                        @endif
                     </div>
-                    
+
                 </div>
 
                 <div class="form-group row">
@@ -186,7 +209,7 @@
                         <input onkeyup="rimuovi_stile(this)" onmouseover="rimuovi_stile(this)" maxlength="5" type="number" min="1" max="10000" class="form-control" name="altezza_massima" required="True" id="altezza_massima" placeholder="Altezza massima" value="{{$sentiero->altezza_massima}}">
                         @else
                         <input onkeyup="rimuovi_stile(this)" onmouseover="rimuovi_stile(this)" maxlength="5" type="number" min="1" max="10000" class="form-control" name="altezza_massima" required="True" id="altezza_massima" placeholder="Altezza massima">
-                        @endif                      
+                        @endif
                     </div>
                 </div>
 
@@ -197,7 +220,7 @@
                         <input onkeyup="rimuovi_stile(this)" onmouseover="rimuovi_stile(this)" maxlength="5" type="number" min="1" max="10000" class="form-control" name="altezza_minima" required="True" id="altezza_minima" placeholder="Altezza minima" value="{{$sentiero->altezza_massima}}">
                         @else
                         <input onkeyup="rimuovi_stile(this)" onmouseover="rimuovi_stile(this)" maxlength="5" type="number" min="1" max="10000" class="form-control" name="altezza_minima" required="True" id="altezza_minima" placeholder="Altezza minima">
-                        @endif                      
+                        @endif
                     </div>
                 </div>
 
@@ -215,7 +238,7 @@
                                 @else
                                     <option value="{{$c->id}}">{{$c->nome}}</option>
                                 @endif
-                            
+
                             @endforeach
                         </select>
                     </div>
@@ -249,7 +272,7 @@
                         @else
                         <input onkeyup="rimuovi_stile(this)" onmouseover="rimuovi_stile(this)" required="" type="text" class="form-control" id="citta" name="citta" value="" placeholder="Città" list="lista_citta">
                         @endif
-                        
+
                         <datalist id="lista_citta">
                             @foreach ($citta as $c)
                                 <option>{{$c->nome}}</option>
@@ -274,9 +297,9 @@
                 </div>
                 <div class="form-group">
                     <div class="col-sm-10 col-sm-offset-2">
-                        <a href="{{route('sentiero.index')}}" class="btn btn-danger btn-large btn-block"><span class="glyphicon glyphicon-log-out"></span> Cancel</a>                         
+                        <a href="{{route('sentiero.index')}}" class="btn btn-danger btn-large btn-block"><span class="glyphicon glyphicon-log-out"></span> Cancel</a>
                     </div>
-                </div> 
+                </div>
 
             </form>
         </div>

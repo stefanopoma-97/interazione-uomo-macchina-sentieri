@@ -12,16 +12,16 @@
 <li><a class="bordo-selezione" href="{{ route('user.elenco') }}">Utenti</a></li>
 
     @if($logged)
-    
+
     @if($user->admin == 'y')
     <li class="nav-item avatar dropdown">
         <a disable="" class="nav-link dropdown-toggle" id="navbarDropdownMenuLink-5" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
             @if($count_revisioni==0)
             <!--<span class="badge badge-danger ml-2">{{$count_revisioni}}</span>-->
-            <span class="material-icons">notifications_none</span> 
+            <span class="material-icons">notifications_none</span>
             @else
             <!--<span style="background-color:red" class="badge badge-danger ml-2">{{$count_revisioni}}</span>-->
-            <span class="material-icons">notifications_active</span> 
+            <span class="material-icons">notifications_active</span>
             @endif
         </a>
         <ul class="dropdown-menu">
@@ -34,8 +34,8 @@
     </li>
     @else
     @endif
-    
-    <li class="dropdown" style="margin-left: 5em;">
+
+    {{--<li class="dropdown" style="margin-left: 5em;">
         <a class="btnsignin dropdown-toggle" href="#" data-toggle="dropdown"><span class="glyphicon glyphicon-user"></span></a>
         <ul class="dropdown-menu">
             <li><a href="{{ route('user.dettagli', ['id'=> $user_id]) }}">{{$user->nome}}</a></li>
@@ -47,10 +47,33 @@
             @endif
             <li><a href="{{ route('user.logout') }}">Log out</a></li>
         </ul>
+    </li>--}}
+
+    <li class="dropdown" style="margin-left: 5em;">
+        @if ($logged)
+            @if ($user->admin == 'y')
+                <a class="btnsignin dropdown-toggle" href="#" data-toggle="dropdown">
+                    <span class="glyphicon glyphicon-user">Admin:{{$user->nome}}</span>
+                </a>
+            @else
+                <a class="btnsignin dropdown-toggle" href="#" data-toggle="dropdown">
+                    <span class="glyphicon glyphicon-user">Ciao {{$user->nome}}</span>
+                </a>
+            @endif
+
+            <ul class="dropdown-menu">
+                <li><a href="{{ route('user.dettagli', ['id'=> $user_id]) }}">{{$user->nome}}</a></li>
+                <li><a href="{{ route('user.preferiti', ['id'=> $user_id]) }}">Preferiti</a></li>
+                @if($user->admin == 'y')
+                <li><a href="{{ route('sentiero.index') }}">Lista sentieri</a></li>
+                <li><a href="{{ route('esperienza.darevisionare',  ['id'=> $user_id]) }}">Revisioni</a></li>
+                @else
+                @endif
+                <li><a href="{{ route('user.logout') }}">Log out</a></li>
+            </ul>
+        @endif
     </li>
-    
-    
-    
+
     @else
         <li style="margin-left: 5em;"><a class="btn btnlogin" href="{{ route('user.auth.login') }}"><span class="glyphicon glyphicon-log-in"></span> Accedi</a></li>
         <li><a class="btnsignin" href="{{ route('user.auth.register') }}"><span class="glyphicon glyphicon-user"></span> Registrati</a></li>
@@ -84,7 +107,7 @@
             <ul id="ul_errori">
            </ul>
         </div>
-        
+
         <div style="margin-bottom: 2em;" hidden="false" class="col-md-12 alert alert-success">
             <ul id="ul_conferme">
            </ul>
@@ -94,9 +117,9 @@
             @csrf
             <div class="form-group row" id="div_mail">
                     <div class="col-sm-3">
-                        
+
                         <label for="mail" class="col-form-label">La tua mail</label>
-                        
+
                     </div>
                     <div class="col-sm-5">
                         <input onkeyup="rimuovi_stile(this)" onmouseover="rimuovi_stile(this)" maxlength="100" required="" type="mail" class="form-control" name="mail"  placeholder="Mail">
@@ -106,7 +129,7 @@
                         <btn class="btn btn-default" id="btn_valida_mail" onclick="valida_mail(this)">Invia</btn>
                     </div>
                 </div>
-            
+
             <div class="form-group row" id="div_codice" hidden="">
                     <div class="col-sm-3">
                     <label for="codice"  class="col-form-label">Codice inviato</label>
@@ -119,11 +142,11 @@
                         <btn class="btn btn-default" id="btn_valida_codice" onclick="valida_codice(this)">Conferma codice</btn>
                     </div>
                 </div>
-            
+
             <div class="form-group row" id="div_password" hidden="">
                     <div class="col-sm-3">
                     <label for="password_nuova" class="col-form-label">Nuova password</label>
-                            
+
                     </div>
                     <div class="col-sm-5">
                         <input onkeyup="rimuovi_stile(this); strong_password(this); " onmouseover="rimuovi_stile(this)" maxlength="100" required="" type="password" class="form-control" name="password_nuova" placeholder="Nuova password">
@@ -133,19 +156,19 @@
                         <p id="password-strength-text"></p>
                     </div>
                 </div>
-            
+
             <div class="form-group row" id="div_consiglio" hidden="">
                     <div class="col-sm-3">
                     <label for="consiglio" class="col-form-label">Consiglio recupero password</label>
-                            
+
                     </div>
                     <div class="col-sm-5">
                         <input onkeyup="rimuovi_stile(this); " onmouseover="rimuovi_stile(this)" maxlength="100" type="text" class="form-control" name="consiglio" placeholder="consiglio">
-                        
+
                     </div>
                 </div>
-                
-                
+
+
             <div class="form-group" id="div_submit" hidden="">
                     <div class="col-sm-5 col-sm-offset-3">
                         <input type="hidden" name="id" value="{{ $user_id }}"/>
@@ -156,10 +179,10 @@
                 </div>
                 <div class="form-group">
                     <div class="col-sm-5 col-sm-offset-3">
-                        <a href="{{route('user.edit',['id'=> $user->id])}}" class="btn btn-danger btn-large btn-block"><span class="glyphicon glyphicon-log-out"></span> Cancel</a>                         
+                        <a href="{{route('user.edit',['id'=> $user->id])}}" class="btn btn-danger btn-large btn-block"><span class="glyphicon glyphicon-log-out"></span> Cancel</a>
                     </div>
                 </div>
-                 
+
             </form>
         </div>
     </div>

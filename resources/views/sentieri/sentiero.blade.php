@@ -15,16 +15,16 @@
 <li><a class="bordo-selezione" href="{{ route('user.elenco') }}">Utenti</a></li>
 
     @if($logged)
-    
+
     @if($user->admin == 'y')
     <li class="nav-item avatar dropdown">
         <a disable="" class="nav-link dropdown-toggle" id="navbarDropdownMenuLink-5" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
             @if($count_revisioni==0)
             <!--<span class="badge badge-danger ml-2">{{$count_revisioni}}</span>-->
-            <span class="material-icons">notifications_none</span> 
+            <span class="material-icons">notifications_none</span>
             @else
             <!--<span style="background-color:red" class="badge badge-danger ml-2">{{$count_revisioni}}</span>-->
-            <span class="material-icons">notifications_active</span> 
+            <span class="material-icons">notifications_active</span>
             @endif
         </a>
         <ul class="dropdown-menu">
@@ -37,8 +37,8 @@
     </li>
     @else
     @endif
-    
-    <li class="dropdown" style="margin-left: 5em;">
+
+    {{--<li class="dropdown" style="margin-left: 5em;">
         <a class="btnsignin dropdown-toggle" href="#" data-toggle="dropdown"><span class="glyphicon glyphicon-user"></span></a>
         <ul class="dropdown-menu">
             <li><a href="{{ route('user.dettagli', ['id'=> $user_id]) }}">{{$user->nome}}</a></li>
@@ -50,16 +50,39 @@
             @endif
             <li><a href="{{ route('user.logout') }}">Log out</a></li>
         </ul>
+    </li>--}}
+
+    <li class="dropdown" style="margin-left: 5em;">
+        @if ($logged)
+            @if ($user->admin == 'y')
+                <a class="btnsignin dropdown-toggle" href="#" data-toggle="dropdown">
+                    <span class="glyphicon glyphicon-user">Admin:{{$user->nome}}</span>
+                </a>
+            @else
+                <a class="btnsignin dropdown-toggle" href="#" data-toggle="dropdown">
+                    <span class="glyphicon glyphicon-user">Ciao {{$user->nome}}</span>
+                </a>
+            @endif
+
+            <ul class="dropdown-menu">
+                <li><a href="{{ route('user.dettagli', ['id'=> $user_id]) }}">{{$user->nome}}</a></li>
+                <li><a href="{{ route('user.preferiti', ['id'=> $user_id]) }}">Preferiti</a></li>
+                @if($user->admin == 'y')
+                <li><a href="{{ route('sentiero.index') }}">Lista sentieri</a></li>
+                <li><a href="{{ route('esperienza.darevisionare',  ['id'=> $user_id]) }}">Revisioni</a></li>
+                @else
+                @endif
+                <li><a href="{{ route('user.logout') }}">Log out</a></li>
+            </ul>
+        @endif
     </li>
-    
-    
-    
+
     @else
         <li style="margin-left: 5em;"><a class="btn btnlogin" href="{{ route('user.auth.login') }}"><span class="glyphicon glyphicon-log-in"></span> Accedi</a></li>
         <li><a class="btnsignin" href="{{ route('user.auth.register') }}"><span class="glyphicon glyphicon-user"></span> Registrati</a></li>
 
     @endif
-    
+
 @endsection
 
 @section('sfondo')
@@ -108,13 +131,13 @@
             @endif
         </form>
     </div>
-    
+
     <div class="row pt-5">
-        
+
         <div class="col-m-6 col-sm-6 col-xs-12">
             <ul class="list-group">
                 <li class="list-group-item text-center">
-                    
+
                         <h3><strong  >{{ $sentiero->titolo}}</strong></h3>
                     </li>
                 <li class="list-group-item"><strong>Categoria: {{ $sentiero->categoria->nome}}</strong></li>
@@ -128,7 +151,7 @@
                 <li class="list-group-item "><span class="glyphicon glyphicon-arrow-down"></span>  Altezza minima:   {{ $sentiero->altezza_minima}}</li>
                 <li class="list-group-item "><span class="glyphicon glyphicon-resize-vertical"></span>  Dislivello   {{ ($sentiero->altezza_massima) - ($sentiero->altezza_minima)}}</li>
             </ul>
-            
+
             <div class="container" style="margin-bottom: 3em">
                 <h4>Cerca altre informazioni:</h4>
             <a target=”_blank” href={{$link_google}}>
@@ -138,10 +161,10 @@
             <img width="45px" class="img responsive" src="{{ url('/') }}/img/youtube.png">
             </a>
             </div>
-            
 
-            
-                        
+
+
+
             <script>
                 $(document).ready(function(){
                   $("#preferito").click(function(){
@@ -153,7 +176,7 @@
 
 
         <div  class="col-md-6">
-            <div> 
+            <div>
                 @if($immagini=="")
                 <div class="row">
                     <div class="col-md-12">
@@ -212,7 +235,7 @@
 
 @if($gpx=="")
 <div class="container">
-    <div class="col-md-12 text-center alert alert-danger" style="margin-bottom: 2em"><h3>Dati gps non disponibili</h3></div> 
+    <div class="col-md-12 text-center alert alert-danger" style="margin-bottom: 2em"><h3>Dati gps non disponibili</h3></div>
 
 </div>
 <div style="max-width:100em;" id="map"></div>
@@ -235,11 +258,11 @@
     </div>
 </div>
 @endif
-     
-    
-    
-    
-    
+
+
+
+
+
 
 
 <div class="container">
@@ -266,14 +289,14 @@
 
 <div class="container">
     <div id="myCarousel" class="carousel slide" data-ride="carousel">
-<!--        Indicators 
+<!--        Indicators
         <ol class="carousel-indicators" >
             <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
             <li data-target="#myCarousel" data-slide-to="1"></li>
             <li data-target="#myCarousel" data-slide-to="2"></li>
         </ol>-->
 
-        
+
         <div class="carousel-inner">
 
             <?php $pos = 1 ?>
@@ -364,7 +387,7 @@ function sostituisci_immagine(img){
 
 
 <div class="container">
-     
+
 @if(count($revisioni)==0)
 @else
 <div class="row" style="margin-top: 5em; margin-bottom: 3em;">
@@ -385,7 +408,7 @@ function sostituisci_immagine(img){
                 <col width='10%'>
                 <col width='35%'>
                 <col width='15%'>
-                
+
                 <thead>
                     <tr class="table-bordered">
                         <th data-sortable="true" class="th-sm ">Data</th>
@@ -406,7 +429,7 @@ function sostituisci_immagine(img){
                         @else
                         <td style="color: blue"><strong>In {{$revisione->stato}}...</strong></td>
                         @endif
-                        
+
                     </tr>
                     @endforeach
                 </tbody>
@@ -421,7 +444,7 @@ function sostituisci_immagine(img){
             </table>
         </div>
     </div>
-    
+
 </div>
 
 @endif
@@ -430,8 +453,8 @@ function sostituisci_immagine(img){
 
 
 <div class="modal fade" id="modalForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-   
-    
+
+
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -494,11 +517,11 @@ function sostituisci_immagine(img){
                         </div>
 
                     </form>
-                
+
             </div>
-        </div> /.modal-content 
-    </div> /.modal-dialog 
-  
+        </div> /.modal-content
+    </div> /.modal-dialog
+
 </div>
 
 
@@ -508,8 +531,8 @@ scorri_immagini();
 </script>
 
 <style>
-    html, body, #map, #elevation-div { height: 100%; width: 100%; padding: 0; margin: 0; } 
-#map { height: 75%; margin-left: auto; margin-right: auto; } 
+    html, body, #map, #elevation-div { height: 100%; width: 100%; padding: 0; margin: 0; }
+#map { height: 75%; margin-left: auto; margin-right: auto; }
 #elevation-div {	height: 25%; font: 12px/1.5 "Helvetica Neue", Arial, Helvetica, sans-serif; }
 </style>
 

@@ -12,16 +12,16 @@
 <li><a class="bordo-selezione" href="{{ route('user.elenco') }}">Utenti</a></li>
 
     @if($logged)
-    
+
     @if($user->admin == 'y')
     <li class="nav-item avatar dropdown">
         <a disable="" class="nav-link dropdown-toggle" id="navbarDropdownMenuLink-5" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
             @if($count_revisioni==0)
             <!--<span class="badge badge-danger ml-2">{{$count_revisioni}}</span>-->
-            <span class="material-icons">notifications_none</span> 
+            <span class="material-icons">notifications_none</span>
             @else
             <!--<span style="background-color:red" class="badge badge-danger ml-2">{{$count_revisioni}}</span>-->
-            <span class="material-icons">notifications_active</span> 
+            <span class="material-icons">notifications_active</span>
             @endif
         </a>
         <ul class="dropdown-menu">
@@ -34,8 +34,8 @@
     </li>
     @else
     @endif
-    
-    <li class="dropdown" style="margin-left: 5em;">
+
+    {{--<li class="dropdown" style="margin-left: 5em;">
         <a class="btnsignin dropdown-toggle" href="#" data-toggle="dropdown"><span class="glyphicon glyphicon-user"></span></a>
         <ul class="dropdown-menu">
             <li><a href="{{ route('user.dettagli', ['id'=> $user_id]) }}">{{$user->nome}}</a></li>
@@ -47,10 +47,33 @@
             @endif
             <li><a href="{{ route('user.logout') }}">Log out</a></li>
         </ul>
+    </li>--}}
+
+    <li class="dropdown" style="margin-left: 5em;">
+        @if ($logged)
+            @if ($user->admin == 'y')
+                <a class="btnsignin dropdown-toggle" href="#" data-toggle="dropdown">
+                    <span class="glyphicon glyphicon-user">Admin:{{$user->nome}}</span>
+                </a>
+            @else
+                <a class="btnsignin dropdown-toggle" href="#" data-toggle="dropdown">
+                    <span class="glyphicon glyphicon-user">Ciao {{$user->nome}}</span>
+                </a>
+            @endif
+
+            <ul class="dropdown-menu">
+                <li><a href="{{ route('user.dettagli', ['id'=> $user_id]) }}">{{$user->nome}}</a></li>
+                <li><a href="{{ route('user.preferiti', ['id'=> $user_id]) }}">Preferiti</a></li>
+                @if($user->admin == 'y')
+                <li><a href="{{ route('sentiero.index') }}">Lista sentieri</a></li>
+                <li><a href="{{ route('esperienza.darevisionare',  ['id'=> $user_id]) }}">Revisioni</a></li>
+                @else
+                @endif
+                <li><a href="{{ route('user.logout') }}">Log out</a></li>
+            </ul>
+        @endif
     </li>
-    
-    
-    
+
     @else
         <li style="margin-left: 5em;"><a class="btn btnlogin" href="{{ route('user.auth.login') }}"><span class="glyphicon glyphicon-log-in"></span> Accedi</a></li>
         <li><a class="btnsignin" href="{{ route('user.auth.register') }}"><span class="glyphicon glyphicon-user"></span> Registrati</a></li>
@@ -89,9 +112,9 @@
             @csrf
                 <div class="form-group row">
                     <div class="col-sm-3">
-                        
+
                         <label for="password_precedente" class="col-form-label">Password precedente</label>
-                        
+
                                 <div style="margin-left: 1em;" class="popup" onclick="popup(this)" >
                                     <span class="popuptext">Inserisci la tua password attuale</span>
                                     <span class="glyphicon glyphicon-info-sign" ></span>
@@ -134,7 +157,7 @@
                         <span class="invalid-input" id="invalid-password_nuova2"></span>
                     </div>
                 </div>
-            
+
                 <div class="form-group row">
                     <div class="col-sm-3">
                     <label for="consiglio"  class="col-form-label">Consiglio per il recupero della password</label>
@@ -148,8 +171,8 @@
                         <span class="invalid-input" id="invalid-password_nuova2"></span>
                     </div>
                 </div>
-                
-                
+
+
                 <div class="form-group">
                     <div class="col-sm-5 col-sm-offset-3">
                         <input type="hidden" name="id" value="{{ $user_id }}"/>
@@ -160,22 +183,22 @@
                 </div>
                 <div class="form-group">
                     <div class="col-sm-5 col-sm-offset-3">
-                        <a href="{{route('user.edit',['id'=> $user->id])}}" class="btn btn-danger btn-large btn-block"><span class="glyphicon glyphicon-log-out"></span> Cancel</a>                         
+                        <a href="{{route('user.edit',['id'=> $user->id])}}" class="btn btn-danger btn-large btn-block"><span class="glyphicon glyphicon-log-out"></span> Cancel</a>
                     </div>
                 </div>
                 <div class="form-group">
                     <div class="col-sm-5 col-sm-offset-3">
-                        <a href="{{route('user.edit.recuperopassword',['id'=> $user->id])}}">Password dimenticata?</a>                         
+                        <a href="{{route('user.edit.recuperopassword',['id'=> $user->id])}}">Password dimenticata?</a>
                     </div>
-                </div>  
+                </div>
             </form>
         </div>
     </div>
 </div>
 
 <script>
-    
-    
+
+
 </script>
 <!--<script>
     $("form#modifica_utente :input").each(function(){

@@ -12,16 +12,16 @@
 <li><a class="bordo-selezione" href="{{ route('user.elenco') }}">Utenti</a></li>
 
     @if($logged)
-    
+
     @if($user->admin == 'y')
     <li class="nav-item avatar dropdown">
         <a disable="" class="nav-link dropdown-toggle" id="navbarDropdownMenuLink-5" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
             @if($count_revisioni==0)
             <!--<span class="badge badge-danger ml-2">{{$count_revisioni}}</span>-->
-            <span class="material-icons">notifications_none</span> 
+            <span class="material-icons">notifications_none</span>
             @else
             <!--<span style="background-color:red" class="badge badge-danger ml-2">{{$count_revisioni}}</span>-->
-            <span class="material-icons">notifications_active</span> 
+            <span class="material-icons">notifications_active</span>
             @endif
         </a>
         <ul class="dropdown-menu">
@@ -34,8 +34,8 @@
     </li>
     @else
     @endif
-    
-    <li class="dropdown" style="margin-left: 5em;">
+
+    {{--<li class="dropdown" style="margin-left: 5em;">
         <a class="btnsignin dropdown-toggle" href="#" data-toggle="dropdown"><span class="glyphicon glyphicon-user"></span></a>
         <ul class="dropdown-menu">
             <li><a href="{{ route('user.dettagli', ['id'=> $user_id]) }}">{{$user->nome}}</a></li>
@@ -47,16 +47,39 @@
             @endif
             <li><a href="{{ route('user.logout') }}">Log out</a></li>
         </ul>
+    </li>--}}
+
+    <li class="dropdown" style="margin-left: 5em;">
+        @if ($logged)
+            @if ($user->admin == 'y')
+                <a class="btnsignin dropdown-toggle" href="#" data-toggle="dropdown">
+                    <span class="glyphicon glyphicon-user">Admin:{{$user->nome}}</span>
+                </a>
+            @else
+                <a class="btnsignin dropdown-toggle" href="#" data-toggle="dropdown">
+                    <span class="glyphicon glyphicon-user">Ciao {{$user->nome}}</span>
+                </a>
+            @endif
+
+            <ul class="dropdown-menu">
+                <li><a href="{{ route('user.dettagli', ['id'=> $user_id]) }}">{{$user->nome}}</a></li>
+                <li><a href="{{ route('user.preferiti', ['id'=> $user_id]) }}">Preferiti</a></li>
+                @if($user->admin == 'y')
+                <li><a href="{{ route('sentiero.index') }}">Lista sentieri</a></li>
+                <li><a href="{{ route('esperienza.darevisionare',  ['id'=> $user_id]) }}">Revisioni</a></li>
+                @else
+                @endif
+                <li><a href="{{ route('user.logout') }}">Log out</a></li>
+            </ul>
+        @endif
     </li>
-    
-    
-    
+
     @else
         <li style="margin-left: 5em;"><a class="btn btnlogin" href="{{ route('user.auth.login') }}"><span class="glyphicon glyphicon-log-in"></span> Accedi</a></li>
         <li><a class="btnsignin" href="{{ route('user.auth.register') }}"><span class="glyphicon glyphicon-user"></span> Registrati</a></li>
 
     @endif
-    
+
 
 @endsection
 
@@ -86,7 +109,7 @@
 </div>
  <div style="margin-top: 3em;" class="container">
      <div class="row display-flex">
-         
+
          <div class="col-xs-6 col-sm-4 col-sm-offset-4">
              <div class="text-center box-progetto">
                  <h5 for="gpx" class="col-form-label"><strong>File GPX</strong>
