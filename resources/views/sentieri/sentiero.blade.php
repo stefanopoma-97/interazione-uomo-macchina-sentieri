@@ -220,21 +220,10 @@
 </div>
 
 
-    <div class="container">
-    <div class="row" style="margin-top: 5em; margin-bottom: 3em;">
-        <div class="col-md-3">
-            <div class="header-sezione">
-                <h3 class="pull-left">
-                    Mappa
-                </h3>
-
-            </div>
-        </div>
-    </div>
-</div>
+    
 
 @if($gpx=="")
-<div class="container">
+<!--<div class="container">
     <div class="col-md-12 text-center alert alert-danger" style="margin-bottom: 2em"><h3>Dati gps non disponibili</h3></div>
 
 </div>
@@ -246,8 +235,19 @@
             <div class="col-md-12" id="elevation-div"></div>
         </div>
     </div>
-</div>
-@else
+</div>-->
+@else<div class="container">
+    <div class="row" style="margin-top: 5em; margin-bottom: 3em;">
+        <div class="col-md-3">
+            <div class="header-sezione">
+                <h3 class="pull-left">
+                    Mappa
+                </h3>
+
+            </div>
+        </div>
+    </div>
+    </div>
 <div style="max-width:100em;" id="map"></div>
 <br>
 <div class="container" >
