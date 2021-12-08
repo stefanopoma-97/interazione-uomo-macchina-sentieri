@@ -4,19 +4,24 @@
 @section('titolo', 'Sentieri APP')
 
 @section('navbar_home')
-<ul class="nav navbar-nav">
+{{--<ul class="nav navbar-nav">
     <li class="active-soft"><a href="{{ route('home') }}">Home</a></li>
-</ul>
+</ul>--}}
+
+<a class="navbar-brand" href="{{ route('home') }}">Home</a>
 @endsection
 
 
 @section('navbar')
-<li><a class="bordo-selezione" href="{{ route('sentiero.ricerca') }}">Sentieri</a></li>
+<li><a class="bordo-selezione" href="{{ route('sentiero.ricerca') }}">Elenco sentieri</a></li>
 <li><a class="bordo-selezione" href="{{ route('user.elenco') }}">Utenti</a></li>
 
     @if($logged)
 
     @if($user->admin == 'y')
+    <li>
+        <a class="bordo-selezione" href="{{ route('sentiero.index') }}">Gestione sentieri</a>
+    </li>
     <li class="nav-item avatar dropdown">
         <a disable="" class="nav-link dropdown-toggle" id="navbarDropdownMenuLink-5" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
             @if($count_revisioni==0)
