@@ -125,24 +125,23 @@
                     <strong>{{ $user_dettagli->username }}  </strong>
                     @if ($user_dettagli->id == $user_id)
                     <button class="btn" onclick="location.href='{{ route('user.edit', ['id'=> $user_id]) }}'">Modifica  <span class="glyphicon glyphicon glyphicon-cog"></span></button>
-                    <h5><a href="{{route('user.rimuovifotoprofilo',['id'=> $user->id])}}">Rimuovi foto profilo</a></h5>
-                    <button class="btn" data-toggle="modal" data-target="#modalFormRimuoviFoto"> Rimuovi immagine</button>
-                    
+                    <div class="row" style="margin-top: 1em; margin-bottom: 1em;">
+                        <button class="btn" data-toggle="modal" data-target="#modalFormRimuoviFoto"> Rimuovi immagine</button>
+                    </div>
                     <div class="modal" id="modalFormRimuoviFoto" tabindex="-1" role="dialog">
                     <div class="modal-dialog" role="document">
                       <div class="modal-content">
                         <div class="modal-header">
-                          <h5 class="modal-title">Modal title</h5>
-                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                          </button>
+                          <h1 class="modal-title">Vuoi eliminare la foto profilo?</h1>
+                          
                         </div>
                         <div class="modal-body">
-                          <p>Modal body text goes here.</p>
+                          <p>La tua foto profilo verrà eliminata</p>
                         </div>
                         <div class="modal-footer">
-                          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                          <button type="button" class="btn btn-primary">Save changes</button>
+                          
+                          <button type="button" class="btn btn-primary btn-danger" onclick="location.href='{{route('user.rimuovifotoprofilo',['id'=> $user->id])}}'">Elimina</button>
+                          <button type="button" class="btn btn-secondary" data-dismiss="modal">Annulla</button>
                         </div>
                       </div>
                     </div>
