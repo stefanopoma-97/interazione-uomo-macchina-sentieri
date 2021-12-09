@@ -35,7 +35,7 @@
     @else
     @endif
 
-    {{--<li class="dropdown" style="margin-left: 5em;">
+    <?php /*<li class="dropdown" style="margin-left: 5em;">
         <a class="btnsignin dropdown-toggle" href="#" data-toggle="dropdown"><span class="glyphicon glyphicon-user"></span></a>
         <ul class="dropdown-menu">
             <li><a href="{{ route('user.dettagli', ['id'=> $user_id]) }}">{{$user->nome}}</a></li>
@@ -47,7 +47,7 @@
             @endif
             <li><a href="{{ route('user.logout') }}">Log out</a></li>
         </ul>
-    </li>--}}
+    </li>*/ ?>
 
     <li class="dropdown" style="margin-left: 5em;">
         @if ($logged)
