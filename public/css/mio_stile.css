@@ -8,6 +8,27 @@ and open the template in the editor.
     Author     : stefano
 */
 
+/*ICONE*/
+.icona {
+  position: relative;
+  top: 1px;
+  display: inline-block;
+  -webkit-font-smoothing: antialiased;
+  font-style: normal;
+  font-weight: normal;
+  line-height: 1;
+  
+}
+
+.icona-trekking:before {
+  content: url("../img/icona_trekking.jpg");
+  height: auto;
+  width: auto;
+  object-fit: contain;
+}
+
+
+
 /*NAV BAR*/
 
 /*crea il logo del brand in alto a sinistra */
