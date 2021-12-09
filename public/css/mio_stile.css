@@ -17,7 +17,7 @@ and open the template in the editor.
   font-style: normal;
   font-weight: normal;
   line-height: 1;
-  
+
 }
 
 .icona-trekking:before {
@@ -37,10 +37,10 @@ and open the template in the editor.
 .navbar-brand {
  display: inline-block;
  text-indent: -9999px;
- 
+
  width: 250px;
  height: 80px;
- 
+
  background: url(../img/logo_nuovo_4.png) center center no-repeat;
 }
 
@@ -139,7 +139,7 @@ and open the template in the editor.
       padding-bottom: 13px;
     }
 
-    
+
     }
 
 .text-white{
@@ -525,3 +525,4 @@ z-index: 10;
 html, body, #map, #elevation-div { height: 100%; width: 100%; padding: 0; margin: 0; }
 #map { height: 75%; margin-left: auto; margin-right: auto; }
 #elevation-div {	height: 25%; font: 12px/1.5 "Helvetica Neue", Arial, Helvetica, sans-serif; }
+
