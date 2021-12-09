@@ -32,6 +32,8 @@ and open the template in the editor.
 /*NAV BAR*/
 
 /*crea il logo del brand in alto a sinistra */
+
+
 .navbar-brand {
  display: inline-block;
  text-indent: -9999px;
@@ -102,27 +104,15 @@ and open the template in the editor.
 /* ATTIVO*/
 
 /* seleziona certi elementi*/
-.navbar-default > li > a:hover,
+/*.navbar-default > li > a:hover,
 .navbar-default > li > a:focus {
       color: #357ebd;
-    } /*si colora di blu se selezionato*/
+    } */
 
 
-/*li attivo si colra di blu*/
-.navbar-default .navbar-nav > li.active,
-    .navbar-default .navbar-nav > a:hover,
-    .navbar-default .navbar-nav > a:focus {
-      border-radius: 25px;
-      color: #fff; /*colore scritta*/
-      background-color: #4897db; /*colore sfondo*/
-    }
 
-/*li attivo soft si colora di grigio (home)*/
-.navbar-default .navbar-nav > li.active-soft
-    {
-      color: #fff; /*colore scritta*/
-      background-color: #c9c9c9; /*colore sfondo*/
-    }
+
+
 
 
 /* MOUSE */
@@ -149,13 +139,7 @@ and open the template in the editor.
       padding-bottom: 13px;
     }
 
-    /*tasto di dropdown*/
-    .navbar-default .navbar-nav > li.dropdown > a:hover,
-    .navbar-default .navbar-nav > li.dropdown > a:focus {
-      color: #357ebd;
-      border-bottom: 4px solid #357ebd;
-      padding-bottom: 13px;
-    }
+    
     }
 
 .text-white{

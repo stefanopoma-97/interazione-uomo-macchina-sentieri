@@ -9,7 +9,7 @@
         <!-- Fogli di stile -->
         <link rel="stylesheet" href="{{ url('/') }}/css/bootstrap.min.css">
         <link rel="stylesheet" href="{{ url('/') }}/css/mio_stile.css">
-        <link rel="stylesheet" href="{{ url('/') }}/css/bootstrap-theme.min.css">
+        <link rel="stylesheet" href="{{ url('/') }}/css/bootstrap-theme.css">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.21/css/dataTables.bootstrap4.min.css">
 
@@ -144,7 +144,7 @@
                                     @endif
 
                                     <ul class="dropdown-menu">
-                                        <li><a href="{{ route('user.dettagli', ['id'=> $user_id]) }}">{{$user->nome}}</a></li>
+                                        <li><a class="drop-a" href="{{ route('user.dettagli', ['id'=> $user_id]) }}">{{$user->nome}}</a></li>
                                         <li><a href="{{ route('user.preferiti', ['id'=> $user_id]) }}">Preferiti</a></li>
                                         @if($user->admin == 'y')
                                         <li><a href="{{ route('sentiero.index') }}">Lista sentieri</a></li>
