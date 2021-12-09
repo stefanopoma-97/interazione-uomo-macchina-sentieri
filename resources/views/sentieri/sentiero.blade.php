@@ -56,11 +56,11 @@
         @if ($logged)
             @if ($user->admin == 'y')
                 <a class="btnsignin dropdown-toggle" href="#" data-toggle="dropdown">
-                    <span class="glyphicon glyphicon-user">Admin:{{$user->nome}}</span>
+                    <span class="glyphicon glyphicon-user"></span> Admin:{{$user->nome}}
                 </a>
             @else
                 <a class="btnsignin dropdown-toggle" href="#" data-toggle="dropdown">
-                    <span class="glyphicon glyphicon-user">Ciao {{$user->nome}}</span>
+                    <span class="glyphicon glyphicon-user"></span> Ciao {{$user->nome}}
                 </a>
             @endif
 
