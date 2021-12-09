@@ -124,7 +124,7 @@
 
                     <strong>{{ $user_dettagli->username }}  </strong>
                     @if ($user_dettagli->id == $user_id)
-                    <span onclick="location.href='{{ route('user.edit', ['id'=> $user_id]) }}'" class="glyphicon glyphicon glyphicon-cog"></span>
+                    <button class="btn" onclick="location.href='{{ route('user.edit', ['id'=> $user_id]) }}'">Modifica <span class="glyphicon glyphicon glyphicon-cog"></span></button>
                     <h5><a href="{{route('user.rimuovifotoprofilo',['id'=> $user->id])}}">Rimuovi foto profilo</a></h5>
                     @endif
                 </h2>
