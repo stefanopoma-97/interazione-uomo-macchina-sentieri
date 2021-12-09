@@ -14,10 +14,18 @@ and open the template in the editor.
 .navbar-brand {
  display: inline-block;
  text-indent: -9999px;
+ 
  width: 250px;
- height: 50px;
- height: auto;
- background: url(../img/logo_grande.jpg) center center no-repeat;
+ height: 80px;
+ 
+ background: url(../img/logo_nuovo_4.png) center center no-repeat;
+}
+
+.navbar-imag {
+ /*width: 250px;*/
+ width: 250px;
+ height: 180px;
+
 }
 
 /*forma generica nav bar*/

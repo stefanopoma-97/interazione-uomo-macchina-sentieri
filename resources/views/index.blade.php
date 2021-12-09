@@ -4,9 +4,9 @@
 @section('titolo', 'Sentieri APP')
 
 @section('navbar_home')
-{{--<ul class="nav navbar-nav">
+<?php /*<ul class="nav navbar-nav">
     <li class="active-soft"><a href="{{ route('home') }}">Home</a></li>
-</ul>--}}
+</ul>*/?>
 
 <a class="navbar-brand" href="{{ route('home') }}">Home</a>
 @endsection
@@ -43,7 +43,7 @@
     @else
     @endif
 
-    {{--<li class="dropdown" style="margin-left: 5em;">
+    <?php /*<li class="dropdown" style="margin-left: 5em;">
         <a class="btnsignin dropdown-toggle" href="#" data-toggle="dropdown"><span class="glyphicon glyphicon-user"></span></a>
         <ul class="dropdown-menu">
             <li><a href="{{ route('user.dettagli', ['id'=> $user_id]) }}">{{$user->nome}}</a></li>
@@ -55,7 +55,7 @@
             @endif
             <li><a href="{{ route('user.logout') }}">Log out</a></li>
         </ul>
-    </li>--}}
+    </li>*/?>
 
     <li class="dropdown" style="margin-left: 5em;">
         @if ($logged)

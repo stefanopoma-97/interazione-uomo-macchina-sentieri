@@ -38,7 +38,7 @@
     @else
     @endif
 
-    {{--<li class="dropdown" style="margin-left: 5em;">
+    <?php /*<li class="dropdown" style="margin-left: 5em;">
         <a class="btnsignin dropdown-toggle" href="#" data-toggle="dropdown"><span class="glyphicon glyphicon-user"></span></a>
         <ul class="dropdown-menu">
             <li><a href="{{ route('user.dettagli', ['id'=> $user_id]) }}">{{$user->nome}}</a></li>
@@ -50,7 +50,7 @@
             @endif
             <li><a href="{{ route('user.logout') }}">Log out</a></li>
         </ul>
-    </li>--}}
+    </li>*/?>
 
     <li class="dropdown" style="margin-left: 5em;">
         @if ($logged)
@@ -272,7 +272,7 @@
                 <h3 class="pull-left">
                     Esperienze personali
                     <br>
-                    <button style="margin-top: 1em;" class="btn"data-toggle="modal" data-target="#modalForm"><i class="fa fa-plus"></i> Ho percorso questo sentiero</button>
+                    <button style="margin-top: 1em;"  class="btn btn-info btn-toolbar" data-toggle="modal" data-target="#modalForm"><i class="fa fa-plus"></i> Aggiungi una nuova esperienza</button>
 
                 </h3>
 
@@ -458,7 +458,8 @@ function sostituisci_immagine(img){
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h1 class="modal-title">Inserisci una nota</h1>
+                <h1 class="modal-title">Inserisci la tua esperienza</h1>
+                <h3 class="pl-2">Sentiero: {{ $sentiero->titolo}}</h3>
             </div>
             <div class="modal-body">
                 <form id="aggiungi_esperienza" action="{{route('esperienza.store',['id'=>$sentiero->id])}}" method="get" style="margin-top: 2em;">
