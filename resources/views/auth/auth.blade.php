@@ -103,11 +103,11 @@
                                         </div>
                                     </div>
 
-                                    {{--<div class="form-group">
+                                    <?php /*<div class="form-group">
                                         <div class="text-center"> <!-- metterlo al centro -->
                                             <a href="{{route('user.edit.recuperopassword.login')}}" class="forgot-password">Password dimenticata?</a> <!-- per ora link vuoto -->
                                         </div>
-                                    </div>--}}
+                                    </div>*/ ?>
 
                                 </form>
                             </div>

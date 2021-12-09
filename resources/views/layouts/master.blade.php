@@ -142,7 +142,7 @@
 
                             </div>
 
-                            {{--<div class="col-md-2 col-lg-2 col-xl-2 mx-auto mb-4">
+                            <?php /*<div class="col-md-2 col-lg-2 col-xl-2 mx-auto mb-4">
 
                                 <h4 class="text-uppercase font-weight-bold">Cerca un sentiero</h4>
                                 <hr class="teal accent-3 mb-4 mt-0 d-inline-block mx-auto" style="width: 60px;">
@@ -153,7 +153,7 @@
                                     <!--<i class="fas fa-search" aria-hidden="true"></i>-->
                                 </form>
 
-                            </div>--}}
+                            </div>*/ ?>
 
                             <div class="col-md-4 col-lg-3 col-xl-2 mx-auto mb-4">
 
