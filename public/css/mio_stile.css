@@ -90,6 +90,11 @@ and open the template in the editor.
     border-radius: 8px;
 }
 
+.btn-riprova{
+   background-color: #ff960d; 
+   color: #333333;
+}
+
 /* la parte di login è spaziata*/
 .navbar-login{
     margin-left: 50px;
