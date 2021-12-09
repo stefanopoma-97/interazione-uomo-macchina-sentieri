@@ -520,6 +520,10 @@ function sostituisci_immagine(img){
                     </form>
 
             </div>
+            <div class="modal-footer" style="text-align:center">
+                <span class="glyphicon glyphicon-info-sign"></span>
+                <h5> Le informazioni inserite verranno analizzate da un amministratore. Se i contenuti non violano le nostre linee guida la tua esperienza verrà pubblicata in poche ore.   </h5>
+            </div>
         </div> /.modal-content
     </div> /.modal-dialog
 
