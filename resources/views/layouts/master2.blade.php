@@ -103,7 +103,7 @@
                                     <span class="material-icons">notifications_none</span>
                                     @else
                                     <!--<span style="background-color:red" class="badge badge-danger ml-2">{{$count_revisioni}}</span>-->
-                                    <span class="material-icons">notifications_active</span>
+                                    <span class="material-icons notificaAttiva">notifications_active</span>
                                     @endif
                                 </a>
                                 <ul class="dropdown-menu">
