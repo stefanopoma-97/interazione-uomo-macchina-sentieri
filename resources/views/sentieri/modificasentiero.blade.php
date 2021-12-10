@@ -113,10 +113,10 @@
     @if(isset($sentiero->id))
     <div class="row col-md-12">
         <div class="col-md-1 col-md-offset-9">
-            <button class="btn" onclick="location.href='{{ route('sentiero.immagini',['id' => $sentiero->id])}}'"><span class="glyphicon glyphicon-picture"></span> Aggungi immagini</button>
+            <button class="btn" onclick="location.href='{{ route('sentiero.immagini',['id' => $sentiero->id])}}'"><span class="glyphicon glyphicon-picture"></span> Gestisci immagini</button>
         </div>
         <div class="col-md-1 col-md-offset-1">
-            <button class="btn" onclick="location.href='{{ route('sentiero.gpx',['id' => $sentiero->id])}}'"><span class="glyphicon glyphicon-map-marker"></span> Aggungi dati GPS</button>
+            <button class="btn" onclick="location.href='{{ route('sentiero.gpx',['id' => $sentiero->id])}}'"><span class="glyphicon glyphicon-map-marker"></span> Gestisci dati GPS</button>
         </div>
     </div>
     @else
@@ -286,10 +286,10 @@
                     <div class="col-sm-10 col-sm-offset-2">
                         @if(isset($sentiero->id))
                             <input type="hidden" name="id" value="{{$sentiero->id}}"/>
-                            <label for="mySubmit" class="btn btn-primary btn-large btn-block"><span class="glyphicon glyphicon-floppy-save"></span> Save</label>
+                            <label for="mySubmit" class="btn btn-primary btn-large btn-block"><span class="glyphicon glyphicon-floppy-save"></span> Salva</label>
                             <input id="mySubmit" onclick="event.preventDefault(); valida_modifica_sentiero(this,true);" type="submit" value="save" class="hidden"/>
                         @else
-                            <label for="mySubmit" class="btn btn-primary btn-large btn-block"><span class="glyphicon glyphicon-floppy-save"></span> Save</label>
+                            <label for="mySubmit" class="btn btn-primary btn-large btn-block"><span class="glyphicon glyphicon-floppy-save"></span> Crea</label>
                             <input id="mySubmit" onclick="event.preventDefault(); valida_modifica_sentiero(this,false);" type="submit" value="save" class="hidden"/>
                         @endif
 
@@ -297,7 +297,7 @@
                 </div>
                 <div class="form-group">
                     <div class="col-sm-10 col-sm-offset-2">
-                        <a href="{{route('sentiero.index')}}" class="btn btn-danger btn-large btn-block"><span class="glyphicon glyphicon-log-out"></span> Cancel</a>
+                        <a href="{{route('sentiero.index')}}" class="btn btn-danger btn-large btn-block"><span class="glyphicon glyphicon-log-out"></span> Cancella</a>
                     </div>
                 </div>
 

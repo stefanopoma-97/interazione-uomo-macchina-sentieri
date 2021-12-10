@@ -88,7 +88,7 @@
 
 
 @section('header')
-<h2 class="pull-left">Aggiunta immagini: {{$sentiero->titolo}}</h2>
+<h2 class="pull-left">Gestione dati GPS: {{$sentiero->titolo}}</h2>
 @endsection
 
 @section('breadcrumb')
