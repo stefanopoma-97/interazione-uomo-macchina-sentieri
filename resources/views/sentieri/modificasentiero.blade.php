@@ -111,11 +111,9 @@
 <div class="container" style="margin-top: 5em;">
 
     @if(isset($sentiero->id))
-    <div class="row col-md-12">
-        <div class="col-md-1 col-md-offset-9">
+    <div class="row pull-right">
+        <div class="col-md-12">
             <button class="btn" onclick="location.href='{{ route('sentiero.immagini',['id' => $sentiero->id])}}'"><span class="glyphicon glyphicon-picture"></span> Gestisci immagini</button>
-        </div>
-        <div class="col-md-1 col-md-offset-1">
             <button class="btn" onclick="location.href='{{ route('sentiero.gpx',['id' => $sentiero->id])}}'"><span class="glyphicon glyphicon-map-marker"></span> Gestisci dati GPS</button>
         </div>
     </div>
