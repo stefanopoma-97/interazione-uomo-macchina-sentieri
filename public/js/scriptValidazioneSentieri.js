@@ -400,20 +400,37 @@ function load_file(button){
             file_msg.innerHTML="Non hai inserito un file"; 
         }
         else {
+            //file_msg.innerHTML="Estensione"; 
             var sFileExtension = sFileName.split('.')[sFileName.split('.').length - 1].toLowerCase();
         //var iFileSize = button.form.foto_profilo.size;
        
         /// OR together the accepted extensions and NOT it. Then OR the size cond.
         /// It's easier to see this way, but just a suggestion - no requirement.
+            //file_msg.innerHTML="Estensione: "+sFileExtension;
        
         if (!(sFileExtension === "jpeg" ||
               sFileExtension === "png" ||
               sFileExtension === "jpg" ||
-              sFileExtension === "svg")) { /// 10 mb
+              sFileExtension === "svg")) { 
            file_msg.innerHTML="file non supportato"; 
+           //button.form.submit();
         }
-        else
-            button.form.submit();
+        else{
+                file_msg=document.getElementById("invalid-foto_profilo");
+                //file_msg.innerHTML="";
+                let size = button.files[0].size;
+                size_mb=size/1024/1024;
+                //file_msg.innerHTML=size_mb;
+
+                if (size > 2000000) {
+                    file_msg.innerHTML="Il file inserito è più grande di 2MB ( "+size_mb+"MB )";
+                }
+                else{
+                    //file_msg.innerHTML="CARICO";
+                    button.form.submit();
+                }
+            }
+            
         }
         
     }

@@ -537,9 +537,9 @@ class UserController extends Controller
     }
     
     public function foto_profilo (Request $request, $id){
-        $this->validate($request, [
+        /*$this->validate($request, [
         'foto_profilo' => 'required|image|mimes:jpeg,png,jpg,svg|max:2048',
-        ]);
+        ]);*/
         $request->file('foto_profilo')->storeAs('public/fotoprofilo', "profilo".$id);
         return Redirect::to(route('user.dettagli', ['id'=> $id])); 
     }
