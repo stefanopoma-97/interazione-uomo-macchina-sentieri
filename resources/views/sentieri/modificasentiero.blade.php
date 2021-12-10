@@ -113,14 +113,14 @@
     @if(isset($sentiero->id))
     <div class="row pull-right">
         <div class="col-md-12">
-            <button class="btn" onclick="location.href='{{ route('sentiero.immagini',['id' => $sentiero->id])}}'"><span class="glyphicon glyphicon-picture"></span> Gestisci immagini</button>
+            <button style="margin-right: 10px" class="btn" onclick="location.href='{{ route('sentiero.immagini',['id' => $sentiero->id])}}'"><span class="glyphicon glyphicon-picture"></span> Gestisci immagini</button>
             <button class="btn" onclick="location.href='{{ route('sentiero.gpx',['id' => $sentiero->id])}}'"><span class="glyphicon glyphicon-map-marker"></span> Gestisci dati GPS</button>
         </div>
     </div>
     @else
     @endif
 
-    <div class="row" style="margin-top: 2em;">
+    <div class="row" style="margin-top: 4em;">
         <div class='col-md-12'>
             <div style="margin-bottom: 2em;" hidden="" class="col-md-12 alert alert-danger">
                 <ul id="ul_errori">
