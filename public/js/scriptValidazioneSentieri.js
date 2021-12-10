@@ -411,6 +411,7 @@ function load_file(button){
               sFileExtension === "jpg" ||
               sFileExtension === "svg")) { /// 10 mb
            file_msg.innerHTML="file non supportato"; 
+           //button.form.submit();
         }
         else
             button.form.submit();

@@ -180,6 +180,10 @@
                          <form  action="{{route('user.fotoprofilo',['id'=> $user->id])}}" id="modifica_foto_profilo" style="margin-top: 2em" name="modifica_foto_profilo" method="POST" enctype="multipart/form-data"> {{ csrf_field() }}
 
                             <div class="form-group" >
+                                <div class="col-sm-12">
+                                    <input style="display:none; visibility:hidden" onchange="sizee(this); check_foto_profilo(this);" onkeyup="rimuovi_stile(this)" onmouseover="rimuovi_stile(this)"class="form-control" type="file" id="foto_profilo" name="foto_profilo" placeholder="foto_profilo">
+                                    <span class="invalid-input" id="invalid-foto_profilo"></span>
+                                </div>
                                 <div class="col-sm-6">
                                     <label for="foto_profilo" class="col-form-label">Foto profilo</label>
                                     <div style="margin-left: 1em;" class="popup" onclick="popup(this)" >
@@ -187,16 +191,14 @@
                                         <span class="glyphicon glyphicon-info-sign" ></span>
                                     </div>
                                 </div>
+                                
                                 <div class="col-sm-6">
                                     <input type="hidden" name="id" value="{{ $user_id }}"/>
                                     <label for="mySubmit" class="btn btn-primary btn-large btn-info"><span class="glyphicon glyphicon-floppy-save"></span> Carica</label>
                                     <input onclick="event.preventDefault(); load_file(this); " id="mySubmit" type="submit" value="save" class="hidden"/>
 
                                 </div>    
-                                <div class="col-sm-12">
-                                    <input style="display:none; visibility:hidden" onchange="sizee(this); check_foto_profilo(this);" onkeyup="rimuovi_stile(this)" onmouseover="rimuovi_stile(this)"class="form-control" type="file" id="foto_profilo" name="foto_profilo" placeholder="foto_profilo">
-                                    <span class="invalid-input" id="invalid-foto_profilo"></span>
-                                </div>
+                                
                                 
                             </div> 
 
