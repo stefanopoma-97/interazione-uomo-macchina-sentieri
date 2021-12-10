@@ -217,6 +217,7 @@
                                     <input onchange="size_immagine(this)"; onkeyup="rimuovi_stile(this)" onmouseover="rimuovi_stile(this)"class="form-control" type="file" id="immagine3" name="immagine" placeholder="immagine">
                                     <span class="invalid-input" id="invalid-immagine_1"></span>
                                 </div>
+
                                 <div class="col-sm-2 col-sm-offset-2">
                                     <input type="hidden" name="nome_input" value="immagine3"/>
                                     <input type="hidden" name="nome_file" value="3"/>

@@ -195,8 +195,17 @@
                 <div align="center" class="col-m-10 col-sm-10">
                     <ul class="list-group ">
                         <li class="list-group-item ">Quante volte è stato percorso: {{$dati_sentiero->partecipanti}}</li>
-                        <li class="list-group-item ">Media voti: {{$dati_sentiero->mediavoti}}</li>
-                        <li class="list-group-item ">Difficoltà percepita: {{$dati_sentiero->difficoltamedia}}</li>
+                        @if (isset($dati_sentiero->mediavoti))
+                        <li class="list-group-item ">Media voti: {{$dati_sentiero->mediavoti}} su 10</li>
+                        @else
+                        <li class="list-group-item ">Media voti: 0 su 10</li>
+                        @endif
+
+                        @if (isset($dati_sentiero->difficoltamedia))
+                        <li class="list-group-item ">Difficoltà percepita: {{$dati_sentiero->difficoltamedia}} su 10</li>
+                        @else
+                        <li class="list-group-item ">Difficoltà percepita: 0 su 10</li>
+                        @endif
                         <li class="list-group-item "><q>Aggiunto ai preferiti: {{($dati_sentiero->preferiti)}}</q></li>
                     </ul>
                 </div>
@@ -220,7 +229,7 @@
 </div>
 
 
-    
+
 
 @if($gpx=="")
 <!--<div class="container">
@@ -318,8 +327,17 @@
                     <ul align='center' class="list-group ">
                         <li class="list-group-item "><a style="color:inherit; text-decoration: none;"  href="{{ route('user.dettagli', ['id'=> $esperienza->utente->id]) }}"><h4>{{ $esperienza->utente->username }}</h4></a></li>
                         <li style="height: 100px" class="list-group-item all_text"><q>"{{ $esperienza->commento }}"</q></li>
-                        <li class="list-group-item "><strong>Difficoltà:</strong>   {{ $esperienza->difficolta}}</li>
-                        <li class="list-group-item "><strong>Voto:</strong>   {{ $esperienza->voto }}</li>
+                        @if (isset($esperienza->difficolta))
+                        <li class="list-group-item "><strong>Difficoltà:</strong> {{ $esperienza->difficolta}} su 10</li>
+                        @else
+                        <li class="list-group-item "><strong>Difficoltà:</strong> 0 su 10</li>
+                        @endif
+
+                        @if (isset($esperienza->voto))
+                        <li class="list-group-item "><strong>Voto:</strong> {{ $esperienza->voto }} su 10</li>
+                        @else
+                        <li class="list-group-item "><strong>Voto:</strong> 0 su 10</li>
+                        @endif
                         <li class="list-group-item "><strong>Data:</strong>   {{ $esperienza->data }}</li>
                     </ul>
                 </div>
