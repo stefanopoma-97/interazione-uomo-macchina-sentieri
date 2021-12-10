@@ -383,7 +383,12 @@ function valida_modifica_sentiero(button, modifica){
         button.form.submit();
     }
     }
-    
+ 
+function load_file(button){
+    document.getElementById('foto_profilo').click();
+}
+
+
  function check_foto_profilo(button){
         file=button.form.foto_profilo.value;
         file_msg=document.getElementById("invalid-foto_profilo");
