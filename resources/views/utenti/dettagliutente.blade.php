@@ -181,7 +181,7 @@
 
                             <div class="form-group" >
                                 <div class="col-sm-12">
-                                    <input style="display:none; visibility:hidden" onchange="check_foto_profilo(this);" onkeyup="rimuovi_stile(this)" onmouseover="rimuovi_stile(this)"class="form-control" type="file" id="foto_profilo" name="foto_profilo" placeholder="foto_profilo">
+                                    <input style="display:none" onchange="check_foto_profilo(this);" onkeyup="rimuovi_stile(this)" onmouseover="rimuovi_stile(this)"class="form-control" type="file" id="foto_profilo" name="foto_profilo" placeholder="foto_profilo">
                                     <span class="invalid-input" id="invalid-foto_profilo"></span>
                                 </div>
                                 <div class="col-sm-6">
