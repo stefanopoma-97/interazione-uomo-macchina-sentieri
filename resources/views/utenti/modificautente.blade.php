@@ -177,13 +177,13 @@
                     <div class="col-sm-2">
                         <label for="descrizione" class="col-form-label">Descrizione</label>
                             <div style="margin-left: 1em;" class="popup" onclick="popup(this)" >
-                                 <span class="popuptext">Inserisci una tua descrizione</span>
+                                 <span class="popuptext">Inserisci una tua descrizione personale: attenzione puoi inserire fino a 1000 caratteri.</span>
                                 <span class="glyphicon glyphicon-info-sign" ></span>
                             </div>
                     </div>
 
                     <div class="col-sm-10">
-                        <textarea onkeyup="rimuovi_stile(this)" onmouseover="rimuovi_stile(this)" required=""  class="form-control" id="descrizione" name="descrizione" placeholder="Parlaci di te..." rows="5">{{$user->descrizione}}</textarea>
+                        <textarea onkeyup="rimuovi_stile(this)" onmouseover="rimuovi_stile(this)" required=""  class="form-control" id="descrizione" maxlength="1000" name="descrizione" placeholder="Parlaci di te..." rows="5">{{$user->descrizione}}</textarea>
                         <span class="invalid-input" id="invalid-descrizione"></span>
                     </div>
                 </div>

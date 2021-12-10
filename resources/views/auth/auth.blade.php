@@ -76,9 +76,6 @@
                                     <div class="form-group row"> <!-- form-group contiene i campi -->
                                         @if($username=="")
 
-                                        <?php /*<label class="etichetta" for="username">Username</label>
-                                        <input onkeyup="rimuovi_stile(this)" onmouseover="rimuovi_stile(this)" required="" maxlength="32" type="text" name="username" class="form-control" placeholder="Username" value="">*/ ?>
-
                                             <div class="col-sm-3">
                                                 <label for="username" class="col-form-label">Username</label>
                                                     <div style="margin-left: 1em;" class="popup" onclick="popup(this)" >
@@ -90,11 +87,8 @@
                                             <div class="col-sm-9">
                                                 <input onkeyup="rimuovi_stile(this)" onmouseover="rimuovi_stile(this)" required="" maxlength="32" type="text" name="username" class="form-control" placeholder="Username" value="">
                                             </div>
+
                                         @else
-
-                                        <?php /*<label class="etichetta" for="username">Username</label>
-                                        <input onkeyup="rimuovi_stile(this)" onmouseover="rimuovi_stile(this)" required="" maxlength="32" type="text" name="username" class="form-control" placeholder="Username" value="{{$username}}"> <!-- se il cookie è settato scrivo valore -->*/?>
-
 
                                         <div class="col-sm-3">
                                             <label for="username" class="col-form-label">Username</label>
@@ -126,29 +120,13 @@
 
                                     </div><!-- type password non fa capire cosa si sta inserendo-->
 
-                                    {{--<div class="form-group text-center"> <!-- messo al centro -->
-                                        @if($username!="")
-                                        <input type="checkbox" checked="" name="remember">
-                                        @else
-                                        <input type="checkbox" name="remember"> <!-- lascia flag se cookie settato -->
-                                        @endif
-                                        <label for="remember"> Ricordami</label>
-                                    </div> <!-- text box + label -->--}}
-
                                     <div class="form-group"> <!-- pulsante -->
                                         <div class="row">
                                             <div class="col-sm-9 col-sm-offset-3"> <!-- messo al centro -->
                                                 <input type="submit" name="login-submit" class="form-control btn btn-primary" value="Accedi" onclick="event.preventDefault(); login(this);">
-                                                <!-- login-sumbit per capire se POST ha passato qualcosa -->
                                             </div>
                                         </div>
                                     </div>
-
-                                    <?php /*<div class="form-group">
-                                        <div class="text-center"> <!-- metterlo al centro -->
-                                            <a href="{{route('user.edit.recuperopassword.login')}}" class="forgot-password">Password dimenticata?</a> <!-- per ora link vuoto -->
-                                        </div>
-                                    </div>*/ ?>
 
                                 </form>
                             </div>
@@ -230,13 +208,13 @@
                                         <div class="col-sm-3">
                                             <label for="descrizione" class="col-form-label">Descrizione</label>
                                                 <div style="margin-left: 1em;" class="popup" onclick="popup(this)" >
-                                                     <span class="popuptext">Inserisci una tua descrizione personale: attenzione puoi inserire fino a 320 caratteri.</span>
+                                                     <span class="popuptext">Inserisci una tua descrizione personale: attenzione puoi inserire fino a 1000 caratteri.</span>
                                                     <span class="glyphicon glyphicon-info-sign" ></span>
                                                 </div>
                                         </div>
 
                                         <div class="col-sm-9">
-                                            <textarea onkeyup="rimuovi_stile(this)" onmouseover="rimuovi_stile(this)" required="" maxlength="320" class="form-control" name="descrizione" placeholder="Parlaci di te" rows="3"></textarea>
+                                            <textarea onkeyup="rimuovi_stile(this)" onmouseover="rimuovi_stile(this)" required="" maxlength="1000" class="form-control" name="descrizione" placeholder="Parlaci di te" rows="3"></textarea>
                                             <span class="invalid-input" id="invalid-descrizione"></span>
                                         </div>
                                     </div>
