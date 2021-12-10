@@ -405,6 +405,7 @@ function load_file(button){
        
         /// OR together the accepted extensions and NOT it. Then OR the size cond.
         /// It's easier to see this way, but just a suggestion - no requirement.
+        
        
         if (!(sFileExtension === "jpeg" ||
               sFileExtension === "png" ||
@@ -413,8 +414,21 @@ function load_file(button){
            file_msg.innerHTML="file non supportato"; 
            //button.form.submit();
         }
-        else
-            button.form.submit();
+        else{
+            file_msg=document.getElementById("invalid-foto_profilo");
+            file_msg.innerHTML="";
+            let size = button.files[0].size;
+            size_mb=size/1024/1024;
+            //file_msg.innerHTML=size_mb;
+
+            if (size > 2000000) {
+                file_msg.innerHTML="Il file inserito è più grande di 2MB ( "+size_mb+"MB )";
+            }
+            else
+                //file_msg.innerHTML=size_mb;
+                button.form.submit();
+            }
+            
         }
         
     }
