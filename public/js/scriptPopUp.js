@@ -7,7 +7,10 @@
 // When the user clicks on div, open the popup
 function popup2(element) {
     var pop = element.children[0];
-        
+    
+    if (pop.classList.contains("show"))
+        pop.classList.toggle("show");
+    else{
     let popups = document.querySelectorAll(".popuptext");
     //delete popups[popups.indexOf(pop)];
     popups.forEach(function (element) {
@@ -15,9 +18,11 @@ function popup2(element) {
          element.classList.toggle("show");
         }
     });
+    pop.classList.toggle("show");
+    }
     
   
-    pop.classList.toggle("show");
+    
     
 
 }
