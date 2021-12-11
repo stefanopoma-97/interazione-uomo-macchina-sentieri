@@ -38,10 +38,12 @@ and open the template in the editor.
  display: inline-block;
  text-indent: -9999px;
 
- width: 250px;
- height: 80px;
+ width: 150px;
+ height: 53px;
 
- background: url(../img/logo_nuovo_4.png) center center no-repeat;
+ background: url(../img/logo_nuovo_5.png) center center no-repeat;
+ object-fit: cover;
+     
 }
 
 .navbar-imag {

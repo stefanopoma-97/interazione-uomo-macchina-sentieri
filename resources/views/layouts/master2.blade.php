@@ -84,7 +84,7 @@
                 <!-- barra del menu-->
                 <div class="collapse navbar-collapse navbar-responsive-collapse" id="myNavbar">
 
-                    <a class="navbar-brand" href="{{ route('home') }}">Home</a>
+                    <a  class="navbar-brand" href="{{ route('home') }}"></a>
 
                     <ul class="nav navbar-nav navbar-right navbar-login pl-5 pull-right">
                         <li><a class="bordo-selezione" href="{{ route('sentiero.ricerca') }}">Elenco sentieri</a></li>
