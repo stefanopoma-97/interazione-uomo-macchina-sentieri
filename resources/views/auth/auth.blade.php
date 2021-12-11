@@ -37,7 +37,7 @@
 
 @section('corpo')
 
-        <div class="container">
+<div class="container" onclick="close_popup()">
             <div class="row" style="margin-top: 4em;"> <!-- unica riga--> <!-- margin top lo sposta in basso -->
                 <div class="col-md-6 col-md-offset-3"> <!-- offset sposta a dx di 3 -->
 
@@ -63,7 +63,7 @@
 
 
                             @if ($login)
-                            <div class="tab-pane active" id="login-form"> <!-- id serve ad essere richimato dai tab  -->
+                            <div class="tab-pane active" id="login-form" > <!-- id serve ad essere richimato dai tab  -->
                             @else
                             <div class="tab-pane" id="login-form"> <!-- id serve ad essere richimato dai tab  -->
                             @endif
@@ -76,7 +76,7 @@
                                     <div class="form-group row"> <!-- form-group contiene i campi -->
                                         @if($username=="")
 
-                                            <div class="col-sm-3">
+                                            <div class="col-sm-3" onclick="event.stopPropagation()">
                                                 <div class="popup" onclick="popup(this)" >
                                                         <span class="popuptext">Inserisci il tuo nome utente</span>
                                                         <span class="glyphicon glyphicon-info-sign" ></span>
@@ -91,7 +91,7 @@
 
                                         @else
 
-                                        <div class="col-sm-3">
+                                        <div class="col-sm-3" onclick="event.stopPropagation()">
                                             <div class="popup" onclick="popup(this)" >
                                                 <span class="popuptext">Inserisci il tuo nome utente</span>
                                                 <span class="glyphicon glyphicon-info-sign" ></span>
@@ -102,12 +102,13 @@
                                         <div class="col-sm-9">
                                             <input onkeyup="rimuovi_stile(this)" onmouseover="rimuovi_stile(this)" required="" maxlength="32" type="text" name="username" class="form-control" placeholder="Username" value="{{$username}}">
                                         </div>
+                                        
                                         @endif
                                     </div> <!-- form-control da lo stile --> <!-- POST[name] -->
 
                                     <div class="form-group row">
 
-                                        <div class="col-sm-3">
+                                        <div class="col-sm-3" onclick="event.stopPropagation()">
                                             <div class="popup" onclick="popup(this)" >
                                                 <span class="popuptext">Inserisci la tua password</span>
                                                 <span class="glyphicon glyphicon-info-sign" ></span>
@@ -306,6 +307,21 @@
                 </div>
             </div>
         </div>
+ <script>
+// When the user clicks on div, open the popup
+function myFunction() {
+    const popups = [...document.getElementsByClassName('popup')];
+
+    window.addEventListener('click', ({ target }) => {
+      const popup = target.closest('.popup');
+      const clickedOnClosedPopup = popup && !popup.classList.contains('show');
+
+      popups.forEach(p => p.classList.remove('show'));
+
+      if (clickedOnClosedPopup) popup.classList.add('show');  
+    });
+}
+</script>               
  @endsection
 <!--    </body>
 </htm>-->
