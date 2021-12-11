@@ -27,6 +27,11 @@ and open the template in the editor.
   object-fit: contain;
 }
 
+.bell:hover {
+  cursor: pointer;  
+  color: #357ebd;
+}
+
 
 
 /*NAV BAR*/

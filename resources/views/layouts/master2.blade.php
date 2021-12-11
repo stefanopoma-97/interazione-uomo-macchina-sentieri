@@ -100,10 +100,10 @@
                                 <a disable="" class="nav-link dropdown-toggle" id="navbarDropdownMenuLink-5" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
                                     @if($count_revisioni==0)
                                     <!--<span class="badge badge-danger ml-2">{{$count_revisioni}}</span>-->
-                                    <span class="material-icons">notifications_none</span>
+                                    <span class="material-icons bell">notifications_none</span>
                                     @else
                                     <!--<span style="background-color:red" class="badge badge-danger ml-2">{{$count_revisioni}}</span>-->
-                                    <span class="material-icons notificaAttiva">notifications_active</span>
+                                    <span class="material-icons notificaAttiva bell">notifications_active</span>
                                     @endif
                                 </a>
                                 <ul class="dropdown-menu">
