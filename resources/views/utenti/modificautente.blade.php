@@ -115,11 +115,11 @@
             @csrf
                 <div class="form-group">
                     <div class="col-sm-2">
+                        <div class="popup" onclick="popup(this)" >
+                            <span class="popuptext">Inserisci il tuo nome, niente caratteri speciali o numeri</span>
+                            <span class="glyphicon glyphicon-info-sign" ></span>
+                        </div>
                         <label  for="nome" class="col-form-label">Nome</label>
-                            <div style="margin-left: 1em;" class="popup" onclick="popup(this)" >
-                                 <span class="popuptext">Inserisci il tuo nome, niente caratteri speciali o numeri</span>
-                                <span class="glyphicon glyphicon-info-sign" ></span>
-                            </div>
                     </div>
 
                     <div class="col-sm-10">
@@ -130,26 +130,25 @@
 
                 <div class="form-group">
                     <div class="col-sm-2">
+                        <div class="popup" onclick="popup(this)" >
+                            <span class="popuptext">Inserisci il tuo cognome, niente caratteri speciali o numeri</span>
+                            <span class="glyphicon glyphicon-info-sign" ></span>
+                        </div>
                         <label for="cognome" class="col-form-label">Cognome</label>
-                            <div style="margin-left: 1em;" class="popup" onclick="popup(this)" >
-                                 <span class="popuptext">Inserisci il tuo cognome, niente caratteri speciali o numeri</span>
-                                <span class="glyphicon glyphicon-info-sign" ></span>
-                            </div>
                     </div>
                     <div class="col-sm-10">
                         <input onkeyup="rimuovi_stile(this)" onmouseover="rimuovi_stile(this)" required="" maxlength="32" class="form-control" type="text" id="cognome" name="cognome" placeholder="Cognome" value="{{$user->cognome}}">
                         <span class="invalid-input" id="invalid-cognome"></span>
-
                     </div>
                 </div>
 
                 <div class="form-group">
                     <div class="col-sm-2">
+                        <div class="popup" onclick="popup(this)" >
+                            <span class="popuptext">Inserisci un username, non deve esistere un utente con lo stesso username</span>
+                            <span class="glyphicon glyphicon-info-sign" ></span>
+                        </div>
                         <label for="username" class="col-form-label">Username</label>
-                            <div style="margin-left: 1em;" class="popup" onclick="popup(this)" >
-                                 <span class="popuptext">Inserisci un username, non deve esistere un utente con lo stesso username</span>
-                                <span class="glyphicon glyphicon-info-sign" ></span>
-                            </div>
                     </div>
 
                     <div class="col-sm-10">
@@ -160,11 +159,11 @@
 
                 <div class="form-group row">
                     <div class="col-sm-2">
+                        <div class="popup" onclick="popup(this)" >
+                           <span class="popuptext">Inserisci una mail valida</span>
+                           <span class="glyphicon glyphicon-info-sign" ></span>
+                        </div>
                         <label for="mail" class="col-form-label">Email</label>
-                            <div style="margin-left: 1em;" class="popup" onclick="popup(this)" >
-                                 <span class="popuptext">Inserisci una mail valida</span>
-                                <span class="glyphicon glyphicon-info-sign" ></span>
-                            </div>
                     </div>
 
                     <div class="col-sm-10">
@@ -175,11 +174,11 @@
 
                 <div class="form-group row">
                     <div class="col-sm-2">
+                        <div class="popup" onclick="popup(this)" >
+                           <span class="popuptext">Inserisci una tua descrizione personale: attenzione puoi inserire fino a 1000 caratteri.</span>
+                           <span class="glyphicon glyphicon-info-sign" ></span>
+                        </div>
                         <label for="descrizione" class="col-form-label">Descrizione</label>
-                            <div style="margin-left: 1em;" class="popup" onclick="popup(this)" >
-                                 <span class="popuptext">Inserisci una tua descrizione personale: attenzione puoi inserire fino a 1000 caratteri.</span>
-                                <span class="glyphicon glyphicon-info-sign" ></span>
-                            </div>
                     </div>
 
                     <div class="col-sm-10">
@@ -207,11 +206,11 @@
 
                 <div class="form-group row">
                     <div class="col-sm-2">
+                        <div class="popup" onclick="popup(this)" >
+                           <span class="popuptext">Seleziona una città tra le province italiane</span>
+                           <span class="glyphicon glyphicon-info-sign" ></span>
+                        </div>
                         <label for="citta_completamento" class="col-form-label">Città</label>
-                            <div style="margin-left: 1em;" class="popup" onclick="popup(this)" >
-                                 <span class="popuptext">Seleziona una città tra le province italiane</span>
-                                <span class="glyphicon glyphicon-info-sign" ></span>
-                            </div>
                     </div>
 
                     <div class="col-sm-10">
