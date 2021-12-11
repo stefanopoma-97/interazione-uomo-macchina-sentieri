@@ -37,7 +37,7 @@
 
 @section('corpo')
 
-<div class="container" onclick="close_popup()">
+<div class="container" >
             <div class="row" style="margin-top: 4em;"> <!-- unica riga--> <!-- margin top lo sposta in basso -->
                 <div class="col-md-6 col-md-offset-3"> <!-- offset sposta a dx di 3 -->
 
@@ -63,7 +63,7 @@
 
 
                             @if ($login)
-                            <div class="tab-pane active" id="login-form" > <!-- id serve ad essere richimato dai tab  -->
+                            <div class="tab-pane active" id="login-form" onclick="close_popup()"> <!-- id serve ad essere richimato dai tab  -->
                             @else
                             <div class="tab-pane" id="login-form"> <!-- id serve ad essere richimato dai tab  -->
                             @endif
@@ -77,7 +77,7 @@
                                         @if($username=="")
 
                                             <div class="col-sm-3" onclick="event.stopPropagation()">
-                                                <div class="popup" onclick="popup(this)" >
+                                                <div class="popup" onclick="popup2(this)" >
                                                         <span class="popuptext">Inserisci il tuo nome utente</span>
                                                         <span class="glyphicon glyphicon-info-sign" ></span>
                                                 </div>
@@ -92,7 +92,7 @@
                                         @else
 
                                         <div class="col-sm-3" onclick="event.stopPropagation()">
-                                            <div class="popup" onclick="popup(this)" >
+                                            <div class="popup" onclick="popup2(this)" >
                                                 <span class="popuptext">Inserisci il tuo nome utente</span>
                                                 <span class="glyphicon glyphicon-info-sign" ></span>
                                             </div>
@@ -109,7 +109,7 @@
                                     <div class="form-group row">
 
                                         <div class="col-sm-3" onclick="event.stopPropagation()">
-                                            <div class="popup" onclick="popup(this)" >
+                                            <div class="popup" onclick="popup2(this)" >
                                                 <span class="popuptext">Inserisci la tua password</span>
                                                 <span class="glyphicon glyphicon-info-sign" ></span>
                                             </div>

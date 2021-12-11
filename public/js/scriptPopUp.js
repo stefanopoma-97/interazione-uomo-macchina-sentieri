@@ -5,24 +5,27 @@
  */
 
 // When the user clicks on div, open the popup
-function popup(element) {
-  let popups = document.querySelectorAll(".popuptext");
+function popup2(element) {
+    var pop = element.children[0];
+        
+    let popups = document.querySelectorAll(".popuptext");
+    //delete popups[popups.indexOf(pop)];
     popups.forEach(function (element) {
       if (element.classList.contains("show")) {
          element.classList.toggle("show");
         }
     });
-  var pop = element.children[0];
-  pop.classList.toggle("show");
-
+    
+  
+    pop.classList.toggle("show");
+    
 
 }
 
 
-function popup2(element) {
-  element.stopPropagation(); 
-  var pop = element.children[0];
-  pop.classList.toggle("show");
+function popup(element) {
+    var pop = element.children[0];
+    pop.classList.toggle("show");
 }
 
 function close_popup() {
