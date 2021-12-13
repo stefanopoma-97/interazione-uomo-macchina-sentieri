@@ -302,6 +302,263 @@ function register(button){
     }
 }
 
+function register2(button){
+    
+    //DIV contenente gli errori
+    $('#ul_errori_registrazione').parent().hide(); //lo nascondo
+    $('#ul_errori_registrazione').empty(); //svuoto la lista
+    
+    
+    nome = (button.form.nome.value).trim();
+    nome_msg=document.getElementById("invalid-nome");
+    nome_msg.innerHTML="";
+    var nome_exp = new RegExp("^([a-zA-Z]+)$", "g");
+
+    
+    cognome = (button.form.cognome.value).trim();
+    cognome_msg=document.getElementById("invalid-cognome");
+    cognome_msg.innerHTML="";
+    var cognome_exp = new RegExp("^([a-zA-Z]+)$", "g");
+    
+    username = (button.form.username.value).trim();
+    username_msg=document.getElementById("invalid-username");
+    username_msg.innerHTML="";
+    
+    
+    mail = (button.form.mail.value).trim();
+    mail_msg=document.getElementById("invalid-mail");
+    mail_msg.innerHTML="";
+    var mail_exp = RegExp("^([a-zA-Z0-9_.-])+@(([a-zA-Z0-9-]{2,})+.)+[.]([a-zA-Z0-9]{2,})+$", "g");
+    
+    descrizione = (button.form.descrizione.value).trim();
+    descrizione_msg=document.getElementById("invalid-descrizione");
+    descrizione_msg.innerHTML="";
+    
+    citta = (button.form.citta_completamento.value).trim();
+    citta_msg=document.getElementById("invalid-citta_completamento");
+    citta_msg.innerHTML="";
+    
+    password = (button.form.password_nuova.value).trim();
+    password_msg=document.getElementById("invalid-password_nuova");
+    password_msg.innerHTML="";
+
+    
+    password_conferma = (button.form.password_nuova2.value).trim();
+    password_conferma_msg=document.getElementById("invalid-password_nuova2");
+    password_conferma_msg.innerHTML="";
+    
+
+    var errori = false;
+    
+    
+    if(username === ""){
+        errori=true;
+        username_msg.innerHTML="Compila il campo username";
+        button.form.username.focus();
+        $(button.form.username).css('border-color','red');
+        var li = $("<li></li>");
+        li.text("Compila il campo username");
+        $('#ul_errori_registrazione').parent().show();
+        $('#ul_errori_registrazione').append(li);
+    }
+    if(nome === ""){
+        errori=true;
+        nome_msg.innerHTML="Compila il campo nome";
+        button.form.nome.focus({preventScroll:false});
+        $(button.form.nome).css('border-color','red');
+        var li = $("<li></li>");
+        li.text("Compila il campo nome");
+        $('#ul_errori_registrazione').parent().show();
+        $('#ul_errori_registrazione').append(li);
+        
+    }
+    else if(!nome.match(nome_exp)){
+        errori=true;
+        nome_msg.innerHTML="Il campo nome può contenere solo lettere";
+        button.form.nome.focus();
+        $(button.form.nome).css('border-color','red');
+        var li = $("<li></li>");
+        li.text("Il campo nome può contenere solo lettere");
+        $('#ul_errori_registrazione').parent().show();
+        $('#ul_errori_registrazione').append(li);
+    }
+    
+    else if(cognome === ""){
+        errori=true;
+        cognome_msg.innerHTML="Compila il campo cognome";
+        button.form.cognome.focus();
+        $(button.form.cognome).css('border-color','red');
+        var li = $("<li></li>");
+        li.text("Compila il campo cognome");
+        $('#ul_errori_registrazione').parent().show();
+        $('#ul_errori_registrazione').append(li);
+    }
+    else if(!cognome.match(cognome_exp)){
+        errori=true;
+        cognome_msg.innerHTML="Il campo cognome può contenere solo lettere";
+        button.form.cognome.focus();
+        $(button.form.cognome).css('border-color','red');
+        var li = $("<li></li>");
+        li.text("Il campo cognome può contenere solo lettere");
+        $('#ul_errori_registrazione').parent().show();
+        $('#ul_errori_registrazione').append(li);
+    }
+    
+    
+    else if(mail === ""){
+        errori=true;
+        mail_msg.innerHTML="Compila il campo mail";
+        button.form.mail.focus();
+        $(button.form.mail).css('border-color','red');
+        var li = $("<li></li>");
+        li.text("Compila il campo mail");
+        $('#ul_errori_registrazione').parent().show();
+        $('#ul_errori_registrazione').append(li);
+    }
+    else if(!mail.match(mail_exp)){
+        errori=true;
+        mail_msg.innerHTML="Inserisci una mail valida";
+        button.form.mail.focus();
+        $(button.form.mail).css('border-color','red');
+        var li = $("<li></li>");
+        li.text("Inserisci una mail valida");
+        $('#ul_errori_registrazione').parent().show();
+        $('#ul_errori_registrazione').append(li);
+    }
+    
+    else if(descrizione === ""){
+        errori=true;
+        descrizione_msg.innerHTML="Compila il campo descrizione";
+        button.form.descrizione.focus();
+        $(button.form.descrizione).css('border-color','red');
+        var li = $("<li></li>");
+        li.text("Compila il campo descrizione");
+        $('#ul_errori_registrazione').parent().show();
+        $('#ul_errori_registrazione').append(li);
+    }
+    
+    else if(citta === ""){
+        errori=true;
+        citta_msg.innerHTML="Compila il campo città";
+        button.form.citta_completamento.focus();
+        $(button.form.citta_completamento).css('border-color','red');
+        var li = $("<li></li>");
+        li.text("Compila il campo città");
+        $('#ul_errori_registrazione').parent().show();
+        $('#ul_errori_registrazione').append(li);
+    }
+    
+    else if(password === ""){
+        errori=true;
+        password_msg.innerHTML="Inserisci la password";
+        button.form.password_nuova.focus({preventScroll:false});
+        $(button.form.password_nuova).css('border-color','red');
+        var li = $("<li></li>");
+        li.text("Inserisci la password");
+        $('#ul_errori_registrazione').parent().show();
+        $('#ul_errori_registrazione').append(li);
+        
+    }
+    
+    else if(password.length <  8){
+        errori=true;
+        password_msg.innerHTML="La password deve essere più lunga di 8 caratteri";
+        button.form.password_nuova.focus({preventScroll:false});
+        $(button.form.password_nuova).css('border-color','red');
+        var li = $("<li></li>");
+        li.text("La password deve essere più lunga di 8 caratteri");
+        $('#ul_errori_registrazione').parent().show();
+        $('#ul_errori_registrazione').append(li);
+        
+    }
+    
+    else if(password_conferma === ""){
+        errori=true;
+        password_conferma_msg.innerHTML="Inserisci ancora la password";
+        button.form.password_nuova2.focus({preventScroll:false});
+        $(button.form.password_nuova2).css('border-color','red');
+        var li = $("<li></li>");
+        li.text("Inserisci ancora la password");
+        $('#ul_errori_registrazione').parent().show();
+        $('#ul_errori_registrazione').append(li);
+       
+    }
+    
+    else if(password !== password_conferma){
+        errori=true;
+        password_conferma_msg.innerHTML="Le due password non corrispondono";
+        button.form.password_nuova2.focus({preventScroll:false});
+        button.form.password_nuova2.innerHTML="";
+        $(button.form.password_nuova2).css('border-color','red');
+        var li = $("<li></li>");
+        li.text("Le due password non corrispondono");
+        $('#ul_errori_registrazione').parent().show();
+        $('#ul_errori_registrazione').append(li);
+        
+    }
+    
+    
+    if(!errori)
+    //window.confirm("SONO entrato nel ciclo errori= "+errori);
+    {
+        //window.confirm("AJAX. citta="+citta);
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+        $.ajax({
+
+                type: 'POST',
+
+                //url: '/ajaxCitta',
+                url: '/ajaxNewUsernameCitta',
+
+                //data: {citta:citta},
+                data: {citta:citta, username:username},
+                
+                dataType: "json",
+
+                success: function (data) {
+                    
+                    //window.confirm("HO RICEVUTO: citta:"+data.citta);
+                    if (!data.citta){
+                        errori = true;
+                        citta_msg.innerHTML="Inserisci una città corretta";
+                        button.form.citta_completamento.focus();
+                        $(button.form.citta_completamento).css('border-color','red');
+                        var li = $("<li></li>");
+                        li.text("Inserisci una città corretta");
+                        $('#ul_errori_registrazione').parent().show();
+                        $('#ul_errori_registrazione').append(li);
+                    }
+                    if (!data.username)
+                    {
+                        errori = true;
+                        username_msg.innerHTML="Esiste già un altro utente con questo username";
+                        button.form.username.focus();
+                        $(button.form.username).css('border-color','red');
+                        var li = $("<li></li>");
+                        li.text("Esiste già un altro utente con questo username");
+                        $('#ul_errori_registrazione').parent().show();
+                        $('#ul_errori_registrazione').append(li);
+
+                    }
+                    
+                    if (!errori){
+                        button.form.submit();
+                    }
+                },
+                
+                error: function(data){
+                    //window.confirm("fail, citta="+data.citta);
+                    alert("fail");
+                }
+
+            });
+    }
+}
+
 function valida_modifica_utente(button){
     
     //window.confirm("valida_modifica_utente")

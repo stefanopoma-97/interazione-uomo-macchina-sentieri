@@ -294,7 +294,7 @@
                                     <div class="form-group">
                                         <div class="row">
                                             <div class="col-sm-9 col-sm-offset-3">
-                                                <input type="submit" name="register-submit" class="form-control btn btn-primary" value="Registrati" onclick="event.preventDefault(); register(this);">
+                                                <input type="submit" name="register-submit" class="form-control btn btn-primary" value="Registrati" onclick="event.preventDefault(); register2(this);">
                                             </div>
                                         </div>
                                     </div>
