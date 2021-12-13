@@ -1,4 +1,4 @@
-/* 
+/*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
@@ -12,14 +12,14 @@ function rimuovi_stile(elemento){
 function login(button){
     $('#ul_errori').parent().hide(); //lo nascondo
     $('#ul_errori').empty(); //svuoto la lista
-    
-    
+
+
     username = (button.form.username.value).trim();
-    
+
     password = (button.form.password.value).trim();
-    
+
     var errori = false;
-    
+
     if(username === ""){
         errori=true;
         button.form.username.focus();
@@ -41,59 +41,59 @@ function login(button){
     else {
         button.form.submit();
     }
-    
-    
+
+
 }
 
 function register(button){
-    
+
     //DIV contenente gli errori
     $('#ul_errori_registrazione').parent().hide(); //lo nascondo
     $('#ul_errori_registrazione').empty(); //svuoto la lista
-    
-    
+
+
     nome = (button.form.nome.value).trim();
     nome_msg=document.getElementById("invalid-nome");
     nome_msg.innerHTML="";
     var nome_exp = new RegExp("^([a-zA-Z]+)$", "g");
 
-    
+
     cognome = (button.form.cognome.value).trim();
     cognome_msg=document.getElementById("invalid-cognome");
     cognome_msg.innerHTML="";
     var cognome_exp = new RegExp("^([a-zA-Z]+)$", "g");
-    
+
     username = (button.form.username.value).trim();
     username_msg=document.getElementById("invalid-username");
     username_msg.innerHTML="";
-    
-    
+
+
     mail = (button.form.mail.value).trim();
     mail_msg=document.getElementById("invalid-mail");
     mail_msg.innerHTML="";
     var mail_exp = RegExp("^([a-zA-Z0-9_.-])+@(([a-zA-Z0-9-]{2,})+.)+[.]([a-zA-Z0-9]{2,})+$", "g");
-    
+
     descrizione = (button.form.descrizione.value).trim();
     descrizione_msg=document.getElementById("invalid-descrizione");
     descrizione_msg.innerHTML="";
-    
+
     citta = (button.form.citta_completamento.value).trim();
     citta_msg=document.getElementById("invalid-citta_completamento");
     citta_msg.innerHTML="";
-    
+
     password = (button.form.password_nuova.value).trim();
     password_msg=document.getElementById("invalid-password_nuova");
     password_msg.innerHTML="";
 
-    
+
     password_conferma = (button.form.password_nuova2.value).trim();
     password_conferma_msg=document.getElementById("invalid-password_nuova2");
     password_conferma_msg.innerHTML="";
-    
+
 
     var errori = false;
-    
-    
+
+
     if(username === ""){
         errori=true;
         username_msg.innerHTML="Compila il campo username";
@@ -113,7 +113,7 @@ function register(button){
         li.text("Compila il campo nome");
         $('#ul_errori_registrazione').parent().show();
         $('#ul_errori_registrazione').append(li);
-        
+
     }
     else if(!nome.match(nome_exp)){
         errori=true;
@@ -125,7 +125,7 @@ function register(button){
         $('#ul_errori_registrazione').parent().show();
         $('#ul_errori_registrazione').append(li);
     }
-    
+
     else if(cognome === ""){
         errori=true;
         cognome_msg.innerHTML="Compila il campo cognome";
@@ -146,8 +146,8 @@ function register(button){
         $('#ul_errori_registrazione').parent().show();
         $('#ul_errori_registrazione').append(li);
     }
-    
-    
+
+
     else if(mail === ""){
         errori=true;
         mail_msg.innerHTML="Compila il campo mail";
@@ -168,7 +168,7 @@ function register(button){
         $('#ul_errori_registrazione').parent().show();
         $('#ul_errori_registrazione').append(li);
     }
-    
+
     else if(descrizione === ""){
         errori=true;
         descrizione_msg.innerHTML="Compila il campo descrizione";
@@ -179,7 +179,7 @@ function register(button){
         $('#ul_errori_registrazione').parent().show();
         $('#ul_errori_registrazione').append(li);
     }
-    
+
     else if(citta === ""){
         errori=true;
         citta_msg.innerHTML="Compila il campo città";
@@ -190,7 +190,7 @@ function register(button){
         $('#ul_errori_registrazione').parent().show();
         $('#ul_errori_registrazione').append(li);
     }
-    
+
     else if(password === ""){
         errori=true;
         password_msg.innerHTML="Inserisci la password";
@@ -200,9 +200,9 @@ function register(button){
         li.text("Inserisci la password");
         $('#ul_errori_registrazione').parent().show();
         $('#ul_errori_registrazione').append(li);
-        
+
     }
-    
+
     else if(password.length <  8){
         errori=true;
         password_msg.innerHTML="La password deve essere più lunga di 8 caratteri";
@@ -212,9 +212,9 @@ function register(button){
         li.text("La password deve essere più lunga di 8 caratteri");
         $('#ul_errori_registrazione').parent().show();
         $('#ul_errori_registrazione').append(li);
-        
+
     }
-    
+
     else if(password_conferma === ""){
         errori=true;
         password_conferma_msg.innerHTML="Inserisci ancora la password";
@@ -224,9 +224,9 @@ function register(button){
         li.text("Inserisci ancora la password");
         $('#ul_errori_registrazione').parent().show();
         $('#ul_errori_registrazione').append(li);
-       
+
     }
-    
+
     else if(password !== password_conferma){
         errori=true;
         password_conferma_msg.innerHTML="Le due password non corrispondono";
@@ -237,10 +237,10 @@ function register(button){
         li.text("Le due password non corrispondono");
         $('#ul_errori_registrazione').parent().show();
         $('#ul_errori_registrazione').append(li);
-        
+
     }
-    
-    
+
+
     if(!errori)
     //window.confirm("SONO entrato nel ciclo errori= "+errori);
     {
@@ -259,11 +259,11 @@ function register(button){
 
                 //data: {citta:citta},
                 data: {citta:citta, username:username},
-                
+
                 dataType: "json",
 
                 success: function (data) {
-                    
+
                     //window.confirm("HO RICEVUTO: citta:"+data.citta);
                     if (!data.citta){
                         errori = true;
@@ -287,12 +287,12 @@ function register(button){
                         $('#ul_errori_registrazione').append(li);
 
                     }
-                    
+
                     if (!errori){
                         button.form.submit();
                     }
                 },
-                
+
                 error: function(data){
                     //window.confirm("fail, citta="+data.citta);
                     alert("fail");
@@ -303,54 +303,54 @@ function register(button){
 }
 
 function register2(button){
-    
+
     //DIV contenente gli errori
     $('#ul_errori_registrazione').parent().hide(); //lo nascondo
     $('#ul_errori_registrazione').empty(); //svuoto la lista
-    
-    
+
+
     nome = (button.form.nome.value).trim();
     nome_msg=document.getElementById("invalid-nome");
     nome_msg.innerHTML="";
     var nome_exp = new RegExp("^([a-zA-Z]+)$", "g");
 
-    
+
     cognome = (button.form.cognome.value).trim();
     cognome_msg=document.getElementById("invalid-cognome");
     cognome_msg.innerHTML="";
     var cognome_exp = new RegExp("^([a-zA-Z]+)$", "g");
-    
+
     username = (button.form.username.value).trim();
     username_msg=document.getElementById("invalid-username");
     username_msg.innerHTML="";
-    
-    
+
+
     mail = (button.form.mail.value).trim();
     mail_msg=document.getElementById("invalid-mail");
     mail_msg.innerHTML="";
     var mail_exp = RegExp("^([a-zA-Z0-9_.-])+@(([a-zA-Z0-9-]{2,})+.)+[.]([a-zA-Z0-9]{2,})+$", "g");
-    
+
     descrizione = (button.form.descrizione.value).trim();
     descrizione_msg=document.getElementById("invalid-descrizione");
     descrizione_msg.innerHTML="";
-    
+
     citta = (button.form.citta_completamento.value).trim();
     citta_msg=document.getElementById("invalid-citta_completamento");
     citta_msg.innerHTML="";
-    
+
     password = (button.form.password_nuova.value).trim();
     password_msg=document.getElementById("invalid-password_nuova");
     password_msg.innerHTML="";
 
-    
+
     password_conferma = (button.form.password_nuova2.value).trim();
     password_conferma_msg=document.getElementById("invalid-password_nuova2");
     password_conferma_msg.innerHTML="";
-    
+
 
     var errori = false;
-    
-    
+
+
     if(username === ""){
         errori=true;
         username_msg.innerHTML="Compila il campo username";
@@ -370,9 +370,9 @@ function register2(button){
         li.text("Compila il campo nome");
         $('#ul_errori_registrazione').parent().show();
         $('#ul_errori_registrazione').append(li);
-        
+
     }
-    else if(!nome.match(nome_exp)){
+    if(!nome.match(nome_exp)){
         errori=true;
         nome_msg.innerHTML="Il campo nome può contenere solo lettere";
         button.form.nome.focus();
@@ -382,8 +382,7 @@ function register2(button){
         $('#ul_errori_registrazione').parent().show();
         $('#ul_errori_registrazione').append(li);
     }
-    
-    else if(cognome === ""){
+    if(cognome === ""){
         errori=true;
         cognome_msg.innerHTML="Compila il campo cognome";
         button.form.cognome.focus();
@@ -393,7 +392,7 @@ function register2(button){
         $('#ul_errori_registrazione').parent().show();
         $('#ul_errori_registrazione').append(li);
     }
-    else if(!cognome.match(cognome_exp)){
+    if(!cognome.match(cognome_exp)){
         errori=true;
         cognome_msg.innerHTML="Il campo cognome può contenere solo lettere";
         button.form.cognome.focus();
@@ -403,9 +402,7 @@ function register2(button){
         $('#ul_errori_registrazione').parent().show();
         $('#ul_errori_registrazione').append(li);
     }
-    
-    
-    else if(mail === ""){
+    if(mail === ""){
         errori=true;
         mail_msg.innerHTML="Compila il campo mail";
         button.form.mail.focus();
@@ -415,7 +412,7 @@ function register2(button){
         $('#ul_errori_registrazione').parent().show();
         $('#ul_errori_registrazione').append(li);
     }
-    else if(!mail.match(mail_exp)){
+    if(!mail.match(mail_exp)){
         errori=true;
         mail_msg.innerHTML="Inserisci una mail valida";
         button.form.mail.focus();
@@ -425,8 +422,7 @@ function register2(button){
         $('#ul_errori_registrazione').parent().show();
         $('#ul_errori_registrazione').append(li);
     }
-    
-    else if(descrizione === ""){
+    if(descrizione === ""){
         errori=true;
         descrizione_msg.innerHTML="Compila il campo descrizione";
         button.form.descrizione.focus();
@@ -436,8 +432,7 @@ function register2(button){
         $('#ul_errori_registrazione').parent().show();
         $('#ul_errori_registrazione').append(li);
     }
-    
-    else if(citta === ""){
+    if(citta === ""){
         errori=true;
         citta_msg.innerHTML="Compila il campo città";
         button.form.citta_completamento.focus();
@@ -447,8 +442,7 @@ function register2(button){
         $('#ul_errori_registrazione').parent().show();
         $('#ul_errori_registrazione').append(li);
     }
-    
-    else if(password === ""){
+    if(password === ""){
         errori=true;
         password_msg.innerHTML="Inserisci la password";
         button.form.password_nuova.focus({preventScroll:false});
@@ -457,10 +451,9 @@ function register2(button){
         li.text("Inserisci la password");
         $('#ul_errori_registrazione').parent().show();
         $('#ul_errori_registrazione').append(li);
-        
+
     }
-    
-    else if(password.length <  8){
+    if(password.length <  8){
         errori=true;
         password_msg.innerHTML="La password deve essere più lunga di 8 caratteri";
         button.form.password_nuova.focus({preventScroll:false});
@@ -469,10 +462,9 @@ function register2(button){
         li.text("La password deve essere più lunga di 8 caratteri");
         $('#ul_errori_registrazione').parent().show();
         $('#ul_errori_registrazione').append(li);
-        
+
     }
-    
-    else if(password_conferma === ""){
+    if(password_conferma === ""){
         errori=true;
         password_conferma_msg.innerHTML="Inserisci ancora la password";
         button.form.password_nuova2.focus({preventScroll:false});
@@ -481,10 +473,9 @@ function register2(button){
         li.text("Inserisci ancora la password");
         $('#ul_errori_registrazione').parent().show();
         $('#ul_errori_registrazione').append(li);
-       
+
     }
-    
-    else if(password !== password_conferma){
+    if(password !== password_conferma){
         errori=true;
         password_conferma_msg.innerHTML="Le due password non corrispondono";
         button.form.password_nuova2.focus({preventScroll:false});
@@ -494,10 +485,10 @@ function register2(button){
         li.text("Le due password non corrispondono");
         $('#ul_errori_registrazione').parent().show();
         $('#ul_errori_registrazione').append(li);
-        
+
     }
-    
-    
+
+
     if(!errori)
     //window.confirm("SONO entrato nel ciclo errori= "+errori);
     {
@@ -516,11 +507,11 @@ function register2(button){
 
                 //data: {citta:citta},
                 data: {citta:citta, username:username},
-                
+
                 dataType: "json",
 
                 success: function (data) {
-                    
+
                     //window.confirm("HO RICEVUTO: citta:"+data.citta);
                     if (!data.citta){
                         errori = true;
@@ -544,12 +535,12 @@ function register2(button){
                         $('#ul_errori_registrazione').append(li);
 
                     }
-                    
+
                     if (!errori){
                         button.form.submit();
                     }
                 },
-                
+
                 error: function(data){
                     //window.confirm("fail, citta="+data.citta);
                     alert("fail");
@@ -560,46 +551,46 @@ function register2(button){
 }
 
 function valida_modifica_utente(button){
-    
+
     //window.confirm("valida_modifica_utente")
-    
+
     //DIV contenente gli errori
     $('#ul_errori').parent().hide(); //lo nascondo
     $('#ul_errori').empty(); //svuoto la lista
-    
+
     id=button.form.id.value;// id utente recuperato dalla form
-    
+
     nome = (button.form.nome.value).trim();
     nome_msg=document.getElementById("invalid-nome");
     nome_msg.innerHTML="";
     var nome_exp = new RegExp("^([a-zA-Z]+)$", "g");
 
-    
+
     cognome = (button.form.cognome.value).trim();
     cognome_msg=document.getElementById("invalid-cognome");
     cognome_msg.innerHTML="";
     var cognome_exp = new RegExp("^([a-zA-Z]+)$", "g");
-    
+
     username = (button.form.username.value).trim();
     username_msg=document.getElementById("invalid-username");
     username_msg.innerHTML="";
-    
-    
+
+
     mail = (button.form.mail.value).trim();
     mail_msg=document.getElementById("invalid-mail");
     mail_msg.innerHTML="";
     var mail_exp = RegExp("^([a-zA-Z0-9_.-])+@(([a-zA-Z0-9-]{2,})+.)+[.]([a-zA-Z0-9]{2,})+$", "g");
-    
+
     descrizione = (button.form.descrizione.value).trim();
     descrizione_msg=document.getElementById("invalid-descrizione");
     descrizione_msg.innerHTML="";
-    
+
     citta = (button.form.citta_completamento.value).trim();
     citta_msg=document.getElementById("invalid-citta_completamento");
     citta_msg.innerHTML="";
-    
+
     var errori = false;
-    
+
     if(nome === ""){
         errori=true;
         nome_msg.innerHTML="Compila il campo nome";
@@ -609,7 +600,7 @@ function valida_modifica_utente(button){
         li.text("Compila il campo nome");
         $('#ul_errori').parent().show();
         $('#ul_errori').append(li);
-        
+
     }
     else if(!nome.match(nome_exp)){
         errori=true;
@@ -621,9 +612,9 @@ function valida_modifica_utente(button){
         $('#ul_errori').parent().show();
         $('#ul_errori').append(li);
     }
-    
-    
-    
+
+
+
     if(cognome === ""){
         errori=true;
         cognome_msg.innerHTML="Compila il campo cognome";
@@ -644,8 +635,8 @@ function valida_modifica_utente(button){
         $('#ul_errori').parent().show();
         $('#ul_errori').append(li);
     }
-    
-    
+
+
     if(username === ""){
         errori=true;
         username_msg.innerHTML="Compila il campo username";
@@ -656,8 +647,8 @@ function valida_modifica_utente(button){
         $('#ul_errori').parent().show();
         $('#ul_errori').append(li);
     }
-    
-    
+
+
     if(mail === ""){
         errori=true;
         mail_msg.innerHTML="Compila il campo mail";
@@ -678,7 +669,7 @@ function valida_modifica_utente(button){
         $('#ul_errori').parent().show();
         $('#ul_errori').append(li);
     }
-    
+
     if(descrizione === ""){
         errori=true;
         descrizione_msg.innerHTML="Compila il campo descrizione";
@@ -689,7 +680,7 @@ function valida_modifica_utente(button){
         $('#ul_errori').parent().show();
         $('#ul_errori').append(li);
     }
-    
+
     if(citta === ""){
         errori=true;
         citta_msg.innerHTML="Compila il campo città";
@@ -700,8 +691,8 @@ function valida_modifica_utente(button){
         $('#ul_errori').parent().show();
         $('#ul_errori').append(li);
     }
-    
-    
+
+
     if(!errori)
     //window.confirm("SONO entrato nel ciclo errori= "+errori);
     {
@@ -720,7 +711,7 @@ function valida_modifica_utente(button){
 
                 data: {username:username, id:id, citta:citta},
                 //data: {username:username, citta:citta},
-                
+
                 dataType: "json",
 
                 success: function (data) {
@@ -750,14 +741,14 @@ function valida_modifica_utente(button){
                         button.form.submit();
                     }
                 },
-                
+
                 error: function(data){
                     alert("fail");
                 }
 
             });
     }
-        
+
 }
 
 function valida_mail(button){
@@ -768,14 +759,14 @@ function valida_mail(button){
     $('#ul_conferme').empty(); //svuoto la lista
     //window.confirm(button.parentNode.parentNode.parentNode.nodeName);
     id=button.parentNode.parentNode.parentNode.id.value;// id utente recuperato dalla form
-    
+
     mail = (button.parentNode.parentNode.parentNode.mail.value).trim();
     mail_msg=document.getElementById("invalid-mail");
     mail_msg.innerHTML="";
     var mail_exp = RegExp("^([a-zA-Z0-9_.-])+@(([a-zA-Z0-9-]{2,})+.)+[.]([a-zA-Z0-9]{2,})+$", "g");
-    
+
     var errori = false;
-    
+
     if(mail === ""){
         errori=true;
         mail_msg.innerHTML="Compila il campo mail";
@@ -796,7 +787,7 @@ function valida_mail(button){
         $('#ul_errori').parent().show();
         $('#ul_errori').append(li);
     }
-    
+
     if(!errori)
     //window.confirm("SONO entrato nel ciclo errori= "+errori);
     {
@@ -813,7 +804,7 @@ function valida_mail(button){
                 url: '/ajaxMail',
 
                 data: {mail:mail, id:id},
-                
+
                 dataType: "json",
 
                 success: function (data) {
@@ -836,15 +827,15 @@ function valida_mail(button){
 
                         $('#ul_conferme').parent().show();
                         $('#ul_conferme').append(li);
-                        
+
                         //cambiamenti alla pagina
                         $('#btn_valida_mail').text("Invia ancora");
                         $('#div_codice').show();
 
                     }
-                    
+
                 },
-                
+
                 error: function(data){
                     alert("fail");
                 }
@@ -861,13 +852,13 @@ function valida_username_login(button){
     $('#ul_conferme').parent().hide(); //lo nascondo
     $('#ul_conferme').empty(); //svuoto la lista
     //window.confirm(button.parentNode.parentNode.parentNode.nodeName);
-    
+
     username = (button.parentNode.parentNode.parentNode.username.value).trim();
     username_msg=document.getElementById("invalid-username");
     username_msg.innerHTML="";
-    
+
     var errori = false;
-    
+
     if(username === ""){
         errori=true;
         username_msg.innerHTML="Compila il campo username";
@@ -878,8 +869,8 @@ function valida_username_login(button){
         $('#ul_errori').parent().show();
         $('#ul_errori').append(li);
     }
-    
-    
+
+
     if(!errori)
     {
         //window.confirm("2- mando controllo utente ad ajax: ajaxUsernameInDatabase");
@@ -896,7 +887,7 @@ function valida_username_login(button){
                 url: '/ajaxUsernameInDatabase',
 
                 data: {username:username},
-                
+
                 dataType: "json",
 
                 success: function (data) {
@@ -920,17 +911,17 @@ function valida_username_login(button){
 
                         $('#ul_conferme').parent().show();
                         $('#ul_conferme').append(li);
-                        
+
                         $('#div_mail').hide();
-                        
+
                         //cambiamenti alla pagina
                         $('#btn_valida_mail').text("Invia ancora");
                         $('#div_codice').show();
 
                     }
-                    
+
                 },
-                
+
                 error: function(data){
                     alert("fail");
                 }
@@ -941,13 +932,13 @@ function valida_username_login(button){
 
 function send_reset_mail(){
     //window.confirm("STO EFFETTIVAMENTE mandando la mail di reset");
-    
-    
+
+
     mail = document.forms.recupero_password.mail.value;
     id = document.forms.recupero_password.id.value;
-    
+
     //window.confirm("RIASSUNTO DATI: id="+id+" mail="+mail);
-    
+
     $.ajaxSetup({
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -960,7 +951,7 @@ function send_reset_mail(){
                 url: '/ajaxSendResetMail',
 
                 data: {mail:mail, id:id},
-                
+
                 dataType: "json",
 
                 success: function (data) {
@@ -974,9 +965,9 @@ function send_reset_mail(){
                         $('#div_codice').show();
 
                     }
-                    
+
                 },
-                
+
                 error: function(data){
                     alert("fail");
                 }
@@ -986,13 +977,13 @@ function send_reset_mail(){
 
 function send_reset_mail_database(){
     //window.confirm("4 - parte funzione on ready per mandare mail");
-    
-    
+
+
     username = document.forms.recupero_password_login.username.value;
-    
+
     //window.confirm("5 - RIASSUNTO DATI: username="+username);
     //window.confirm("6 - mando ad ajax richiesta invio mail ajaxSendResetMailDatabase");
-    
+
     $.ajaxSetup({
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -1005,7 +996,7 @@ function send_reset_mail_database(){
                 url: '/ajaxSendResetMailDatabase',
 
                 data: {username:username},
-                
+
                 dataType: "json",
 
                 success: function (data) {
@@ -1015,16 +1006,16 @@ function send_reset_mail_database(){
                     {
                         //window.confirm("7.1 - CODICE IMPOSTATO A: "+data.codice);
                         $('#ul_errori').append(li);
-                       
+
 
                     } else {
                         window.confirm("7.1 - errore su data.ok");
                         $('#div_codice').show();
 
                     }
-                    
+
                 },
-                
+
                 error: function(data){
                     window.confirm("7- failure ajax send reset mail database, data: "+data.ok);
                     alert("fail");
@@ -1039,15 +1030,15 @@ function valida_codice(button){
     $('#ul_errori').empty(); //svuoto la lista
     $('#ul_conferme').parent().hide(); //lo nascondo
     $('#ul_conferme').empty(); //svuoto la lista
-    
+
     //id=button.parentNode.parentNode.parentNode.id.value;// id utente recuperato dalla form
-    
+
     codice = (button.parentNode.parentNode.parentNode.codice.value).trim();
     codice_msg=document.getElementById("invalid-codice");
     codice_msg.innerHTML="";
-    
+
     //window.confirm("codice: "+codice);
-    
+
     if(true)
     //window.confirm("9 - ajax per mandare codice al sistema codice: "+codice);
     {
@@ -1064,7 +1055,7 @@ function valida_codice(button){
                 url: '/ajaxCodice',
 
                 data: {codice:codice},
-                
+
                 dataType: "json",
 
                 success: function (data) {
@@ -1085,7 +1076,7 @@ function valida_codice(button){
                         li.text("Codice corretto");
                         $('#ul_conferme').parent().show();
                         $('#ul_conferme').append(li);
-                        
+
                         //cambiamenti alla pagina
                         $('#div_mail').hide();
                         $('#div_codice').hide();
@@ -1094,9 +1085,9 @@ function valida_codice(button){
                         $('#div_submit').show();
 
                     }
-                    
+
                 },
-                
+
                 error: function(data){
                     alert("fail");
                 }
@@ -1112,17 +1103,17 @@ function valida_codice_database(button){
     $('#ul_errori').empty(); //svuoto la lista
     $('#ul_conferme').parent().hide(); //lo nascondo
     $('#ul_conferme').empty(); //svuoto la lista
-    
+
     //id=button.parentNode.parentNode.parentNode.id.value;// id utente recuperato dalla form
-    
+
     codice = (button.parentNode.parentNode.parentNode.codice.value).trim();
     codice_msg=document.getElementById("invalid-codice");
     codice_msg.innerHTML="";
-    
+
     username = (button.parentNode.parentNode.parentNode.username.value).trim();
-    
+
     //window.confirm("codice: "+codice);
-    
+
     if(true)
     //window.confirm("9 - ajax per mandare codice al sistema codice: "+codice+" username: "+username);
     {
@@ -1139,7 +1130,7 @@ function valida_codice_database(button){
                 url: '/ajaxCodiceDatabase',
 
                 data: {codice:codice, username:username},
-                
+
                 dataType: "json",
 
                 success: function (data) {
@@ -1160,7 +1151,7 @@ function valida_codice_database(button){
                         li.text("Codice corretto");
                         $('#ul_conferme').parent().show();
                         $('#ul_conferme').append(li);
-                        
+
                         //cambiamenti alla pagina
                         $('#div_mail').hide();
                         $('#div_codice').hide();
@@ -1169,9 +1160,9 @@ function valida_codice_database(button){
                         $('#div_submit').show();
 
                     }
-                    
+
                 },
-                
+
                 error: function(data){
                     alert("fail");
                 }
@@ -1183,18 +1174,18 @@ function valida_codice_database(button){
 function valida_reset_password(button){
     $('#ul_errori').parent().hide(); //lo nascondo
     $('#ul_errori').empty();
-    
+
     $('#ul_conferme').parent().hide(); //lo nascondo
     $('#ul_conferme').empty();
-    
+
     id=button.form.id.value;
-    
+
     password_nuova = (button.form.password_nuova.value).trim();
     password_nuova_msg=document.getElementById("invalid-password_nuova");
     password_nuova_msg.innerHTML="";
-    
+
     var errori=false;
-    
+
     if(password_nuova === ""){
         errori=true;
         password_nuova_msg.innerHTML="Inserisci la nuova password";
@@ -1205,7 +1196,7 @@ function valida_reset_password(button){
         $('#ul_errori').parent().show();
         $('#ul_errori').append(li);
     }
-    
+
     else if(password_nuova.length < 8){
         errori=true;
         password_nuova_msg.innerHTML="La password è più corta di 8 caratteri";
@@ -1216,44 +1207,44 @@ function valida_reset_password(button){
         $('#ul_errori').parent().show();
         $('#ul_errori').append(li);
     }
-    
+
     if(!errori){
         //window.confirm("faccio partire form: "+button.form.nodeName);
         button.form.submit();
     }
-    
+
     //DOPO AVER LANCIATO LA FORM
-        
+
 }
 
 function valida_modifica_password(button){
-    
+
     //window.confirm("valida_modifica_utente")
-    
+
     //DIV contenente gli errori
     $('#ul_errori').parent().hide(); //lo nascondo
     $('#ul_errori').empty(); //svuoto la lista
-    
+
     consiglio=$('#consiglio_password');
-    
+
     id=button.form.id.value;// id utente recuperato dalla form
-    
+
     password_precedente = (button.form.password_precedente.value).trim();
     password_precedente_msg=document.getElementById("invalid-password_precedente");
     password_precedente_msg.innerHTML="";
 
-    
+
     password_nuova = (button.form.password_nuova.value).trim();
     password_nuova_msg=document.getElementById("invalid-password_nuova");
     password_nuova_msg.innerHTML="";
-    
+
     password_nuova2 = (button.form.password_nuova2.value).trim();
     password_nuova2_msg=document.getElementById("invalid-password_nuova2");
     password_nuova2_msg.innerHTML="";
-    
-    
+
+
     var errori = false;
-    
+
     if(password_precedente === ""){
         errori=true;
         password_precedente_msg.innerHTML="Inserisci la tua attuale password";
@@ -1265,9 +1256,9 @@ function valida_modifica_password(button){
         $('#ul_errori').append(li);
         consiglio.text(0);
         consiglio.hide();
-        
+
     }
-    
+
     else if(password_nuova === ""){
         errori=true;
         password_nuova_msg.innerHTML="Inserisci la nuova password";
@@ -1280,7 +1271,7 @@ function valida_modifica_password(button){
         consiglio.text(0);
         consiglio.hide();
     }
-    
+
     else if(password_nuova.length < 8){
         errori=true;
         password_nuova_msg.innerHTML="La password è più corta di 8 caratteri";
@@ -1293,7 +1284,7 @@ function valida_modifica_password(button){
         consiglio.text(0);
         consiglio.hide();
     }
-    
+
     else if(password_nuova2 === ""){
         errori=true;
         password_nuova2_msg.innerHTML="Inserisci nuovamente la nuova password";
@@ -1306,7 +1297,7 @@ function valida_modifica_password(button){
         consiglio.text(0);
         consiglio.hide();
     }
-    
+
     else if(password_nuova2 !== password_nuova){
         errori=true;
         password_nuova2_msg.innerHTML="Le due password non corrispondono";
@@ -1320,8 +1311,8 @@ function valida_modifica_password(button){
         consiglio.text(0);
         consiglio.hide();
     }
-    
-    
+
+
     if(!errori)
     //window.confirm("SONO entrato nel ciclo errori= "+errori);
     {
@@ -1338,7 +1329,7 @@ function valida_modifica_password(button){
                 url: '/ajaxCheckPassword',
 
                 data: {password:password_precedente, id:id},
-                
+
                 dataType: "json",
 
                 success: function (data) {
@@ -1353,43 +1344,43 @@ function valida_modifica_password(button){
                         li.text("La password che hai inserito non è corretta");
                         $('#ul_errori').parent().show();
                         $('#ul_errori').append(li);
-                        
+
                         if(consiglio.text().length == 1){
-                            
+
                             valore = parseInt(consiglio.text());
                             if(valore>=3){
                                 if(data.consiglio == null || data.consiglio===""){
                                     consiglio.text("Non hai inserito nessun consiglio per il recupero della password");
-                                    consiglio.show();  
+                                    consiglio.show();
                                 }
                                 else {
                                     consiglio.text("Consiglio: "+data.consiglio);
-                                    consiglio.show();  
+                                    consiglio.show();
                                 }
-                                
+
                             }
                             else{
                                 valore ++;
                                 consiglio.text(valore);
                                 consiglio.hide();
                             }
-                            
+
                         }
-                        
+
 
                     }
                     else{
                         button.form.submit();
                     }
                 },
-                
+
                 error: function(data){
                     alert("fail");
                 }
 
             });
     }
-        
+
 }
 
 //se le due password non sono uguali stampa un messaggio di errore
@@ -1397,14 +1388,14 @@ function password_uguali(button){
     password_nuova = (button.form.password_nuova.value).trim();
     password_nuova_msg=document.getElementById("invalid-password_nuova");
     //password_nuova_msg.innerHTML="";
-    
+
     password_nuova2 = (button.form.password_nuova2.value).trim();
     password_nuova2_msg=document.getElementById("invalid-password_nuova2");
     password_nuova2_msg.innerHTML="";
-    
+
     if(password_nuova2 !== password_nuova && password_nuova2!==""){
         password_nuova2_msg.innerHTML="Le due password non corrispondono";
-        
+
     }
 }
 
@@ -1416,9 +1407,9 @@ function password_lunghezza(button){
     password_nuova2 = button.form.password_nuova2;
 
     password_nuova_msg.innerHTML="";
-    
+
     if(password_nuova.length < 8){
-        
+
         if(password_nuova.length > 0){
             password_nuova_msg.innerHTML="La password è più corta di 8 caratteri";
         }
@@ -1426,8 +1417,8 @@ function password_lunghezza(button){
             password_nuova2_msg.innerHTML="";
             password_nuova2.innerHTML="";
         }
-        
-        
+
+
     }
 }
 
@@ -1436,15 +1427,15 @@ function abilita_conferma_password(button){
     password_nuova = (button.form.password_nuova.value).trim();
     password_nuova2 = button.form.password_nuova2;
     if(password_nuova!==""){
-        
-        password_nuova2.removeAttribute('disabled'); 
+
+        password_nuova2.removeAttribute('disabled');
     }
-        
+
     else{
         password_nuova2.value="";
         password_nuova2.setAttribute('disabled','true');
     }
-        
+
 }
 
 function strong_password(button){
@@ -1460,7 +1451,7 @@ function strong_password(button){
     meter = document.getElementById('password-strength-meter');
     text = document.getElementById('password-strength-text');
     val = (password_nuova.value).trim();
-    
+
     var result = zxcvbn(val);
 
     // This updates the password strength meter
@@ -1468,7 +1459,7 @@ function strong_password(button){
 
     // This updates the password meter text
     if (val !== "") {
-        text.innerHTML = "Password: " + strength[result.score]; 
+        text.innerHTML = "Password: " + strength[result.score];
     } else {
         text.innerHTML = "";
     }
@@ -1481,7 +1472,7 @@ function massimo_1000_caratteri(f) {
     //window.confirm("check lunghezza");
         if (f.form.descrizione.value.length > 1000) {
                     f.form.descrizione.value = f.form.descrizione.value.substring(0,1000);
-                    
+
             }
-        
+
     }
