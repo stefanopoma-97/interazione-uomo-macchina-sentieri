@@ -718,9 +718,10 @@ html, body, #map, #elevation-div { height: 100%; width: 100%; padding: 0; margin
 .elementoSticky{
     position: -webkit-sticky;
     position:sticky;
-    top:100px;
+    top:90vh;
+    height: 8vh;
     display:block;
-    width: 100%;
+    width: 40%;
     background: red;
     padding:32px;
     box-sizing: border-box;
