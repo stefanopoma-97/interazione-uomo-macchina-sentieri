@@ -437,15 +437,15 @@ function load_file(button){
     
     function load_immagine1(button){
     document.getElementById('immagine1').click();
-}
+    }
 
-function load_immagine2(button){
-    document.getElementById('immagine2').click();
-}
+    function load_immagine2(button){
+        document.getElementById('immagine2').click();
+    }
 
-function load_immagine3(button){
-    document.getElementById('immagine3').click();
-}
+    function load_immagine3(button){
+        document.getElementById('immagine3').click();
+    }
  
     
     
@@ -491,7 +491,8 @@ function load_immagine3(button){
         
     }
     
-        function check_immagine2(button){
+       
+    function check_immagine2(button){
         //window.confirm("check");
         nome_input=button.form.nome_input.value;
         file=button.form.immagine.value;
@@ -548,8 +549,7 @@ function load_immagine3(button){
         }
         
     }
-
-    
+ 
     function size_immagine(e) {
         //window.confirm("SIZE CHECK");
         $('#messaggi_errore').parent().hide();
@@ -567,6 +567,8 @@ function load_immagine3(button){
             e.value="";
         }
     }
+    
+    
     
     function check_gpx(button){
         //window.confirm("check");
@@ -607,7 +609,48 @@ function load_immagine3(button){
         
     }
     
+    function check_gpx2(button){
+        //window.confirm("check");
+        //nome_input=button.form.nome_input.value;
+        file=button.form.gpx.value;
+        //window.confirm("check"+file);
+        $('#messaggi_errore').parent().hide();
+        $('#messaggi_errore').empty();
+        $('#messaggi_conferma').parent().hide();
+        $('#messaggi_conferma').empty();
+        
+        
+        var sFileName = file;
+        //window.confirm("nome: "+sFileName+" lunghezza: "+sFileName.length);
+         if(sFileName===""){
+            var li = $("<li></li>");
+            li.text("Non hai inserito un file");
+            $('#messaggi_errore').parent().show();
+            $('#messaggi_errore').append(li);
+        }
+        else {
+            var sFileExtension = sFileName.split('.')[sFileName.split('.').length - 1].toLowerCase();
+       
+        if (!(sFileExtension === "gpx")) { /// 10 mb
+           var li = $("<li></li>");
+            li.text("File non supportato");
+            $('#messaggi_errore').parent().show();
+            $('#messaggi_errore').append(li);
+        }
+        else{
+            
+            button.form.submit();
+            
+        }
+        
+            
+        }
+        
+    }
     
+    function load_gpx(button){
+        document.getElementById('gpx').click();
+    }
     
     function sizee(e) {
         file_msg=document.getElementById("invalid-foto_profilo");

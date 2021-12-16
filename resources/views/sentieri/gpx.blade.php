@@ -101,19 +101,18 @@
 @endsection
 
 @section('corpo')
-
-<div class="row col-md-12">
+<div class="row col-md-12" onclick="close_popup()">
         <div class="col-md-1 col-md-offset-9">
             <button class="btn" onclick="location.href='{{ route('sentiero.edit', ['sentiero'=> $sentiero->id]) }}'"><span class="glyphicon glyphicon-save"></span> Salva e torna alle modifiche</button>
         </div>
 </div>
- <div style="margin-top: 3em;" class="container">
+ <div style="margin-top: 3em;" class="container" onclick="close_popup()">
      <div class="row display-flex">
 
          <div class="col-xs-6 col-sm-4 col-sm-offset-4">
              <div class="text-center box-progetto">
-                 <h5 for="gpx" class="col-form-label"><strong>File GPX</strong>
-                     <div style="margin-left: 1em;" class="popup" onclick="popup(this)" >
+                 <h5 for="gpx" class="col-form-label" onclick="event.stopPropagation()"><strong>File GPX</strong>
+                     <div style="margin-left: 1em;" class="popup" onclick="popup2(this)" >
                          <span class="popuptext">Filie .gpx, Masssimo 2 MB</span>
                          <span class="glyphicon glyphicon-info-sign" ></span>
                      </div>
@@ -123,15 +122,15 @@
                  <form action="{{route('sentiero.aggiungigpx',['id'=> $sentiero->id])}}" id="aggiungi_gpx" name="aggiungi_gpx" method="POST" enctype="multipart/form-data"> {{ csrf_field() }}
 
                      <div class="form-group">
-                         <div style="margin-top: 1em; margin-bottom: 1em" class="col-sm-12">
-                             <input onchange="size_immagine(this)"; onkeyup="rimuovi_stile(this)" onmouseover="rimuovi_stile(this)"class="form-control" type="file" id="gpx" name="gpx" placeholder="gpx">
+                         <div style="margin-bottom: 1em" class="col-sm-12">
+                             <input style="display:none;" onchange="check_gpx2(this)"; onkeyup="rimuovi_stile(this)" onmouseover="rimuovi_stile(this)"class="form-control" type="file" id="gpx" name="gpx" placeholder="gpx">
                              <span class="invalid-input" id="invalid-gpx"></span>
                          </div>
                          <div class="col-sm-2 col-sm-offset-2">
                              <input type="hidden" name="nome_input" value="gpx"/>
                              <input type="hidden" name="nome_file" value="gpx"/>
                              <label for="mySubmit" class="btn btn-primary btn-large btn-info"><span class="glyphicon glyphicon-floppy-save"></span> Carica</label>
-                             <input onclick="event.preventDefault(); check_gpx(this);"  id="mySubmit" type="submit" value="save" class="hidden"/>
+                             <input onclick="event.preventDefault(); load_gpx(this);"  id="mySubmit" type="submit" value="save" class="hidden"/>
                          </div>
 
 
@@ -183,7 +182,6 @@
         </div>
     </div>
 </div>-->
-
 
 
 
