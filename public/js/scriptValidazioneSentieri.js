@@ -435,6 +435,11 @@ function load_file(button){
         
     }
     
+    function load_immagine1(button){
+    document.getElementById('immagine1').click();
+}
+    
+    
     function check_immagine(button){
         //window.confirm("check");
         nome_input=button.form.nome_input.value;
@@ -477,6 +482,82 @@ function load_file(button){
         
     }
     
+        function check_immagine2(button){
+        //window.confirm("check");
+        nome_input=button.form.nome_input.value;
+        file=button.form.immagine.value;
+        //window.confirm(file);
+        $('#messaggi_errore').parent().hide();
+        $('#messaggi_errore').empty();
+        $('#messaggi_conferma').parent().hide();
+        $('#messaggi_conferma').empty();
+        
+        
+        var sFileName = file;
+        //window.confirm("nome: "+sFileName+" lunghezza: "+sFileName.length);
+         if(sFileName===""){
+            var li = $("<li></li>");
+            li.text("Non hai inserito un file");
+            $('#messaggi_errore').parent().show();
+            $('#messaggi_errore').append(li);
+        }
+        else {
+            var sFileExtension = sFileName.split('.')[sFileName.split('.').length - 1].toLowerCase();
+       
+        if (!(sFileExtension === "jpeg" ||
+              sFileExtension === "png" ||
+              sFileExtension === "jpg" ||
+              sFileExtension === "svg")) { /// 10 mb
+           var li = $("<li></li>");
+            li.text("File non supportato");
+            $('#messaggi_errore').parent().show();
+            $('#messaggi_errore').append(li);
+        }
+        else{
+            $('#messaggi_errore').parent().hide();
+            $('#messaggi_errore').empty();
+            let size = button.files[0].size;
+            size_mb=size/1024/1024;
+            //window.confirm("SIZE: "+size_mb);
+
+            if (size > 2000000) {
+                //window.confirm("maggiore");
+                var li = $("<li></li>");
+                li.text("Il file inserito è più grande di 2MB ( "+size_mb+"MB )");
+                $('#messaggi_errore').parent().show();
+                $('#messaggi_errore').append(li);
+                button.value="";
+            }
+            else {
+                button.form.submit();
+            }
+            
+            
+        }
+        
+            
+        }
+        
+    }
+
+    
+    function size_immagine(e) {
+        //window.confirm("SIZE CHECK");
+        $('#messaggi_errore').parent().hide();
+        $('#messaggi_errore').empty();
+        let size = e.files[0].size;
+        size_mb=size/1024/1024;
+        //window.confirm("SIZE: "+size_mb);
+        
+        if (size > 2000000) {
+            //window.confirm("maggiore");
+            var li = $("<li></li>");
+            li.text("Il file inserito è più grande di 2MB ( "+size_mb+"MB )");
+            $('#messaggi_errore').parent().show();
+            $('#messaggi_errore').append(li);
+            e.value="";
+        }
+    }
     
     function check_gpx(button){
         //window.confirm("check");
@@ -517,23 +598,7 @@ function load_file(button){
         
     }
     
-    function size_immagine(e) {
-        //window.confirm("SIZE CHECK");
-        $('#messaggi_errore').parent().hide();
-        $('#messaggi_errore').empty();
-        let size = e.files[0].size;
-        size_mb=size/1024/1024;
-        //window.confirm("SIZE: "+size_mb);
-        
-        if (size > 2000000) {
-            //window.confirm("maggiore");
-            var li = $("<li></li>");
-            li.text("Il file inserito è più grande di 2MB ( "+size_mb+"MB )");
-            $('#messaggi_errore').parent().show();
-            $('#messaggi_errore').append(li);
-            e.value="";
-        }
-    }
+    
     
     function sizee(e) {
         file_msg=document.getElementById("invalid-foto_profilo");

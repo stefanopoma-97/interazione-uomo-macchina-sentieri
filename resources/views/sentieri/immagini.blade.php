@@ -134,26 +134,26 @@
                             <!--<h4>{{$link1}}</h4>-->
                             <div class="form-group">
                                 <div style="margin-top: 1em; margin-bottom: 1em" class="col-sm-12">
-                                    <input onchange="size_immagine(this)"; onkeyup="rimuovi_stile(this)" onmouseover="rimuovi_stile(this)"class="form-control" type="file" id="immagine1" name="immagine" placeholder="immagine">
+                                    <input style="display:none;" onchange="check_immagine2(this)"; onkeyup="rimuovi_stile(this)" onmouseover="rimuovi_stile(this)"class="form-control" type="file" id="immagine1" name="immagine" placeholder="immagine">
                                     <span class="invalid-input" id="invalid-immagine_1"></span>
                                 </div>
                                 <div class="col-sm-2 col-sm-offset-2">
                                     <input type="hidden" name="nome_input" value="immagine1"/>
                                     <input type="hidden" name="nome_file" value="1"/>
                                     <label for="mySubmit1" class="btn btn-primary btn-large btn-info"><span class="glyphicon glyphicon-floppy-save"></span> Carica</label>
-                                    <input onclick="event.preventDefault(); check_immagine(this);"  id="mySubmit1" type="submit" value="save" class="hidden"/>
+                                    <input onclick="event.preventDefault(); load_immagine1(this)"  id="mySubmit1" type="submit" value="save" class="hidden"/>
                                 </div>
 
                                 <div class="col-sm-2 col-sm-offset-2">
-                                    @if($link1!="http://localhost:8000/storage/fotosentieri/default")
+                                    @if($link1!="http://127.0.0.1:8000/storage/fotosentieri/default")
                                     <a class="btn btn-danger" href="{{route('sentiero.rimuoviimmagine',['id'=> $sentiero->id, 'nome'=> '1'])}}">
                                         <span class="glyphicon glyphicon-trash"></span></a>
                                     <!--<button class="btn btn-danger" onclick="location.href='{{route('sentiero.rimuoviimmagine',['id'=> $sentiero->id, 'nome'=> '1'])}}'">
                                     <span class="glyphicon glyphicon-trash"></span</button>-->
 
                                     @else
-                                    <button disabled="" class="btn btn-danger"><span class="glyphicon glyphicon-trash"></span</button>
-                                    @endif
+                                    <a disabled="" class="btn btn-danger" href="{{route('sentiero.rimuoviimmagine',['id'=> $sentiero->id, 'nome'=> '1'])}}">
+                                                                            <span class="glyphicon glyphicon-trash"></span></a>                                    @endif
                                 </div>
                             </div>
 

@@ -420,9 +420,9 @@ class SentieroController extends Controller
     }
     
     public function aggiungi_immagine (Request $request, $id){
-        $this->validate($request, [
+        /*$this->validate($request, [
         'immagine' => 'required|image|mimes:jpeg,png,jpg,svg|max:2048',
-        ]);
+        ]);*/
         $request->file('immagine')->storeAs('public/fotosentieri/'.$id, $request->input('nome_file'));
         
         return Redirect::to(route('sentiero.immagini',['id' => $id])); 
