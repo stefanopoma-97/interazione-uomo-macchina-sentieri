@@ -563,3 +563,154 @@ html, body, #map, #elevation-div { height: 100%; width: 100%; padding: 0; margin
 #map { height: 75%; margin-left: auto; margin-right: auto; }
 #elevation-div {	height: 25%; font: 12px/1.5 "Helvetica Neue", Arial, Helvetica, sans-serif; }
 
+
+
+.carta{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin: 5em;
+    align-items: center;
+    background-color: white;
+    border-radius: 0.3rem;
+    box-shadow: 0px 0px 2px 2px rgba(0, 0, 0, 0.5);
+}
+
+.easy{
+    border: 2px solid green;
+}
+
+.medium{
+    border: 2px solid yellow;
+}
+
+.hard{
+    border: 2px solid red;
+}
+
+.carta-img{
+    flex: 1;
+}
+
+.carta-img > img{
+    width: 100%;
+    height: 100%;
+    border-radius: 0.3rem;
+    object-fit: cover;
+    transform: translateX(-50px);
+    box-shadow: 0px 0px 3px 3px rgba(0, 0, 0, 0.5);
+}
+
+.carta-info{
+    flex: 2;
+    padding-top: 1.5em;
+    padding-bottom: 1.5em;
+    transform: translateX(-20px);
+}
+
+.carta-title h3{
+    color: #5767d4;
+    text-transform: uppercase;
+}
+
+.carta-read-more a{
+    cursor: pointer;
+    font-style: normal;
+    border-radius: 0.3rem;
+    padding: 0.5em;
+    background-color: #fff;
+    border: 1px solid #5767d4;
+    color: #5767d4 !important;
+    box-shadow: 0 0.05em 0.1em rgba(0,0,0,0.25);
+}
+
+.carta-read-more a:hover{
+    background-color: #5767d4;
+    border: 1px solid #5767d4;
+    color: #fff !important;
+    text-decoration: none;
+}
+
+.carta2{
+    box-shadow: 0 0 0.9375em rgba(0, 0, 0, 0.7);
+    border-radius: 4px;
+    display:flex;
+    margin-bottom: 3em;
+}
+
+.carta2-img{
+    flex: 0 0 40%;
+    position: relative;
+}
+
+.carta2-immagine{
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+
+.carta2-middle{
+    position: absolute;
+    top: 85%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.carta2-middle > a{
+    cursor: pointer;
+    font-style: normal;
+    border-radius: 0.3rem;
+    padding: 0.5em;
+    background-color: #5767d4;
+    border: 1px solid #fff;
+    color: #fff !important;
+    box-shadow: 0 0.05em 0.1em rgba(0,0,0,0.25);
+}
+
+.carta2-middle > a:hover{
+    background-color: #fff;
+    border: 1px solid #fff;
+    color: #5767d4 !important;
+    text-decoration: none;
+}
+
+.carta2-content > h5{
+    margin-bottom: 15px;
+}
+
+.carta2-content{
+    flex: 1;
+    padding: 0px 0px 25px 35px;
+    margin-top: 15px;
+    
+    display: flex;
+    flex-direction: column;
+}
+
+.carta2-info{
+    display: flex;
+    flex-direction: row;
+    margin-left: 2em;
+}
+
+.carta2-panel-sx{
+    flex: 0 0 50%;
+    position: relative;
+}
+
+.carta2-panel-dx{
+    flex: 0 0 50%;
+    position: relative;
+}
+
+.carta2-title{
+    color: #5767d4;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+    font-size: 22px;
+}
+
+.carta2-stats{
+    font-size: 14px;
+    font-weight: 250;
+}
