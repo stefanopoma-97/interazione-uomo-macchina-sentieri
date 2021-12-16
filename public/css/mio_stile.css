@@ -102,6 +102,19 @@ and open the template in the editor.
    color: #333333;
 }
 
+.btn-outline-danger {
+
+  border-color: #f44336;
+  color: red;
+  background-color: white;
+}
+
+.btn-outline-danger:hover {
+  background: #f44336;
+  color: white;
+}
+
+
 /* la parte di login è spaziata*/
 .navbar-login{
     margin-left: 50px;
