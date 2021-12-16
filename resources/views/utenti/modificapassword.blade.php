@@ -101,24 +101,24 @@
 
 @section('corpo')
 
-<div class="container pt-5" style="margin-top: 5em;">
+<div class="container pt-5" style="margin-top: 5em;" onclick="close_popup()">
     <div class="row">
         <div style="margin-bottom: 2em;" hidden="" class="col-md-12 alert alert-danger">
             <ul id="ul_errori">
            </ul>
         </div>
-        <div class='col-md-12'>
+        <div class='col-md-1'></div>
+        <div class='col-md-10'>
             <form class="form-horizontal" id="modifica_password" name="modifica_password" method="post" action="{{route('user.update.password',['id'=> $user->id])}}">
             @csrf
                 <div class="form-group row">
-                    <div class="col-sm-3">
+                    <div class="col-sm-3" onclick="event.stopPropagation()">
 
+                        <div style="margin-left: 1em;" class="popup" onclick="popup2(this)" >
+                            <span class="popuptext">Inserisci la tua password attuale</span>
+                            <span class="glyphicon glyphicon-info-sign" ></span>
+                        </div>
                         <label for="password_precedente" class="col-form-label">Password precedente</label>
-
-                                <div style="margin-left: 1em;" class="popup" onclick="popup(this)" >
-                                    <span class="popuptext">Inserisci la tua password attuale</span>
-                                    <span class="glyphicon glyphicon-info-sign" ></span>
-                                </div>
                     </div>
                     <div class="col-sm-5">
                         <input onkeyup="rimuovi_stile(this)" onmouseover="rimuovi_stile(this)" maxlength="100" required="" type="password" class="form-control" name="password_precedente"  placeholder="Password attuale">
@@ -129,12 +129,12 @@
                     </div>
                 </div>
                 <div class="form-group row">
-                    <div class="col-sm-3">
-                    <label for="password_nuova" class="col-form-label">Nuova password</label>
-                            <div style="margin-left: 1em;" class="popup" onclick="popup(this)" >
+                    <div class="col-sm-3" onclick="event.stopPropagation()">
+                            <div style="margin-left: 1em;" class="popup" onclick="popup2(this)" >
                                 <span class="popuptext">Inserisci la tua nuova password, almeno 8 caratteri</span>
                                 <span class="glyphicon glyphicon-info-sign" ></span>
                             </div>
+                        <label for="password_nuova" class="col-form-label">Nuova password</label>
                     </div>
                     <div class="col-sm-5">
                         <input onkeyup="rimuovi_stile(this); password_lunghezza(this); abilita_conferma_password(this); strong_password(this); " onmouseover="rimuovi_stile(this)" maxlength="100" required="" type="password" class="form-control" name="password_nuova" placeholder="Nuova password">
@@ -145,12 +145,13 @@
                     </div>
                 </div>
                 <div class="form-group row">
-                    <div class="col-sm-3">
-                    <label for="password_nuova2"  class="col-form-label">Ripeti la password</label>
-                            <div style="margin-left: 1em;" class="popup" onclick="popup(this)" >
+                    <div class="col-sm-3" onclick="event.stopPropagation()">
+                            <div style="margin-left: 1em;" class="popup" onclick="popup2(this)" >
                                 <span class="popuptext">Ripeti la password appena inserita</span>
                                 <span class="glyphicon glyphicon-info-sign" ></span>
                             </div>
+                            <label for="password_nuova2"  class="col-form-label">Ripeti la password</label>
+
                     </div>
                     <div class="col-sm-5">
                         <input disabled="" onkeyup="rimuovi_stile(this); password_uguali(this);" onmouseover="rimuovi_stile(this)" maxlength="100" required="" type="password" class="form-control" name="password_nuova2" placeholder="Ripeti la password">
@@ -159,12 +160,12 @@
                 </div>
 
                 <div class="form-group row">
-                    <div class="col-sm-3">
-                    <label for="consiglio"  class="col-form-label">Consiglio per il recupero della password</label>
-                            <div style="margin-left: 1em;" class="popup" onclick="popup(this)" >
-                                <span class="popuptext">Inserisci una frase che ti aiuterà a ricordare la password</span>
-                                <span class="glyphicon glyphicon-info-sign" ></span>
-                            </div>
+                    <div class="col-sm-3" onclick="event.stopPropagation()">
+                        <div style="margin-left: 1em;" class="popup" onclick="popup2(this)" >
+                            <span class="popuptext">Inserisci una frase che ti aiuterà a ricordare la password</span>
+                            <span class="glyphicon glyphicon-info-sign" ></span>
+                        </div>
+                        <label for="consiglio"  class="col-form-label">Consiglio per il recupero della password</label>
                     </div>
                     <div class="col-sm-5">
                         <input onkeyup="rimuovi_stile(this);" onmouseover="rimuovi_stile(this)" maxlength="100" type="text" class="form-control" name="consiglio" placeholder="Consiglio recupero password">
@@ -186,11 +187,11 @@
                         <a href="{{route('user.edit',['id'=> $user->id])}}" class="btn btn-danger btn-large btn-block"><span class="glyphicon glyphicon-log-out"></span> Cancel</a>
                     </div>
                 </div>
-                <div class="form-group">
+                <!--<div class="form-group">
                     <div class="col-sm-5 col-sm-offset-3">
                         <a href="{{route('user.edit.recuperopassword',['id'=> $user->id])}}">Password dimenticata?</a>
                     </div>
-                </div>
+                </div>-->
             </form>
         </div>
     </div>

@@ -110,7 +110,8 @@
             <ul id="ul_errori">
            </ul>
         </div>
-        <div class='col-md-12'>
+        <div class='col-md-1'></div>
+        <div class='col-md-10'>
             <form class="form-horizontal" id="modifica_utente" name="modifica_utente" method="post" action="{{route('user.update',['id'=> $user->id])}}">
             @csrf
                 <div class="form-group">
