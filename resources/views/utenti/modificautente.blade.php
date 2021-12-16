@@ -87,7 +87,7 @@
 
 
 @section('header')
-<h2 class="pull-left">Modifica Account</h2>
+<h2 class="pull-left" onclick="close_popup()">Modifica Account</h2>
 @endsection
 
 @section('breadcrumb')
@@ -104,7 +104,7 @@
 
 
 
-<div class="container pt-5" style="margin-top: 5em;">
+<div class="container pt-5" style="margin-top: 5em;" onclick="close_popup()">
     <div class="row">
         <div style="margin-bottom: 2em;" hidden="" class="col-md-12 alert alert-danger">
             <ul id="ul_errori">
@@ -114,8 +114,8 @@
             <form class="form-horizontal" id="modifica_utente" name="modifica_utente" method="post" action="{{route('user.update',['id'=> $user->id])}}">
             @csrf
                 <div class="form-group">
-                    <div class="col-sm-2">
-                        <div class="popup" onclick="popup(this)" >
+                    <div class="col-sm-2" onclick="event.stopPropagation()">
+                        <div class="popup" onclick="popup2(this)" >
                             <span class="popuptext">Inserisci il tuo nome, niente caratteri speciali o numeri</span>
                             <span class="glyphicon glyphicon-info-sign" ></span>
                         </div>
@@ -129,8 +129,8 @@
                 </div>
 
                 <div class="form-group">
-                    <div class="col-sm-2">
-                        <div class="popup" onclick="popup(this)" >
+                    <div class="col-sm-2" onclick="event.stopPropagation()">
+                        <div class="popup" onclick="popup2(this)" >
                             <span class="popuptext">Inserisci il tuo cognome, niente caratteri speciali o numeri</span>
                             <span class="glyphicon glyphicon-info-sign" ></span>
                         </div>
@@ -143,8 +143,8 @@
                 </div>
 
                 <div class="form-group">
-                    <div class="col-sm-2">
-                        <div class="popup" onclick="popup(this)" >
+                    <div class="col-sm-2" onclick="event.stopPropagation()">
+                        <div class="popup" onclick="popup2(this)" >
                             <span class="popuptext">Inserisci un username, non deve esistere un utente con lo stesso username</span>
                             <span class="glyphicon glyphicon-info-sign" ></span>
                         </div>
@@ -158,8 +158,8 @@
                 </div>
 
                 <div class="form-group row">
-                    <div class="col-sm-2">
-                        <div class="popup" onclick="popup(this)" >
+                    <div class="col-sm-2" onclick="event.stopPropagation()">
+                        <div class="popup" onclick="popup2(this)" >
                            <span class="popuptext">Inserisci una mail valida</span>
                            <span class="glyphicon glyphicon-info-sign" ></span>
                         </div>
@@ -173,8 +173,8 @@
                 </div>
 
                 <div class="form-group row">
-                    <div class="col-sm-2">
-                        <div class="popup" onclick="popup(this)" >
+                    <div class="col-sm-2" onclick="event.stopPropagation()">
+                        <div class="popup" onclick="popup2(this)" >
                            <span class="popuptext">Inserisci una tua descrizione personale: attenzione puoi inserire fino a 1000 caratteri.</span>
                            <span class="glyphicon glyphicon-info-sign" ></span>
                         </div>
@@ -205,8 +205,8 @@
                 </div>-->
 
                 <div class="form-group row">
-                    <div class="col-sm-2">
-                        <div class="popup" onclick="popup(this)" >
+                    <div class="col-sm-2" onclick="event.stopPropagation()">
+                        <div class="popup" onclick="popup2(this)" >
                            <span class="popuptext">Seleziona una città tra le province italiane</span>
                            <span class="glyphicon glyphicon-info-sign" ></span>
                         </div>
