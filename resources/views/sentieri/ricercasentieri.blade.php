@@ -86,7 +86,6 @@
 @section('sfondo')
 @endsection
 
-
 @section('header')
 <h2 class="pull-left">Cerca sentieri</h2>
 @endsection
@@ -99,7 +98,11 @@
 @endsection
 
 @section('corpo')
+
 <div class="container" style="margin-top: 3em;">
+    <div class="elementoSticky">
+        Sticky elemento Sticky elemento
+    </div>
     <div class="row">
         <div id="div_filtro" class="col-md-5 col-s-5 col-m-push-7">
             <h2 class="text-center filtro">Filtro  <span onclick="hide_show_filtri()" class="glyphicon glyphicon glyphicon-filter"></span></h2>
