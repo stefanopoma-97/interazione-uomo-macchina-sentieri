@@ -110,7 +110,7 @@
   width: 100%;
 }
 </style>
-<div class="row col-md-12">
+<div class="row col-md-12" onclick="close_popup()">
         <div class="col-md-1 col-md-offset-9">
             <button class="btn" onclick="location.href='{{ route('sentiero.edit', ['sentiero'=> $sentiero->id]) }}'"><span class="glyphicon glyphicon-save"></span> Salva e torna alle modifiche</button>
         </div>
@@ -120,12 +120,14 @@
 
                 <div class="col-xs-6 col-sm-4">
                     <div class="text-center box-progetto">
-                        <h5 for="immagine" class="col-form-label"><strong>IMMAGINE 1</strong>
-                        <div style="margin-left: 1em;" class="popup" onclick="popup(this)" >
-                            <span class="popuptext">JPEG, PNG, JPG, SVG, Masssimo 2 MB</span>
-                            <span class="glyphicon glyphicon-info-sign" ></span>
+                        <div onclick="event.stopPropagation()">
+                            <h5 for="immagine" class="col-form-label"><strong>IMMAGINE 1</strong>
+                            <div style="margin-left: 1em;" class="popup" onclick="popup2(this)" >
+                                <span class="popuptext">JPEG, PNG, JPG, SVG, Masssimo 2 MB</span>
+                                <span class="glyphicon glyphicon-info-sign" ></span>
+                            </div>
+                            </h5>
                         </div>
-                        </h5>
 
                         <img class="thumbnail img-responsive" src="{{$link1}}" alt="Libri">
                         <form action="{{route('sentiero.aggiungiimmagine',['id'=> $sentiero->id])}}" id="aggiungi_immagine_1" name="aggiungi_immagine_1" method="POST" enctype="multipart/form-data"> {{ csrf_field() }}
@@ -161,12 +163,14 @@
 
                 <div class="col-xs-6 col-sm-4">
                     <div class="text-center box-progetto">
-                        <h5 for="immagine" class="col-form-label"><strong>IMMAGINE 2</strong>
-                        <div style="margin-left: 1em;" class="popup" onclick="popup(this)" >
+                        <div onclick="event.stopPropagation()">
+                            <h5 for="immagine" class="col-form-label"><strong>IMMAGINE 2</strong>
+                            <div style="margin-left: 1em;" class="popup" onclick="popup2(this)" >
                             <span class="popuptext">JPEG, PNG, JPG, SVG, Masssimo 2 MB</span>
                             <span class="glyphicon glyphicon-info-sign" ></span>
+                            </div>
+                            </h5>
                         </div>
-                        </h5>
 
                         <img class="thumbnail img-responsive" src="{{$link2}}" alt="Libri">
                         <form action="{{route('sentiero.aggiungiimmagine',['id'=> $sentiero->id])}}" id="aggiungi_immagine_2" name="aggiungi_immagine_2" method="POST" enctype="multipart/form-data"> {{ csrf_field() }}
@@ -201,13 +205,16 @@
 
 
                 <div class="col-xs-6 col-sm-4">
-                    <div class="text-center box-progetto">
-                        <h5 for="immagine" class="col-form-label"><strong>IMMAGINE 3</strong>
-                        <div style="margin-left: 1em;" class="popup" onclick="popup(this)" >
-                            <span class="popuptext">JPEG, PNG, JPG, SVG, Masssimo 2 MB</span>
-                            <span class="glyphicon glyphicon-info-sign" ></span>
-                        </div>
-                        </h5>
+                    <div class="text-center box-progetto" onclick="event.stopPropagation()">
+                        <div onclick="event.stopPropagation()">
+                            <h5 for="immagine" class="col-form-label"><strong>IMMAGINE 3</strong>
+                            <div style="margin-left: 1em;" class="popup" onclick="popup2(this)" >
+                                <span class="popuptext">JPEG, PNG, JPG, SVG, Masssimo 2 MB</span>
+                                <span class="glyphicon glyphicon-info-sign" ></span>
+                            </div>
+                            </h5>
+                        </div><!-- comment -->
+                        
 
                         <img class="thumbnail img-responsive" src="{{$link3}}" alt="Immagine 3">
                         <form action="{{route('sentiero.aggiungiimmagine',['id'=> $sentiero->id])}}" id="aggiungi_immagine_3" name="aggiungi_immagine_3" method="POST" enctype="multipart/form-data"> {{ csrf_field() }}
