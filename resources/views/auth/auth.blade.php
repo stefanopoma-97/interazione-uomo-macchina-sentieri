@@ -276,7 +276,7 @@
                                         </div>
                                     </div>
 
-                                    <div class="form-group row">
+                                    <!--<div class="form-group row">
                                         <div class="col-sm-3" onclick="event.stopPropagation()">
                                             <div class="popup" onclick="popup2(this)" >
                                                 <span class="popuptext">Specifica un indizio che sia utile per ricordarti la password.</span>
@@ -289,7 +289,7 @@
                                             <input onkeyup="rimuovi_stile(this)" onmouseover="rimuovi_stile(this)" type="text" class="form-control" id="consiglio" name="consiglio" value="" placeholder="Consiglio per il recupero della password" >
                                             <span class="invalid-input" id="invalid-citta_completamento"></span>
                                         </div>
-                                    </div>
+                                    </div>-->
 
                                     <div class="form-group">
                                         <div class="row">
@@ -307,6 +307,12 @@
                 </div>
             </div>
         </div>
+        </div>
+    
+    </div>
+<div class="container" style="margin-top: 4em;">
+    <h1></h1>
+</div> 
  <script>
 // When the user clicks on div, open the popup
 function myFunction() {
