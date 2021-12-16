@@ -13,7 +13,6 @@ function login(button){
     $('#ul_errori').parent().hide(); //lo nascondo
     $('#ul_errori').empty(); //svuoto la lista
 
-
     username = (button.form.username.value).trim();
 
     password = (button.form.password.value).trim();
@@ -42,6 +41,40 @@ function login(button){
         button.form.submit();
     }
 
+
+}
+
+function login2(button){
+    //$('#ul_errori').parent().hide(); //lo nascondo
+    //$('#ul_errori').empty(); //svuoto la lista
+
+    username = (button.form.username.value).trim();
+
+    password = (button.form.password.value).trim();
+
+    var errori = false;
+
+    if(username === ""){
+        errori=true;
+        button.form.username.focus();
+        $(button.form.username).css('border-color','red');
+        var li = $("<li></li>");
+        li.text("Compila il campo username");
+        //$('#ul_errori').parent().show();
+        $('#ul_errori').append(li);
+    }
+    if (password === ""){
+        errori=true;
+        button.form.password.focus();
+        $(button.form.password).css('border-color','red');
+        var li = $("<li></li>");
+        li.text("Compila il campo password");
+        //$('#ul_errori').parent().show();
+        $('#ul_errori').append(li);
+    }
+    else {
+        button.form.submit();
+    }
 
 }
 
@@ -305,8 +338,8 @@ function register(button){
 function register2(button){
 
     //DIV contenente gli errori
-    $('#ul_errori_registrazione').parent().hide(); //lo nascondo
-    $('#ul_errori_registrazione').empty(); //svuoto la lista
+    //$('#ul_errori_registrazione').parent().hide(); //lo nascondo
+    //$('#ul_errori_registrazione').empty(); //svuoto la lista
 
 
     nome = (button.form.nome.value).trim();
@@ -358,7 +391,7 @@ function register2(button){
         $(button.form.username).css('border-color','red');
         var li = $("<li></li>");
         li.text("Compila il campo username");
-        $('#ul_errori_registrazione').parent().show();
+        //$('#ul_errori_registrazione').parent().show();
         $('#ul_errori_registrazione').append(li);
     }
     if(nome === ""){
@@ -368,7 +401,7 @@ function register2(button){
         $(button.form.nome).css('border-color','red');
         var li = $("<li></li>");
         li.text("Compila il campo nome");
-        $('#ul_errori_registrazione').parent().show();
+        //$('#ul_errori_registrazione').parent().show();
         $('#ul_errori_registrazione').append(li);
 
     }
@@ -379,7 +412,7 @@ function register2(button){
         $(button.form.nome).css('border-color','red');
         var li = $("<li></li>");
         li.text("Il campo nome può contenere solo lettere");
-        $('#ul_errori_registrazione').parent().show();
+        //$('#ul_errori_registrazione').parent().show();
         $('#ul_errori_registrazione').append(li);
     }
     if(cognome === ""){
@@ -389,7 +422,7 @@ function register2(button){
         $(button.form.cognome).css('border-color','red');
         var li = $("<li></li>");
         li.text("Compila il campo cognome");
-        $('#ul_errori_registrazione').parent().show();
+        //$('#ul_errori_registrazione').parent().show();
         $('#ul_errori_registrazione').append(li);
     }
     if(!cognome.match(cognome_exp)){
@@ -399,7 +432,7 @@ function register2(button){
         $(button.form.cognome).css('border-color','red');
         var li = $("<li></li>");
         li.text("Il campo cognome può contenere solo lettere");
-        $('#ul_errori_registrazione').parent().show();
+        //$('#ul_errori_registrazione').parent().show();
         $('#ul_errori_registrazione').append(li);
     }
     if(mail === ""){
@@ -409,7 +442,7 @@ function register2(button){
         $(button.form.mail).css('border-color','red');
         var li = $("<li></li>");
         li.text("Compila il campo mail");
-        $('#ul_errori_registrazione').parent().show();
+        //$('#ul_errori_registrazione').parent().show();
         $('#ul_errori_registrazione').append(li);
     }
     if(!mail.match(mail_exp)){
@@ -419,7 +452,7 @@ function register2(button){
         $(button.form.mail).css('border-color','red');
         var li = $("<li></li>");
         li.text("Inserisci una mail valida");
-        $('#ul_errori_registrazione').parent().show();
+        //$('#ul_errori_registrazione').parent().show();
         $('#ul_errori_registrazione').append(li);
     }
     if(descrizione === ""){
@@ -429,7 +462,7 @@ function register2(button){
         $(button.form.descrizione).css('border-color','red');
         var li = $("<li></li>");
         li.text("Compila il campo descrizione");
-        $('#ul_errori_registrazione').parent().show();
+        //$('#ul_errori_registrazione').parent().show();
         $('#ul_errori_registrazione').append(li);
     }
     if(citta === ""){
@@ -439,7 +472,7 @@ function register2(button){
         $(button.form.citta_completamento).css('border-color','red');
         var li = $("<li></li>");
         li.text("Compila il campo città");
-        $('#ul_errori_registrazione').parent().show();
+        //$('#ul_errori_registrazione').parent().show();
         $('#ul_errori_registrazione').append(li);
     }
     if(password === ""){
@@ -449,7 +482,7 @@ function register2(button){
         $(button.form.password_nuova).css('border-color','red');
         var li = $("<li></li>");
         li.text("Inserisci la password");
-        $('#ul_errori_registrazione').parent().show();
+        //$('#ul_errori_registrazione').parent().show();
         $('#ul_errori_registrazione').append(li);
 
     }
@@ -460,7 +493,7 @@ function register2(button){
         $(button.form.password_nuova).css('border-color','red');
         var li = $("<li></li>");
         li.text("La password deve essere più lunga di 8 caratteri");
-        $('#ul_errori_registrazione').parent().show();
+        //$('#ul_errori_registrazione').parent().show();
         $('#ul_errori_registrazione').append(li);
 
     }
@@ -471,7 +504,7 @@ function register2(button){
         $(button.form.password_nuova2).css('border-color','red');
         var li = $("<li></li>");
         li.text("Inserisci ancora la password");
-        $('#ul_errori_registrazione').parent().show();
+        //$('#ul_errori_registrazione').parent().show();
         $('#ul_errori_registrazione').append(li);
 
     }
@@ -483,9 +516,8 @@ function register2(button){
         $(button.form.password_nuova2).css('border-color','red');
         var li = $("<li></li>");
         li.text("Le due password non corrispondono");
-        $('#ul_errori_registrazione').parent().show();
+        //$('#ul_errori_registrazione').parent().show();
         $('#ul_errori_registrazione').append(li);
-
     }
 
 
@@ -520,7 +552,7 @@ function register2(button){
                         $(button.form.citta_completamento).css('border-color','red');
                         var li = $("<li></li>");
                         li.text("Inserisci una città corretta");
-                        $('#ul_errori_registrazione').parent().show();
+                        //$('#ul_errori_registrazione').parent().show();
                         $('#ul_errori_registrazione').append(li);
                     }
                     if (!data.username)
@@ -531,7 +563,7 @@ function register2(button){
                         $(button.form.username).css('border-color','red');
                         var li = $("<li></li>");
                         li.text("Esiste già un altro utente con questo username");
-                        $('#ul_errori_registrazione').parent().show();
+                        //$('#ul_errori_registrazione').parent().show();
                         $('#ul_errori_registrazione').append(li);
 
                     }

@@ -102,7 +102,7 @@
                                         <div class="col-sm-9">
                                             <input onkeyup="rimuovi_stile(this)" onmouseover="rimuovi_stile(this)" required="" maxlength="32" type="text" name="username" class="form-control" placeholder="Username" value="{{$username}}">
                                         </div>
-                                        
+
                                         @endif
                                     </div> <!-- form-control da lo stile --> <!-- POST[name] -->
 
@@ -125,7 +125,7 @@
                                     <div class="form-group"> <!-- pulsante -->
                                         <div class="row">
                                             <div class="col-sm-9 col-sm-offset-3"> <!-- messo al centro -->
-                                                <input type="submit" name="login-submit" class="form-control btn btn-primary" value="Accedi" onclick="event.preventDefault(); login(this);">
+                                                <input type="submit" name="login-submit" class="form-control btn btn-primary" value="Accedi" onclick="event.preventDefault(); login2(this);">
                                             </div>
                                         </div>
                                     </div>
@@ -318,10 +318,10 @@ function myFunction() {
 
       popups.forEach(p => p.classList.remove('show'));
 
-      if (clickedOnClosedPopup) popup.classList.add('show');  
+      if (clickedOnClosedPopup) popup.classList.add('show');
     });
 }
-</script>               
+</script>
  @endsection
 <!--    </body>
 </htm>-->

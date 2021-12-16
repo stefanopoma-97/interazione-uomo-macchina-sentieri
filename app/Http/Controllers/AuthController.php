@@ -21,10 +21,10 @@ class AuthController extends Controller
             $username=$_COOKIE["username_login"];
         else
             $username="";
-        
+
         return view('auth.auth')->with('login', true)->with('citta', $citta)->with('username', $username);
     }
-    
+
     public function authentication_register() {
         $dl = new DataLayer();
         $citta = $dl->getAllCitta();
@@ -42,13 +42,13 @@ class AuthController extends Controller
         //setcookie("username_login", "", time() -1);
         return Redirect::to(route('home'));
     }
-    
+
     public function login(Request $request) {
-        
+
         session_start();
         $dl = new DataLayer();
-        
-        if ($dl->validUser($request->input('username'), $request->input('password'))) 
+
+        if ($dl->validUser($request->input('username'), $request->input('password')))
         {
             $_SESSION['logged'] = true;
             $_SESSION['loggedName'] = $request->input('username');
@@ -57,21 +57,22 @@ class AuthController extends Controller
             else if(isset($_COOKIE["username_login"]))
                 setcookie("username_login", "", time() -1);
             else{}
-            
+
             $user_id = $dl->getUserID($_SESSION['loggedName']);
             $user = $dl->getUserByID($user_id);
             $dl->removeCode($user_id);
 
             if($user->admin == 'y')
                 $_SESSION['admin'] = true;
-            
+
             return Redirect::to(route('home'));
 
         }
-       
+
         return view('auth.authErrorPage');
+
     }
-    
+
     public function registration(Request $request) {
         session_start();
         $dl = new DataLayer();
@@ -79,25 +80,22 @@ class AuthController extends Controller
         $dl->addUser($request->input('username'), $request->input('password_nuova'), $request->input('mail'),
                 $request->input('nome'),$request->input('cognome'),$request->input('descrizione'),
                 $citta_id, $request->input('consiglio'));
-               
-        if ($dl->validUser($request->input('username'), $request->input('password_nuova'))) 
+
+        if ($dl->validUser($request->input('username'), $request->input('password_nuova')))
         {
             $_SESSION['logged'] = true;
             $_SESSION['loggedName'] = $request->input('username');
-            
+
             return Redirect::to(route('home'));
-
-
-        }    
-        
         }
-        
-        
+    }
+
+
         public function ajax_check_new_username_citta(Request $request){
         $dl = new DataLayer();
         $valid_user = $dl->validateNewUsername($request->input('username'));
         $valid_citta = $dl->validateCitta($request->input('citta'));
-        
+
         if ($valid_user)
         //if(true)
         {
@@ -107,52 +105,52 @@ class AuthController extends Controller
         {
             $username = false;
         }
-        
+
         if($valid_citta){
-            
+
             $citta=true;
         }
         else {
             $citta=false;
         }
-        
+
         $response = array('username'=>$username, 'citta'=>$citta);
-        
+
         return response()->json($response); //mando indietro json
 
     }
-    
-    
+
+
     public function edit_recupero_password_login() {
         //session_start();
 //        if(isset($_SESSION['codice'])){
 //            unset($_SESSION['codice']);
 //        }
-//            
+//
 //        $dl = new DataLayer();
 //        unset($_SESSION["codice"]);
         //$_SESSION['codice']=1;
 
-       
-        return view('auth.recuperopassword_login');        
+
+        return view('auth.recuperopassword_login');
     }
-    
+
     public function update_password(Request $request) {
-        
+
         $dl = new DataLayer();
         $user=$dl->getUserByUsername($request->input('username'));
         $user_id = $user->id;
-                
+
         $dl->updatePasswordUtente($user_id, $request->input('password_nuova'), $request->input('consiglio'));
         $dl->removeCode($user_id);
-        
-        
+
+
         //MANDARE MAIL PER AVVERTIRE
         //$this->send_mail_info_cambio_password($request->input('username'), $user->mail);
-        
-        return view('auth.authInfoPage');      
+
+        return view('auth.authInfoPage');
     }
-        
+
     public function send_mail_info_cambio_password($username, $mail) {
         $orario = new DateTime();
         $result = $orario->format('Y-m-d H:i:s');
@@ -163,5 +161,5 @@ class AuthController extends Controller
             $message->from('s.poma001@studenti.unibs.it', 'Laravel');
         });
     }
-        
+
 }
