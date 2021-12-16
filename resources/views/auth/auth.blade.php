@@ -37,7 +37,7 @@
 
 @section('corpo')
 
-<div class="container" >
+<div class="container" onclick="close_popup()">
             <div class="row" style="margin-top: 4em;"> <!-- unica riga--> <!-- margin top lo sposta in basso -->
                 <div class="col-md-6 col-md-offset-3"> <!-- offset sposta a dx di 3 -->
 
@@ -63,7 +63,7 @@
 
 
                             @if ($login)
-                            <div class="tab-pane active" id="login-form" onclick="close_popup()"> <!-- id serve ad essere richimato dai tab  -->
+                            <div class="tab-pane active" id="login-form" > <!-- id serve ad essere richimato dai tab  -->
                             @else
                             <div class="tab-pane" id="login-form"> <!-- id serve ad essere richimato dai tab  -->
                             @endif
@@ -148,8 +148,8 @@
                                 @csrf
                                     <div class="form-group row">
 
-                                        <div class="col-sm-3">
-                                            <div class="popup" onclick="popup(this)" >
+                                        <div class="col-sm-3" onclick="event.stopPropagation()">
+                                            <div class="popup" onclick="popup2(this)" >
                                                 <span class="popuptext">Inserisci il tuo nome utente</span>
                                                 <span class="glyphicon glyphicon-info-sign" ></span>
                                             </div>
@@ -163,8 +163,8 @@
                                     </div>
 
                                     <div class="form-group row">
-                                        <div class="col-sm-3">
-                                            <div class="popup" onclick="popup(this)" >
+                                        <div class="col-sm-3" onclick="event.stopPropagation()">
+                                            <div class="popup" onclick="popup2(this)" >
                                                 <span class="popuptext">Inserisci il tuo nome</span>
                                                 <span class="glyphicon glyphicon-info-sign" ></span>
                                             </div>
@@ -178,8 +178,8 @@
                                     </div>
 
                                     <div class="form-group row">
-                                        <div class="col-sm-3">
-                                            <div class="popup" onclick="popup(this)" >
+                                        <div class="col-sm-3" onclick="event.stopPropagation()">
+                                            <div class="popup" onclick="popup2(this)" >
                                                 <span class="popuptext">Inserisci il tuo cognome</span>
                                                 <span class="glyphicon glyphicon-info-sign" ></span>
                                             </div>
@@ -193,8 +193,8 @@
                                     </div>
 
                                     <div class="form-group row">
-                                        <div class="col-sm-3">
-                                            <div class="popup" onclick="popup(this)" >
+                                        <div class="col-sm-3" onclick="event.stopPropagation()">
+                                            <div class="popup" onclick="popup2(this)" >
                                                 <span class="popuptext">Inserisci la tua mail</span>
                                                <span class="glyphicon glyphicon-info-sign" ></span>
                                             </div>
@@ -208,8 +208,8 @@
                                     </div>
 
                                     <div class="form-group row">
-                                        <div class="col-sm-3">
-                                            <div class="popup" onclick="popup(this)" >
+                                        <div class="col-sm-3" onclick="event.stopPropagation()">
+                                            <div class="popup" onclick="popup2(this)" >
                                                <span class="popuptext">Inserisci una tua descrizione personale: attenzione puoi inserire fino a 1000 caratteri.</span>
                                                <span class="glyphicon glyphicon-info-sign" ></span>
                                             </div>
@@ -223,8 +223,8 @@
                                     </div>
 
                                     <div class="form-group row">
-                                        <div class="col-sm-3">
-                                            <div class="popup" onclick="popup(this)" >
+                                        <div class="col-sm-3" onclick="event.stopPropagation()">
+                                            <div class="popup" onclick="popup2(this)" >
                                                <span class="popuptext">Inserisci la tua città di residenza</span>
                                                <span class="glyphicon glyphicon-info-sign" ></span>
                                             </div>
@@ -244,8 +244,8 @@
                                     </div>
 
                                     <div class="form-group row">
-                                        <div class="col-sm-3">
-                                            <div class="popup" onclick="popup(this)" >
+                                        <div class="col-sm-3" onclick="event.stopPropagation()">
+                                            <div class="popup" onclick="popup2(this)" >
                                                <span class="popuptext">Specifica una password</span>
                                                <span class="glyphicon glyphicon-info-sign" ></span>
                                             </div>
@@ -262,8 +262,8 @@
                                     </div>
 
                                     <div class="form-group row">
-                                        <div class="col-sm-3">
-                                            <div class="popup" onclick="popup(this)" >
+                                        <div class="col-sm-3" onclick="event.stopPropagation()">
+                                            <div class="popup" onclick="popup2(this)" >
                                                <span class="popuptext">Ripeti la tua password per confermarla</span>
                                                <span class="glyphicon glyphicon-info-sign" ></span>
                                             </div>
@@ -276,9 +276,9 @@
                                         </div>
                                     </div>
 
-                                    <div class="form-group row">
-                                        <div class="col-sm-3">
-                                            <div class="popup" onclick="popup(this)" >
+                                    <!--<div class="form-group row">
+                                        <div class="col-sm-3" onclick="event.stopPropagation()">
+                                            <div class="popup" onclick="popup2(this)" >
                                                 <span class="popuptext">Specifica un indizio che sia utile per ricordarti la password.</span>
                                                 <span class="glyphicon glyphicon-info-sign" ></span>
                                             </div>
@@ -289,7 +289,7 @@
                                             <input onkeyup="rimuovi_stile(this)" onmouseover="rimuovi_stile(this)" type="text" class="form-control" id="consiglio" name="consiglio" value="" placeholder="Consiglio per il recupero della password" >
                                             <span class="invalid-input" id="invalid-citta_completamento"></span>
                                         </div>
-                                    </div>
+                                    </div>-->
 
                                     <div class="form-group">
                                         <div class="row">
@@ -307,6 +307,12 @@
                 </div>
             </div>
         </div>
+        </div>
+    
+    </div>
+<div class="container" style="margin-top: 4em;">
+    <h1></h1>
+</div> 
  <script>
 // When the user clicks on div, open the popup
 function myFunction() {

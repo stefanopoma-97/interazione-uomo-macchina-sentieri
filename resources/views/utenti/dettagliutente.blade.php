@@ -98,61 +98,74 @@
 @endsection
 
 @section('corpo')
-<div class="container pt-5" style="margin-top: 2em;">
+<div class="container pt-5" style="margin-top: 2em;" onclick="close_popup()">
 
 
     <div class="row">
 
         <div align="center" class="col-md-12">
-            <div>
-                <div class="col-md-2 col-md-offset-5 col-m-2 col-sm-4 col-sm-offset-4"style="position:relative">
+                <div class="col-md-2 col-md-offset-5 col-m-2 col-sm-4 col-sm-offset-4" style="position:relative">
                     <img alt="image" style="max-height: 200px; width:100%; height: auto;"class="img-circle img-responsive " src="{{$url}}">
-                </div>
-                <div class="row">
-<!--                    <div class="col-md2">
-                        @if($user_dettagli->admin=='y')
-                        <div style="margin-left: 1em;" class="popup" onclick="popup(this)" >
-                            <span class="popuptext">Utente amministratore</span>
-                            <span class="glyphicon glyphicon-tower" ></span>
-                        </div>
-                        @else
-                        @endif
-                    </div>-->
-                </div>
-
-                <h2>
-
-                    <strong>{{ $user_dettagli->username }}  </strong>
-                    @if ($user_dettagli->id == $user_id)
-                    <button class="btn" onclick="location.href='{{ route('user.edit', ['id'=> $user_id]) }}'">Modifica  <span class="glyphicon glyphicon glyphicon-cog"></span></button>
-                    <div class="row" style="margin-top: 1em; margin-bottom: 1em;">
-                        <button class="btn" data-toggle="modal" data-target="#modalFormRimuoviFoto"> Rimuovi immagine</button>
+                    <div class="row col-md-12 col-m-12 col-sm-12">
+                        <h3><strong style="margin-right: 0em">{{ $user_dettagli->username }}  </strong></h3>
+                        <button class="btn" onclick="location.href='{{ route('user.edit', ['id'=> $user_id]) }}'">Modifica  <span class="glyphicon glyphicon glyphicon-cog"></span></button>
                     </div>
-                    <div class="modal" id="modalFormRimuoviFoto" tabindex="-1" role="dialog">
-                    <div class="modal-dialog" role="document">
-                      <div class="modal-content">
-                        <div class="modal-header">
-                          <h1 class="modal-title">Vuoi eliminare la foto profilo?</h1>
-                          
+                </div>
+                
+                <div align="center" class="col-md-8 col-md-offset-3 col-sm-12" style="margin-bottom: 3em">
+                        
+                        <div >
+                            @if ($user_dettagli->id == $user_id)
+                            <br>
+                                 <form  action="{{route('user.fotoprofilo',['id'=> $user->id])}}" id="modifica_foto_profilo" style="margin-top: 2em" name="modifica_foto_profilo" method="POST" enctype="multipart/form-data"> {{ csrf_field() }}
+
+                                    <div class="form-group"  >
+                                        <div class="col-sm-12">
+                                            <input style="display:none; visibility:hidden" onchange="check_foto_profilo(this);" onkeyup="rimuovi_stile(this)" onmouseover="rimuovi_stile(this)"class="form-control" type="file" id="foto_profilo" name="foto_profilo" placeholder="foto_profilo">
+                                            <span class="invalid-input" id="invalid-foto_profilo"></span>
+                                        </div>
+                                        <div class="col-sm-4" onclick="event.stopPropagation()">
+
+                                            <div style="margin-left: 1em;" class="popup" onclick="popup2(this)" >
+                                                <span class="popuptext">JPEG, PNG, JPG, SVG, Masssimo 2 MB</span>
+                                                <span class="glyphicon glyphicon-info-sign" ></span>
+                                            </div>
+                                            <label for="foto_profilo" class="col-form-label">Foto profilo</label>
+                                        </div>
+
+                                        <div class="col-sm-2">
+                                            <input type="hidden" name="id" value="{{ $user_id }}"/>
+                                            <label for="mySubmit" class="btn btn-primary btn-large btn-info"><span class="glyphicon glyphicon-floppy-save"></span> Carica</label>
+                                            <input onclick="event.preventDefault(); load_file(this); " id="mySubmit" type="submit" value="save" class="hidden"/>
+
+                                        </div>  
+                                        
+                                        <div class="col-sm-2">
+                                            @if($url!="http://127.0.0.1:8000/storage/fotoprofilo/default" )
+                                            <button  type="button" class="btn btn-outline-danger" data-toggle="modal" data-target="#modalFormRimuoviFoto"> Rimuovi immagine</button>
+                                            @else
+                                            <button disabled="" type="button" class="btn btn-outline-danger" data-toggle="modal" data-target="#modalFormRimuoviFoto"> Rimuovi immagine</button>
+                                            @endif
+                                        </div>
+
+
+                                    </div> 
+
+                                    <div class="form-group">
+
+                                    </div>
+                                </form>
+                                @endif
                         </div>
-                        <div class="modal-body">
-                          <p>La tua foto profilo verrà eliminata</p>
-                        </div>
-                        <div class="modal-footer">
-                          
-                          <button type="button" class="btn btn-primary btn-danger" onclick="location.href='{{route('user.rimuovifotoprofilo',['id'=> $user->id])}}'">Elimina</button>
-                          <button type="button" class="btn btn-secondary" data-dismiss="modal">Annulla</button>
-                        </div>
-                      </div>
+                        
+                        
                     </div>
-                  </div>
-
-                    @endif
-                </h2>
+                    
+                    
 
 
 
-                <div class="col-md-8 col-md-offset-2 col-sm-12">
+                <div class="col-md-8 col-md-offset-2 col-sm-12" >
 
 
                     <div class="col-md-12" >
@@ -175,44 +188,11 @@
 
                         <li class="list-group-item all_text"><q>"{{$user_dettagli->descrizione}}"</q></li>
                     </ul>
-                        <div style="margin-bottom: 2em">
-                    @if ($user_dettagli->id == $user_id)
-                         <form  action="{{route('user.fotoprofilo',['id'=> $user->id])}}" id="modifica_foto_profilo" style="margin-top: 2em" name="modifica_foto_profilo" method="POST" enctype="multipart/form-data"> {{ csrf_field() }}
-
-                            <div class="form-group"  >
-                                <div class="col-sm-12" style="margin-bottom: 1em">
-                                    <input style="display:none; visibility:hidden" onchange="check_foto_profilo(this);" onkeyup="rimuovi_stile(this)" onmouseover="rimuovi_stile(this)"class="form-control" type="file" id="foto_profilo" name="foto_profilo" placeholder="foto_profilo">
-                                    <span class="invalid-input" id="invalid-foto_profilo"></span>
-                                </div>
-                                <div class="col-sm-6">
-                                    <label for="foto_profilo" class="col-form-label">Foto profilo</label>
-                                    <div style="margin-left: 1em;" class="popup" onclick="popup(this)" >
-                                        <span class="popuptext">JPEG, PNG, JPG, SVG, Masssimo 2 MB</span>
-                                        <span class="glyphicon glyphicon-info-sign" ></span>
-                                    </div>
-                                </div>
-                                
-                                <div class="col-sm-6">
-                                    <input type="hidden" name="id" value="{{ $user_id }}"/>
-                                    <label for="mySubmit" class="btn btn-primary btn-large btn-info"><span class="glyphicon glyphicon-floppy-save"></span> Carica</label>
-                                    <input onclick="event.preventDefault(); load_file(this); " id="mySubmit" type="submit" value="save" class="hidden"/>
-
-                                </div>    
-                                
-                                
-                            </div> 
-
-                            <div class="form-group">
-
-                            </div>
-                        </form>
-                        @endif
-                    </div>
+                       
                     
                     </div>
                 </div>
 
-            </div>
         </div>
     </div>
 
@@ -341,3 +321,23 @@
 <br>
 @endif
 @endsection
+
+
+<div class="modal" id="modalFormRimuoviFoto" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title">Vuoi eliminare la foto profilo?</h1>
+
+        </div>
+        <div class="modal-body">
+          <p>La tua foto profilo verrà eliminata</p>
+        </div>
+        <div class="modal-footer">
+
+          <button type="button" class="btn btn-primary btn-danger" onclick="location.href='{{route('user.rimuovifotoprofilo',['id'=> $user->id])}}'">Elimina</button>
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Annulla</button>
+        </div>
+      </div>
+    </div>
+</div>
