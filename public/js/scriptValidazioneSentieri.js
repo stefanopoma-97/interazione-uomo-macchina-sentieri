@@ -438,6 +438,15 @@ function load_file(button){
     function load_immagine1(button){
     document.getElementById('immagine1').click();
 }
+
+function load_immagine2(button){
+    document.getElementById('immagine2').click();
+}
+
+function load_immagine3(button){
+    document.getElementById('immagine3').click();
+}
+ 
     
     
     function check_immagine(button){

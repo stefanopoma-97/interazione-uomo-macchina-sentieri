@@ -177,25 +177,26 @@
                             <!--<h4>{{$link2}}</h4>-->
                             <div class="form-group">
                                 <div style="margin-top: 1em; margin-bottom: 1em" class="col-sm-12">
-                                    <input onchange="size_immagine(this)"; onkeyup="rimuovi_stile(this)" onmouseover="rimuovi_stile(this)"class="form-control" type="file" id="immagine2" name="immagine" placeholder="immagine">
+                                    <input style="display:none;" onchange="check_immagine2(this)"; onkeyup="rimuovi_stile(this)" onmouseover="rimuovi_stile(this)"class="form-control" type="file" id="immagine2" name="immagine" placeholder="immagine">
                                     <span class="invalid-input" id="invalid-immagine_1"></span>
                                 </div>
                                 <div class="col-sm-2 col-sm-offset-2">
                                     <input type="hidden" name="nome_input" value="immagine2"/>
                                     <input type="hidden" name="nome_file" value="2"/>
                                     <label for="mySubmit2" class="btn btn-primary btn-large btn-info"><span class="glyphicon glyphicon-floppy-save"></span> Carica</label>
-                                    <input onclick="event.preventDefault(); check_immagine(this);"  id="mySubmit2" type="submit" value="save" class="hidden"/>
+                                    <input onclick="event.preventDefault(); load_immagine2(this);"  id="mySubmit2" type="submit" value="save" class="hidden"/>
                                 </div>
 
                                 <div class="col-sm-2 col-sm-offset-2">
-                                    @if($link2!="http://localhost:8000/storage/fotosentieri/default")
+                                    @if($link2!="http://127.0.0.1:8000/storage/fotosentieri/default")
                                     <a class="btn btn-danger" href="{{route('sentiero.rimuoviimmagine',['id'=> $sentiero->id, 'nome'=> '2'])}}">
                                         <span class="glyphicon glyphicon-trash"></span></a>
                                     <!--<button class="btn btn-danger" onclick="location.href='{{route('sentiero.rimuoviimmagine',['id'=> $sentiero->id, 'nome'=> '1'])}}'">
                                     <span class="glyphicon glyphicon-trash"></span</button>-->
+
                                     @else
-                                    <button disabled="" class="btn btn-danger"><span class="glyphicon glyphicon-trash"></span</button>
-                                    @endif
+                                    <a disabled="" class="btn btn-danger" href="{{route('sentiero.rimuoviimmagine',['id'=> $sentiero->id, 'nome'=> '2'])}}">
+                                                                            <span class="glyphicon glyphicon-trash"></span></a>                                    @endif
                                 </div>
                             </div>
 
@@ -221,7 +222,7 @@
                             <!--<h4>{{$link3}}</h4>-->
                             <div class="form-group">
                                 <div style="margin-top: 1em; margin-bottom: 1em" class="col-sm-12">
-                                    <input onchange="size_immagine(this)"; onkeyup="rimuovi_stile(this)" onmouseover="rimuovi_stile(this)"class="form-control" type="file" id="immagine3" name="immagine" placeholder="immagine">
+                                    <input style="display:none;" onchange="check_immagine2(this)"; onkeyup="rimuovi_stile(this)" onmouseover="rimuovi_stile(this)"class="form-control" type="file" id="immagine3" name="immagine" placeholder="immagine">
                                     <span class="invalid-input" id="invalid-immagine_1"></span>
                                 </div>
 
@@ -229,18 +230,19 @@
                                     <input type="hidden" name="nome_input" value="immagine3"/>
                                     <input type="hidden" name="nome_file" value="3"/>
                                     <label for="mySubmit3" class="btn btn-primary btn-large btn-info"><span class="glyphicon glyphicon-floppy-save"></span> Carica</label>
-                                    <input onclick="event.preventDefault(); check_immagine(this);"  id="mySubmit3" type="submit" value="save" class="hidden"/>
+                                    <input onclick="event.preventDefault(); load_immagine3(this);"  id="mySubmit3" type="submit" value="save" class="hidden"/>
                                 </div>
 
                                 <div class="col-sm-2 col-sm-offset-2">
-                                    @if($link3!="http://localhost:8000/storage/fotosentieri/default")
+                                    @if($link3!="http://127.0.0.1:8000/storage/fotosentieri/default")
                                     <a class="btn btn-danger" href="{{route('sentiero.rimuoviimmagine',['id'=> $sentiero->id, 'nome'=> '3'])}}">
                                         <span class="glyphicon glyphicon-trash"></span></a>
                                     <!--<button class="btn btn-danger" onclick="location.href='{{route('sentiero.rimuoviimmagine',['id'=> $sentiero->id, 'nome'=> '1'])}}'">
                                     <span class="glyphicon glyphicon-trash"></span</button>-->
+
                                     @else
-                                    <button disabled="" class="btn btn-danger"><span class="glyphicon glyphicon-trash"></span</button>
-                                    @endif
+                                    <a disabled="" class="btn btn-danger" href="{{route('sentiero.rimuoviimmagine',['id'=> $sentiero->id, 'nome'=> '3'])}}">
+                                                                            <span class="glyphicon glyphicon-trash"></span></a>                                    @endif
                                 </div>
                             </div>
 
