@@ -1,13 +1,8 @@
-@extends('layouts.master')
+@extends('layouts.master2')
 
 @section('titolo', 'Errore')
 
-@section('navbar_home')
-@endsection
 
-
-@section('navbar')
-@endsection
 
 @section('sfondo')
 @endsection

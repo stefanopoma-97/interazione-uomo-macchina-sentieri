@@ -40,6 +40,8 @@ class UserController extends Controller
                 ->with('user_id', $user_id);        
     }
     
+  
+    
     
     public function preferiti($id) {
         
