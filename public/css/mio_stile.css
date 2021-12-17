@@ -28,7 +28,7 @@ and open the template in the editor.
 }
 
 .bell:hover {
-  cursor: pointer;  
+  cursor: pointer;
   color: #357ebd;
 }
 
@@ -48,7 +48,7 @@ and open the template in the editor.
 
  background: url(../img/logo_nuovo_5.png) center center no-repeat;
  object-fit: cover;
-     
+
 }
 
 .navbar-imag {
@@ -98,7 +98,7 @@ and open the template in the editor.
 }
 
 .btn-riprova{
-   background-color: #ff960d; 
+   background-color: #ff960d;
    color: #333333;
 }
 
@@ -661,7 +661,9 @@ html, body, #map, #elevation-div { height: 100%; width: 100%; padding: 0; margin
     font-style: normal;
     border-radius: 0.3rem;
     padding: 0.5em;
-    background-color: #5767d4;
+    /*background-color: #5767d4;*/
+    /*background-color: #0980e7;*/
+    background-color: #5bc0de;
     border: 1px solid #fff;
     color: #fff !important;
     box-shadow: 0 0.05em 0.1em rgba(0,0,0,0.25);
@@ -670,7 +672,9 @@ html, body, #map, #elevation-div { height: 100%; width: 100%; padding: 0; margin
 .carta2-middle > a:hover{
     background-color: #fff;
     border: 1px solid #fff;
-    color: #5767d4 !important;
+    /*color: #5767d4 !important;*/
+    /*color: #0980e7 !important;*/
+    color: #5bc0de !important;
     text-decoration: none;
 }
 
@@ -682,7 +686,7 @@ html, body, #map, #elevation-div { height: 100%; width: 100%; padding: 0; margin
     flex: 1;
     padding: 0px 0px 25px 35px;
     margin-top: 15px;
-    
+
     display: flex;
     flex-direction: column;
 }
@@ -704,10 +708,15 @@ html, body, #map, #elevation-div { height: 100%; width: 100%; padding: 0; margin
 }
 
 .carta2-title{
-    color: #5767d4;
+    /*color: #357ebd;*/
+    /*color: #0980e7;*/
+    color: #5bc0de;
     text-transform: uppercase;
     margin-bottom: 8px;
     font-size: 22px;
+    /*padding-left: 2.5em;*/
+    text-align: center;
+    margin-right: 2em;
 }
 
 .carta2-stats{
@@ -722,8 +731,35 @@ html, body, #map, #elevation-div { height: 100%; width: 100%; padding: 0; margin
     height: 8vh;
     display:block;
     width: 40%;
-    background: red;
+    background: #e2dfdf;
+    border: 2px solid #5bc0de;
     padding:32px;
     box-sizing: border-box;
+    border-radius: .5em;
     z-index: 1;
+}
+
+.filter-btn{
+    cursor: pointer;
+    font-style: normal;
+    border-radius: 0.3rem;
+    padding: 1em;
+    /*background-color: #5767d4;*/
+    background-color: #5bc0de;
+    /*border: 1px solid #fff;*/
+    color: #fff !important;
+    box-shadow: 0 0.05em 0.1em rgba(0,0,0,0.25);
+    margin-bottom: 1em;
+}
+
+.colonna-filtro{
+    text-align: center;
+}
+
+.filter-btn:hover{
+    background-color: #fff;
+    border: 1px solid #fff;
+    /*color: #5767d4 !important;*/
+    color: #5bc0de !important;
+    text-decoration: none;
 }
