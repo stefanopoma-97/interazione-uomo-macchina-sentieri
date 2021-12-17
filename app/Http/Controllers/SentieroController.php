@@ -515,6 +515,17 @@ class SentieroController extends Controller
             $categorie=$dl->getCategorie();
             $difficolta=$dl->getDifficolta();
             $count_revisioni = count($dl->getRevisioniDaRevisionare($user_id));
+            $immagini=[];
+            foreach($sentieri as $key => $sentiero){
+                if ($dl->hasImages($sentiero->id)){
+                    $im=$dl->GetImagesOnlyValid($sentiero->id);
+                    $immagini[$key]=$im[0];
+                }
+                else {
+                    $immagini[$key]=null;
+                }
+            }
+            
 
             return view('sentieri.ricercasentieri')->with('logged', true)
                             ->with('loggedName', $_SESSION["loggedName"])
@@ -525,6 +536,7 @@ class SentieroController extends Controller
                             ->with('count_revisioni', $count_revisioni)
                             ->with('categorie', $categorie)
                             ->with('difficolta', $difficolta)
+                            ->with('immagini', $immagini)
                             ->with('dati_sentieri', $dati_sentieri);
 
     }
@@ -623,6 +635,17 @@ class SentieroController extends Controller
         $difficolta=$dl->getDifficolta();
         $count_revisioni = count($dl->getRevisioniDaRevisionare($user_id));
         
+        $immagini=[];
+            foreach($sentieri as $key => $sentiero){
+                if ($dl->hasImages($sentiero->id)){
+                    $im=$dl->GetImagesOnlyValid($sentiero->id);
+                    $immagini[$key]=$im[0];
+                }
+                else {
+                    $immagini[$key]=null;
+                }
+            }
+        
 //         $sentieri->withPath(view('sentieri.ricercasentieri')->with('logged', true)
 //                        ->with('loggedName', $_SESSION["loggedName"])
 //                        ->with('sentieri', $sentieri)
@@ -642,6 +665,7 @@ class SentieroController extends Controller
                         ->with('count_revisioni', $count_revisioni)
                         ->with('categorie', $categorie)
                         ->with('difficolta', $difficolta)
+                        ->with('immagini', $immagini)
                         ->with('dati_sentieri', $dati_sentieri);
 
     }
