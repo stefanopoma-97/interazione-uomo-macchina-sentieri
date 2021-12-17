@@ -187,106 +187,38 @@
 
         <div class="col-md-7 col-s-7 col-m-pull-5">
 
+            
+
+            @foreach ($sentieri as $key => $sentiero)
             <div class="carta2">
                 <div class="carta2-img">
+                    @if($immagini[$key]==null)
                     <img class="carta2-immagine" src="{{ url('/') }}/img/foto1.jpg">
+                    @else
+                    <img class="carta2-immagine" src="{{$immagini[$key]}}">
+                    @endif
                     <div class="carta2-middle">
-                        <a href="#">Read More</a>
+                        <a href="{{route('sentiero.show',['sentiero'=>$sentiero->id])}}">Leggi di più</a>
                     </div>
                 </div>
                 <div class="carta2-content">
-                    <h5 class="carta2-title">SENTIERO MANIVA</h5>
+                    <h5 class="carta2-title">{{ $sentiero->titolo }}</h5>
                     <div class="carta2-info">
                         <div class="carta2-panel-sx">
-                            <div class="carta2-stats"><span class="material-icons">report</span>   E</div>
-                            <div class="carta2-stats"><span class="material-icons">landscape</span>   Trekking</div>
-                            <div class="carta2-stats"><span class="material-icons">location_city</span>   Brescia</div>
+                            <div class="carta2-stats"><span class="material-icons">report</span>   {{ $sentiero->difficolta->descrizione }}</div>
+                            <div class="carta2-stats"><span class="material-icons">landscape</span>   {{ $sentiero->categoria->nome }}</div>
+                            <div class="carta2-stats"><span class="material-icons">location_city</span>   {{ $sentiero->citta->nome }}</div>
                         </div>
                         <div class="carta2-panel-dx">
-                            <div class="carta2-stats"><span class="material-icons">chat</span>   15 commenti</div>
-                            <div class="carta2-stats"><span class="material-icons">star</span>   6,7/10</div>
-                            <div class="carta2-stats"><span class="material-icons">history</span>   3 ore</div>
+                            <div class="carta2-stats"><span class="material-icons">chat</span>   {{$dati_sentieri[$key]->partecipanti}} commenti</div>
+                            <div class="carta2-stats"><span class="material-icons">star</span>   {{$dati_sentieri[$key]->mediavoti}}/10</div>
+                            <div class="carta2-stats"><span class="material-icons">history</span>   {{ $sentiero->durata }} ore</div>
+                            
                         </div>
                     </div>
                 </div>
             </div>
-
-            <div class="carta2">
-                <div class="carta2-img">
-                    <img class="carta2-immagine" src="{{ url('/') }}/img/foto1.jpg">
-                    <div class="carta2-middle">
-                        <a href="#">Read More</a>
-                    </div>
-                </div>
-                <div class="carta2-content">
-                    <h5 class="carta2-title">SENTIERO MANIVA</h5>
-                    <div class="carta2-info">
-                        <div class="carta2-panel-sx">
-                            <div class="carta2-stats"><span class="material-icons">report</span>   E</div>
-                            <div class="carta2-stats"><span class="material-icons">landscape</span>   Trekking</div>
-                            <div class="carta2-stats"><span class="material-icons">location_city</span>   Brescia</div>
-                        </div>
-                        <div class="carta2-panel-dx">
-                            <div class="carta2-stats"><span class="material-icons">chat</span>   15 commenti</div>
-                            <div class="carta2-stats"><span class="material-icons">star</span>   6,7/10</div>
-                            <div class="carta2-stats"><span class="material-icons">history</span>   3 ore</div>
-
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="carta2">
-                <div class="carta2-img">
-                    <img class="carta2-immagine" src="{{ url('/') }}/img/foto1.jpg">
-                    <div class="carta2-middle">
-                        <a href="#">Read More</a>
-                    </div>
-                </div>
-                <div class="carta2-content">
-                    <h5 class="carta2-title">SENTIERO MANIVA</h5>
-                    <div class="carta2-info">
-                        <div class="carta2-panel-sx">
-                            <div class="carta2-stats"><span class="material-icons">report</span>   E</div>
-                            <div class="carta2-stats"><span class="material-icons">landscape</span>   Trekking</div>
-                            <div class="carta2-stats"><span class="material-icons">location_city</span>   Brescia</div>
-                        </div>
-                        <div class="carta2-panel-dx">
-                            <div class="carta2-stats"><span class="material-icons">chat</span>   15 commenti</div>
-                            <div class="carta2-stats"><span class="material-icons">star</span>   6,7/10</div>
-                            <div class="carta2-stats"><span class="material-icons">history</span>   3 ore</div>
-
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="carta2">
-                <div class="carta2-img">
-                    <img class="carta2-immagine" src="{{ url('/') }}/img/foto1.jpg">
-                    <div class="carta2-middle">
-                        <a href="#">Read More</a>
-                    </div>
-                </div>
-                <div class="carta2-content">
-                    <h5 class="carta2-title">SENTIERO MANIVA</h5>
-                    <div class="carta2-info">
-                        <div class="carta2-panel-sx">
-                            <div class="carta2-stats"><span class="material-icons">report</span>   E</div>
-                            <div class="carta2-stats"><span class="material-icons">landscape</span>   Trekking</div>
-                            <div class="carta2-stats"><span class="material-icons">location_city</span>   Brescia</div>
-                        </div>
-                        <div class="carta2-panel-dx">
-                            <div class="carta2-stats"><span class="material-icons">chat</span>   15 commenti</div>
-                            <div class="carta2-stats"><span class="material-icons">star</span>   6,7/10</div>
-                            <div class="carta2-stats"><span class="material-icons">history</span>   3 ore</div>
-
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-
+            @endforeach
 
             @foreach ($sentieri as $sentiero)
             <div class="card" style="margin-bottom: 1em;">
