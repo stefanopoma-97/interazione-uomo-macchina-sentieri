@@ -38,6 +38,9 @@ Route::get('/user/update/recuperopassword', ['as' => 'user.edit.recuperopassword
 Route::get('/user/auth/login', ['as' => 'user.auth.login', 
     'uses' => 'AuthController@authentication_login']); //manda a pagina di autenticazione
 
+Route::get('/user/auth/loginmessaggio', ['as' => 'user.auth.login.errore', 
+    'uses' => 'AuthController@authentication_login_errore']); //manda a pagina di autenticazione
+
 Route::get('/user/auth/register', ['as' => 'user.auth.register', 
     'uses' => 'AuthController@authentication_register']); //manda a pagina di autenticazione
 

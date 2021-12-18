@@ -22,7 +22,18 @@ class AuthController extends Controller
         else
             $username="";
 
-        return view('auth.auth')->with('login', true)->with('citta', $citta)->with('username', $username);
+        return view('auth.auth')->with('login', true)->with('citta', $citta)->with('errore', false)->with('username', $username);
+    }
+    
+    public function authentication_login_errore() {
+        $dl = new DataLayer();
+        $citta = $dl->getAllCitta();
+        if(isset($_COOKIE["username_login"]))
+            $username=$_COOKIE["username_login"];
+        else
+            $username="";
+
+        return view('auth.auth')->with('login', true)->with('citta', $citta)->with('errore', true)->with('username', $username);
     }
 
     public function authentication_register() {
@@ -32,7 +43,7 @@ class AuthController extends Controller
             $username=$_COOKIE["username_login"];
         else
             $username="";
-        return view('auth.auth')->with('login', false)->with('citta', $citta)->with('username', $username);
+        return view('auth.auth')->with('login', false)->with('citta', $citta)->with('errore', false)->with('username', $username);
     }
 
     public function logout() {

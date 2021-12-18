@@ -36,7 +36,11 @@
 @endsection
 
 @section('corpo')
-
+@if ($errore)
+<h1>Messaggio di errore</h1>
+@else
+<h1>Nessun messaggio di errore</h1>
+@endif
 <div class="container" onclick="close_popup()">
             <div class="row" style="margin-top: 4em;"> <!-- unica riga--> <!-- margin top lo sposta in basso -->
                 <div class="col-md-6 col-md-offset-3"> <!-- offset sposta a dx di 3 -->

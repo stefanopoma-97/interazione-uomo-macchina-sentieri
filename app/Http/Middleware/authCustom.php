@@ -23,7 +23,7 @@ class authCustom
         //Refirect::to(route($request->route()));
     
         if(!isset($_SESSION['logged'])) {
-            return Redirect::to(route('user.auth.login'));
+            return Redirect::to(route('user.auth.login.errore'));
         }
         return $next($request);
     }

@@ -64,9 +64,7 @@
 
     <body>
 
-
-
-
+    
         <!-- creazione nav-bar-->
         <nav class="navbar-default navbar-fixed-top"> <!-- nav bar fissata in alto sempre -->
             <div class="container">
