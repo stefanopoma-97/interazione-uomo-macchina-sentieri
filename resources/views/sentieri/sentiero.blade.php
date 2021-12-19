@@ -61,7 +61,7 @@
                     </li>
                 <li class="list-group-item"><strong>Categoria: {{ $sentiero->categoria->nome}}</strong></li>
                 <li class="list-group-item " ><strong>Difficoltà: {{ $sentiero->difficolta->nome}}</strong></li>
-                <li class="list-group-item "><span class="glyphicon glyphicon-road"></span> Città:   {{ $sentiero->citta->nome}}</li>
+                <li class="list-group-item "><span class="material-icons">location_city</span> Città:   {{ $sentiero->citta->nome}}</li>
                 <li class="list-group-item "><span class="glyphicon glyphicon-time"></span>  Durata:   {{ $sentiero->durata}} ore</li>
                 <li class="list-group-item "><span class="glyphicon glyphicon-repeat"></span>  Lunghezza:   {{ $sentiero->lunghezza}} km</li>
                 <li class="list-group-item "><span class="glyphicon glyphicon-chevron-up"></span>  Salita:   {{ $sentiero->salita}}</li>
