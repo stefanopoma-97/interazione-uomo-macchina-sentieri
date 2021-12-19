@@ -81,10 +81,10 @@
                                                             <li class="list-group-item "><h4>{{ $sentiero->titolo }}</h4></li>
                                                             <li class="list-group-item "><strong>{{ $sentiero->categoria->nome }}</strong></li>
                                                             <li style="height: 50px" class="list-group-item "><q>{{ $sentiero->descrizione }}</q></li>
-                                                            <li class="list-group-item "><span class="glyphicon glyphicon-time"></span>   {{ $sentiero->durata }} ore</li>
-                                                            <li class="list-group-item "><span class="glyphicon glyphicon-repeat"></span>   {{ $sentiero->lunghezza }} Km</li>
-                                                            <li class="list-group-item "><span class="glyphicon glyphicon-chevron-up"></span>   {{ $sentiero->salita }} m</li>
-                                                            <li class="list-group-item "><span class="glyphicon glyphicon-chevron-down"></span>   {{ $sentiero->discesa }} m</li>
+                                                            <li class="list-group-item "><span class="glyphicon glyphicon-time"></span> Durata:   {{ $sentiero->durata }} ore</li>
+                                                            <li class="list-group-item "><span class="glyphicon glyphicon-repeat"></span> Lunghezza:   {{ $sentiero->lunghezza }} Km</li>
+                                                            <li class="list-group-item "><span class="glyphicon glyphicon-chevron-up"></span> Salita:   {{ $sentiero->salita }} m</li>
+                                                            <li class="list-group-item "><span class="glyphicon glyphicon-chevron-down"></span> Discesa:   {{ $sentiero->discesa }} m</li>
                                                             <li class="list-group-item "><a class="btn btn-info btn-block btn-round-bottom" href="{{route('sentiero.show',['sentiero'=>$sentiero->id])}}" role="button">Dettagli</a></li>
                                                         </ul>
                                                     </div>
@@ -104,10 +104,10 @@
                                                             <li class="list-group-item "><h4>{{ $sentiero->titolo }}</h4></li>
                                                             <li class="list-group-item "><strong>Media voti: {{ $sentiero->mediavoti }}</strong></li>
                                                             <li style="height: 50px" class="list-group-item "><q>{{ $sentiero->descrizione }}</q></li>
-                                                            <li class="list-group-item "><span class="glyphicon glyphicon-time"></span>   {{ $sentiero->durata }} ore</li>
-                                                            <li class="list-group-item "><span class="glyphicon glyphicon-repeat"></span>   {{ $sentiero->lunghezza }}Km</li>
-                                                            <li class="list-group-item "><span class="glyphicon glyphicon-chevron-up"></span>   {{ $sentiero->salita }}m</li>
-                                                            <li class="list-group-item "><span class="glyphicon glyphicon-chevron-down"></span>   {{ $sentiero->discesa }}m</li>
+                                                            <li class="list-group-item "><span class="glyphicon glyphicon-time"></span> Durata:   {{ $sentiero->durata }} ore</li>
+                                                            <li class="list-group-item "><span class="glyphicon glyphicon-repeat"></span> Lunghezza:   {{ $sentiero->lunghezza }}Km</li>
+                                                            <li class="list-group-item "><span class="glyphicon glyphicon-chevron-up"></span> Salita:   {{ $sentiero->salita }}m</li>
+                                                            <li class="list-group-item "><span class="glyphicon glyphicon-chevron-down"></span> Discesa:   {{ $sentiero->discesa }}m</li>
                                                             <li class="list-group-item "><a class="btn btn-info btn-block btn-round-bottom" href="{{route('sentiero.show',['sentiero'=>$sentiero->id])}}" role="button">Dettagli</a></li>
                                                         </ul>
                                                     </div>
@@ -126,10 +126,10 @@
                                                             <li class="list-group-item "><h4>{{ $sentiero->titolo }}</h4></li>
                                                             <li class="list-group-item "><strong>Città: {{ $sentiero->citta->nome }}</strong></li>
                                                             <li style="height: 50px" class="list-group-item "><q>{{ $sentiero->descrizione }}</q></li>
-                                                            <li class="list-group-item "><span class="glyphicon glyphicon-time"></span>   {{ $sentiero->durata }} ore</li>
-                                                            <li class="list-group-item "><span class="glyphicon glyphicon-repeat"></span>   {{ $sentiero->lunghezza }} Km</li>
-                                                            <li class="list-group-item "><span class="glyphicon glyphicon-chevron-up"></span>   {{ $sentiero->salita }} m</li>
-                                                            <li class="list-group-item "><span class="glyphicon glyphicon-chevron-down"></span>   {{ $sentiero->discesa }} m</li>
+                                                            <li class="list-group-item "><span class="glyphicon glyphicon-time"></span> Durata:   {{ $sentiero->durata }} ore</li>
+                                                            <li class="list-group-item "><span class="glyphicon glyphicon-repeat"></span> Lunghezza:   {{ $sentiero->lunghezza }} Km</li>
+                                                            <li class="list-group-item "><span class="glyphicon glyphicon-chevron-up"></span> Salita:   {{ $sentiero->salita }} m</li>
+                                                            <li class="list-group-item "><span class="glyphicon glyphicon-chevron-down"></span> Discesa:   {{ $sentiero->discesa }} m</li>
                                                             <li class="list-group-item "><a class="btn btn-info btn-block btn-round-bottom" href="{{route('sentiero.show',['sentiero'=>$sentiero->id])}}" role="button">Dettagli</a></li>
                                                         </ul>
                                                     </div>
@@ -151,10 +151,10 @@
                                                             <li class="list-group-item "><h4>{{ $sentiero->titolo }}</h4></li>
                                                             <li class="list-group-item ">{{ $sentiero->categoria->nome }}</li>
                                                             <li style="height: 50px" class="list-group-item "><q>{{ $sentiero->descrizione }}</q></li>
-                                                            <li class="list-group-item "><span class="glyphicon glyphicon-time"></span>   {{ $sentiero->durata }} ore</li>
-                                                            <li class="list-group-item "><span class="glyphicon glyphicon-repeat"></span>   {{ $sentiero->lunghezza }} Km</li>
-                                                            <li class="list-group-item "><span class="glyphicon glyphicon-chevron-up"></span>   {{ $sentiero->salita }} m</li>
-                                                            <li class="list-group-item "><span class="glyphicon glyphicon-chevron-down"></span>   {{ $sentiero->discesa }} m</li>
+                                                            <li class="list-group-item "><span class="glyphicon glyphicon-time"></span> Durata:   {{ $sentiero->durata }} ore</li>
+                                                            <li class="list-group-item "><span class="glyphicon glyphicon-repeat"></span> Lunghezza:   {{ $sentiero->lunghezza }} Km</li>
+                                                            <li class="list-group-item "><span class="glyphicon glyphicon-chevron-up"></span> Salita:   {{ $sentiero->salita }} m</li>
+                                                            <li class="list-group-item "><span class="glyphicon glyphicon-chevron-down"></span> Discesa:   {{ $sentiero->discesa }} m</li>
                                                             <li class="list-group-item "><a class="btn btn-info btn-block btn-round-bottom" href="{{route('sentiero.show',['sentiero'=>$sentiero->id])}}" role="button">Dettagli</a></li>
                                                         </ul>
                                                     </div>
