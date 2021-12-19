@@ -64,7 +64,7 @@
 
     <body>
 
-    
+
         <!-- creazione nav-bar-->
         <nav class="navbar-default navbar-fixed-top"> <!-- nav bar fissata in alto sempre -->
             <div class="container">
@@ -97,11 +97,19 @@
                             <li class="nav-item avatar dropdown">
                                 <a disable="" class="nav-link dropdown-toggle" id="navbarDropdownMenuLink-5" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
                                     @if($count_revisioni==0)
-                                    <!--<span class="badge badge-danger ml-2">{{$count_revisioni}}</span>-->
-                                    <span class="material-icons bell">notifications_none</span>
+                                    <div class="nav-bell">
+                                        <span class="material-icons bell">
+                                            notifications_none
+                                        </span>
+                                        <p>Revisioni</p>
+                                    </div>
                                     @else
-                                    <!--<span style="background-color:red" class="badge badge-danger ml-2">{{$count_revisioni}}</span>-->
-                                    <span class="material-icons notificaAttiva bell">notifications_active</span>
+                                    <div class="nav-bell">
+                                        <span class="material-icons notificaAttiva bell">
+                                            notifications_active
+                                        </span>
+                                        <p>Revisioni</p>
+                                    </div>
                                     @endif
                                 </a>
                                 <ul class="dropdown-menu">
@@ -115,7 +123,7 @@
                             @else
                             @endif
 
-                            
+
 
                             <li class="dropdown" style="margin-left: 5em;">
                                 @if ($logged)
