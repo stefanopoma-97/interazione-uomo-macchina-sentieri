@@ -724,46 +724,6 @@ html, body, #map, #elevation-div { height: 100%; width: 100%; padding: 0; margin
     font-weight: 250;
 }
 
-.elementoSticky{
-    position: -webkit-sticky;
-    position:sticky;
-    top:90vh;
-    height: 8vh;
-    display:block;
-    width: 40%;
-    background: #e2dfdf;
-    border: 2px solid #5bc0de;
-    padding:32px;
-    box-sizing: border-box;
-    border-radius: .5em;
-    z-index: 1;
-}
-
-.filter-btn{
-    cursor: pointer;
-    font-style: normal;
-    border-radius: 0.3rem;
-    padding: 1em;
-    /*background-color: #5767d4;*/
-    background-color: #5bc0de;
-    /*border: 1px solid #fff;*/
-    color: #fff !important;
-    box-shadow: 0 0.05em 0.1em rgba(0,0,0,0.25);
-    margin-bottom: 1em;
-}
-
-.colonna-filtro{
-    text-align: center;
-}
-
-.filter-btn:hover{
-    background-color: #fff;
-    border: 1px solid #fff;
-    /*color: #5767d4 !important;*/
-    color: #5bc0de !important;
-    text-decoration: none;
-}
-
 .warning-banner{
     float: left;
     display: flex;
@@ -806,3 +766,28 @@ html, body, #map, #elevation-div { height: 100%; width: 100%; padding: 0; margin
   }
 
 
+.paginasx{
+    height: 70vh;
+    overflow: hidden;
+    overflow-y: scroll;
+}
+
+.paginadx{
+    height: 70vh;
+    overflow: hidden;
+    overflow-y: scroll;
+}
+
+::-webkit-scrollbar {
+    width: 0px; /*Rende invisibile la scrollbar*/
+}
+
+.elementoSticky{
+    position: -webkit-sticky; /* Safari */
+    position: sticky;
+    top: 0;
+    background: white;
+    padding:10px;
+    border-radius: .5em;
+    z-index: 1;
+}
