@@ -39,7 +39,7 @@
                             <input  id="mySubmit" type="submit" value='Save' class="hidden"/>
                         </div>
                         <div class="col-sm-6 text-center">
-                            <button onclick="event.preventDefault();" type="" class="btn btn-info btn-toolbar">Azzera</button>
+                            <button onclick="location.href='{{route('sentiero.ricerca')}}'" type="button" class="btn btn-info btn-toolbar">Azzera</button>
                         </div>
                     </div>
                 </div>
@@ -211,16 +211,22 @@
                         <label for="durata">Durata massima</label>
                             @if(!empty($durata_massima))
                                 @if($durata_massima!="")
-                                    <input value="{{$durata_massima}}" class="form-control" onkeyup="rimuovi_stile(this)" onmouseover="rimuovi_stile(this)" type="number" pattern="^\d*(\.\d{0,2})?$" id="durata" name="durata" placeholder="Inserisci la durata massima (espressa in ore)">
+                                    <input value="{{$durata_massima}}" class="form-control" onkeyup="rimuovi_stile(this)" onmouseover="rimuovi_stile(this)" type="number" pattern="^\d*(\.\d{0,2})?$" min="0" id="durata" name="durata" placeholder="Inserisci la durata massima (espressa in ore)">
                                 @else
-                                    <input class="form-control" onkeyup="rimuovi_stile(this)" onmouseover="rimuovi_stile(this)" type="number" pattern="^\d*(\.\d{0,2})?$" id="durata" name="durata" placeholder="Inserisci la durata massima (espressa in ore)">
+                                    <input class="form-control" onkeyup="rimuovi_stile(this)" onmouseover="rimuovi_stile(this)" type="number" pattern="^\d*(\.\d{0,2})?$" min="0" id="durata" name="durata" placeholder="Inserisci la durata massima (espressa in ore)">
                                 @endif
                             @else
-                                <input class="form-control" onkeyup="rimuovi_stile(this)" onmouseover="rimuovi_stile(this)" type="number" pattern="^\d*(\.\d{0,2})?$" id="durata" name="durata" placeholder="Inserisci la durata massima (espressa in ore)">
+                                <input class="form-control" onkeyup="rimuovi_stile(this)" onmouseover="rimuovi_stile(this)" type="number" pattern="^\d*(\.\d{0,2})?$" min="0" id="durata" name="durata" placeholder="Inserisci la durata massima (espressa in ore)">
                             @endif                         
                         
                         <span class="invalid-input" id="invalid_durata"></span>
                     </div>
+                
+                    <!--<div class="form-group">
+                        <div class="slidecontainer">
+                            <input type="range" min="0" max="24" value="50" class="slider" id="myRange">
+                         </div>
+                    </div>-->
                 </form>
             </div>
             

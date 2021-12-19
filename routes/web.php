@@ -172,7 +172,7 @@ Route::group(['middleware' => ['authCustom']], function()
 
     Route::get('/sentiero/ricerca/sentieri', ['as' => 'sentiero.ricerca', 
         'uses' => 'SentieroController@ricerca']);
-
+    
     Route::get('/sentiero/ricerca/sentieri/filtra', ['as' => 'sentiero.ricercafiltra', 
         'uses' => 'SentieroController@ricerca_filtra']);
     
