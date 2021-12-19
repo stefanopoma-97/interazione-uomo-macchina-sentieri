@@ -514,6 +514,7 @@ class SentieroController extends Controller
             $user = $dl->getUserByID($user_id);
             //$sentieri = $dl->getAllSentieri();
             $sentieri = Sentiero::paginate(5);
+            $totale_risultati=count($dl->getAllSentieri());
             $dati_sentieri = $dl->fromSentieriToDatiSentieri($sentieri);
             $citta=$dl->getAllCitta();
             $categorie=$dl->getCategorie();
@@ -541,6 +542,7 @@ class SentieroController extends Controller
                             ->with('categorie', $categorie)
                             ->with('difficolta', $difficolta)
                             ->with('immagini', $immagini)
+                            ->with('totale_risultati', $totale_risultati)
                             ->with('dati_sentieri', $dati_sentieri);
 
     }
@@ -642,7 +644,7 @@ class SentieroController extends Controller
         }
         //$sentieri = $filtro->get();
         
-        
+        $totale_risultati=count($sentieri);
        
 
 
@@ -693,7 +695,8 @@ class SentieroController extends Controller
                         ->with('categoria_valore', $categoria_valore)
                         ->with('lunghezza_massima', $lunghezza_massima)
                         ->with('dislivello_massimo', $dislivello_massimo)
-                        ->with('durata_massima', $durata_massima);
+                        ->with('durata_massima', $durata_massima)
+                        ->with('totale_risultati', $totale_risultati);
 
     }
     

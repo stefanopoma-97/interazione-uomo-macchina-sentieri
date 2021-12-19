@@ -230,11 +230,15 @@
                 </form>
             </div>
             
-            
+            <div class="col-md-7 col-s-7 col-m-pull-5 ">
+                <h4 class="text-right">{{$totale_risultati}} risultati trovati</h4>
+            </div>
             <div class="paginadx col-md-7 col-s-7 col-m-pull-5">
                 @if(count($sentieri)==0)
                 <h3>Non sono stati trovati sentieri con questi criteri di ricerca</h3>
                 @else
+                
+                
                     @foreach ($sentieri as $key => $sentiero)
                     <div class="carta2">
                         <div class="carta2-img">
