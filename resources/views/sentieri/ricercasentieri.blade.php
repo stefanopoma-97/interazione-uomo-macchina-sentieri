@@ -44,19 +44,19 @@
                     <div class="form-group row">
                         <label class="col-sm-10" for="testo_titolo">Titolo</label>
                         <div class="col-sm-12">
-                            <input type="text" class="form-control" id="testo_titolo" name="testo_titolo" placeholder="Parola contenuta nel titolo">
+                            <input type="text" class="form-control" id="testo_titolo" name="testo_titolo" placeholder="Inserisci una frase contenuta nel titolo">
                         </div>
                     </div>
                     <div class="form-group row">
                         <label class="col-sm-10" for="testo_descrizione">Descrizione</label>
                         <div class="col-sm-12">
-                            <input type="text" class="form-control" id="testo_descrizione" name="testo_descrizione" placeholder="Parola contenuta nella descrizione">
+                            <input type="text" class="form-control" id="testo_descrizione" name="testo_descrizione" placeholder="Inserisci una frase contenuta nella descrizione">
                         </div>
                     </div>
                     <div class="form-group row">
                         <label for="citta" class="col-sm-10">Città</label>
                         <div class="col-sm-12">
-                            <input onkeyup="rimuovi_stile(this)" onmouseover="rimuovi_stile(this)" type="text" class="form-control" id="citta" name="citta" value="" placeholder="Città" list="lista_citta">
+                            <input onkeyup="rimuovi_stile(this)" onmouseover="rimuovi_stile(this)" type="text" class="form-control" id="citta" name="citta" value="" placeholder="Inserisci una città" list="lista_citta">
                             <datalist id="lista_citta">
                                 @foreach ($citta as $c)
                                     <option>{{$c->nome}}</option>
@@ -68,17 +68,19 @@
                     </div>
                     <div class="form-group">
                         <label for="difficolta">Difficoltà</label>
-                        <select class="form-control" id="difficolta" name="difficolta" >
+                        <select class="form-control" id="difficolta" name="difficolta" placeholder="Inserisci un livello di difficoltà">
                             <option value=""></option>
+                            <option style="color:lightgray" value="" disabled selected hidden>Inserisci un livello di difficoltà</option>
                             @foreach ($difficolta as $c)
-                            <option value="{{$c->id}}">{{$c->nome}}</option>
+                            <option value="{{$c->id}}">{{$c->nome}}: {{$c->descrizione}}</option>
                             @endforeach
                         </select>
                     </div>
                     <div class="form-group">
                         <label for="categoria">Categoria</label>
-                        <select class="form-control" id="categoria" name="categoria" >
+                        <select class="form-control" id="categoria" name="categoria" placeholder="Inserisci una categoria">
                             <option value=""></option>
+                            <option style="color:lightgray" value="" disabled selected hidden>Inserisci una categoria</option>
                             @foreach ($categorie as $c)
                             <option value="{{$c->id}}">{{$c->nome}}</option>
                             @endforeach
@@ -86,17 +88,17 @@
                     </div>
                     <div class="form-group">
                         <label for="lunghezza">Lunghezza massima (km)</label>
-                        <input class="form-control" onkeyup="rimuovi_stile(this)" onmouseover="rimuovi_stile(this)" type="number" id="lunghezza" name="lunghezza" min="0" max="50">
+                        <input class="form-control" onkeyup="rimuovi_stile(this)" onmouseover="rimuovi_stile(this)" type="number" id="lunghezza" name="lunghezza" min="0" max="50" placeholder="Inserisci la lunghezza massima (0-50 km)">
                         <span class="invalid-input" id="invalid_lunghezza"></span>
                     </div>
                     <div class="form-group">
                         <label for="dislivello">Dislivello massimo (m)</label>
-                        <input class="form-control" onkeyup="rimuovi_stile(this)" onmouseover="rimuovi_stile(this)" type="number" id="dislivello" name="dislivello" min="0" max="10000">
+                        <input class="form-control" onkeyup="rimuovi_stile(this)" onmouseover="rimuovi_stile(this)" type="number" id="dislivello" name="dislivello" min="0" max="10000" placeholder="Inserisci il displivello massimo (0-10000 m)">
                         <span class="invalid-input" id="invalid_dislivello"></span>
                     </div>
                     <div class="form-group">
                         <label for="durata">Durata massima</label>
-                        <input class="form-control" onkeyup="rimuovi_stile(this)" onmouseover="rimuovi_stile(this)" type="number" pattern="^\d*(\.\d{0,2})?$" id="durata" name="durata">
+                        <input class="form-control" onkeyup="rimuovi_stile(this)" onmouseover="rimuovi_stile(this)" type="number" pattern="^\d*(\.\d{0,2})?$" id="durata" name="durata" placeholder="Inserisci la durata massima (espressa in ore)">
                         <span class="invalid-input" id="invalid_durata"></span>
                     </div>
                 </form>
@@ -108,9 +110,9 @@
                 <div class="carta2">
                     <div class="carta2-img">
                         @if($immagini[$key]==null)
-                        <img class="carta2-immagine" src="{{ url('/') }}/img/foto1.jpg">
+                        <img class="carta2-immagine-test" src="{{ url('/') }}/img/foto1.jpg">
                         @else
-                        <img class="carta2-immagine" src="{{$immagini[$key]}}">
+                        <img class="carta2-immagine-test" src="{{$immagini[$key]}}">
                         @endif
                         <div class="carta2-middle">
                             <a href="{{route('sentiero.show',['sentiero'=>$sentiero->id])}}">Leggi di più</a>
