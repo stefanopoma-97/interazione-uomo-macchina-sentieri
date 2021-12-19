@@ -20,6 +20,8 @@
 
 @section('corpo')
 
+
+
 <div class="container">
     
     
@@ -44,61 +46,179 @@
                     <div class="form-group row">
                         <label class="col-sm-10" for="testo_titolo">Titolo</label>
                         <div class="col-sm-12">
-                            <input type="text" class="form-control" id="testo_titolo" name="testo_titolo" placeholder="Inserisci una frase contenuta nel titolo">
+                            @if(!empty($titolo))
+                                @if($titolo!="")
+                                <input value="{{$titolo}}" type="text" class="form-control" id="testo_titolo" name="testo_titolo" placeholder="Inserisci una frase contenuta nel titolo">
+                                @else
+                                <input type="text" class="form-control" id="testo_titolo" name="testo_titolo" placeholder="Inserisci una frase contenuta nel titolo">
+                                @endif
+                            @else
+                                <input type="text" class="form-control" id="testo_titolo" name="testo_titolo" placeholder="Inserisci una frase contenuta nel titolo">
+                            @endif
+
                         </div>
                     </div>
                     <div class="form-group row">
                         <label class="col-sm-10" for="testo_descrizione">Descrizione</label>
                         <div class="col-sm-12">
-                            <input type="text" class="form-control" id="testo_descrizione" name="testo_descrizione" placeholder="Inserisci una frase contenuta nella descrizione">
+                            @if(!empty($descrizione))
+                                @if($descrizione!="")
+                                <input value="{{$descrizione}}" type="text" class="form-control" id="testo_descrizione" name="testo_descrizione" placeholder="Inserisci una frase contenuta nella descrizione">
+                                @else
+                                <input type="text" class="form-control" id="testo_descrizione" name="testo_descrizione" placeholder="Inserisci una frase contenuta nella descrizione">
+                                @endif
+                            @else
+                                <input type="text" class="form-control" id="testo_descrizione" name="testo_descrizione" placeholder="Inserisci una frase contenuta nella descrizione">
+                            @endif
                         </div>
                     </div>
                     <div class="form-group row">
                         <label for="citta" class="col-sm-10">Città</label>
                         <div class="col-sm-12">
-                            <input onkeyup="rimuovi_stile(this)" onmouseover="rimuovi_stile(this)" type="text" class="form-control" id="citta" name="citta" value="" placeholder="Inserisci una città" list="lista_citta">
-                            <datalist id="lista_citta">
-                                @foreach ($citta as $c)
-                                    <option>{{$c->nome}}</option>
-                                @endforeach
-                            </datalist>
+                            @if(!empty($citta_valore))
+                                @if($citta_valore!="")
+                                    <input value="{{$citta_valore}}" onkeyup="rimuovi_stile(this)" onmouseover="rimuovi_stile(this)" type="text" class="form-control" id="citta" name="citta" value="" placeholder="Inserisci una città" list="lista_citta">
+                                    <datalist id="lista_citta">
+                                        <option selected="true">{{$citta_valore}}</option>
+                                        @foreach ($citta as $c)
+                                            <option>{{$c->nome}}</option>
+                                        @endforeach
+                                    </datalist>                                
+                                @else
+                                    <input onkeyup="rimuovi_stile(this)" onmouseover="rimuovi_stile(this)" type="text" class="form-control" id="citta" name="citta" value="" placeholder="Inserisci una città" list="lista_citta">
+                                    <datalist id="lista_citta">
+                                        @foreach ($citta as $c)
+                                            <option>{{$c->nome}}</option>
+                                        @endforeach
+                                    </datalist>                                  
+                                @endif
+                            @else
+                                    <input onkeyup="rimuovi_stile(this)" onmouseover="rimuovi_stile(this)" type="text" class="form-control" id="citta" name="citta" value="" placeholder="Inserisci una città" list="lista_citta">
+                                    <datalist id="lista_citta">
+                                        @foreach ($citta as $c)
+                                            <option>{{$c->nome}}</option>
+                                        @endforeach
+                                    </datalist>                              
+                            @endif
+                            
                         </div>
                         <span class="invalid-input" id="invalid_citta"></span>
 
                     </div>
                     <div class="form-group">
                         <label for="difficolta">Difficoltà</label>
-                        <select class="form-control" id="difficolta" name="difficolta" placeholder="Inserisci un livello di difficoltà">
-                            <option value=""></option>
-                            <option style="color:lightgray" value="" disabled selected hidden>Inserisci un livello di difficoltà</option>
-                            @foreach ($difficolta as $c)
-                            <option value="{{$c->id}}">{{$c->nome}}: {{$c->descrizione}}</option>
-                            @endforeach
-                        </select>
+                            @if(!empty($difficolta_valore))
+                                @if($difficolta_valore!="")
+                                    <select class="form-control" id="difficolta" name="difficolta" placeholder="Inserisci un livello di difficoltà">
+                                        <option value=""></option>
+                                        @foreach ($difficolta as $c)
+                                            @if($difficolta_valore==($c->id))
+                                                <option selected value="{{$c->id}}">{{$c->nome}}: {{$c->descrizione}}</option>
+                                            @else
+                                                <option value="{{$c->id}}">{{$c->nome}}: {{$c->descrizione}}</option>
+                                            @endif
+                                        @endforeach
+                                    </select>                                  
+                                @else
+                                    <select class="form-control" id="difficolta" name="difficolta" placeholder="Inserisci un livello di difficoltà">
+                                        <option value=""></option>
+                                        <option style="color:lightgray" value="" disabled selected hidden>Inserisci un livello di difficoltà</option>
+                                        @foreach ($difficolta as $c)
+                                        <option value="{{$c->id}}">{{$c->nome}}: {{$c->descrizione}}</option>
+                                        @endforeach
+                                    </select>                                    
+                                @endif
+                            @else
+                                <select class="form-control" id="difficolta" name="difficolta" placeholder="Inserisci un livello di difficoltà">
+                                    <option value=""></option>
+                                    <option style="color:lightgray" value="" disabled selected hidden>Inserisci un livello di difficoltà</option>
+                                    @foreach ($difficolta as $c)
+                                    <option value="{{$c->id}}">{{$c->nome}}: {{$c->descrizione}}</option>
+                                    @endforeach
+                                </select>                             
+                            @endif
+                        
+                        
+                        
+
                     </div>
                     <div class="form-group">
                         <label for="categoria">Categoria</label>
-                        <select class="form-control" id="categoria" name="categoria" placeholder="Inserisci una categoria">
-                            <option value=""></option>
-                            <option style="color:lightgray" value="" disabled selected hidden>Inserisci una categoria</option>
-                            @foreach ($categorie as $c)
-                            <option value="{{$c->id}}">{{$c->nome}}</option>
-                            @endforeach
-                        </select>
+                        
+                            @if(!empty($categoria_valore))
+                                @if($categoria_valore!="")
+                                    <select class="form-control" id="categoria" name="categoria" placeholder="Inserisci una categoria">
+                                        <option value=""></option>
+                                        <option style="color:lightgray" value="" disabled selected hidden>Inserisci una categoria</option>
+                                        @foreach ($categorie as $c)
+                                            @if($categoria_valore==$c->id)
+                                            <option selected="" value="{{$c->id}}">{{$c->nome}}</option>
+                                            @else
+                                            <option selected="" value="{{$c->id}}">{{$c->nome}}</option>
+                                            @endif
+                                        @endforeach
+                                    </select>                                       
+                                @else
+                                    <select class="form-control" id="categoria" name="categoria" placeholder="Inserisci una categoria">
+                                        <option value=""></option>
+                                        <option style="color:lightgray" value="" disabled selected hidden>Inserisci una categoria</option>
+                                        @foreach ($categorie as $c)
+                                        <option value="{{$c->id}}">{{$c->nome}}</option>
+                                        @endforeach
+                                    </select>                                  
+                                @endif
+                            @else
+                                <select class="form-control" id="categoria" name="categoria" placeholder="Inserisci una categoria">
+                                    <option value=""></option>
+                                    <option style="color:lightgray" value="" disabled selected hidden>Inserisci una categoria</option>
+                                    @foreach ($categorie as $c)
+                                    <option value="{{$c->id}}">{{$c->nome}}</option>
+                                    @endforeach
+                                </select>                            
+                            @endif
+                            
+                            
+
                     </div>
                     <div class="form-group">
                         <label for="lunghezza">Lunghezza massima (km)</label>
-                        <input class="form-control" onkeyup="rimuovi_stile(this)" onmouseover="rimuovi_stile(this)" type="number" id="lunghezza" name="lunghezza" min="0" max="50" placeholder="Inserisci la lunghezza massima (0-50 km)">
+                            @if(!empty($lunghezza_massima))
+                                @if($lunghezza_massima!="")
+                                <input value="{{$lunghezza_massima}}" class="form-control" onkeyup="rimuovi_stile(this)" onmouseover="rimuovi_stile(this)" type="number" id="lunghezza" name="lunghezza" min="0" max="50" placeholder="Inserisci la lunghezza massima (0-50 km)">
+                                @else
+                                    <input class="form-control" onkeyup="rimuovi_stile(this)" onmouseover="rimuovi_stile(this)" type="number" id="lunghezza" name="lunghezza" min="0" max="50" placeholder="Inserisci la lunghezza massima (0-50 km)">
+                                @endif
+                            @else
+                                <input class="form-control" onkeyup="rimuovi_stile(this)" onmouseover="rimuovi_stile(this)" type="number" id="lunghezza" name="lunghezza" min="0" max="50" placeholder="Inserisci la lunghezza massima (0-50 km)">
+                            @endif                        
                         <span class="invalid-input" id="invalid_lunghezza"></span>
                     </div>
                     <div class="form-group">
                         <label for="dislivello">Dislivello massimo (m)</label>
-                        <input class="form-control" onkeyup="rimuovi_stile(this)" onmouseover="rimuovi_stile(this)" type="number" id="dislivello" name="dislivello" min="0" max="10000" placeholder="Inserisci il displivello massimo (0-10000 m)">
+                            @if(!empty($dislivello_massimo))
+                                @if($dislivello_massimo!="")
+                                    <input value="{{$dislivello_massimo}}" class="form-control" onkeyup="rimuovi_stile(this)" onmouseover="rimuovi_stile(this)" type="number" id="dislivello" name="dislivello" min="0" max="10000" placeholder="Inserisci il displivello massimo (0-10000 m)">
+                                @else
+                                    <input class="form-control" onkeyup="rimuovi_stile(this)" onmouseover="rimuovi_stile(this)" type="number" id="dislivello" name="dislivello" min="0" max="10000" placeholder="Inserisci il displivello massimo (0-10000 m)">
+                                @endif
+                            @else
+                                <input class="form-control" onkeyup="rimuovi_stile(this)" onmouseover="rimuovi_stile(this)" type="number" id="dislivello" name="dislivello" min="0" max="10000" placeholder="Inserisci il displivello massimo (0-10000 m)">
+                            @endif                        
+                        
                         <span class="invalid-input" id="invalid_dislivello"></span>
                     </div>
                     <div class="form-group">
                         <label for="durata">Durata massima</label>
-                        <input class="form-control" onkeyup="rimuovi_stile(this)" onmouseover="rimuovi_stile(this)" type="number" pattern="^\d*(\.\d{0,2})?$" id="durata" name="durata" placeholder="Inserisci la durata massima (espressa in ore)">
+                            @if(!empty($durata_massima))
+                                @if($durata_massima!="")
+                                    <input value="{{$durata_massima}}" class="form-control" onkeyup="rimuovi_stile(this)" onmouseover="rimuovi_stile(this)" type="number" pattern="^\d*(\.\d{0,2})?$" id="durata" name="durata" placeholder="Inserisci la durata massima (espressa in ore)">
+                                @else
+                                    <input class="form-control" onkeyup="rimuovi_stile(this)" onmouseover="rimuovi_stile(this)" type="number" pattern="^\d*(\.\d{0,2})?$" id="durata" name="durata" placeholder="Inserisci la durata massima (espressa in ore)">
+                                @endif
+                            @else
+                                <input class="form-control" onkeyup="rimuovi_stile(this)" onmouseover="rimuovi_stile(this)" type="number" pattern="^\d*(\.\d{0,2})?$" id="durata" name="durata" placeholder="Inserisci la durata massima (espressa in ore)">
+                            @endif                         
+                        
                         <span class="invalid-input" id="invalid_durata"></span>
                     </div>
                 </form>
