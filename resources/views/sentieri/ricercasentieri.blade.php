@@ -232,37 +232,41 @@
             
             
             <div class="paginadx col-md-7 col-s-7 col-m-pull-5">
-                @foreach ($sentieri as $key => $sentiero)
-                <div class="carta2">
-                    <div class="carta2-img">
-                        @if($immagini[$key]==null)
-                        <img class="carta2-immagine-test" src="{{ url('/') }}/img/foto1.jpg">
-                        @else
-                        <img class="carta2-immagine-test" src="{{$immagini[$key]}}">
-                        @endif
-                        <div class="carta2-middle">
-                            <a href="{{route('sentiero.show',['sentiero'=>$sentiero->id])}}">Leggi di più</a>
-                        </div>
-                    </div>
-                    <div class="carta2-content">
-                        <h5 class="carta2-title">{{ $sentiero->titolo }}</h5>
-                        <div class="carta2-info">
-                            <div class="carta2-panel-sx">
-                                <div class="carta2-stats"><span class="material-icons">report</span>   {{ $sentiero->difficolta->descrizione }}</div>
-                                <div class="carta2-stats"><span class="material-icons">landscape</span>   {{ $sentiero->categoria->nome }}</div>
-                                <div class="carta2-stats"><span class="material-icons">location_city</span>   {{ $sentiero->citta->nome }}</div>
+                @if(count($sentieri)==0)
+                <h3>Non sono stati trovati sentieri con questi criteri di ricerca</h3>
+                @else
+                    @foreach ($sentieri as $key => $sentiero)
+                    <div class="carta2">
+                        <div class="carta2-img">
+                            @if($immagini[$key]==null)
+                            <img class="carta2-immagine-test" src="{{ url('/') }}/img/foto1.jpg">
+                            @else
+                            <img class="carta2-immagine-test" src="{{$immagini[$key]}}">
+                            @endif
+                            <div class="carta2-middle">
+                                <a href="{{route('sentiero.show',['sentiero'=>$sentiero->id])}}">Leggi di più</a>
                             </div>
-                            <div class="carta2-panel-dx">
-                                <div class="carta2-stats"><span class="material-icons">chat</span>   {{$dati_sentieri[$key]->partecipanti}} commenti</div>
-                                <div class="carta2-stats"><span class="material-icons">star</span>   {{$dati_sentieri[$key]->mediavoti}}/10</div>
-                                <div class="carta2-stats"><span class="material-icons">history</span>   {{ $sentiero->durata }} ore</div>
+                        </div>
+                        <div class="carta2-content">
+                            <h5 class="carta2-title">{{ $sentiero->titolo }}</h5>
+                            <div class="carta2-info">
+                                <div class="carta2-panel-sx">
+                                    <div class="carta2-stats"><span class="material-icons">report</span>   {{ $sentiero->difficolta->descrizione }}</div>
+                                    <div class="carta2-stats"><span class="material-icons">landscape</span>   {{ $sentiero->categoria->nome }}</div>
+                                    <div class="carta2-stats"><span class="material-icons">location_city</span>   {{ $sentiero->citta->nome }}</div>
+                                </div>
+                                <div class="carta2-panel-dx">
+                                    <div class="carta2-stats"><span class="material-icons">chat</span>   {{$dati_sentieri[$key]->partecipanti}} commenti</div>
+                                    <div class="carta2-stats"><span class="material-icons">star</span>   {{$dati_sentieri[$key]->mediavoti}}/10</div>
+                                    <div class="carta2-stats"><span class="material-icons">history</span>   {{ $sentiero->durata }} ore</div>
 
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-                @endforeach
-                {{ $sentieri->links() }}
+                    @endforeach
+                    {{ $sentieri->links() }}
+                @endif
             </div>
         </div>    
     
