@@ -37,9 +37,14 @@
 
 @section('corpo')
 @if ($errore)
-<h1>Messaggio di errore</h1>
-@else
-<h1>Nessun messaggio di errore</h1>
+<div class="container">
+    <div class="col-md-6 col-md-offset-3">
+        <div class="warning-banner">
+            <i class="fa fa-exclamation-triangle warning-icon"></i>
+            <h3 class="warning-text">Per vedere la pagina desiderata devi accedere</h3>
+        </div>
+    </div>
+</div>
 @endif
 <div class="container" onclick="close_popup()">
             <div class="row" style="margin-top: 4em;"> <!-- unica riga--> <!-- margin top lo sposta in basso -->
@@ -312,11 +317,11 @@
             </div>
         </div>
         </div>
-    
+
     </div>
 <div class="container" style="margin-top: 4em;">
     <h1></h1>
-</div> 
+</div>
  <script>
 // When the user clicks on div, open the popup
 function myFunction() {

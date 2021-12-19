@@ -763,3 +763,25 @@ html, body, #map, #elevation-div { height: 100%; width: 100%; padding: 0; margin
     color: #5bc0de !important;
     text-decoration: none;
 }
+
+.warning-banner{
+    float: left;
+    display: flex;
+    color: #e6b800;
+    text-align: center;
+    background-color: #ffffcc;
+    margin-top: 2em;
+    border: 1px solid #e6b800;
+    border-radius: 1em;
+    padding: 1em;
+    align-items: center;
+}
+
+.warning-icon{
+    font-size: xx-large !important;
+    margin-right: 5px;
+}
+
+.warning-text{
+    display: inline;
+}
