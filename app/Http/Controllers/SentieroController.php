@@ -514,21 +514,28 @@ class SentieroController extends Controller
             $user = $dl->getUserByID($user_id);
             //$sentieri = $dl->getAllSentieri();
             $sentieri = Sentiero::paginate(5);
+            $totale_risultati=count($dl->getAllSentieri());
             $dati_sentieri = $dl->fromSentieriToDatiSentieri($sentieri);
             $citta=$dl->getAllCitta();
             $categorie=$dl->getCategorie();
             $difficolta=$dl->getDifficolta();
             $count_revisioni = count($dl->getRevisioniDaRevisionare($user_id));
             $immagini=[];
-            foreach($sentieri as $key => $sentiero){
-                if ($dl->hasImages($sentiero->id)){
-                    $im=$dl->GetImagesOnlyValid($sentiero->id);
-                    $immagini[$key]=$im[0];
+            $partecipanti=[];
+            $media_voti=[];
+                foreach($sentieri as $key => $sentiero){
+                    if ($dl->hasImages($sentiero->id)){
+                        $im=$dl->GetImagesOnlyValid($sentiero->id);
+                        $immagini[$key]=$im[0];
+                    }
+                    else {
+                        $immagini[$key]=null;
+                    }
+
+                    $dati_sent = $dl->fromSentieroToDatiSentiero($sentiero);
+                    $partecipanti[$key]=$dati_sent->partecipanti;
+                    $media_voti[$key]=$dati_sent->mediavoti;
                 }
-                else {
-                    $immagini[$key]=null;
-                }
-            }
             
 
             return view('sentieri.ricercasentieri')->with('logged', true)
@@ -541,6 +548,9 @@ class SentieroController extends Controller
                             ->with('categorie', $categorie)
                             ->with('difficolta', $difficolta)
                             ->with('immagini', $immagini)
+                            ->with('totale_risultati', $totale_risultati)
+                            ->with('partecipanti', $partecipanti)
+                            ->with('media_voti', $media_voti)
                             ->with('dati_sentieri', $dati_sentieri);
 
     }
@@ -563,6 +573,15 @@ class SentieroController extends Controller
         
         $s = new Sentiero;
         $filtro = $s->newQuery();
+        
+        $titolo="";
+        $descrizione="";
+        $citta_valore="";
+        $difficolta_valore="";
+        $categoria_valore="";
+        $lunghezza_massima="";
+        $dislivello_massimo="";
+        $durata_massima="";
 
         if ($request->has('testo_titolo')) {
             $titolo = $request->input('testo_titolo');
@@ -576,31 +595,39 @@ class SentieroController extends Controller
             $citta = $request->input('citta');
             $citta_id=$dl->getCityID($citta);
             $filtro->where('citta_id', $citta_id);
+            $citta_valore=$citta;
         }
         if ($request->input('categoria')!="") {
             $filtro->where('categoria_id', $request->input('categoria'));
+            $categoria_valore=$request->input('categoria');
         }
         if ($request->input('difficolta')!="") {
             $filtro->where('difficolta_id', $request->input('difficolta')); 
+            $difficolta_valore=$request->input('difficolta');
         }
         if ($request->input('lunghezza')!= null) {
             $lunghezza = $request->input('lunghezza');
             $filtro->where('lunghezza', '<=', $lunghezza); 
+            $lunghezza_massima=$lunghezza;
         }
         if ($request->input('dislivello')!= null) {
             $dislivello = $request->input('dislivello');
             //$filtro->where(DB::raw("(altezza_massima - altezza_minima as dislivello)"), '<', $dislivello);
             $filtro->where('dislivello', '<=', $dislivello);
+            $dislivello_massimo=$dislivello;
         }
         if ($request->input('durata')!= null) {
             $durata = $request->input('durata');
             $filtro->where('durata', '<=', $durata);
+            $durata_massima=$durata;
         }
         
         
         
         
         $sentieri = $filtro->paginate(5);
+        $sentieri_tot = $filtro->paginate(1000);
+        
         if ($request->has('testo_titolo')) {
             $sentieri->appends('testo_titolo',request('testo_titolo'));
         }
@@ -626,8 +653,15 @@ class SentieroController extends Controller
             $sentieri->appends('durata',request('durata'));
         }
         //$sentieri = $filtro->get();
+        $sentieri_tot->appends('testo_titolo',request('testo_titolo'));
+        $sentieri_tot->appends('testo_descrizione',request('testo_descrizione'));
+        $sentieri_tot->appends('citta',request('citta'));
+        $sentieri_tot->appends('categoria',request('categoria'));
+        $sentieri_tot->appends('difficolta',request('difficolta'));
+        $sentieri_tot->appends('dislivello',request('dislivello'));
+        $sentieri_tot->appends('durata',request('durata'));
         
-        
+        $totale_risultati=count($sentieri_tot);
        
 
 
@@ -640,6 +674,8 @@ class SentieroController extends Controller
         $count_revisioni = count($dl->getRevisioniDaRevisionare($user_id));
         
         $immagini=[];
+        $partecipanti=[];
+        $media_voti=[];
             foreach($sentieri as $key => $sentiero){
                 if ($dl->hasImages($sentiero->id)){
                     $im=$dl->GetImagesOnlyValid($sentiero->id);
@@ -648,6 +684,10 @@ class SentieroController extends Controller
                 else {
                     $immagini[$key]=null;
                 }
+                
+                $dati_sent = $dl->fromSentieroToDatiSentiero($sentiero);
+                $partecipanti[$key]=$dati_sent->partecipanti;
+                $media_voti[$key]=$dati_sent->mediavoti;
             }
         
 //         $sentieri->withPath(view('sentieri.ricercasentieri')->with('logged', true)
@@ -670,7 +710,18 @@ class SentieroController extends Controller
                         ->with('categorie', $categorie)
                         ->with('difficolta', $difficolta)
                         ->with('immagini', $immagini)
-                        ->with('dati_sentieri', $dati_sentieri);
+                        ->with('dati_sentieri', $dati_sentieri)
+                        ->with('titolo', $titolo)
+                        ->with('descrizione', $descrizione)
+                        ->with('citta_valore', $citta_valore)
+                        ->with('difficolta_valore', $difficolta_valore)
+                        ->with('categoria_valore', $categoria_valore)
+                        ->with('lunghezza_massima', $lunghezza_massima)
+                        ->with('dislivello_massimo', $dislivello_massimo)
+                        ->with('durata_massima', $durata_massima)
+                        ->with('partecipanti', $partecipanti)
+                        ->with('media_voti', $media_voti)
+                        ->with('totale_risultati', $totale_risultati);
 
     }
     
