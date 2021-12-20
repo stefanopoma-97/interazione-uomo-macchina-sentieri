@@ -29,7 +29,7 @@
             <div id="div_filtro" class="paginasx col-md-5 col-s-5 col-m-push-7">
                 
                 <div class="row elementoSticky">
-                    <h2 class="text-center filtro">Filtro  <span onclick="hide_show_filtri()" class="glyphicon glyphicon glyphicon-filter"></span></h2>
+                    <h2 class="text-center filtro">Filtro  <span class="glyphicon glyphicon glyphicon-filter"></span></h2>
                     <form id="form_filtro" name="form_filtro" method="get" action="{{route('sentiero.ricercafiltra')}}">
 
                     @csrf
