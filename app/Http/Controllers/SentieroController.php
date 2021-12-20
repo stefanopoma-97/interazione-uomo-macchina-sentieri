@@ -618,6 +618,8 @@ class SentieroController extends Controller
         
         
         $sentieri = $filtro->paginate(5);
+        $sentieri_tot = $filtro->paginate(1000);
+        
         if ($request->has('testo_titolo')) {
             $sentieri->appends('testo_titolo',request('testo_titolo'));
         }
@@ -643,8 +645,15 @@ class SentieroController extends Controller
             $sentieri->appends('durata',request('durata'));
         }
         //$sentieri = $filtro->get();
+        $sentieri_tot->appends('testo_titolo',request('testo_titolo'));
+        $sentieri_tot->appends('testo_descrizione',request('testo_descrizione'));
+        $sentieri_tot->appends('citta',request('citta'));
+        $sentieri_tot->appends('categoria',request('categoria'));
+        $sentieri_tot->appends('difficolta',request('difficolta'));
+        $sentieri_tot->appends('dislivello',request('dislivello'));
+        $sentieri_tot->appends('durata',request('durata'));
         
-        $totale_risultati=count($sentieri);
+        $totale_risultati=count($sentieri_tot);
        
 
 

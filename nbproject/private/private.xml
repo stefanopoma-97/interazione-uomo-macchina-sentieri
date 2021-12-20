@@ -3,8 +3,12 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/lmaes/gitInterazione/interazione-uomo-macchina-sentieri/resources/views/sentieri/ricercasentieri.blade.php</file>
-            <file>file:/C:/Users/lmaes/gitInterazione/interazione-uomo-macchina-sentieri/public/css/mio_stile.css</file>
+            <file>file:/C:/stefano/Universita/Anno%205/Interazione%20uomo%20macchina/interazione-uomo-macchina-sentieri/resources/views/sentieri/ricercasentieri.blade.php</file>
+            <file>file:/C:/stefano/Universita/Anno%205/Interazione%20uomo%20macchina/interazione-uomo-macchina-sentieri/public/css/mio_stile.css</file>
+            <file>file:/C:/stefano/Universita/Anno%205/Interazione%20uomo%20macchina/interazione-uomo-macchina-sentieri/app/Http/Controllers/SentieroController.php</file>
+            <file>file:/C:/stefano/Universita/Anno%205/Interazione%20uomo%20macchina/interazione-uomo-macchina-sentieri/public/css/bootstrap.css</file>
+            <file>file:/C:/stefano/Universita/Anno%205/Interazione%20uomo%20macchina/interazione-uomo-macchina-sentieri/routes/web.php</file>
+            <file>file:/C:/stefano/Universita/Anno%205/Interazione%20uomo%20macchina/interazione-uomo-macchina-sentieri/resources/views/layouts/master2.blade.php</file>
         </group>
     </open-files>
 </project-private>
