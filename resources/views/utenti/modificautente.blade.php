@@ -23,10 +23,8 @@
 
 @section('corpo')
 
-
-
-
 <div class="container pt-5" style="margin-top: 5em;" onclick="close_popup()">
+
     <div class="row">
         <div style="margin-bottom: 2em;" hidden="" class="col-md-12 alert alert-danger">
             <ul id="ul_errori">
@@ -153,7 +151,11 @@
 
 
                 <div class="form-group row">
-                    <a href="{{route('user.edit.password',['id'=> $user->id])}}">Modifica password</a>
+                    <div class="col-sm-10 col-sm-offset-2">
+                        <a role="button" class="btn btn-primary" href="{{route('user.edit.password',['id'=> $user->id])}}">
+                            Modifica password
+                        </a>
+                    </div>
                 </div>
 
                 <div class="form-group">
