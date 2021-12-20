@@ -521,15 +521,21 @@ class SentieroController extends Controller
             $difficolta=$dl->getDifficolta();
             $count_revisioni = count($dl->getRevisioniDaRevisionare($user_id));
             $immagini=[];
-            foreach($sentieri as $key => $sentiero){
-                if ($dl->hasImages($sentiero->id)){
-                    $im=$dl->GetImagesOnlyValid($sentiero->id);
-                    $immagini[$key]=$im[0];
+            $partecipanti=[];
+            $media_voti=[];
+                foreach($sentieri as $key => $sentiero){
+                    if ($dl->hasImages($sentiero->id)){
+                        $im=$dl->GetImagesOnlyValid($sentiero->id);
+                        $immagini[$key]=$im[0];
+                    }
+                    else {
+                        $immagini[$key]=null;
+                    }
+
+                    $dati_sent = $dl->fromSentieroToDatiSentiero($sentiero);
+                    $partecipanti[$key]=$dati_sent->partecipanti;
+                    $media_voti[$key]=$dati_sent->mediavoti;
                 }
-                else {
-                    $immagini[$key]=null;
-                }
-            }
             
 
             return view('sentieri.ricercasentieri')->with('logged', true)
@@ -543,6 +549,8 @@ class SentieroController extends Controller
                             ->with('difficolta', $difficolta)
                             ->with('immagini', $immagini)
                             ->with('totale_risultati', $totale_risultati)
+                            ->with('partecipanti', $partecipanti)
+                            ->with('media_voti', $media_voti)
                             ->with('dati_sentieri', $dati_sentieri);
 
     }
@@ -666,6 +674,8 @@ class SentieroController extends Controller
         $count_revisioni = count($dl->getRevisioniDaRevisionare($user_id));
         
         $immagini=[];
+        $partecipanti=[];
+        $media_voti=[];
             foreach($sentieri as $key => $sentiero){
                 if ($dl->hasImages($sentiero->id)){
                     $im=$dl->GetImagesOnlyValid($sentiero->id);
@@ -674,6 +684,10 @@ class SentieroController extends Controller
                 else {
                     $immagini[$key]=null;
                 }
+                
+                $dati_sent = $dl->fromSentieroToDatiSentiero($sentiero);
+                $partecipanti[$key]=$dati_sent->partecipanti;
+                $media_voti[$key]=$dati_sent->mediavoti;
             }
         
 //         $sentieri->withPath(view('sentieri.ricercasentieri')->with('logged', true)
@@ -705,6 +719,8 @@ class SentieroController extends Controller
                         ->with('lunghezza_massima', $lunghezza_massima)
                         ->with('dislivello_massimo', $dislivello_massimo)
                         ->with('durata_massima', $durata_massima)
+                        ->with('partecipanti', $partecipanti)
+                        ->with('media_voti', $media_voti)
                         ->with('totale_risultati', $totale_risultati);
 
     }

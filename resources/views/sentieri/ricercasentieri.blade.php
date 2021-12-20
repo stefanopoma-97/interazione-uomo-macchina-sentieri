@@ -231,7 +231,7 @@
             </div>
             
             <div class="col-md-7 col-s-7 col-m-pull-5 ">
-                <h4 class="text-right">{{$totale_risultati}} risultati trovati</h4>
+                <h4 class="text-right">{{$sentieri->total()}} risultati trovati</h4>
             </div>
             <div class="paginadx col-md-7 col-s-7 col-m-pull-5">
                 @if(count($sentieri)==0)
@@ -260,8 +260,8 @@
                                     <div class="carta2-stats"><span class="material-icons">location_city</span>   {{ $sentiero->citta->nome }}</div>
                                 </div>
                                 <div class="carta2-panel-dx">
-                                    <div class="carta2-stats"><span class="material-icons">chat</span>   {{$dati_sentieri[$key]->partecipanti}} commenti</div>
-                                    <div class="carta2-stats"><span class="material-icons">star</span>   {{$dati_sentieri[$key]->mediavoti}}/10</div>
+                                    <div class="carta2-stats"><span class="material-icons">chat</span>   {{$partecipanti[$key]}} commenti</div>
+                                    <div class="carta2-stats"><span class="material-icons">star</span>   {{$media_voti[$key]}}/10</div>
                                     <div class="carta2-stats"><span class="material-icons">history</span>   {{ $sentiero->durata }} ore</div>
 
                                 </div>
