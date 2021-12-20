@@ -33,9 +33,9 @@
                         <button class="btn" onclick="location.href='{{ route('user.edit', ['id'=> $user_id]) }}'">Modifica  <span class="glyphicon glyphicon glyphicon-cog"></span></button>
                     </div>
                 </div>
-                
+
                 <div align="center" class="col-md-8 col-md-offset-3 col-sm-12" style="margin-bottom: 3em">
-                        
+
                         <div >
                             @if ($user_dettagli->id == $user_id)
                             <br>
@@ -60,8 +60,8 @@
                                             <label for="mySubmit" class="btn btn-primary btn-large btn-info"><span class="glyphicon glyphicon-floppy-save"></span> Carica</label>
                                             <input onclick="event.preventDefault(); load_file(this); " id="mySubmit" type="submit" value="save" class="hidden"/>
 
-                                        </div>  
-                                        
+                                        </div>
+
                                         <div class="col-sm-2">
                                             @if($url!="http://127.0.0.1:8000/storage/fotoprofilo/default" )
                                             <button  type="button" class="btn btn-outline-danger" data-toggle="modal" data-target="#modalFormRimuoviFoto"> Rimuovi immagine</button>
@@ -71,7 +71,7 @@
                                         </div>
 
 
-                                    </div> 
+                                    </div>
 
                                     <div class="form-group">
 
@@ -79,11 +79,11 @@
                                 </form>
                                 @endif
                         </div>
-                        
-                        
+
+
                     </div>
-                    
-                    
+
+
 
 
 
@@ -110,8 +110,8 @@
 
                         <li class="list-group-item all_text"><q>"{{$user_dettagli->descrizione}}"</q></li>
                     </ul>
-                       
-                    
+
+
                     </div>
                 </div>
 
@@ -215,7 +215,7 @@
                   <li style="height: 80px" class="list-group-item"><q>{{ $esperienza->sentiero->descrizione }}</q></li>
                   <li class="list-group-item ">Difficoltà:   {{ $esperienza->difficolta}}</li>
                   <li class="list-group-item ">Voto:   {{ $esperienza->voto }}</li>
-                  <li class="list-group-item "><a class="btn btn-info btn-block btn-round-bottom" href="{{route('sentiero.show',['sentiero'=>$sentiero->id])}}" role="button">Dettagli</a></li>
+                  <li class="list-group-item "><a class="btn btn-info btn-block btn-round-bottom" href="{{route('sentiero.show',['sentiero'=>$sentiero->id])}}" role="button">Dettagli sentiero</a></li>
               </ul>
           </div>
 
