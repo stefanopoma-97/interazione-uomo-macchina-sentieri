@@ -23,6 +23,14 @@
  <!-- tabella utenti-->
         <div class="container" style="margin-top: 3em;">
             <div class="row">
+                <div class="col-md-10 col-md-offset-1" style="margin-bottom: 2em">
+                    <button class="btn btn-primary" onclick="location.href='{{ route('sentiero.create') }}'">
+                        <span class="fa fa-plus"></span> Nuovo Sentiero
+                    </button>
+                </div>
+            </div>
+
+            <div class="row">
                 <div hidden="" class="col-md-offset-10 col-xs-6">
                     <p>
                         <a class="btn btn-success" href="{{ route('sentiero.create') }}"><span class="glyphicon glyphicon-new-window"></span> Nuovo</a>
@@ -61,11 +69,11 @@
                             @endforeach
 
                         </tbody>
-                        <tr>
+                        <?php /*<tr>
                             <td colspan="4">
                                 <button class="btn" onclick="location.href='{{ route('sentiero.create') }}'"><i class="fa fa-plus"></i> Nuovo</button>
                             </td>
-                        </tr>
+                        </tr>*/ ?>
 
                     </table>
                 </div>
