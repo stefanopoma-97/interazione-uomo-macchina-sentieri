@@ -24,12 +24,24 @@
                             <div class='panel-heading'>
                                 Errore di autenticazione
                             </div>
-                            <div class='panel-body'>
-                                <p>Le credenziali che hai inserito sono sbagliate</p>
-                                <br>
-                                <p><a class="btn btn-riprova" href="{{ route('user.auth.login') }}"><span class='glyphicon glyphicon-log-in'></span> Riprova</a>
-                                <a class="btn btn-default" href="{{ route('home') }}"><span class='glyphicon glyphicon-log-out'></span> Torna alla Home</a></p>
-                                <!--<p><a href="{{route('user.edit.recuperopassword.login')}}">Password dimenticata?</a></p>-->
+                            <div class='panel-body container'>
+                                <div class="row err-description">
+                                    Le credenziali che hai inserito sono sbagliate
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <a class="btn btn-riprova" href="{{ route('user.auth.login') }}">
+                                            <span class='glyphicon glyphicon-log-in'></span> Riprova
+                                        </a>
+                                    </div>
+
+                                    <div class="col-md-6">
+                                        <a class="btn btn-default" href="{{ route('home') }}">
+                                            <span class='glyphicon glyphicon-log-out'></span> Torna alla Home
+                                        </a>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
