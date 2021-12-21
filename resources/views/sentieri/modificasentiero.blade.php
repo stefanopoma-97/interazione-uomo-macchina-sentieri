@@ -58,9 +58,9 @@
                     <label for="titolo" class="col-md-2">Titolo</label>
                     <div class="col-sm-10">
                         @if(isset($sentiero->id))
-                        <input onkeyup="rimuovi_stile(this)" onmouseover="rimuovi_stile(this)" maxlength="100" class="form-control" type="text" id="titolo" name="titolo" placeholder="Titolo" required="True" value="{{$sentiero->titolo}}">
+                        <input onkeyup="rimuovi_stile(this)" onmouseover="rimuovi_stile(this)" maxlength="100" class="form-control" type="text" id="titolo" name="titolo" placeholder="Inserisci il titolo del sentiero" required="True" value="{{$sentiero->titolo}}">
                         @else
-                        <input onkeyup="rimuovi_stile(this)" onmouseover="rimuovi_stile(this)" maxlength="100" class="form-control" type="text" id="titolo" name="titolo" placeholder="Titolo" required="True" value="">
+                        <input onkeyup="rimuovi_stile(this)" onmouseover="rimuovi_stile(this)" maxlength="100" class="form-control" type="text" id="titolo" name="titolo" placeholder="Inserisci il titolo del sentiero" required="True" value="">
                         @endif
                     </div>
                 </div>
@@ -69,9 +69,9 @@
                     <label for="durata" class="col-md-2">Durata</label>
                     <div class="col-sm-10">
                         @if(isset($sentiero->id))
-                        <input onkeyup="rimuovi_stile(this)" onmouseover="rimuovi_stile(this)" class="form-control" type="number" pattern="^\d*(\.\d{0,2})?$" id="durata" required="True" name="durata" placeholder="Durata" value="{{$sentiero->durata}}">
+                        <input onkeyup="rimuovi_stile(this)" onmouseover="rimuovi_stile(this)" class="form-control" type="number" pattern="^\d*(\.\d{0,2})?$" id="durata" required="True" name="durata" placeholder="Inserisci la durata dell'itinerario (ore)" value="{{$sentiero->durata}}">
                         @else
-                        <input onkeyup="rimuovi_stile(this)" onmouseover="rimuovi_stile(this)" maxlength="32" class="form-control" type="number" pattern="^\d*(\.\d{0,2})?$" id="durata" required="True" name="durata" placeholder="Durata">
+                        <input onkeyup="rimuovi_stile(this)" onmouseover="rimuovi_stile(this)" maxlength="32" class="form-control" type="number" pattern="^\d*(\.\d{0,2})?$" id="durata" required="True" name="durata" placeholder="Inserisci la durata dell'itinerario (ore)">
                         @endif
                     </div>
                 </div>
@@ -80,9 +80,9 @@
                     <label for="descrizione" class="col-md-2">Descrizione</label>
                     <div class="col-sm-10">
                         @if(isset($sentiero->id))
-                        <textarea onkeyup="rimuovi_stile(this)" onmouseover="rimuovi_stile(this)" class="form-control" name="descrizione" id="descrizione" required="True" rows="10" placeholder="Descrizione">{{$sentiero->descrizione}}</textarea>
+                        <textarea onkeyup="rimuovi_stile(this)" onmouseover="rimuovi_stile(this)" class="form-control" name="descrizione" id="descrizione" required="True" rows="10" placeholder="Inserisci la descrizione del sentiero">{{$sentiero->descrizione}}</textarea>
                         @else
-                        <textarea onkeyup="rimuovi_stile(this)" onmouseover="rimuovi_stile(this)" class="form-control" name="descrizione" id="descrizione" required="True" rows="10" placeholder="Descrizione"></textarea>
+                        <textarea onkeyup="rimuovi_stile(this)" onmouseover="rimuovi_stile(this)" class="form-control" name="descrizione" id="descrizione" required="True" rows="10" placeholder="Inserisci la descrizione del sentiero"></textarea>
                         @endif
                     </div>
                 </div>
@@ -91,9 +91,9 @@
                     <label for="lunghezza" class="col-sm-2 col-form-label">Lunghezza (km)</label>
                     <div class="col-sm-10">
                         @if(isset($sentiero->id))
-                        <input onkeyup="rimuovi_stile(this)" onmouseover="rimuovi_stile(this)"  type="number" min="1.0" max="999.0" step="0.1" pattern="/^\d+(?:\.\d{1,2})?$/" class="form-control" id="lunghezza" required="True" name="lunghezza" placeholder="Lunghezza" value="{{$sentiero->lunghezza}}">
+                        <input onkeyup="rimuovi_stile(this)" onmouseover="rimuovi_stile(this)"  type="number" min="1.0" max="999.0" step="0.1" pattern="/^\d+(?:\.\d{1,2})?$/" class="form-control" id="lunghezza" required="True" name="lunghezza" placeholder="Inserisci la lunghezza (Km)" value="{{$sentiero->lunghezza}}">
                         @else
-                        <input onkeyup="rimuovi_stile(this)" onmouseover="rimuovi_stile(this)"  type="number" min="1.0" max="999.0" step="0.1" pattern="/^\d+(?:\.\d{1,2})?$/" class="form-control" id="lunghezza" required="True" name="lunghezza" placeholder="Lunghezza">
+                        <input onkeyup="rimuovi_stile(this)" onmouseover="rimuovi_stile(this)"  type="number" min="1.0" max="999.0" step="0.1" pattern="/^\d+(?:\.\d{1,2})?$/" class="form-control" id="lunghezza" required="True" name="lunghezza" placeholder="Inserisci la lunghezza (Km)">
                         @endif
                     </div>
                 </div>
@@ -102,9 +102,9 @@
                     <label for="salita" class="col-sm-2 col-form-label">Salita</label>
                     <div class="col-sm-10">
                         @if(isset($sentiero->id))
-                        <input onkeyup="rimuovi_stile(this)" onmouseover="rimuovi_stile(this)" maxlength="5" type="number" min="1" max="10000" class="form-control" name="salita" required="True" id="salita" placeholder="Salita" value="{{$sentiero->salita}}">
+                        <input onkeyup="rimuovi_stile(this)" onmouseover="rimuovi_stile(this)" maxlength="5" type="number" min="1" max="10000" class="form-control" name="salita" required="True" id="salita" placeholder="Inserisci i metri di salita complessiva (m)" value="{{$sentiero->salita}}">
                         @else
-                        <input onkeyup="rimuovi_stile(this)" onmouseover="rimuovi_stile(this)" maxlength="5" type="number" min="1" max="10000" class="form-control" name="salita" required="True" id="salita" placeholder="Salita">
+                        <input onkeyup="rimuovi_stile(this)" onmouseover="rimuovi_stile(this)" maxlength="5" type="number" min="1" max="10000" class="form-control" name="salita" required="True" id="salita" placeholder="Inserisci i metri di salita complessiva (m)">
                         @endif
                     </div>
                 </div>
@@ -113,9 +113,9 @@
                     <label for="discesa" class="col-sm-2 col-form-label">Discesa</label>
                     <div class="col-sm-10">
                         @if(isset($sentiero->id))
-                        <input onkeyup="rimuovi_stile(this)" onmouseover="rimuovi_stile(this)" maxlength="5" type="number" min="1" max="10000" class="form-control" name="discesa" required="True" id="discesa" placeholder="Discesa" value="{{$sentiero->salita}}">
+                        <input onkeyup="rimuovi_stile(this)" onmouseover="rimuovi_stile(this)" maxlength="5" type="number" min="1" max="10000" class="form-control" name="discesa" required="True" id="discesa" placeholder="Inserisci i metri di discesa complessiva (m)" value="{{$sentiero->salita}}">
                         @else
-                        <input onkeyup="rimuovi_stile(this)" onmouseover="rimuovi_stile(this)" maxlength="5" type="number" min="1" max="10000" class="form-control" name="discesa" required="True" id="discesa" placeholder="Discesa">
+                        <input onkeyup="rimuovi_stile(this)" onmouseover="rimuovi_stile(this)" maxlength="5" type="number" min="1" max="10000" class="form-control" name="discesa" required="True" id="discesa" placeholder="Inserisci i metri di discesa complessiva (m)">
                         @endif
                     </div>
 
@@ -125,9 +125,9 @@
                     <label for="altezza_massima" class="col-sm-2 col-form-label">Altezza Massima</label>
                     <div class="col-sm-10">
                         @if(isset($sentiero->id))
-                        <input onkeyup="rimuovi_stile(this)" onmouseover="rimuovi_stile(this)" maxlength="5" type="number" min="1" max="10000" class="form-control" name="altezza_massima" required="True" id="altezza_massima" placeholder="Altezza massima" value="{{$sentiero->altezza_massima}}">
+                        <input onkeyup="rimuovi_stile(this)" onmouseover="rimuovi_stile(this)" maxlength="5" type="number" min="1" max="10000" class="form-control" name="altezza_massima" required="True" id="altezza_massima" placeholder="Inserisci l'altezza massima raggiunta (m)" value="{{$sentiero->altezza_massima}}">
                         @else
-                        <input onkeyup="rimuovi_stile(this)" onmouseover="rimuovi_stile(this)" maxlength="5" type="number" min="1" max="10000" class="form-control" name="altezza_massima" required="True" id="altezza_massima" placeholder="Altezza massima">
+                        <input onkeyup="rimuovi_stile(this)" onmouseover="rimuovi_stile(this)" maxlength="5" type="number" min="1" max="10000" class="form-control" name="altezza_massima" required="True" id="altezza_massima" placeholder="Inserisci l'altezza massima raggiunta (m)">
                         @endif
                     </div>
                 </div>
@@ -136,9 +136,9 @@
                    <label for="altezza_minima" class="col-sm-2 col-form-label">Altezza Minima</label>
                     <div class="col-sm-10">
                         @if(isset($sentiero->id))
-                        <input onkeyup="rimuovi_stile(this)" onmouseover="rimuovi_stile(this)" maxlength="5" type="number" min="1" max="10000" class="form-control" name="altezza_minima" required="True" id="altezza_minima" placeholder="Altezza minima" value="{{$sentiero->altezza_massima}}">
+                        <input onkeyup="rimuovi_stile(this)" onmouseover="rimuovi_stile(this)" maxlength="5" type="number" min="1" max="10000" class="form-control" name="altezza_minima" required="True" id="altezza_minima" placeholder="Inserisci l'altezza minima (m)" value="{{$sentiero->altezza_massima}}">
                         @else
-                        <input onkeyup="rimuovi_stile(this)" onmouseover="rimuovi_stile(this)" maxlength="5" type="number" min="1" max="10000" class="form-control" name="altezza_minima" required="True" id="altezza_minima" placeholder="Altezza minima">
+                        <input onkeyup="rimuovi_stile(this)" onmouseover="rimuovi_stile(this)" maxlength="5" type="number" min="1" max="10000" class="form-control" name="altezza_minima" required="True" id="altezza_minima" placeholder="Inserisci l'altezza minima (m)">
                         @endif
                     </div>
                 </div>
@@ -146,19 +146,24 @@
                 <div class="form-group row">
                     <label for="difficolta" class="col-sm-2 col-form-label">Difficoltà</label>
                     <div class="col-sm-10">
-                        <select onkeyup="rimuovi_stile(this)" onmouseover="rimuovi_stile(this)" class="form-control" id="difficolta" name="difficolta" >
+                        <select onkeyup="rimuovi_stile(this)" onmouseover="rimuovi_stile(this)" class="form-control" id="difficolta" name="difficolta" placeholder="Inserisci il livello di difficoltà" >
+
                             @foreach ($difficolta as $c)
                                 @if(isset($sentiero->id))
                                     @if($c->id == $sentiero->difficolta->id)
-                                        <option value="{{$c->id}}" selected="selected">{{$c->nome}}</option>
+                                        <option value="{{$c->id}}" selected="selected">{{$c->nome}}: {{$c->descrizione}}</option>
                                     @else
-                                        <option value="{{$c->id}}">{{$c->nome}}</option>
+                                        <option value="{{$c->id}}">{{$c->nome}}: {{$c->descrizione}}</option>
                                     @endif
                                 @else
-                                    <option value="{{$c->id}}">{{$c->nome}}</option>
+                                    <option value="{{$c->id}}">{{$c->nome}}: {{$c->descrizione}}</option>
                                 @endif
 
                             @endforeach
+                            @if(isset($sentiero->id))
+                            @else
+                            <option value="" disabled selected hidden>Inserisci il livello di difficoltà</option>
+                            @endif
                         </select>
                     </div>
                 </div>
@@ -179,6 +184,10 @@
                                 @endif
 
                             @endforeach
+                            @if(isset($sentiero->id))
+                            @else
+                            <option value="" disabled selected hidden>Inserisci la categoria del sentiero</option>
+                            @endif
                         </select>
                     </div>
                 </div>
@@ -187,9 +196,9 @@
                     <label for="citta" class="col-sm-2 col-form-label">Città</label>
                     <div class="col-sm-10">
                         @if(isset($sentiero->id))
-                        <input onkeyup="rimuovi_stile(this)" onmouseover="rimuovi_stile(this)" required="" type="text" class="form-control" id="citta" name="citta" value="{{$sentiero->citta->nome}}" placeholder="Città" list="lista_citta">
+                        <input onkeyup="rimuovi_stile(this)" onmouseover="rimuovi_stile(this)" required="" type="text" class="form-control" id="citta" name="citta" value="{{$sentiero->citta->nome}}" placeholder="Inserisci la città dove si trova il sentiero" list="lista_citta">
                         @else
-                        <input onkeyup="rimuovi_stile(this)" onmouseover="rimuovi_stile(this)" required="" type="text" class="form-control" id="citta" name="citta" value="" placeholder="Città" list="lista_citta">
+                        <input onkeyup="rimuovi_stile(this)" onmouseover="rimuovi_stile(this)" required="" type="text" class="form-control" id="citta" name="citta" value="" placeholder="Inserisci la città dove si trova il sentiero" list="lista_citta">
                         @endif
 
                         <datalist id="lista_citta">
