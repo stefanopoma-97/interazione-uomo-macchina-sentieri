@@ -63,7 +63,7 @@ function login2(button){
         //$('#ul_errori').parent().show();
         $('#ul_errori').append(li);
     }
-    if (password === ""){
+    else if (password === ""){
         errori=true;
         button.form.password.focus();
         $(button.form.password).css('border-color','red');

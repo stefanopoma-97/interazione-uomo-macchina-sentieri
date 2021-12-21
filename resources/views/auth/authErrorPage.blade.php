@@ -26,6 +26,7 @@
                             </div>
                             <div class='panel-body'>
                                 <p>Le credenziali che hai inserito sono sbagliate</p>
+                                <br>
                                 <p><a class="btn btn-riprova" href="{{ route('user.auth.login') }}"><span class='glyphicon glyphicon-log-in'></span> Riprova</a>
                                 <a class="btn btn-default" href="{{ route('home') }}"><span class='glyphicon glyphicon-log-out'></span> Torna alla Home</a></p>
                                 <!--<p><a href="{{route('user.edit.recuperopassword.login')}}">Password dimenticata?</a></p>-->
