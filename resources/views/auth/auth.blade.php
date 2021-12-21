@@ -95,7 +95,7 @@
                                             </div>
 
                                             <div class="col-sm-9">
-                                                <input onkeyup="rimuovi_stile(this)" onmouseover="rimuovi_stile(this)" required="" maxlength="32" type="text" name="username" class="form-control" placeholder="Username" value="">
+                                                <input onkeyup="rimuovi_stile(this)" onmouseover="rimuovi_stile(this)" required="" maxlength="32" type="text" name="username" class="form-control" placeholder="Inserisci il tuo Username" value="">
                                             </div>
 
                                         @else
@@ -109,7 +109,7 @@
                                         </div>
 
                                         <div class="col-sm-9">
-                                            <input onkeyup="rimuovi_stile(this)" onmouseover="rimuovi_stile(this)" required="" maxlength="32" type="text" name="username" class="form-control" placeholder="Username" value="{{$username}}">
+                                            <input onkeyup="rimuovi_stile(this)" onmouseover="rimuovi_stile(this)" required="" maxlength="32" type="text" name="username" class="form-control" placeholder="Inserisci il tuo Username" value="{{$username}}">
                                         </div>
 
                                         @endif
@@ -126,7 +126,7 @@
                                         </div>
 
                                         <div class="col-sm-9">
-                                            <input onkeyup="rimuovi_stile(this)" onmouseover="rimuovi_stile(this)" required="" maxlength="100" type="password" name="password" class="form-control" placeholder="Password">
+                                            <input onkeyup="rimuovi_stile(this)" onmouseover="rimuovi_stile(this)" required="" maxlength="100" type="password" name="password" class="form-control" placeholder="Il serisci la tua password">
                                         </div>
 
                                     </div><!-- type password non fa capire cosa si sta inserendo-->
@@ -166,7 +166,7 @@
                                         </div>
 
                                         <div class="col-sm-9">
-                                            <input onkeyup="rimuovi_stile(this)" onmouseover="rimuovi_stile(this)" required="" maxlength="32" type="text" name="username" class="form-control" placeholder="Username" value="">
+                                            <input onkeyup="rimuovi_stile(this)" onmouseover="rimuovi_stile(this)" required="" maxlength="32" type="text" name="username" class="form-control" placeholder="Inserisci il tuo Username" value="">
                                             <span class="invalid-input" id="invalid-username"></span>
                                         </div>
                                     </div>
@@ -181,7 +181,7 @@
                                         </div>
 
                                         <div class="col-sm-9">
-                                            <input onkeyup="rimuovi_stile(this)" onmouseover="rimuovi_stile(this)" required="" maxlength="32" type="text" name="nome" class="form-control" placeholder="Nome" value="">
+                                            <input onkeyup="rimuovi_stile(this)" onmouseover="rimuovi_stile(this)" required="" maxlength="32" type="text" name="nome" class="form-control" placeholder="Inserisci il tuo nome" value="">
                                             <span class="invalid-input" id="invalid-nome"></span>
                                         </div>
                                     </div>
@@ -196,7 +196,7 @@
                                         </div>
 
                                         <div class="col-sm-9">
-                                            <input onkeyup="rimuovi_stile(this)" onmouseover="rimuovi_stile(this)" required="" maxlength="32" type="text" name="cognome" class="form-control" placeholder="Cognome" value="">
+                                            <input onkeyup="rimuovi_stile(this)" onmouseover="rimuovi_stile(this)" required="" maxlength="32" type="text" name="cognome" class="form-control" placeholder="Inserisci il tuo cognome" value="">
                                             <span class="invalid-input" id="invalid-cognome"></span>
                                         </div>
                                     </div>
@@ -211,7 +211,7 @@
                                         </div>
 
                                         <div class="col-sm-9">
-                                            <input onkeyup="rimuovi_stile(this)" onmouseover="rimuovi_stile(this)" required="" maxlength="100" type="mail" name="mail" class="form-control" placeholder="Indirizzo mail" value="">
+                                            <input onkeyup="rimuovi_stile(this)" onmouseover="rimuovi_stile(this)" required="" maxlength="100" type="mail" name="mail" class="form-control" placeholder="Inserisci il tuo indirizzo mail" value="">
                                             <span class="invalid-input" id="invalid-mail"></span>
                                         </div>
                                     </div>
@@ -241,7 +241,7 @@
                                         </div>
 
                                         <div class="col-sm-9">
-                                            <input onkeyup="rimuovi_stile(this)" onmouseover="rimuovi_stile(this)" required="" type="text" class="form-control" id="citta_completamento" name="citta_completamento" value="" placeholder="Città" list="lista_citta">
+                                            <input onkeyup="rimuovi_stile(this)" onmouseover="rimuovi_stile(this)" required="" type="text" class="form-control" id="citta_completamento" name="citta_completamento" value="" placeholder="Inserisci la città dove abiti" list="lista_citta">
                                             <span class="invalid-input" id="invalid-citta_completamento"></span>
 
                                             <datalist id="lista_citta">
@@ -262,7 +262,7 @@
                                         </div>
 
                                         <div class="col-sm-9">
-                                            <input onkeyup="rimuovi_stile(this); password_lunghezza(this); abilita_conferma_password(this); strong_password(this); " onmouseover="rimuovi_stile(this)" required="" maxlength="100" type="password" id="password_nuova" name="password_nuova" class="form-control" placeholder="Password">
+                                            <input onkeyup="rimuovi_stile(this); password_lunghezza(this); abilita_conferma_password(this); strong_password(this); " onmouseover="rimuovi_stile(this)" required="" maxlength="100" type="password" id="password_nuova" name="password_nuova" class="form-control" placeholder="Inserisci la tua password">
                                             <span class="invalid-input" id="invalid-password_nuova"></span>
                                             <br>
                                             <meter max="4" min="0" optimum="4" id="password-strength-meter"></meter>
@@ -280,7 +280,7 @@
                                         </div>
 
                                         <div class="col-sm-9">
-                                            <input disabled="" onkeyup="rimuovi_stile(this); password_uguali(this);" onmouseover="rimuovi_stile(this)" required="" maxlength="100" type="password" id="password_nuova2" name="password_nuova2" class="form-control" placeholder="Conferma Password">
+                                            <input disabled="" onkeyup="rimuovi_stile(this); password_uguali(this);" onmouseover="rimuovi_stile(this)" required="" maxlength="100" type="password" id="password_nuova2" name="password_nuova2" class="form-control" placeholder="Conferma la password inserita">
                                             <span class="invalid-input" id="invalid-password_nuova2"></span>
                                         </div>
                                     </div>
