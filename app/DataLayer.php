@@ -577,6 +577,15 @@ public function hasImages($id){
         return Citta::all();
     }
     
+    public function getCittaSentieri(){
+        $sentieri=Sentiero::all();
+        $citta=[];
+        foreach ($sentieri as $s){
+            array_push($citta, $s->citta);
+        }
+        return $citta;
+    }
+    
      public function getCategorie() {
         return Categoria::all();
     }

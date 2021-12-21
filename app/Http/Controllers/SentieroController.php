@@ -516,7 +516,7 @@ class SentieroController extends Controller
             $sentieri = Sentiero::paginate(5);
             $totale_risultati=count($dl->getAllSentieri());
             $dati_sentieri = $dl->fromSentieriToDatiSentieri($sentieri);
-            $citta=$dl->getAllCitta();
+            $citta=$dl->getCittaSentieri();
             $categorie=$dl->getCategorie();
             $difficolta=$dl->getDifficolta();
             $count_revisioni = count($dl->getRevisioniDaRevisionare($user_id));
