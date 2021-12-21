@@ -325,11 +325,11 @@ function valida_modifica_sentiero(button, modifica){
         $(button.form.lunghezza).css('border-color','red');
         lunghezza_msg.innerHTML="Il lunghezza deve essere nel formato: 15,6 km ";
     }
-    if(lunghezza!=="" && (lunghezza < 1.0 || lunghezza > 999.0)){
+    if(lunghezza!=="" && (lunghezza < 0.1 || lunghezza > 50.0)){
         errori=true;
         button.form.lunghezza.focus();
         $(button.form.lunghezza).css('border-color','red');
-        lunghezza_msg.innerHTML="Il campo lunghezza deve essere compreso tra i valori 1 e 999";
+        lunghezza_msg.innerHTML="Il campo lunghezza deve essere compreso tra i valori 0.1 e 50";
     }
     if(dislivello!=="" && (dislivello < 0 || dislivello > 10000)){
         errori=true;

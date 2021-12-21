@@ -184,12 +184,12 @@
                         <label for="lunghezza">Lunghezza massima (km)</label>
                             @if(!empty($lunghezza_massima))
                                 @if($lunghezza_massima!="")
-                                <input value="{{$lunghezza_massima}}" class="form-control" onkeyup="rimuovi_stile(this)" onmouseover="rimuovi_stile(this)" type="number" id="lunghezza" name="lunghezza" min="0" max="50" placeholder="Inserisci la lunghezza massima (0-50 km)">
+                                <input value="{{$lunghezza_massima}}" class="form-control" onkeyup="rimuovi_stile(this)" onmouseover="rimuovi_stile(this)" type="number" id="lunghezza" name="lunghezza" min="0" max="50" placeholder="Inserisci la lunghezza massima (0.1-50 km)">
                                 @else
-                                    <input class="form-control" onkeyup="rimuovi_stile(this)" onmouseover="rimuovi_stile(this)" type="number" id="lunghezza" name="lunghezza" min="0" max="50" placeholder="Inserisci la lunghezza massima (0-50 km)">
+                                    <input class="form-control" onkeyup="rimuovi_stile(this)" onmouseover="rimuovi_stile(this)" type="number" id="lunghezza" name="lunghezza" min="0" max="50" placeholder="Inserisci la lunghezza massima (0.1-50 km)">
                                 @endif
                             @else
-                                <input class="form-control" onkeyup="rimuovi_stile(this)" onmouseover="rimuovi_stile(this)" type="number" id="lunghezza" name="lunghezza" min="0" max="50" placeholder="Inserisci la lunghezza massima (0-50 km)">
+                                <input class="form-control" onkeyup="rimuovi_stile(this)" onmouseover="rimuovi_stile(this)" type="number" id="lunghezza" name="lunghezza" min="0" max="50" placeholder="Inserisci la lunghezza massima (0.1-50 km)">
                             @endif                        
                         <span class="invalid-input" id="invalid_lunghezza"></span>
                     </div>
