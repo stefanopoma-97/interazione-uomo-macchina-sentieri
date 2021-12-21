@@ -44,7 +44,7 @@
                     </div>
 
                     <div class="col-sm-10">
-                        <input onkeyup="rimuovi_stile(this)" onmouseover="rimuovi_stile(this)" required="" maxlength="32" class="form-control" type="text" id="nome" name="nome" placeholder="Nome" value="{{$user->nome}}">
+                        <input onkeyup="rimuovi_stile(this)" onmouseover="rimuovi_stile(this)" required="" maxlength="32" class="form-control" type="text" id="nome" name="nome" placeholder="Inserisci il tuo nome" value="{{$user->nome}}">
                         <span class="invalid-input" id="invalid-nome"></span>
                     </div>
                 </div>
@@ -58,7 +58,7 @@
                         <label for="cognome" class="col-form-label">Cognome</label>
                     </div>
                     <div class="col-sm-10">
-                        <input onkeyup="rimuovi_stile(this)" onmouseover="rimuovi_stile(this)" required="" maxlength="32" class="form-control" type="text" id="cognome" name="cognome" placeholder="Cognome" value="{{$user->cognome}}">
+                        <input onkeyup="rimuovi_stile(this)" onmouseover="rimuovi_stile(this)" required="" maxlength="32" class="form-control" type="text" id="cognome" name="cognome" placeholder="Inserisci il tuo cognome" value="{{$user->cognome}}">
                         <span class="invalid-input" id="invalid-cognome"></span>
                     </div>
                 </div>
@@ -73,7 +73,7 @@
                     </div>
 
                     <div class="col-sm-10">
-                        <input onkeyup="rimuovi_stile(this)" onmouseover="rimuovi_stile(this)" required="" maxlength="32" class="form-control" type="text" id="username" name="username" placeholder="Username" value="{{$user->username}}">
+                        <input onkeyup="rimuovi_stile(this)" onmouseover="rimuovi_stile(this)" required="" maxlength="32" class="form-control" type="text" id="username" name="username" placeholder="Inserisci il tuo username" value="{{$user->username}}">
                         <span class="invalid-input" id="invalid-username"></span>
                     </div>
                 </div>
@@ -88,7 +88,7 @@
                     </div>
 
                     <div class="col-sm-10">
-                        <input onkeyup="rimuovi_stile(this)" onmouseover="rimuovi_stile(this)" required="" maxlength="100" type="mail" class="form-control" name="mail" placeholder="Mail" value="{{$user->mail}}">
+                        <input onkeyup="rimuovi_stile(this)" onmouseover="rimuovi_stile(this)" required="" maxlength="100" type="mail" class="form-control" name="mail" placeholder="Inserisci la tua mail" value="{{$user->mail}}">
                         <span class="invalid-input" id="invalid-mail"></span>
                     </div>
                 </div>
@@ -135,7 +135,7 @@
                     </div>
 
                     <div class="col-sm-10">
-                        <input onkeyup="rimuovi_stile(this)" onmouseover="rimuovi_stile(this)" required="" type="text" class="form-control" id="citta_completamento" name="citta_completamento" value="{{$user->citta->nome}}"placeholder="Città" list="lista_citta">
+                        <input onkeyup="rimuovi_stile(this)" onmouseover="rimuovi_stile(this)" required="" type="text" class="form-control" id="citta_completamento" name="citta_completamento" value="{{$user->citta->nome}}"placeholder="Inserisci la città dove abiti" list="lista_citta">
 
                         <datalist id="lista_citta">
                             @foreach ($citta as $c)
