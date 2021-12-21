@@ -43,7 +43,7 @@
                         <label for="password_precedente" class="col-form-label">Password precedente</label>
                     </div>
                     <div class="col-sm-5">
-                        <input onkeyup="rimuovi_stile(this)" onmouseover="rimuovi_stile(this)" maxlength="100" required="" type="password" class="form-control" name="password_precedente"  placeholder="Password attuale">
+                        <input onkeyup="rimuovi_stile(this)" onmouseover="rimuovi_stile(this)" maxlength="100" required="" type="password" class="form-control" name="password_precedente"  placeholder="Inserisci la password attuale">
                         <span class="invalid-input" id="invalid-password_precedente"></span>
                     </div>
                     <div class="col-sm-3">
@@ -59,7 +59,7 @@
                         <label for="password_nuova" class="col-form-label">Nuova password</label>
                     </div>
                     <div class="col-sm-5">
-                        <input onkeyup="rimuovi_stile(this); password_lunghezza(this); abilita_conferma_password(this); strong_password(this); " onmouseover="rimuovi_stile(this)" maxlength="100" required="" type="password" class="form-control" name="password_nuova" placeholder="Nuova password">
+                        <input onkeyup="rimuovi_stile(this); password_lunghezza(this); abilita_conferma_password(this); strong_password(this); " onmouseover="rimuovi_stile(this)" maxlength="100" required="" type="password" class="form-control" name="password_nuova" placeholder="Inserisci la nuova password">
                         <span class="invalid-input" id="invalid-password_nuova"></span>
                         <br>
                         <meter max="4" min="0" optimum="4" id="password-strength-meter"></meter>
@@ -76,12 +76,12 @@
 
                     </div>
                     <div class="col-sm-5">
-                        <input disabled="" onkeyup="rimuovi_stile(this); password_uguali(this);" onmouseover="rimuovi_stile(this)" maxlength="100" required="" type="password" class="form-control" name="password_nuova2" placeholder="Ripeti la password">
+                        <input disabled="" onkeyup="rimuovi_stile(this); password_uguali(this);" onmouseover="rimuovi_stile(this)" maxlength="100" required="" type="password" class="form-control" name="password_nuova2" placeholder="Ripeti la nuova password">
                         <span class="invalid-input" id="invalid-password_nuova2"></span>
                     </div>
                 </div>
 
-                <div class="form-group row">
+                <!--<div class="form-group row">
                     <div class="col-sm-3" onclick="event.stopPropagation()">
                         <div style="margin-left: 1em;" class="popup" onclick="popup2(this)" >
                             <span class="popuptext">Inserisci una frase che ti aiuterà a ricordare la password</span>
@@ -93,7 +93,7 @@
                         <input onkeyup="rimuovi_stile(this);" onmouseover="rimuovi_stile(this)" maxlength="100" type="text" class="form-control" name="consiglio" placeholder="Consiglio recupero password">
                         <span class="invalid-input" id="invalid-password_nuova2"></span>
                     </div>
-                </div>
+                </div>-->
 
 
                 <div class="form-group">
