@@ -404,7 +404,7 @@ public function hasImages($id){
     }
     
     public function getEsperienzeApprovateSentieroPaginate($sentiero_id){
-        $revisioni = Esperienza::where('sentiero_id', $sentiero_id)->where('stato',"approvato")->paginate(20);
+        $revisioni = Esperienza::where('sentiero_id', $sentiero_id)->where('stato',"approvato")->paginate(5);
         return $revisioni;
     }
     
