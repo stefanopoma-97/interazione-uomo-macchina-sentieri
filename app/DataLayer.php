@@ -581,9 +581,12 @@ public function hasImages($id){
         $sentieri=Sentiero::all();
         $citta=[];
         foreach ($sentieri as $s){
-            array_push($citta, $s->citta);
+            if(!in_array($s->citta, $citta)){
+               array_push($citta, $s->citta); 
+            }
+            
         }
-        return $citta;
+        return array_unique($citta);
     }
     
      public function getCategorie() {

@@ -668,7 +668,7 @@ class SentieroController extends Controller
 
         $user = $dl->getUserByID($user_id);
         $dati_sentieri = $dl->fromSentieriToDatiSentieri($sentieri);
-        $citta=$dl->getAllCitta();
+        $citta=$dl->getCittaSentieri();
         $categorie=$dl->getCategorie();
         $difficolta=$dl->getDifficolta();
         $count_revisioni = count($dl->getRevisioniDaRevisionare($user_id));
