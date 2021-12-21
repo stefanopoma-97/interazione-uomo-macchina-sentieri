@@ -311,34 +311,34 @@ function valida_modifica_sentiero(button, modifica){
     
     var errori = false;
     //if(/^\d\d$/g.test(durata))
-        durta=durata+".00";
+    durta=durata+".00";
     if(durata!=="" && !pattern_durata.test(durata)){
         errori=true;
         button.form.durata.focus();
         $(button.form.durata).css('border-color','red');
-        durata_msg.innerHTML="Inserci un formato tipo 12.35";
+        durata_msg.innerHTML="La durata deve essere nel formato: 12.35";
         
     }
-    else if(lunghezza!=="" && !pattern_lunghezza.test(lunghezza)){
+    if(lunghezza!=="" && !pattern_lunghezza.test(lunghezza)){
         errori=true;
         button.form.lunghezza.focus();
         $(button.form.lunghezza).css('border-color','red');
         lunghezza_msg.innerHTML="Il lunghezza deve essere nel formato: 15,6 km ";
     }
-    else if(lunghezza!=="" && (lunghezza < 1.0 || lunghezza > 999.0)){
+    if(lunghezza!=="" && (lunghezza < 1.0 || lunghezza > 999.0)){
         errori=true;
         button.form.lunghezza.focus();
         $(button.form.lunghezza).css('border-color','red');
-        lunghezza_msg.innerHTML="Campo lunghezza compreso tra 1 e 999";
+        lunghezza_msg.innerHTML="Il campo lunghezza deve essere compreso tra i valori 1 e 999";
     }
-    else if(dislivello!=="" && (dislivello < 0 || dislivello > 10000)){
+    if(dislivello!=="" && (dislivello < 0 || dislivello > 10000)){
         errori=true;
         button.form.dislivello.focus();
         $(button.form.dislivello).css('border-color','red');
-        dislivello_msg.innerHTML="Campo salita compreso tra 0 e 10000";
+        dislivello_msg.innerHTML="Il campo lunghezza deve essere compreso tra i valori 0 e 10000";
     }
 
-    else if(!errori && citta!=="")
+    if(citta!=="")
     
     {
         //window.confirm("ajax controllo città");
@@ -379,7 +379,7 @@ function valida_modifica_sentiero(button, modifica){
 
             });
     }
-    else{
+    if (errori==false){
         button.form.submit();
     }
     }
