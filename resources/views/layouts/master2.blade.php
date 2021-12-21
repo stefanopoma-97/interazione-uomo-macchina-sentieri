@@ -196,69 +196,70 @@
                     </div>
 
                     <br>
-                    <div class="container text-center text-md-left mt-5">
+                    <div class="container text-center">
 
-                        <div class="row mt-3 dark-grey-text">
+                        <div class="row dark-grey-text">
 
-                            <div class="col-md-4 col-lg-6 col-xl-3 mb-4">
-
+                            <div class="col-md-4 col-foot">
                                 <h4 class="text-uppercase font-weight-bold">Il progetto</h4>
                                 <hr class="teal accent-3 mb-4 mt-0 d-inline-block mx-auto" style="width: 60px;">
                                 <p>Il sito ha lo scopo di raccogliere tutti i sentieri italiani. Dividendoli per categorie e
                                     permettendo una ricerca sulla base di molti parametri.</p>
-
                             </div>
 
-                            <?php /*<div class="col-md-2 col-lg-2 col-xl-2 mx-auto mb-4">
-
-                                <h4 class="text-uppercase font-weight-bold">Cerca un sentiero</h4>
-                                <hr class="teal accent-3 mb-4 mt-0 d-inline-block mx-auto" style="width: 60px;">
-
-                                <form method="get" action="{{route('sentiero.ricercafiltrahome')}}" class="form-inline">
-                                    <input class="form-control form-control-sm mr-3 w-75" type="text" placeholder="Cerca"
-                                           aria-label="Search" name="ricerca">
-                                    <!--<i class="fas fa-search" aria-hidden="true"></i>-->
-                                </form>
-
-                            </div>*/?>
-
-                            <div class="col-md-4 col-lg-3 col-xl-2 mx-auto mb-4">
-
+                            <div class="col-md-4 col-foot">
 
                                 <h4 class="text-uppercase font-weight-bold">Links utili</h4>
                                 <hr class="teal accent-3 mb-4 mt-0 d-inline-block mx-auto" style="width: 60px;">
-                                <p>
-                                    @if($logged)
-                                    <a class="dark-grey-text" href="{{ route('user.dettagli', ['id'=> $user_id]) }}">Il tuo account</a>
-                                    @else
-                                    <a class="dark-grey-text" href="{{ route('user.auth.login') }}">Login</a>
-                                    @endif
-                                </p>
-                                <p>
-                                    <a class="dark-grey-text" href="{{ route('sentiero.ricerca') }}">Sentieri</a>
-                                </p>
-                                <p>
-                                    <a class="dark-grey-text" href="{{ route('user.elenco') }}">Utenti</a>
-                                </p>
-                                <p>
-                                    <a class="dark-grey-text" href="{{ route('home') }}">Home</a>
-                                </p>
 
+                                <div class="container">
+                                    <div class="row">
+                                        @if($logged)
+                                        <a class="dark-grey-text" href="{{ route('user.dettagli', ['id'=> $user_id]) }}">
+                                            Il tuo account
+                                        </a>
+                                        @else
+                                        <a class="dark-grey-text" href="{{ route('user.auth.login') }}">
+                                            Login
+                                        </a>
+                                        @endif
+                                    </div>
+
+                                    <div class="row">
+                                        <a class="dark-grey-text" href="{{ route('sentiero.ricerca') }}">Sentieri</a>
+                                    </div>
+
+                                    <div class="row">
+                                        <a class="dark-grey-text" href="{{ route('user.elenco') }}">Utenti</a>
+                                    </div>
+
+                                    <div class="row">
+                                        <a class="dark-grey-text" href="{{ route('home') }}">Home</a>
+                                    </div>
+                                </div>
                             </div>
 
-                            <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">
-
-
+                            <div class="col-md-4 col-foot">
                                 <h4 class="text-uppercase font-weight-bold">Contatti</h4>
                                 <hr class="teal accent-3 mb-4 mt-0 d-inline-block mx-auto" style="width: 60px;">
-                                <p>
-                                    <i class="fas fa-home mr-3"></i> Brescia UNIBS</p>
-                                <p>
-                                    <i class="fas fa-envelope mr-3"></i> info@sentieri.com</p>
-                                <p>
-                                    <i class="fas fa-phone mr-3"></i> + 01 234 567 88</p>
-                                <p>
-                                    <i class="fas fa-print mr-3"></i> + 01 234 567 89</p>
+
+                                <div class="container">
+                                    <div class="row">
+                                        <i class="fas fa-home"></i> Brescia UNIBS
+                                    </div>
+
+                                    <div class="row">
+                                        <i class="fas fa-envelope"></i> info@sentieri.com
+                                    </div>
+
+                                    <div class="row">
+                                        <i class="fas fa-phone"></i> + 01 234 567 88
+                                    </div>
+
+                                    <div class="row">
+                                        <i class="fas fa-print"></i> + 01 234 567 89
+                                    </div>
+                                </div>
 
                             </div>
 
