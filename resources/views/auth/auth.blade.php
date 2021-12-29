@@ -96,6 +96,7 @@
 
                                             <div class="col-sm-9">
                                                 <input onkeyup="rimuovi_stile(this)" onmouseover="rimuovi_stile(this)" required="" maxlength="32" type="text" name="username" class="form-control" placeholder="Inserisci il tuo Username" value="">
+                                                <span class="invalid-input" id="invalid-username-empty"></span>
                                             </div>
 
                                         @else
@@ -110,6 +111,7 @@
 
                                         <div class="col-sm-9">
                                             <input onkeyup="rimuovi_stile(this)" onmouseover="rimuovi_stile(this)" required="" maxlength="32" type="text" name="username" class="form-control" placeholder="Inserisci il tuo Username" value="{{$username}}">
+                                            <span class="invalid-input" id="invalid-username-empty"></span>
                                         </div>
 
                                         @endif
@@ -127,6 +129,7 @@
 
                                         <div class="col-sm-9">
                                             <input onkeyup="rimuovi_stile(this)" onmouseover="rimuovi_stile(this)" required="" maxlength="100" type="password" name="password" class="form-control" placeholder="Il serisci la tua password">
+                                            <span class="invalid-input" id="invalid-password-empty"></span>
                                         </div>
 
                                     </div><!-- type password non fa capire cosa si sta inserendo-->

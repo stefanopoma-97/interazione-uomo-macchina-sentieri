@@ -51,6 +51,11 @@ function login2(button){
     username = (button.form.username.value).trim();
 
     password = (button.form.password.value).trim();
+    
+    username_msg=document.getElementById("invalid-username-empty");
+    username_msg.innerHTML="";
+    password_msg=document.getElementById("invalid-password-empty");
+    password_msg.innerHTML="";
 
     var errori = false;
 
@@ -58,19 +63,21 @@ function login2(button){
         errori=true;
         button.form.username.focus();
         $(button.form.username).css('border-color','red');
-        var li = $("<li></li>");
-        li.text("Compila il campo username");
+        username_msg.innerHTML="Compila il campo username";
+        //var li = $("<li></li>");
+        //li.text("Compila il campo username");
         //$('#ul_errori').parent().show();
-        $('#ul_errori').append(li);
+        //$('#ul_errori').append(li);
     }
     if (password === ""){
         errori=true;
         button.form.password.focus();
         $(button.form.password).css('border-color','red');
-        var li = $("<li></li>");
-        li.text("Compila il campo password");
+        password_msg.innerHTML="Compila il campo password";
+        //var li = $("<li></li>");
+        //li.text("Compila il campo password");
         //$('#ul_errori').parent().show();
-        $('#ul_errori').append(li);
+        //$('#ul_errori').append(li);
     }
     if(errori==false) {
         button.form.submit();
