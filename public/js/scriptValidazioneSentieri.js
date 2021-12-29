@@ -379,7 +379,7 @@ function valida_modifica_sentiero(button, modifica){
 
             });
     }
-    if (errori==false){
+    else if (errori==false){
         button.form.submit();
     }
     }

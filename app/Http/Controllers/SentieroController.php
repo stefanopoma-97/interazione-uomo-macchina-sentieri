@@ -591,11 +591,16 @@ class SentieroController extends Controller
             $descrizione = $request->input('testo_descrizione');
             $filtro->where('descrizione', 'like', '%'.$descrizione.'%');
         }
+        $citta_valida=false;
         if ($request->input('citta')!="") {
             $citta = $request->input('citta');
             $citta_id=$dl->getCityID($citta);
-            $filtro->where('citta_id', $citta_id);
-            $citta_valore=$citta;
+            if($citta_id!=null){
+                $filtro->where('citta_id', $citta_id);
+                $citta_valore=$citta;
+                $citta_valida=true;
+            }
+            
         }
         if ($request->input('categoria')!="") {
             $filtro->where('categoria_id', $request->input('categoria'));
@@ -634,7 +639,7 @@ class SentieroController extends Controller
         if ($request->has('testo_descrizione')) {
             $sentieri->appends('testo_descrizione',request('testo_descrizione'));
         }
-        if ($request->input('citta')!="") {
+        if (($request->input('citta')!="")&&($citta_id==true)) {
             $sentieri->appends('citta',request('citta'));
         }
         if ($request->input('categoria')!="") {

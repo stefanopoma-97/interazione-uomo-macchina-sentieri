@@ -99,7 +99,13 @@ class DataLayer extends Model
     
     public function getCityID($nome) {
         $citta = Citta::where('nome',$nome)->get(['id']);
-        return $citta[0]->id;
+        if (count($citta)==0){
+            return null;
+        }
+        else{
+          return $citta[0]->id;  
+        }
+        
     }
     
     public function getUserByID($user_id) {
