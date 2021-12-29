@@ -412,7 +412,7 @@ function register2(button){
         $('#ul_errori_registrazione').append(li);
 
     }
-    if(!nome.match(nome_exp)){
+    else if(!nome.match(nome_exp)){
         errori=true;
         nome_msg.innerHTML="Il campo nome può contenere solo lettere";
         button.form.nome.focus();
@@ -432,7 +432,7 @@ function register2(button){
         //$('#ul_errori_registrazione').parent().show();
         $('#ul_errori_registrazione').append(li);
     }
-    if(!cognome.match(cognome_exp)){
+    else if(!cognome.match(cognome_exp)){
         errori=true;
         cognome_msg.innerHTML="Il campo cognome può contenere solo lettere";
         button.form.cognome.focus();
@@ -452,7 +452,7 @@ function register2(button){
         //$('#ul_errori_registrazione').parent().show();
         $('#ul_errori_registrazione').append(li);
     }
-    if(!mail.match(mail_exp)){
+    else if(!mail.match(mail_exp)){
         errori=true;
         mail_msg.innerHTML="Inserisci una mail valida";
         button.form.mail.focus();
@@ -493,7 +493,7 @@ function register2(button){
         $('#ul_errori_registrazione').append(li);
 
     }
-    if(password.length <  8){
+    else if(password.length <  8){
         errori=true;
         password_msg.innerHTML="La password deve essere più lunga di 8 caratteri";
         button.form.password_nuova.focus({preventScroll:false});
@@ -515,7 +515,7 @@ function register2(button){
         $('#ul_errori_registrazione').append(li);
 
     }
-    if(password !== password_conferma){
+    else if(password !== password_conferma){
         errori=true;
         password_conferma_msg.innerHTML="Le due password non corrispondono";
         button.form.password_nuova2.focus({preventScroll:false});
