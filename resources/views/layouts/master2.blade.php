@@ -51,11 +51,11 @@
         <script type="text/javascript" class="init">
 
             $(document).ready(function () {
-                $('#tabella_elenco_utenti').DataTable();
-                $('#tabella_elenco_sentieri').DataTable();
-                $('#tabella_elenco_preferiti').DataTable();
-                $('#tabella_revisioni_sentiero').DataTable();
-                $('#tabella_elenco_sentieri_effettuati').DataTable();
+                $('#tabella_elenco_utenti').DataTable("orderCellsTop": true,"ordering": true,);
+                $('#tabella_elenco_sentieri').DataTable("orderCellsTop": true,"ordering": true,);
+                $('#tabella_elenco_preferiti').DataTable("orderCellsTop": true,"ordering": true,);
+                $('#tabella_revisioni_sentiero').DataTable("orderCellsTop": true,"ordering": true,);
+                $('#tabella_elenco_sentieri_effettuati').DataTable("orderCellsTop": true,"ordering": true,);
             });
 
         </script>
