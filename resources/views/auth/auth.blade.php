@@ -38,10 +38,10 @@
 @section('corpo')
 @if ($errore)
 <div class="container">
-    <div class="col-md-6 col-md-offset-3">
+    <div class="col-md-6 col-md-offset-4">
         <div class="warning-banner">
             <i class="fa fa-exclamation-triangle warning-icon"></i>
-            <h3 class="warning-text">Per vedere la pagina desiderata devi accedere</h3>
+            <h4 class="warning-text">Per vedere la pagina desiderata devi accedere</h4>
         </div>
     </div>
 </div>
