@@ -136,12 +136,16 @@
     <div class="row">
                 <div class="col-md-12">
                     <div>
-                        <h3>Descrizione</h3>
-                        <p style="font-size: large">{{$sentiero->descrizione}}</p>
-                        <blockquote>
-                            <p style="font-size: medium" class="not_all_text">{{$sentiero->autore->descrizione}}</p>
-                            <small><cite title="Autore"><a style="color:inherit; text-decoration: none;" href="{{ route('user.dettagli',['id'=> $sentiero->autore->id]) }}">{{$sentiero->autore->nome}}</a></cite></small>
-                        </blockquote>
+                        <div class="row">
+                            <h3>Descrizione</h3>
+                            <p style="font-size: large">{{$sentiero->descrizione}}</p>
+                            </div>
+                        <div class="row">
+                            <blockquote>
+                                <p style="font-size: medium" class="not_all_text">{{$sentiero->autore->descrizione}}</p>
+                                <small><cite title="Autore"><a style="color:inherit; text-decoration: none;" href="{{ route('user.dettagli',['id'=> $sentiero->autore->id]) }}">{{$sentiero->autore->nome}}</a></cite></small>
+                            </blockquote>
+                        </div>
                     </div>
                 </div>
             </div>
