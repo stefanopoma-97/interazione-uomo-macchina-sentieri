@@ -56,12 +56,16 @@
                     ?>
                   </div>
                 <br>
-                <p style="font-size: small">Sentiero percorso il: {{$esperienza->data}}</p>
-                <blockquote>
-                    <p style="font-size: medium">{{$esperienza->commento}}</p>
-                    <small><cite title="Source Title">Difficoltà: {{$esperienza->difficolta}}</cite></small>
-                    <small><cite title="Source Title">Voto: {{$esperienza->voto}}</cite></small>
-                </blockquote>
+                <div class="row">
+                    <p style="font-size: small">Sentiero percorso il: {{$esperienza->data}}</p>
+                </div>
+                <div class="row">
+                    <blockquote>
+                        <p style="font-size: medium">{{$esperienza->commento}}</p>
+                        <small><cite title="Source Title">Difficoltà: {{$esperienza->difficolta}}</cite></small>
+                        <small><cite title="Source Title">Voto: {{$esperienza->voto}}</cite></small>
+                    </blockquote>
+                </div>
             </div>
 
             @endforeach

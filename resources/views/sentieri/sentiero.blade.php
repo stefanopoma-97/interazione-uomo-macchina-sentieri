@@ -64,11 +64,11 @@
                 <li class="list-group-item "><span class="material-icons">location_city</span> Città:   {{ $sentiero->citta->nome}}</li>
                 <li class="list-group-item "><span class="glyphicon glyphicon-time"></span>  Durata:   {{ $sentiero->durata}} ore</li>
                 <li class="list-group-item "><span class="glyphicon glyphicon-repeat"></span>  Lunghezza:   {{ $sentiero->lunghezza}} km</li>
-                <li class="list-group-item "><span class="glyphicon glyphicon-chevron-up"></span>  Salita:   {{ $sentiero->salita}}</li>
-                <li class="list-group-item "><span class="glyphicon glyphicon-chevron-down"></span>  Discesa:   {{ $sentiero->discesa}}</li>
-                <li class="list-group-item "><span class="glyphicon glyphicon-arrow-up"></span>  Altezza massima:   {{ $sentiero->altezza_massima}}</li>
-                <li class="list-group-item "><span class="glyphicon glyphicon-arrow-down"></span>  Altezza minima:   {{ $sentiero->altezza_minima}}</li>
-                <li class="list-group-item "><span class="glyphicon glyphicon-resize-vertical"></span>  Dislivello   {{ ($sentiero->altezza_massima) - ($sentiero->altezza_minima)}}</li>
+                <li class="list-group-item "><span class="glyphicon glyphicon-chevron-up"></span>  Salita:   {{ $sentiero->salita}} m</li>
+                <li class="list-group-item "><span class="glyphicon glyphicon-chevron-down"></span>  Discesa:   {{ $sentiero->discesa}} m</li>
+                <li class="list-group-item "><span class="glyphicon glyphicon-arrow-up"></span>  Altezza massima:   {{ $sentiero->altezza_massima}} m</li>
+                <li class="list-group-item "><span class="glyphicon glyphicon-arrow-down"></span>  Altezza minima:   {{ $sentiero->altezza_minima}} m</li>
+                <li class="list-group-item "><span class="glyphicon glyphicon-resize-vertical"></span>  Dislivello   {{ ($sentiero->altezza_massima) - ($sentiero->altezza_minima)}} m</li>
             </ul>
 
             <div class="container" style="margin-bottom: 3em">
