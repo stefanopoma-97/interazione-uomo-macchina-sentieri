@@ -9,7 +9,7 @@
 
 
 @section('header')
-<h2 class="pull-left">Elenco Sentieri</h2>
+<h2 class="pull-left">Gestione Sentieri</h2>
 @endsection
 
 @section('breadcrumb')
