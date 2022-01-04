@@ -63,10 +63,12 @@
                                         </div>
 
                                         <div class="col-sm-2">
-                                            @if($url!="http://127.0.0.1:8000/storage/fotoprofilo/default" )
-                                            <button  type="button" class="btn btn-outline-danger" data-toggle="modal" data-target="#modalFormRimuoviFoto"> Rimuovi immagine</button>
+                                            @if($url=="http://127.0.0.1:8000/storage/fotoprofilo/default")
+                                                <button disabled="" type="button" class="btn btn-outline-danger" data-toggle="modal" data-target="#modalFormRimuoviFoto"> Rimuovi immagine</button>
+                                            @elseif ($url=="http://localhost:8000/storage/fotoprofilo/default")
+                                                <button disabled="" type="button" class="btn btn-outline-danger" data-toggle="modal" data-target="#modalFormRimuoviFoto"> Rimuovi immagine</button>
                                             @else
-                                            <button disabled="" type="button" class="btn btn-outline-danger" data-toggle="modal" data-target="#modalFormRimuoviFoto"> Rimuovi immagine</button>
+                                                <button  type="button" class="btn btn-outline-danger" data-toggle="modal" data-target="#modalFormRimuoviFoto"> Rimuovi immagine</button>
                                             @endif
                                         </div>
 
