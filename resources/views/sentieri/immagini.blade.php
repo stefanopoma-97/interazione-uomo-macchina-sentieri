@@ -67,6 +67,7 @@
                                 </div>
 
                                 <div class="col-sm-2 col-sm-offset-2">
+                                    
                                     @if($link1!="http://127.0.0.1:8000/storage/fotosentieri/default")
                                     <a class="btn btn-danger" href="{{route('sentiero.rimuoviimmagine',['id'=> $sentiero->id, 'nome'=> '1'])}}">
                                         <span class="glyphicon glyphicon-trash"></span></a>
@@ -75,9 +76,11 @@
 
                                     @else
                                     <a disabled="" class="btn btn-danger" href="{{route('sentiero.rimuoviimmagine',['id'=> $sentiero->id, 'nome'=> '1'])}}">
-                                                                            <span class="glyphicon glyphicon-trash"></span></a>                                    @endif
+                                                                            <span class="glyphicon glyphicon-trash"></span></a>                                    
+                                    @endif
                                 </div>
                             </div>
+                            <h5>{{$link1}}</h5>
 
                         </form>
                     </div>
@@ -121,6 +124,7 @@
                                                                             <span class="glyphicon glyphicon-trash"></span></a>                                    @endif
                                 </div>
                             </div>
+                            <h5>{{$link2}}</h5>
 
                         </form>
                     </div>
@@ -167,6 +171,7 @@
                                                                             <span class="glyphicon glyphicon-trash"></span></a>                                    @endif
                                 </div>
                             </div>
+                            <h5>{{$link3}}</h5>
 
                         </form>
                     </div>
