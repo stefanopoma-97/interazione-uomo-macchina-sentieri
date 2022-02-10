@@ -737,6 +737,14 @@ class SentieroController extends Controller
 //        if(!isset($_SESSION['logged'])) {
 //            return Redirect::to(route('user.auth.login'));
 //        }
+        $titolo="";
+        $descrizione="";
+        $citta_valore="";
+        $difficolta_valore="";
+        $categoria_valore="";
+        $lunghezza_massima="";
+        $dislivello_massimo="";
+        $durata_massima="";
         
         $dl = new DataLayer();
         $user_id = $dl->getUserID($_SESSION['loggedName']);
@@ -754,14 +762,39 @@ class SentieroController extends Controller
                 
         
         $sentieri = $filtro->paginate(5);
-
-
+        $sentieri_tot = $filtro->paginate(1000);
+        $sentieri->appends('testo_titolo',request('ricerca'));
+        $sentieri_tot->appends('testo_titolo',request('ricerca'));
+        
+        $totale_risultati=count($sentieri_tot);
+        
+        //
         $user = $dl->getUserByID($user_id);
         $dati_sentieri = $dl->fromSentieriToDatiSentieri($sentieri);
-        $citta=$dl->getAllCitta();
+        $citta=$dl->getCittaSentieri();
         $categorie=$dl->getCategorie();
         $difficolta=$dl->getDifficolta();
         $count_revisioni = count($dl->getRevisioniDaRevisionare($user_id));
+        
+        $immagini=[];
+        $partecipanti=[];
+        $media_voti=[];
+            foreach($sentieri as $key => $sentiero){
+                if ($dl->hasImages($sentiero->id)){
+                    $im=$dl->GetImagesOnlyValid($sentiero->id);
+                    $immagini[$key]=$im[0];
+                }
+                else {
+                    $immagini[$key]=null;
+                }
+                
+                $dati_sent = $dl->fromSentieroToDatiSentiero($sentiero);
+                $partecipanti[$key]=$dati_sent->partecipanti;
+                $media_voti[$key]=$dati_sent->mediavoti;
+            }
+        
+        
+   
 
         return view('sentieri.ricercasentieri')->with('logged', true)
                         ->with('loggedName', $_SESSION["loggedName"])
@@ -772,7 +805,19 @@ class SentieroController extends Controller
                         ->with('count_revisioni', $count_revisioni)
                         ->with('categorie', $categorie)
                         ->with('difficolta', $difficolta)
-                        ->with('dati_sentieri', $dati_sentieri);
+                        ->with('immagini', $immagini)
+                        ->with('dati_sentieri', $dati_sentieri)
+                        ->with('titolo', $titolo)
+                        ->with('descrizione', $descrizione)
+                        ->with('citta_valore', $citta_valore)
+                        ->with('difficolta_valore', $difficolta_valore)
+                        ->with('categoria_valore', $categoria_valore)
+                        ->with('lunghezza_massima', $lunghezza_massima)
+                        ->with('dislivello_massimo', $dislivello_massimo)
+                        ->with('durata_massima', $durata_massima)
+                        ->with('partecipanti', $partecipanti)
+                        ->with('media_voti', $media_voti)
+                        ->with('totale_risultati', $totale_risultati);
 
     }
     
