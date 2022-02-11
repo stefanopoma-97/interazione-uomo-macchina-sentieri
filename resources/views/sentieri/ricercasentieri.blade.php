@@ -23,11 +23,11 @@
 
 
 <div class="container">
-    
-    
+
+
         <div class="row">
             <div id="div_filtro" class="paginasx col-md-5 col-s-5 col-m-push-7">
-                
+
                 <div class="row elementoSticky">
                     <h2 class="text-center filtro">Filtro  <span class="glyphicon glyphicon glyphicon-filter"></span></h2>
                     <form id="form_filtro" name="form_filtro" method="get" action="{{route('sentiero.ricercafiltra')}}">
@@ -83,14 +83,14 @@
                                         @foreach ($citta as $c)
                                             <option>{{$c->nome}}</option>
                                         @endforeach
-                                    </datalist>                                
+                                    </datalist>
                                 @else
                                     <input onkeyup="rimuovi_stile(this)" onmouseover="rimuovi_stile(this)" type="text" class="form-control" id="citta" name="citta" value="" placeholder="Inserisci una città" list="lista_citta">
                                     <datalist id="lista_citta">
                                         @foreach ($citta as $c)
                                             <option>{{$c->nome}}</option>
                                         @endforeach
-                                    </datalist>                                  
+                                    </datalist>
                                 @endif
                             @else
                                     <input onkeyup="rimuovi_stile(this)" onmouseover="rimuovi_stile(this)" type="text" class="form-control" id="citta" name="citta" value="" placeholder="Inserisci una città" list="lista_citta">
@@ -98,9 +98,9 @@
                                         @foreach ($citta as $c)
                                             <option>{{$c->nome}}</option>
                                         @endforeach
-                                    </datalist>                              
+                                    </datalist>
                             @endif
-                            
+
                         </div>
                         <span class="invalid-input" id="invalid_citta"></span>
 
@@ -118,7 +118,7 @@
                                                 <option value="{{$c->id}}">{{$c->nome}}: {{$c->descrizione}}</option>
                                             @endif
                                         @endforeach
-                                    </select>                                  
+                                    </select>
                                 @else
                                     <select class="form-control" id="difficolta" name="difficolta" placeholder="Inserisci un livello di difficoltà">
                                         <option value=""></option>
@@ -126,7 +126,7 @@
                                         @foreach ($difficolta as $c)
                                         <option value="{{$c->id}}">{{$c->nome}}: {{$c->descrizione}}</option>
                                         @endforeach
-                                    </select>                                    
+                                    </select>
                                 @endif
                             @else
                                 <select class="form-control" id="difficolta" name="difficolta" placeholder="Inserisci un livello di difficoltà">
@@ -135,16 +135,16 @@
                                     @foreach ($difficolta as $c)
                                     <option value="{{$c->id}}">{{$c->nome}}: {{$c->descrizione}}</option>
                                     @endforeach
-                                </select>                             
+                                </select>
                             @endif
-                        
-                        
-                        
+
+
+
 
                     </div>
                     <div class="form-group">
                         <label for="categoria">Categoria</label>
-                        
+
                             @if(!empty($categoria_valore))
                                 @if($categoria_valore!="")
                                     <select class="form-control" id="categoria" name="categoria" placeholder="Inserisci una categoria">
@@ -157,7 +157,7 @@
                                             <option selected="" value="{{$c->id}}">{{$c->nome}}</option>
                                             @endif
                                         @endforeach
-                                    </select>                                       
+                                    </select>
                                 @else
                                     <select class="form-control" id="categoria" name="categoria" placeholder="Inserisci una categoria">
                                         <option value=""></option>
@@ -165,7 +165,7 @@
                                         @foreach ($categorie as $c)
                                         <option value="{{$c->id}}">{{$c->nome}}</option>
                                         @endforeach
-                                    </select>                                  
+                                    </select>
                                 @endif
                             @else
                                 <select class="form-control" id="categoria" name="categoria" placeholder="Inserisci una categoria">
@@ -174,10 +174,10 @@
                                     @foreach ($categorie as $c)
                                     <option value="{{$c->id}}">{{$c->nome}}</option>
                                     @endforeach
-                                </select>                            
+                                </select>
                             @endif
-                            
-                            
+
+
 
                     </div>
                     <div class="form-group">
@@ -190,7 +190,7 @@
                                 @endif
                             @else
                                 <input class="form-control" onkeyup="rimuovi_stile(this)" onmouseover="rimuovi_stile(this)" type="number" id="lunghezza" name="lunghezza" min="0" max="50" placeholder="Inserisci la lunghezza massima (0.1-50 km)">
-                            @endif                        
+                            @endif
                         <span class="invalid-input" id="invalid_lunghezza"></span>
                     </div>
                     <div class="form-group">
@@ -203,8 +203,8 @@
                                 @endif
                             @else
                                 <input class="form-control" onkeyup="rimuovi_stile(this)" onmouseover="rimuovi_stile(this)" type="number" id="dislivello" name="dislivello" min="0" max="10000" placeholder="Inserisci il displivello massimo (0-10000 m)">
-                            @endif                        
-                        
+                            @endif
+
                         <span class="invalid-input" id="invalid_dislivello"></span>
                     </div>
                     <div class="form-group">
@@ -217,11 +217,11 @@
                                 @endif
                             @else
                                 <input class="form-control" onkeyup="rimuovi_stile(this)" onmouseover="rimuovi_stile(this)" type="number" pattern="^\d*(\.\d{0,2})?$" min="0" id="durata" name="durata" placeholder="Inserisci la durata massima (espressa in ore)">
-                            @endif                         
-                        
+                            @endif
+
                         <span class="invalid-input" id="invalid_durata"></span>
                     </div>
-                
+
                     <!--<div class="form-group">
                         <div class="slidecontainer">
                             <input type="range" min="0" max="24" value="50" class="slider" id="myRange">
@@ -229,7 +229,7 @@
                     </div>-->
                 </form>
             </div>
-            
+
             <div class="col-md-7 col-s-7 col-m-pull-5 ">
                 <h4 class="text-right">{{$sentieri->total()}} risultati trovati</h4>
             </div>
@@ -237,8 +237,8 @@
                 @if(count($sentieri)==0)
                 <h3>Non sono stati trovati sentieri con questi criteri di ricerca</h3>
                 @else
-                
-                
+
+
                     @foreach ($sentieri as $key => $sentiero)
                     <div class="carta2">
                         <div class="carta2-img">
@@ -272,11 +272,11 @@
                     {{ $sentieri->links() }}
                 @endif
             </div>
-        </div>    
-    
-    
+        </div>
 
- 
+
+
+
 
 <!--    <div class="row">
         <div class="col-md-3 pull-right">
